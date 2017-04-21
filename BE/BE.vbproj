@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="PaqueteBE.vb" />
     <Compile Include="PasajeroBE.vb" />
+    <Compile Include="UsuarioBE.vb" />
     <Compile Include="VentaBE.vb" />
     <Compile Include="VentaPasajeroBE.vb" />
     <Compile Include="VentaVueloBE.vb" />
