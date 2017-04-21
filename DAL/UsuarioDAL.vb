@@ -16,7 +16,7 @@ Public Class UsuarioDAL
         pUsuario.UserName = pRow("usuario_userName")
         pUsuario.Nombre = pRow("Usuario_nombre")
         pUsuario.Apellido = pRow("usuario_apellido")
-        pUsuario.Pasword = pRow("usuario_password")
+        pUsuario.Password = pRow("usuario_password")
         pUsuario.Rol = pRow("usuario_rol")
 
         Return pUsuario
@@ -65,7 +65,7 @@ Public Class UsuarioDAL
                                  "usuario_userName = '" & pUsuario.UserName &
                                  "', usuario_nombre = '" & pUsuario.Nombre &
                                  "', usuario_apellido = '" & pUsuario.Apellido &
-                                 "', usuario_password = '" & pUsuario.Pasword &
+                                 "', usuario_password = '" & pUsuario.Password &
                                  "', usuario_rol = " & pUsuario.Rol &
                                  " WHERE Usuario_id = " & pUsuario.ID
 
