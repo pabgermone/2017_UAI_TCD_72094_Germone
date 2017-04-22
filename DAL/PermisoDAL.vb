@@ -43,7 +43,7 @@ Public Class PermisoDAL
 
 
     'Crea un nuevo registro en la tabla Permiso
-    Public Shared Sub GuardarNuevo(pPermiso As PermisoBE)
+    Public Shared Sub GuardarNuevo(pPermiso As PermisoAbstractoBE)
         Dim mCommand As String = "INSERT INTO Permiso(Permiso_id, Permiso_nombre, permiso_padre) VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ");"
 
         Try
@@ -56,7 +56,7 @@ Public Class PermisoDAL
 
 
     'Modifica un registro de la tabla Permiso
-    Public Shared Sub GuardarModificacion(pPermiso As PermisoBE)
+    Public Shared Sub GuardarModificacion(pPermiso As PermisoAbstractoBE)
         Dim mCommand As String = "UPDATE Permiso SET " &
                                  "Permiso_nombre = '" & pPermiso.Nombre &
                                  "', permiso_padre = " & pPermiso.Padre &
@@ -72,7 +72,7 @@ Public Class PermisoDAL
 
 
     'Elimina un registro de la tabla Permiso
-    Public Shared Sub Eliminar(pPermiso As PermisoBE)
+    Public Shared Sub Eliminar(pPermiso As PermisoAbstractoBE)
         Dim mCommand As String = "DELETE FROM Permiso WHERE Permiso_id = " & pPermiso.ID
 
         Try
@@ -85,8 +85,8 @@ Public Class PermisoDAL
 
 
     'Devuelve una lista de objetos PermisoBE con los datos de cada registro de la tabla Permiso
-    Public Shared Function ListarPermisos() As List(Of PermisoBE)
-        Dim mLista As New List(Of PermisoBE)
+    Public Shared Function ListarPermisos() As List(Of PermisoAbstractoBE)
+        Dim mLista As New List(Of PermisoAbstractoBE)
         Dim mCommand As String = "SELECT Permiso_id, Permiso_nombre, permiso_padre FROM Permiso"
         Dim mDataSet As DataSet
 
