@@ -83,6 +83,10 @@
     </Compile>
     <Compile Include="PaqueteBE.vb" />
     <Compile Include="PasajeroBE.vb" />
+    <Compile Include="PermisoAbstractoBE.vb" />
+    <Compile Include="PermisoBE.vb" />
+    <Compile Include="PermisoCompuestoBE.vb" />
+    <Compile Include="RolBE.vb" />
     <Compile Include="UsuarioBE.vb" />
     <Compile Include="VentaBE.vb" />
     <Compile Include="VentaPasajeroBE.vb" />

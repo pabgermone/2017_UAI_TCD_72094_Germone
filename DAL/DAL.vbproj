@@ -84,6 +84,8 @@
     </Compile>
     <Compile Include="PaqueteDAL.vb" />
     <Compile Include="PasajeroDAL.vb" />
+    <Compile Include="PermisoDAL.vb" />
+    <Compile Include="RolDAL.vb" />
     <Compile Include="TablaIntermedia.vb" />
     <Compile Include="UsuarioDAL.vb" />
     <Compile Include="VentaDAL.vb" />
