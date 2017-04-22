@@ -17,7 +17,9 @@ Public Class UsuarioDAL
         pUsuario.Nombre = pRow("Usuario_nombre")
         pUsuario.Apellido = pRow("usuario_apellido")
         pUsuario.Password = pRow("usuario_password")
-        pUsuario.Rol = pRow("usuario_rol")
+        If IsNumeric(pRow("usuario_rol")) Then
+            pUsuario.Rol = pRow("usuario_rol")
+        End If
 
         Return pUsuario
     End Function
@@ -47,8 +49,8 @@ Public Class UsuarioDAL
 
     'Crea un nuevo registro en la tabla Usuario
     Public Shared Sub GuardarNuevo(pUsuario As UsuarioBE)
-        Dim mCommand As String = "INSERT INTO Usuario(Usuario_id, Usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol) " &
-                                 "VALUES (" & pUsuario.ID & ", '" & pUsuario.UserName & "', '" & pUsuario.Nombre & "', '" & pUsuario.Apellido & "', " & pUsuario.Rol & ");"
+        Dim mCommand As String = "INSERT INTO Usuario(Usuario_id, Usuario_userName, usuario_nombre, usuario_apellido, usuario_password) " &
+                                 "VALUES (" & pUsuario.ID & ", '" & pUsuario.UserName & "', '" & pUsuario.Nombre & "', '" & pUsuario.Apellido & "', '" & pUsuario.Password & "');"
 
         Try
             BD.ExecuteNonQuery(mCommand)
