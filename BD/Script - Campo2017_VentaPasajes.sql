@@ -52,7 +52,7 @@ create table RolPermiso(rolPermiso_rol int not null,
 						foreign key(rolPermiso_permiso) references Permiso(permiso_id));
 
 create table Usuario(usuario_id int primary key not null,
-					 usuario_userName varchar(50) not null,
+					 usuario_userName varchar(50) not null unique,
 					 usuario_nombre varchar(50) not null,
 					 usuario_apellido varchar(50) not null,
 					 usuario_password varchar(50) not null,

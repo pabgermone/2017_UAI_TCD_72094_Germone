@@ -24,9 +24,9 @@ Public Class UsuarioDAL
 
 
     'Ejecuta un query que obtiene los datos de una Usuario
-    Public Shared Function ObtenerUsuario(pID As Integer) As UsuarioBE
+    Public Shared Function ObtenerUsuario(pUser As String) As UsuarioBE
         Dim mUsuario As New UsuarioBE
-        Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario WHERE Usuario_id = " & pID
+        Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario WHERE Usuario_userName LIKE '" & pUser & "';"
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)

@@ -29,54 +29,61 @@ Partial Class CargaUsuarios
         Me.btnIngreso = New System.Windows.Forms.Button()
         Me.btnRegistro = New System.Windows.Forms.Button()
         Me.lblPassChange = New System.Windows.Forms.LinkLabel()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(12, 28)
+        Me.txtUsername.Location = New System.Drawing.Point(18, 43)
+        Me.txtUsername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(236, 20)
+        Me.txtUsername.Size = New System.Drawing.Size(352, 26)
         Me.txtUsername.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 12)
+        Me.Label1.Location = New System.Drawing.Point(18, 18)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(98, 13)
+        Me.Label1.Size = New System.Drawing.Size(146, 20)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Nombre de Usuario"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 66)
+        Me.Label2.Location = New System.Drawing.Point(18, 102)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(61, 13)
+        Me.Label2.Size = New System.Drawing.Size(92, 20)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Contraseña"
         '
         'txtPass
         '
-        Me.txtPass.Location = New System.Drawing.Point(12, 82)
+        Me.txtPass.Location = New System.Drawing.Point(18, 126)
+        Me.txtPass.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtPass.Name = "txtPass"
-        Me.txtPass.Size = New System.Drawing.Size(236, 20)
+        Me.txtPass.Size = New System.Drawing.Size(352, 26)
         Me.txtPass.TabIndex = 2
         '
         'btnIngreso
         '
-        Me.btnIngreso.Location = New System.Drawing.Point(12, 166)
+        Me.btnIngreso.Location = New System.Drawing.Point(18, 255)
+        Me.btnIngreso.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnIngreso.Name = "btnIngreso"
-        Me.btnIngreso.Size = New System.Drawing.Size(111, 23)
+        Me.btnIngreso.Size = New System.Drawing.Size(166, 35)
         Me.btnIngreso.TabIndex = 4
         Me.btnIngreso.Text = "Ingresar"
         Me.btnIngreso.UseVisualStyleBackColor = True
         '
         'btnRegistro
         '
-        Me.btnRegistro.Location = New System.Drawing.Point(137, 166)
+        Me.btnRegistro.Location = New System.Drawing.Point(206, 255)
+        Me.btnRegistro.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnRegistro.Name = "btnRegistro"
-        Me.btnRegistro.Size = New System.Drawing.Size(111, 23)
+        Me.btnRegistro.Size = New System.Drawing.Size(166, 35)
         Me.btnRegistro.TabIndex = 5
         Me.btnRegistro.Text = "Registrarse"
         Me.btnRegistro.UseVisualStyleBackColor = True
@@ -85,18 +92,31 @@ Partial Class CargaUsuarios
         '
         Me.lblPassChange.AutoSize = True
         Me.lblPassChange.LinkColor = System.Drawing.SystemColors.ControlText
-        Me.lblPassChange.Location = New System.Drawing.Point(75, 126)
+        Me.lblPassChange.Location = New System.Drawing.Point(116, 157)
+        Me.lblPassChange.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblPassChange.Name = "lblPassChange"
-        Me.lblPassChange.Size = New System.Drawing.Size(107, 13)
+        Me.lblPassChange.Size = New System.Drawing.Size(157, 20)
         Me.lblPassChange.TabIndex = 6
         Me.lblPassChange.TabStop = True
         Me.lblPassChange.Text = "Olvido su contraseña"
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.Red
+        Me.Label3.Location = New System.Drawing.Point(56, 199)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(277, 20)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "*Por favor, revise los datos ingresados"
+        Me.Label3.Visible = False
+        '
         'CargaUsuarios
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(265, 201)
+        Me.ClientSize = New System.Drawing.Size(398, 309)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lblPassChange)
         Me.Controls.Add(Me.btnRegistro)
         Me.Controls.Add(Me.btnIngreso)
@@ -104,6 +124,7 @@ Partial Class CargaUsuarios
         Me.Controls.Add(Me.txtPass)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtUsername)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "CargaUsuarios"
         Me.Text = "CargaUsuarios"
         Me.ResumeLayout(False)
@@ -118,4 +139,5 @@ Partial Class CargaUsuarios
     Friend WithEvents btnIngreso As Button
     Friend WithEvents btnRegistro As Button
     Friend WithEvents lblPassChange As LinkLabel
+    Friend WithEvents Label3 As Label
 End Class
