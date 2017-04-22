@@ -2,7 +2,7 @@
 Imports BE
 
 Public Class UsuarioBLL
-    Public Property ID As Integer
+    Public Property ID As Integer = 0
     Public Property UserName As String
     Public Property Nombre As String
     Public Property Apellido As String
@@ -14,21 +14,23 @@ Public Class UsuarioBLL
 
     End Sub
 
-    Sub New(pID As Integer)
-        CargarPropiedades(pID)
+    Sub New(pUser As String)
+        CargarPropiedades(pUser)
     End Sub
 
 
 
-    Private Sub CargarPropiedades(pID As Integer)
-        Dim mBE As UsuarioBE = UsuarioDAL.ObtenerUsuario(pID)
+    Private Sub CargarPropiedades(pUser As String)
+        Dim mBE As UsuarioBE = UsuarioDAL.ObtenerUsuario(pUser)
 
-        Me.ID = mBE.ID
-        Me.UserName = mBE.UserName
-        Me.Nombre = mBE.Nombre
-        Me.Apellido = mBE.Apellido
-        Me.Password = mBE.Password
-        Me.Rol = mBE.Rol
+        If Not IsNothing(mBE) Then
+            Me.ID = mBE.ID
+            Me.UserName = mBE.UserName
+            Me.Nombre = mBE.Nombre
+            Me.Apellido = mBE.Apellido
+            Me.Password = mBE.Password
+            Me.Rol = mBE.Rol
+        End If
     End Sub
 
 

@@ -84,6 +84,12 @@
     <Compile Include="CargaUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRegistro.Designer.vb">
+      <DependentUpon>FormRegistro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistro.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CargaUsuarios.resx">
       <DependentUpon>CargaUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistro.resx">
+      <DependentUpon>FormRegistro.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
