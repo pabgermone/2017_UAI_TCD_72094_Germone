@@ -80,9 +80,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Usuario\Modelo.vb" />
     <Compile Include="Usuario\PermisoBLL.vb" />
     <Compile Include="Usuario\PermisoAbstractoBLL.vb" />
     <Compile Include="Usuario\PermisoCompuestoBLL.vb" />
+    <Compile Include="Usuario\RolBLL.vb" />
     <Compile Include="Usuario\UsuarioBLL.vb" />
   </ItemGroup>
   <ItemGroup>
