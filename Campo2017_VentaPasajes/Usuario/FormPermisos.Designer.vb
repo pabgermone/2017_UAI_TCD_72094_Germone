@@ -29,9 +29,12 @@ Partial Class FormPermisos
         Me.tableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnAceptar = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.AgregarPermisoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tableLayoutPanel1.SuspendLayout()
         Me.panel1.SuspendLayout()
         Me.tableLayoutPanel2.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'tableLayoutPanel1
@@ -43,7 +46,7 @@ Partial Class FormPermisos
         Me.tableLayoutPanel1.Controls.Add(Me.treePatentes, 0, 1)
         Me.tableLayoutPanel1.Controls.Add(Me.tableLayoutPanel2, 0, 2)
         Me.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.tableLayoutPanel1.Location = New System.Drawing.Point(0, 24)
         Me.tableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.tableLayoutPanel1.Name = "tableLayoutPanel1"
         Me.tableLayoutPanel1.RowCount = 3
@@ -51,7 +54,7 @@ Partial Class FormPermisos
         Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49.0!))
         Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16.0!))
-        Me.tableLayoutPanel1.Size = New System.Drawing.Size(292, 338)
+        Me.tableLayoutPanel1.Size = New System.Drawing.Size(292, 314)
         Me.tableLayoutPanel1.TabIndex = 3
         '
         'panel1
@@ -85,7 +88,7 @@ Partial Class FormPermisos
         Me.treePatentes.Location = New System.Drawing.Point(2, 51)
         Me.treePatentes.Margin = New System.Windows.Forms.Padding(2)
         Me.treePatentes.Name = "treePatentes"
-        Me.treePatentes.Size = New System.Drawing.Size(288, 236)
+        Me.treePatentes.Size = New System.Drawing.Size(288, 212)
         Me.treePatentes.TabIndex = 4
         '
         'tableLayoutPanel2
@@ -97,7 +100,7 @@ Partial Class FormPermisos
         Me.tableLayoutPanel2.Controls.Add(Me.btnCancelar, 1, 0)
         Me.tableLayoutPanel2.Controls.Add(Me.btnAceptar, 0, 0)
         Me.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tableLayoutPanel2.Location = New System.Drawing.Point(2, 291)
+        Me.tableLayoutPanel2.Location = New System.Drawing.Point(2, 267)
         Me.tableLayoutPanel2.Margin = New System.Windows.Forms.Padding(2)
         Me.tableLayoutPanel2.Name = "tableLayoutPanel2"
         Me.tableLayoutPanel2.RowCount = 1
@@ -127,18 +130,38 @@ Partial Class FormPermisos
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgregarPermisoToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(292, 24)
+        Me.MenuStrip1.TabIndex = 4
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'AgregarPermisoToolStripMenuItem
+        '
+        Me.AgregarPermisoToolStripMenuItem.Name = "AgregarPermisoToolStripMenuItem"
+        Me.AgregarPermisoToolStripMenuItem.Size = New System.Drawing.Size(107, 20)
+        Me.AgregarPermisoToolStripMenuItem.Text = "Agregar Permiso"
+        '
         'FormPermisos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(292, 338)
         Me.Controls.Add(Me.tableLayoutPanel1)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "FormPermisos"
         Me.Text = "x"
         Me.tableLayoutPanel1.ResumeLayout(False)
         Me.panel1.ResumeLayout(False)
         Me.tableLayoutPanel2.ResumeLayout(False)
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -149,4 +172,6 @@ Partial Class FormPermisos
     Private WithEvents tableLayoutPanel2 As TableLayoutPanel
     Private WithEvents btnCancelar As Button
     Private WithEvents btnAceptar As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents AgregarPermisoToolStripMenuItem As ToolStripMenuItem
 End Class

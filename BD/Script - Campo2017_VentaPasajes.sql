@@ -35,21 +35,30 @@ create table VueloPasajero(vueloPasajero_vuelo varchar(10) not null,
 create table Paquete(paquete_id int not null primary key,
 					 paquete_descripcion varchar(140));
 
-create table Permiso(permiso_id int primary key not null,
-					 permiso_nombre varchar(50) not null);
+create table PermisoCompuesto(permisoCompuesto_id int not null primary key,
+							  permisoCompuesto_nombre varchar(50) not null,
+							  permisoCompuesto_padre int,
+							  foreign key(permisoCompuesto_padre) references PermisoCompuesto(permisoCompuesto_id));
 
-create table PermisoCompuesto(permisoPadre int not null,
-							  permisoHijo int not null,
-							  foreign key(permisoPadre) references Permiso(permiso_id),
-							  foreign key(permisoHijo) references Permiso(permiso_id));
+create table Permiso(permiso_id int primary key not null,
+					 permiso_nombre varchar(50) not null,
+					 permiso_padre int,
+					 foreign key(permiso_padre) references PermisoCompuesto(permisoCompuesto_id));
 
 create table Rol(rol_id int primary key not null,
 				 rol_nombre varchar(50) not null)
 
 create table RolPermiso(rolPermiso_rol int not null,
 						rolPermiso_permiso int not null,
+						primary key(rolPermiso_rol, rolPermiso_permiso),
 						foreign key(rolPermiso_rol) references Rol(rol_id),
 						foreign key(rolPermiso_permiso) references Permiso(permiso_id));
+
+create table RolPermisoCompuesto(rolPermisoCompuesto_rol int not null,
+								 rolPermisoCompuesto_Permiso int not null,
+								 primary key(rolPermisoCompuesto_rol, rolPermisoCompuesto_permiso),
+								 foreign key(rolPermisoCompuesto_rol) references Rol(rol_id),
+								 foreign key(rolPermisoCompuesto_permiso) references PermisoCompuesto(permisoCompuesto_id));
 
 create table Usuario(usuario_id int primary key not null,
 					 usuario_userName varchar(50) not null unique,

@@ -68,7 +68,7 @@ Public Class UsuarioDAL
                                  "', usuario_nombre = '" & pUsuario.Nombre &
                                  "', usuario_apellido = '" & pUsuario.Apellido &
                                  "', usuario_password = '" & pUsuario.Password &
-                                 "', usuario_rol = " & pUsuario.Rol &
+                                 "', usuario_rol = " & pUsuario.Rol.ToString &
                                  " WHERE Usuario_id = " & pUsuario.ID
 
         Try

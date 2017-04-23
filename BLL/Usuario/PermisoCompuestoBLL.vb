@@ -1,10 +1,10 @@
 ﻿Imports System.Windows.Forms
 Imports BE
+Imports BLL
 Imports DAL
 
 Public Class PermisoCompuestoBLL
     Inherits PermisoAbstractoBLL
-
     Public Property ListaPatentes As New List(Of PermisoAbstractoBLL)
 
     Private Sub CargarBE(pBE As PermisoAbstractoBE)
@@ -41,4 +41,15 @@ Public Class PermisoCompuestoBLL
             patente.MostrarEnTreeview(node.Nodes)
         Next
     End Sub
+
+    Public Overrides Function Clone() As PermisoAbstractoBLL
+        Dim pat As New PermisoCompuestoBLL
+        pat.Nombre = Me.Nombre
+
+        For Each patente As PermisoAbstractoBLL In ListaPatentes
+            pat.ListaPatentes.Add(patente.Clone())
+        Next
+
+        Return pat
+    End Function
 End Class

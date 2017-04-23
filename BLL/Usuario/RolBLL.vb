@@ -5,6 +5,7 @@ Public Class RolBLL
     Public Property ID As Integer
     Public Property Nombre As String
     Public Property Permisos As New List(Of PermisoAbstractoBE)
+    Public Property PermisoRaiz As PermisoAbstractoBLL
 
 
     Sub New()
@@ -67,5 +68,9 @@ Public Class RolBLL
         Next
 
         Return mLista
+    End Function
+
+    Public Overrides Function ToString() As String
+        Return Me.Nombre
     End Function
 End Class

@@ -7,7 +7,7 @@ Public Class UsuarioBLL
     Public Property Nombre As String
     Public Property Apellido As String
     Public Property Password As String
-    Public Property Rol As Integer
+    Public Property Rol As RolBE
 
 
     Sub New()
