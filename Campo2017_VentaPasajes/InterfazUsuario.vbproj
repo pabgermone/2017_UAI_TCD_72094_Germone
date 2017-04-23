@@ -72,10 +72,28 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormPrincipal.Designer.vb">
+      <DependentUpon>FormPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\FormAsignacion.Designer.vb">
+      <DependentUpon>FormAsignacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\FormAsignacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Usuario\FormLogIn.Designer.vb">
       <DependentUpon>FormLogIn.vb</DependentUpon>
     </Compile>
     <Compile Include="Usuario\FormLogIn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\FormPermisos.Designer.vb">
+      <DependentUpon>FormPermisos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\FormPermisos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Usuario\FormRegistro.Designer.vb">
@@ -99,10 +117,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Usuario\FormRoles.Designer.vb">
+      <DependentUpon>FormRoles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\FormRoles.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\FormAsignacion.resx">
+      <DependentUpon>FormAsignacion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usuario\FormLogIn.resx">
       <DependentUpon>FormLogIn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\FormPermisos.resx">
+      <DependentUpon>FormPermisos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuario\FormRegistro.resx">
       <DependentUpon>FormRegistro.vb</DependentUpon>
@@ -112,6 +145,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\FormRoles.resx">
+      <DependentUpon>FormRoles.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
