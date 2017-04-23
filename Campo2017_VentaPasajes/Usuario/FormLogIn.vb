@@ -1,6 +1,6 @@
 ﻿Imports BLL
 
-Public Class CargaUsuarios
+Public Class FormLogIn
 
     Private Sub btnIngreso_Click(sender As Object, e As EventArgs) Handles btnIngreso.Click
         Dim mUsuario As New UsuarioBLL(txtUsername.Text)

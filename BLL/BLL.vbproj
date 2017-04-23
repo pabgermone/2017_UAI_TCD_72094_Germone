@@ -64,7 +64,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PasajeroBLL.vb" />
+    <Compile Include="Negocio\PasajeroBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -80,10 +80,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PermisoBLL.vb" />
-    <Compile Include="PermisoAbstractoBLL.vb" />
-    <Compile Include="PermisoCompuestoBLL.vb" />
-    <Compile Include="UsuarioBLL.vb" />
+    <Compile Include="Usuario\PermisoBLL.vb" />
+    <Compile Include="Usuario\PermisoAbstractoBLL.vb" />
+    <Compile Include="Usuario\PermisoCompuestoBLL.vb" />
+    <Compile Include="Usuario\UsuarioBLL.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

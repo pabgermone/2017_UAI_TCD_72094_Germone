@@ -72,22 +72,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CargaPasajeros.Designer.vb">
-      <DependentUpon>CargaPasajeros.vb</DependentUpon>
+    <Compile Include="Usuario\FormLogIn.Designer.vb">
+      <DependentUpon>FormLogIn.vb</DependentUpon>
     </Compile>
-    <Compile Include="CargaPasajeros.vb">
+    <Compile Include="Usuario\FormLogIn.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CargaUsuarios.Designer.vb">
-      <DependentUpon>CargaUsuarios.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CargaUsuarios.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormRegistro.Designer.vb">
+    <Compile Include="Usuario\FormRegistro.Designer.vb">
       <DependentUpon>FormRegistro.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormRegistro.vb">
+    <Compile Include="Usuario\FormRegistro.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -107,13 +101,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CargaPasajeros.resx">
-      <DependentUpon>CargaPasajeros.vb</DependentUpon>
+    <EmbeddedResource Include="Usuario\FormLogIn.resx">
+      <DependentUpon>FormLogIn.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CargaUsuarios.resx">
-      <DependentUpon>CargaUsuarios.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistro.resx">
+    <EmbeddedResource Include="Usuario\FormRegistro.resx">
       <DependentUpon>FormRegistro.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

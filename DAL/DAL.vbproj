@@ -63,10 +63,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AerolineaDAL.vb" />
-    <Compile Include="AsientoDAL.vb" />
-    <Compile Include="BD.vb" />
-    <Compile Include="DestinoDAL.vb" />
+    <Compile Include="Negocio\AerolineaDAL.vb" />
+    <Compile Include="Negocio\AsientoDAL.vb" />
+    <Compile Include="Conexion\BD.vb" />
+    <Compile Include="Negocio\DestinoDAL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -82,14 +82,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PaqueteDAL.vb" />
-    <Compile Include="PasajeroDAL.vb" />
-    <Compile Include="PermisoDAL.vb" />
-    <Compile Include="RolDAL.vb" />
+    <Compile Include="Negocio\PaqueteDAL.vb" />
+    <Compile Include="Negocio\PasajeroDAL.vb" />
+    <Compile Include="Usuario\PermisoDAL.vb" />
+    <Compile Include="Usuario\RolDAL.vb" />
     <Compile Include="TablaIntermedia.vb" />
-    <Compile Include="UsuarioDAL.vb" />
-    <Compile Include="VentaDAL.vb" />
-    <Compile Include="VentaPasajeroDAL.vb" />
+    <Compile Include="Usuario\UsuarioDAL.vb" />
+    <Compile Include="Negocio\VentaDAL.vb" />
+    <Compile Include="Negocio\VentaPasajeroDAL.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -116,6 +116,7 @@
       <Name>BE</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -63,9 +63,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AerolineaBE.vb" />
-    <Compile Include="AsientoBE.vb" />
-    <Compile Include="DestinoBE.vb" />
+    <Compile Include="Negocio\AerolineaBE.vb" />
+    <Compile Include="Negocio\AsientoBE.vb" />
+    <Compile Include="Negocio\DestinoBE.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -81,18 +81,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PaqueteBE.vb" />
-    <Compile Include="PasajeroBE.vb" />
-    <Compile Include="PermisoAbstractoBE.vb" />
-    <Compile Include="PermisoBE.vb" />
-    <Compile Include="PermisoCompuestoBE.vb" />
-    <Compile Include="RolBE.vb" />
-    <Compile Include="UsuarioBE.vb" />
-    <Compile Include="VentaBE.vb" />
-    <Compile Include="VentaPasajeroBE.vb" />
-    <Compile Include="VentaVueloBE.vb" />
-    <Compile Include="VueloBE.vb" />
-    <Compile Include="VueloPasajeroBE.vb" />
+    <Compile Include="Negocio\PaqueteBE.vb" />
+    <Compile Include="Negocio\PasajeroBE.vb" />
+    <Compile Include="Usuario\PermisoAbstractoBE.vb" />
+    <Compile Include="Usuario\PermisoBE.vb" />
+    <Compile Include="Usuario\PermisoCompuestoBE.vb" />
+    <Compile Include="Usuario\RolBE.vb" />
+    <Compile Include="Usuario\UsuarioBE.vb" />
+    <Compile Include="Negocio\VentaBE.vb" />
+    <Compile Include="Negocio\VentaPasajeroBE.vb" />
+    <Compile Include="Negocio\VentaVueloBE.vb" />
+    <Compile Include="Negocio\VueloBE.vb" />
+    <Compile Include="Negocio\VueloPasajeroBE.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -113,6 +113,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
