@@ -117,25 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RichTextBox1.Text" xml:space="preserve">
-    <value>Requerimientos:
-
--Agregar Familias Al Modelo
--Agregar Usuarios Al Modelo
--Implementar el inicio de sesion en el TableLayoutPanel
--Implementar el inicio de sesion en el MenuStrip
--Implementar mostrar Formularios al hacer click en opcion luego inicio sesion 
-     -Activator.CreateInstance con Reflection
-     -Metodo Execute en el composite
- 
-Requerimientos Extra
--Persistir en modelo en una base de datos
--Mostrar Familias Dadas de Alta en FormularioAbm
--Mostrar Usuarios Dados de Alta en FormularioAbm
--Mostrar Patentes Dadas de Alta en FormularioAbm
--Los tres requerimientos anteriores DEBEN USAR EL MISMO FORMULARIO
--Extender el modelo para que los botones dentro del formulario sean una patente</value>
-  </data>
   <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
