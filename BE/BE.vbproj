@@ -87,6 +87,7 @@
     <Compile Include="Usuario\PermisoBE.vb" />
     <Compile Include="Usuario\PermisoCompuestoBE.vb" />
     <Compile Include="Usuario\RolBE.vb" />
+    <Compile Include="Usuario\RolPermisoBE.vb" />
     <Compile Include="Usuario\UsuarioBE.vb" />
     <Compile Include="Negocio\VentaBE.vb" />
     <Compile Include="Negocio\VentaPasajeroBE.vb" />

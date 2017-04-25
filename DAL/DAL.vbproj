@@ -87,6 +87,7 @@
     <Compile Include="Usuario\PermisoDAL.vb" />
     <Compile Include="Usuario\RolDAL.vb" />
     <Compile Include="TablaIntermedia.vb" />
+    <Compile Include="Usuario\RolPermisoDAL.vb" />
     <Compile Include="Usuario\UsuarioDAL.vb" />
     <Compile Include="Negocio\VentaDAL.vb" />
     <Compile Include="Negocio\VentaPasajeroDAL.vb" />
