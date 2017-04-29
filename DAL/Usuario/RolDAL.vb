@@ -146,13 +146,17 @@ Public Class RolDAL
     ''' </returns>
     Private Shared Function ObtenerPermisos(pID As Integer) As List(Of PermisoAbstractoBE)
         Dim mLista As New List(Of PermisoAbstractoBE)
-        Dim mCommand As String = "select permiso_id, permiso_nombre
+        Dim mCommand As String = "select permiso_id, permiso_nombre, permiso_padre
                                   from Permiso
                                   inner join RolPermiso on rolPermiso_permiso = permiso_id
                                   where rolPermiso_rol = " & pID
-        Dim mDataSet As DataSet
 
-        'Agregar implementacion para traer permisos compuestos
+        Dim mCommandComp As String = "select permisoCompuesto_id, permisoCompuesto_nombre, permisoCompuesto_padre
+                                      from PermisoCompuesto
+                                      inner join RolPermisoCompuesto on rolPermisoCompuesto_permiso = permisoCompuesto_id
+                                      where rolPermisoCompuesto_rol = " & pID
+
+        Dim mDataSet As DataSet
 
         Try
             mDataSet = BD.ExecuteDataSet(mCommand)
@@ -163,11 +167,20 @@ Public Class RolDAL
 
                     mLista.Add(PermisoDAL.CargarBE(mBE, mRow))
                 Next
-
-                Return mLista
-            Else
-                Return Nothing
             End If
+
+
+            mDataSet = BD.ExecuteDataSet(mCommandComp)
+
+            If Not IsNothing(mDataSet) And mDataSet.Tables.Count > 0 And mDataSet.Tables(0).Rows.Count > 0 Then
+                For Each mRow As DataRow In mDataSet.Tables(0).Rows
+                    Dim mBE As New PermisoCompuestoBE
+
+                    mLista.Add(PermisoDAL.CargarBE(mBE, mRow))
+                Next
+            End If
+
+            Return mLista
         Catch ex As Exception
             MsgBox("Error - ObtenerPermisos - RolDAL")
             MsgBox(ex.Message)
