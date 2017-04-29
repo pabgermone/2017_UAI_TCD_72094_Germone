@@ -4,25 +4,39 @@ Imports System.Data.SqlClient
 Public Class RolDAL
     Private Shared mProximoID As Integer
 
-    'Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' <summary>
+    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' </summary>
+    ''' <returns>Integer con el ID a asignar</returns>
+    <Obsolete("El ID tiene que ser manejado desde la BD")>
     Public Shared Function GetProximoID() As Integer
         Return BD.ExecuteScalar("select isnull(max(Rol_id), 0) from Rol") + 1
     End Function
 
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pRol">RolBE que se quiere cargar con datos</param>
+    ''' <param name="pRow">DataRow que contiene los datos para pRol</param>
+    ''' <returns>RolBE con propiedades cargadas</returns>
     Private Shared Function CargarBE(pRol As RolBE, pRow As DataRow) As RolBE
         pRol.ID = pRow("Rol_id")
         pRol.Nombre = pRow("Rol_nombre")
+        pRol.ListaPermisos = ObtenerPermisos(pRol.ID)
 
         Return pRol
     End Function
 
 
-    'Ejecuta un query que obtiene los datos de una Rol
-    Public Shared Function ObtenerRol(pID As Integer) As RolBE
+    ''' <summary>
+    ''' Ejecuta un query que obtiene los datos de un Rol
+    ''' </summary>
+    ''' <param name="pNombre">Nombre del rol del que se quieren obtener datos</param>
+    ''' <returns>RolBE con los datos recuperados de BD par esa entidad</returns>
+    Public Shared Function ObtenerRol(pNombre As String) As RolBE
         Dim mRol As New RolBE
-        Dim mCommand As String = "SELECT Rol_id, Rol_nombre FROM Rol WHERE Rol_id = " & pID
+        Dim mCommand As String = "SELECT Rol_id, Rol_nombre FROM Rol WHERE Rol_nombre = " & pNombre
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)
@@ -41,7 +55,10 @@ Public Class RolDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Rol
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Rol
+    ''' </summary>
+    ''' <param name="pRol">RolBE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pRol As RolBE)
         Dim mCommand As String = "INSERT INTO Rol(Rol_id, Rol_nombre) VALUES (" & pRol.ID & ", '" & pRol.Nombre & "')"
 
@@ -54,7 +71,10 @@ Public Class RolDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Rol
+    ''' <summary>
+    ''' Modifica un registro de la tabla Rol
+    ''' </summary>
+    ''' <param name="pRol">RolBE con datos modificados</param>
     Public Shared Sub GuardarModificacion(pRol As RolBE)
         Dim mCommand As String = "UPDATE Rol SET " &
                                  "Rol_nombre = '" & pRol.Nombre &
@@ -69,7 +89,10 @@ Public Class RolDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Rol
+    ''' <summary>
+    ''' Elimina un registro de la tabla Rol
+    ''' </summary>
+    ''' <param name="pRol">RolBE con datos a eliminar</param>
     Public Shared Sub Eliminar(pRol As RolBE)
         Dim mCommand As String = "DELETE FROM Rol WHERE Rol_id = " & pRol.ID
 
@@ -82,8 +105,11 @@ Public Class RolDAL
     End Sub
 
 
-    'Devuelve una lista de objetos RolBE con los datos de cada registro de la tabla Rol
-    Public Shared Function ListarRols() As List(Of RolBE)
+    ''' <summary>
+    ''' Devuelve una lista de objetos RolBE con los datos de cada registro de la tabla Rol
+    ''' </summary>
+    ''' <returns>List(Of RolBE) con objetos BE cargados con datos obtenidos de BD</returns>
+    Public Shared Function ListarRoles() As List(Of RolBE)
         Dim mLista As New List(Of RolBE)
         Dim mCommand As String = "SELECT Rol_id, Rol_nombre FROM Rol"
         Dim mDataSet As DataSet
@@ -109,5 +135,44 @@ Public Class RolDAL
             MsgBox(ex.Message)
             Return Nothing
         End Try
+    End Function
+
+
+    ''' <summary>
+    ''' Recupera de BD todos los permisos relacionados con esta instancia de RolBE
+    ''' </summary>
+    ''' <returns>
+    ''' List(Of PermisoAbstractoBE) con instancias de los permisos que se relacionan con el Rol indicado
+    ''' </returns>
+    Private Shared Function ObtenerPermisos(pID As Integer) As List(Of PermisoAbstractoBE)
+        Dim mLista As New List(Of PermisoAbstractoBE)
+        Dim mCommand As String = "select permiso_id, permiso_nombre
+                                  from Permiso
+                                  inner join RolPermiso on rolPermiso_permiso = permiso_id
+                                  where rolPermiso_rol = " & pID
+        Dim mDataSet As DataSet
+
+        'Agregar implementacion para traer permisos compuestos
+
+        Try
+            mDataSet = BD.ExecuteDataSet(mCommand)
+
+            If Not IsNothing(mDataSet) And mDataSet.Tables.Count > 0 And mDataSet.Tables(0).Rows.Count > 0 Then
+                For Each mRow As DataRow In mDataSet.Tables(0).Rows
+                    Dim mBE As New PermisoBE
+
+                    mLista.Add(PermisoDAL.CargarBE(mBE, mRow))
+                Next
+
+                Return mLista
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            MsgBox("Error - ObtenerPermisos - RolDAL")
+            MsgBox(ex.Message)
+            Return Nothing
+        End Try
+
     End Function
 End Class
