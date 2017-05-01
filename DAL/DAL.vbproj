@@ -84,10 +84,10 @@
     </Compile>
     <Compile Include="Negocio\PaqueteDAL.vb" />
     <Compile Include="Negocio\PasajeroDAL.vb" />
-    <Compile Include="Usuario\PermisoDAL.vb" />
-    <Compile Include="Usuario\RolDAL.vb" />
-    <Compile Include="Usuario\RolPermisoDAL.vb" />
-    <Compile Include="Usuario\UsuarioDAL.vb" />
+    <Compile Include="Seguridad\PermisoDAL.vb" />
+    <Compile Include="Seguridad\RolDAL.vb" />
+    <Compile Include="Seguridad\RolPermisoDAL.vb" />
+    <Compile Include="Seguridad\UsuarioDAL.vb" />
     <Compile Include="Negocio\VentaDAL.vb" />
     <Compile Include="Negocio\VentaPasajeroDAL.vb" />
   </ItemGroup>
