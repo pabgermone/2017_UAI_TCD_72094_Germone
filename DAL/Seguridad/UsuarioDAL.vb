@@ -4,13 +4,22 @@ Imports System.Data.SqlClient
 Public Class UsuarioDAL
     Private Shared mProximoID As Integer
 
-    'Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' <summary>
+    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' </summary>
+    ''' <returns>ID a asignar a la entidad</returns>
+    <Obsolete("Los IDs deberian manejarse desde la BD")>
     Public Shared Function GetProximoID() As Integer
         Return BD.ExecuteScalar("select isnull(max(Usuario_id), 0) from Usuario") + 1
     End Function
 
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pUsuario">Objeto BE al que se quiere cargar con datos</param>
+    ''' <param name="pRow">Fila de la BD que contiene los datos para el objeto</param>
+    ''' <returns></returns>
     Private Shared Function CargarBE(pUsuario As UsuarioBE, pRow As DataRow) As UsuarioBE
         pUsuario.ID = pRow("Usuario_id")
         pUsuario.UserName = pRow("usuario_userName")
@@ -24,8 +33,11 @@ Public Class UsuarioDAL
         Return pUsuario
     End Function
 
-
-    'Ejecuta un query que obtiene los datos de una Usuario
+    ''' <summary>
+    ''' Ejecuta un query que obtiene los datos de una Usuario
+    ''' </summary>
+    ''' <param name="pUser">Nombre del Usuario que se quiere obtener</param>
+    ''' <returns></returns>
     Public Shared Function ObtenerUsuario(pUser As String) As UsuarioBE
         Dim mUsuario As New UsuarioBE
         Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario WHERE Usuario_userName LIKE '" & pUser & "';"
@@ -47,7 +59,10 @@ Public Class UsuarioDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Usuario
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Usuario
+    ''' </summary>
+    ''' <param name="pUsuario">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pUsuario As UsuarioBE)
         Dim mCommand As String = "INSERT INTO Usuario(Usuario_id, Usuario_userName, usuario_nombre, usuario_apellido, usuario_password) " &
                                  "VALUES (" & pUsuario.ID & ", '" & pUsuario.UserName & "', '" & pUsuario.Nombre & "', '" & pUsuario.Apellido & "', '" & pUsuario.Password & "');"
@@ -61,14 +76,17 @@ Public Class UsuarioDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Usuario
+    ''' <summary>
+    ''' Modifica un registro de la tabla Usuario
+    ''' </summary>
+    ''' <param name="pUsuario">Objeto BE con los datos modificades</param>
     Public Shared Sub GuardarModificacion(pUsuario As UsuarioBE)
         Dim mCommand As String = "UPDATE Usuario SET " &
                                  "usuario_userName = '" & pUsuario.UserName &
                                  "', usuario_nombre = '" & pUsuario.Nombre &
                                  "', usuario_apellido = '" & pUsuario.Apellido &
                                  "', usuario_password = '" & pUsuario.Password &
-                                 "', usuario_rol = " & pUsuario.Rol.ToString &
+                                 "', usuario_rol = " & pUsuario.Rol &
                                  " WHERE Usuario_id = " & pUsuario.ID
 
         Try
@@ -80,7 +98,10 @@ Public Class UsuarioDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Usuario
+    ''' <summary>
+    ''' Elimina un registro de la tabla Usuario
+    ''' </summary>
+    ''' <param name="pUsuario">Objeto BE con los datos a eliminar de la BD</param>
     Public Shared Sub Eliminar(pUsuario As UsuarioBE)
         Dim mCommand As String = "DELETE FROM Usuario WHERE Usuario_id = " & pUsuario.ID
 
@@ -93,7 +114,10 @@ Public Class UsuarioDAL
     End Sub
 
 
-    'Devuelve una lista de objetos UsuarioBE con los datos de cada registro de la tabla Usuario
+    ''' <summary>
+    ''' Devuelve una lista de objetos UsuarioBE con los datos de cada registro de la tabla Usuario
+    ''' </summary>
+    ''' <returns>Lista con instancias BE con todos los datos obtenidos de la BD</returns>
     Public Shared Function ListarUsuarios() As List(Of UsuarioBE)
         Dim mLista As New List(Of UsuarioBE)
         Dim mCommand As String = "SELECT SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario"

@@ -9,7 +9,7 @@ Public Class UsuarioBLL
     Public Property Nombre As String
     Public Property Apellido As String
     Public Property Password As String
-    Public Property Rol As RolBE
+    Public Property Rol As Integer = 0
 #End Region
 
 #Region "Constructores"
@@ -28,9 +28,9 @@ Public Class UsuarioBLL
 
 
     ''' <summary>
-    ''' 
+    ''' Carga las propiedades de un objeto BLL con datos de la BD
     ''' </summary>
-    ''' <param name="pUser"></param>
+    ''' <param name="pUser">Nombre de Usuario del que se quieren obtener datos</param>
     Private Sub CargarPropiedades(pUser As String)
         Dim mBE As UsuarioBE = UsuarioDAL.ObtenerUsuario(pUser)
 
@@ -45,6 +45,10 @@ Public Class UsuarioBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Carga un objeto BE con los datos de las propiedades de esta instancia
+    ''' </summary>
+    ''' <param name="mBE">Objeto BE que se quiere cargar con datos</param>
     Private Sub CargarBE(mBE As UsuarioBE)
         mBE.ID = Me.ID
         mBE.UserName = Me.UserName
@@ -55,6 +59,9 @@ Public Class UsuarioBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Persiste en la base los datos de la instancia
+    ''' </summary>
     Public Sub Guardar()
         Dim mBE As New UsuarioBE
 
@@ -69,6 +76,9 @@ Public Class UsuarioBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Elimina los datos de esta instancia de la BD
+    ''' </summary>
     Public Sub Eliminar()
         Dim mBE As New UsuarioBE
 
@@ -78,6 +88,10 @@ Public Class UsuarioBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Instancia y guarda en un lista objetos BLL con los datos de cada usuario guardado en la BD
+    ''' </summary>
+    ''' <returns>List(Of UsuarioBLL) con datos de cada usuario</returns>
     Public Shared Function ListarUsuarios() As List(Of UsuarioBLL)
         Dim mLista As New List(Of UsuarioBLL)
         Dim mListaBE As List(Of UsuarioBE) = UsuarioDAL.ListarUsuarios

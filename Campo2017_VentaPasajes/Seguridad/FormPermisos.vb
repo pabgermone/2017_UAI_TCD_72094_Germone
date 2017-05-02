@@ -35,7 +35,7 @@ Public Class FormPermisos
                 nodoNuevo.Tag = patente
 
                 nodo.Nodes.Add(nodoNuevo)
-                padre.ListaPatentes.Add(patente)
+                padre.ListaPermisos.Add(patente)
             End If
         End If
     End Sub

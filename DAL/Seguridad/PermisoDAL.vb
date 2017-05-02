@@ -145,10 +145,12 @@ Public Class PermisoDAL
 
 
     ''' <summary>
-    ''' Devuelve una lista de objetos PermisoBE con los datos de cada registro de la tabla Permiso o PermisoCompuesto
+    ''' Devuelve una lista de Permiso o PermisoCompuesto con los datos de cada registro de la tabla Permiso o PermisoCompuesto
     ''' </summary>
+    ''' <param name="pCompuesto">False (Default): Indica que se quiere una lista de PermisoBE /
+    '''                          True: Indica que se quiere una lista de PermisoCompuestoBE</param>
     ''' <returns>List(Of PermisoAbstracto) con todos los permisos simples o compuestos existentes en BD</returns>
-    Public Shared Function ListarPermisos(pCompuesto As Boolean) As List(Of PermisoAbstractoBE)
+    Public Shared Function ListarPermisos(Optional pCompuesto As Boolean = False) As List(Of PermisoAbstractoBE)
         Dim mLista As New List(Of PermisoAbstractoBE)
         Dim mCommand As String = ""
 

@@ -18,7 +18,7 @@ Public Class FormRoles
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         Dim gp = New PermisoCompuestoBLL
 
-        PatentesSeleccionas(treePatentes.Nodes, gp.ListaPatentes)
+        PatentesSeleccionas(treePatentes.Nodes, gp.ListaPermisos)
 
         family.Nombre = Me.txtNombre.Text
         Modelo.GetInstance.ListaRoles.Add(family)

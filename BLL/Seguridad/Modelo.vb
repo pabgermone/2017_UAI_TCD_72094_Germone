@@ -5,7 +5,7 @@ Public Class Modelo
 
 #Region "Propiedades"
     Public Property ListaRoles As New List(Of RolBLL)
-    Public Property Usuarios As New List(Of UsuarioBLL)
+    Public Property ListaUsuarios As New List(Of UsuarioBLL)
 
     ''' <summary>
     ''' Es el primer nodo del arbol y deberia contener todos los permisos que tiene el sistema
@@ -30,6 +30,8 @@ Public Class Modelo
 
 
     Public Sub New()
+        CargarListas()
+
         Dim mRaiz As New PermisoCompuestoBLL
         mRaiz.Nombre = "Permisos del Sistema"
 
@@ -42,10 +44,9 @@ Public Class Modelo
     ''' <summary>
     ''' Carga la lista de Roles con todos los roles que haya en la BD
     ''' </summary>
-    <Obsolete("Incompleto")>
-    Private Sub CargarRoles()
+    Private Sub CargarListas()
         Me.ListaRoles = RolBLL.ListarRoles
-        'Metodo para listar usuarios de BD
+        Me.ListaUsuarios = UsuarioBLL.ListarUsuarios
     End Sub
 
 End Class
