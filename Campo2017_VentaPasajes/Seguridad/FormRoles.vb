@@ -21,7 +21,7 @@ Public Class FormRoles
         PatentesSeleccionas(treePatentes.Nodes, gp.ListaPatentes)
 
         family.Nombre = Me.txtNombre.Text
-        Modelo.GetInstance.Roles.Add(family)
+        Modelo.GetInstance.ListaRoles.Add(family)
         Me.Close()
     End Sub
 

@@ -9,6 +9,6 @@ Public Class FormAsignacion
     End Sub
 
     Private Sub FormularioUsuarios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        comboBox1.DataSource = Modelo.GetInstance().Roles
+        comboBox1.DataSource = Modelo.GetInstance().ListaRoles
     End Sub
 End Class

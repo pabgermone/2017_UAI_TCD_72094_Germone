@@ -2,24 +2,35 @@
 Imports BE
 
 Public Class UsuarioBLL
+
+#Region "Propiedades"
     Public Property ID As Integer = 0
     Public Property UserName As String
     Public Property Nombre As String
     Public Property Apellido As String
     Public Property Password As String
     Public Property Rol As RolBE
+#End Region
 
-
+#Region "Constructores"
     Sub New()
 
     End Sub
 
+    ''' <summary>
+    ''' Instancia un UsuarioBLL con los datos que haya en BD
+    ''' </summary>
+    ''' <param name="pUser"></param>
     Sub New(pUser As String)
         CargarPropiedades(pUser)
     End Sub
+#End Region
 
 
-
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="pUser"></param>
     Private Sub CargarPropiedades(pUser As String)
         Dim mBE As UsuarioBE = UsuarioDAL.ObtenerUsuario(pUser)
 

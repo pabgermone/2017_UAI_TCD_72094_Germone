@@ -4,7 +4,7 @@ Imports DAL
 Public Class Modelo
 
 #Region "Propiedades"
-    Public Property Roles As New List(Of RolBLL)
+    Public Property ListaRoles As New List(Of RolBLL)
     Public Property Usuarios As New List(Of UsuarioBLL)
 
     ''' <summary>
@@ -42,8 +42,10 @@ Public Class Modelo
     ''' <summary>
     ''' Carga la lista de Roles con todos los roles que haya en la BD
     ''' </summary>
+    <Obsolete("Incompleto")>
     Private Sub CargarRoles()
-        'Metodos de BLL para listar los roles
+        Me.ListaRoles = RolBLL.ListarRoles
+        'Metodo para listar usuarios de BD
     End Sub
 
 End Class

@@ -13,7 +13,7 @@ Public Class FormPrincipal
         p3.Nombre = "p3"
         p4.Nombre = "p1p2"
 
-        Modelo.GetInstance.Roles.Add(p4)
+        Modelo.GetInstance.ListaRoles.Add(p4)
     End Sub
 
     Private Sub btnDefinirPatentes_Click(sender As Object, e As EventArgs) Handles btnDefinirPatentes.Click
