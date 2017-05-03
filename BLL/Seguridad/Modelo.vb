@@ -30,7 +30,7 @@ Public Class Modelo
 
 
     Public Sub New()
-        CargarListas()
+        'CargarListas()
 
         Dim mRaiz As New PermisoCompuestoBLL
         mRaiz.Nombre = "Permisos del Sistema"

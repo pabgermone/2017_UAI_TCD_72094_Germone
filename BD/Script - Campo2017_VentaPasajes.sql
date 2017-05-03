@@ -38,11 +38,13 @@ create table Paquete(paquete_id int not null primary key,
 create table PermisoCompuesto(permisoCompuesto_id int not null primary key,
 							  permisoCompuesto_nombre varchar(50) not null,
 							  permisoCompuesto_padre int,
+							  permisoCompuesto_formulario varchar(50),
 							  foreign key(permisoCompuesto_padre) references PermisoCompuesto(permisoCompuesto_id));
 
 create table Permiso(permiso_id int primary key not null,
 					 permiso_nombre varchar(50) not null,
 					 permiso_padre int,
+					 permiso_formulario varchar(50),
 					 foreign key(permiso_padre) references PermisoCompuesto(permisoCompuesto_id));
 
 create table Rol(rol_id int primary key not null,
