@@ -32,6 +32,15 @@ Public Class PermisoCompuestoBLL
         End If
     End Sub
 
+    Private Sub CargarPropiedades(pBE As PermisoCompuestoBE)
+        If Not IsNothing(pBE) Then
+            Me.ID = pBE.ID
+            Me.Nombre = pBE.Nombre
+            Me.Padre = pBE.Padre
+            Me.Formulario = pBE.Formulario
+        End If
+    End Sub
+
 
     ''' <summary>
     ''' Carga un objeto BE con los datos de las propiedades de esta instancia
@@ -108,7 +117,11 @@ Public Class PermisoCompuestoBLL
 
             Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
             mNode.Tag = mListaPermisos.Item(0)
-            AgregarPermisoHijo(mNode.Tag, mNode)
+
+            Dim mBE As New PermisoCompuestoBE
+            CargarBE(mNode.Tag)
+
+            AgregarPermisoHijo(mBE, mNode)
         Catch ex As Exception
 
         End Try
