@@ -12,6 +12,27 @@ Public Class PermisoCompuestoBLL
     Public Property ListaPermisos As New List(Of PermisoAbstractoBLL)
 
 
+    Sub New()
+
+    End Sub
+
+    Sub New(pID As Integer)
+        CargarPropiedades(pID)
+    End Sub
+
+
+    Private Sub CargarPropiedades(pID As Integer)
+        Dim mBE As PermisoCompuestoBE = PermisoDAL.ObtenerPermiso(pID, True)
+
+        If Not IsNothing(mBE) Then
+            Me.ID = mBE.ID
+            Me.Nombre = mBE.Nombre
+            Me.Padre = mBE.Padre
+            Me.Formulario = mBE.Formulario
+        End If
+    End Sub
+
+
     ''' <summary>
     ''' Carga un objeto BE con los datos de las propiedades de esta instancia
     ''' </summary>
@@ -55,17 +76,24 @@ Public Class PermisoCompuestoBLL
     ''' Agrega a la lsita de permisos de esta instancia, un nuevo permiso hijo
     ''' </summary>
     ''' <param name="pPermiso">Objeto BLL que se quiere agregar a la lista</param>
-    Public Sub AgregarPermisoHijo(pPermiso As PermisoAbstractoBLL)
-        If pPermiso.Padre = 0 Then
-            Me.ListaPermisos.Add(pPermiso)
+    Public Sub AgregarPermisoHijo(pPermisoPadre As PermisoCompuestoBE, pTreenode As TreeNode)
+        For Each mPermisoAbstracto As PermisoAbstractoBE In pPermisoPadre.ListaPermisos
+            Dim mNode As New TreeNode
+            mNode.Text = mPermisoAbstracto.Nombre
+            mNode.Tag = mPermisoAbstracto
+            pTreenode.Nodes.Add(mNode)
 
-            pPermiso.Padre = Me.ID
-            pPermiso.Guardar()
+            If TypeOf (mPermisoAbstracto) Is PermisoCompuestoBE Then
+                mNode.Text = mPermisoAbstracto.Nombre
 
-            Me.Guardar()
-        Else
-            MsgBox("Este permiso ya es parte de otro permiso compuesto")
-        End If
+                Dim mPermisoCompuesto As PermisoCompuestoBE
+                mPermisoCompuesto = DirectCast(mPermisoAbstracto, PermisoCompuestoBE)
+
+                If Not mPermisoCompuesto.ListaPermisos Is Nothing Then
+                    AgregarPermisoHijo(mPermisoCompuesto, pTreenode.LastNode)
+                End If
+            End If
+        Next
     End Sub
 
 
@@ -73,28 +101,51 @@ Public Class PermisoCompuestoBLL
     ''' ???
     ''' </summary>
     ''' <param name="padres"></param>
-    Public Overrides Sub MostrarEnTreeview(ByRef padres As TreeNodeCollection)
-        Dim node As TreeNode = padres.Add(Me.Nombre)
-        node.Tag = Me
+    Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
+        Try
+            Dim mListaPermisos As New List(Of PermisoAbstractoBE)
+            mListaPermisos = PermisoDAL.ListarPermisos(True)
 
-        For Each patente As PermisoAbstractoBLL In ListaPermisos
-            patente.MostrarEnTreeview(node.Nodes)
-        Next
-    End Sub
+            Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
+            mNode.Tag = mListaPermisos.Item(0)
+            AgregarPermisoHijo(mNode.Tag, mNode)
+        Catch ex As Exception
+
+        End Try
+
+        Return pTreeView
+    End Function
 
 
     ''' <summary>
     ''' ???
     ''' </summary>
     ''' <returns></returns>
-    Public Overrides Function Clone() As PermisoAbstractoBLL
-        Dim pat As New PermisoCompuestoBLL
-        pat.Nombre = Me.Nombre
+    'Public Overrides Function Clone() As PermisoAbstractoBLL
+    '    Dim pat As New PermisoCompuestoBLL
+    '    pat.Nombre = Me.Nombre
 
-        For Each patente As PermisoAbstractoBLL In ListaPermisos
-            pat.ListaPermisos.Add(patente.Clone())
-        Next
+    '    For Each patente As PermisoAbstractoBLL In ListaPermisos
+    '        pat.ListaPermisos.Add(patente.Clone())
+    '    Next
 
-        Return pat
+    '    Return pat
+    'End Function
+
+
+    Public Shared Function ListarPermisos() As List(Of PermisoAbstractoBLL)
+        Dim mListaPermisos As New List(Of PermisoAbstractoBLL)
+        Dim mListBE As List(Of PermisoAbstractoBE) = PermisoDAL.ListarPermisos(True)
+
+        If Not IsNothing(mListBE) Then
+            For Each mPermiso As PermisoAbstractoBE In mListBE
+                If TypeOf (mPermiso) Is PermisoCompuestoBE Then
+                    Dim mPermisoBLL As New PermisoCompuestoBLL(mPermiso.ID)
+                    mListaPermisos.Add(mPermisoBLL)
+                End If
+            Next
+        End If
+
+        Return mListaPermisos
     End Function
 End Class

@@ -96,12 +96,14 @@ Public Class UsuarioBLL
         Dim mLista As New List(Of UsuarioBLL)
         Dim mListaBE As List(Of UsuarioBE) = UsuarioDAL.ListarUsuarios
 
+        If Not IsNothing(mListaBE) Then
+            For Each mBE As UsuarioBE In mListaBE
+                Dim mUsuario As New UsuarioBLL(mBE.ID)
 
-        For Each mBE As UsuarioBE In mListaBE
-            Dim mUsuario As New UsuarioBLL(mBE.ID)
+                mLista.Add(mUsuario)
+            Next
+        End If
 
-            mLista.Add(mUsuario)
-        Next
 
         Return mLista
     End Function

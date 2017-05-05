@@ -1,6 +1,8 @@
 ﻿Imports BLL
+Imports BE
 
 Public Class FormPermisos
+    Public Property PermisoCompuesto As PermisoCompuestoBLL
 
     Sub New()
 
@@ -8,7 +10,7 @@ Public Class FormPermisos
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        Modelo.GetInstance().PermisoRaiz.MostrarEnTreeview(Me.treePatentes.Nodes)
+        Modelo.GetInstance().PermisoRaiz.MostrarEnTreeview(Me.treePatentes)
     End Sub
 
     Private Sub AgregarPermisoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPermisoToolStripMenuItem.Click
@@ -40,6 +42,33 @@ Public Class FormPermisos
 
                 mNodo.Nodes.Add(mNodoNuevo)
                 mPadre.ListaPermisos.Add(mPermiso)
+            End If
+        End If
+    End Sub
+
+    Private Sub FormPermisos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each mPermiso As PermisoAbstractoBLL In PermisoCompuestoBLL.ListarPermisos
+            mPermiso.MostrarEnTreeview(treePatentes)
+        Next
+    End Sub
+
+    Private Sub AgregarPermisoCompuestoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPermisoCompuestoToolStripMenuItem.Click
+        Dim vSNode As TreeNode = treePatentes.SelectedNode
+        If TypeOf vSNode.Tag Is PermisoCompuestoBLL Then
+            Dim vPadre As PermisoCompuestoBLL = vSNode.Tag
+            Dim vNombre As String = InputBox("Ingrese el nombre del Grupo: ")
+            If vNombre.Length > 0 Then
+                Dim vNNode As New TreeNode
+                vNNode.Text = vNombre
+                PermisoCompuesto.Nombre = vNombre
+                vNNode.Tag = PermisoCompuesto
+                vSNode.Nodes.Add(vNNode)
+                vPadre.ListaPermisos.Add(PermisoCompuesto)
+                PermisoCompuesto.Padre = vPadre.ID
+                PermisoCompuesto.Guardar()
+                treePatentes.Nodes.Clear()
+                FormPermisos_Load(Nothing, Nothing)
+                treePatentes.ExpandAll()
             End If
         End If
     End Sub

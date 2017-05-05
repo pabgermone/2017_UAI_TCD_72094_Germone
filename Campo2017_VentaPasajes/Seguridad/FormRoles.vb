@@ -11,8 +11,8 @@ Public Class FormRoles
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        Me.family.PermisoRaiz = Modelo.GetInstance().PermisoRaiz.Clone()
-        Me.family.PermisoRaiz.MostrarEnTreeview(Me.treePatentes.Nodes)
+        'Me.family.PermisoRaiz = Modelo.GetInstance().PermisoRaiz.Clone()
+        Me.family.PermisoRaiz.MostrarEnTreeview(Me.treePatentes)
     End Sub
 
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click

@@ -106,11 +106,13 @@ Public Class RolBLL
         Dim mLista As New List(Of RolBLL)
         Dim mListaBE As List(Of RolBE) = RolDAL.ListarRoles
 
-        For Each mBE As RolBE In mListaBE
-            Dim mRol As New RolBLL(mBE.Nombre)
+        If Not IsNothing(mListaBE) Then
+            For Each mBE As RolBE In mListaBE
+                Dim mRol As New RolBLL(mBE.Nombre)
 
-            mLista.Add(mRol)
-        Next
+                mLista.Add(mRol)
+            Next
+        End If
 
         Return mLista
     End Function

@@ -25,13 +25,34 @@ Public Class PermisoDAL
         If TypeOf (pPermiso) Is PermisoBE Then
             pPermiso.ID = pRow("Permiso_id")
             pPermiso.Nombre = pRow("Permiso_nombre")
-            pPermiso.Padre = pRow("Permiso_padre")
-            pPermiso.Formulario = pRow("permiso_formulario")
+
+            If TypeOf (pRow("permiso_padre")) Is DBNull Then
+                pPermiso.Padre = 0
+            Else
+                pPermiso.Padre = pRow("permiso_padre")
+            End If
+
+            If TypeOf (pRow("permiso_padre")) Is DBNull Then
+                pPermiso.Formulario = ""
+            Else
+                pPermiso.Formulario = pRow("permiso_formulario")
+            End If
+
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             pPermiso.ID = pRow("permisoCompuesto_id")
             pPermiso.Nombre = pRow("permisoCompuesto_nombre")
-            pPermiso.Padre = pRow("permisoCompuesto_padre")
-            pPermiso.Formulario = pRow("permisoCompuesto_formulario")
+
+            If TypeOf (pRow("permisoCompuesto_padre")) Is DBNull Then
+                pPermiso.Padre = 0
+            Else
+                pPermiso.Padre = pRow("permisoCompuesto_padre")
+            End If
+
+            If TypeOf (pRow("permisoCompuesto_padre")) Is DBNull Then
+                pPermiso.Formulario = ""
+            Else
+                pPermiso.Formulario = pRow("permisoCompuesto_formulario")
+            End If
         End If
 
         Return pPermiso
