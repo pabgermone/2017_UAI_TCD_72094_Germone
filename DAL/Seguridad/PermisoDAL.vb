@@ -26,10 +26,12 @@ Public Class PermisoDAL
             pPermiso.ID = pRow("Permiso_id")
             pPermiso.Nombre = pRow("Permiso_nombre")
             pPermiso.Padre = pRow("Permiso_padre")
+            pPermiso.Formulario = pRow("permiso_formulario")
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             pPermiso.ID = pRow("permisoCompuesto_id")
             pPermiso.Nombre = pRow("permisoCompuesto_nombre")
             pPermiso.Padre = pRow("permisoCompuesto_padre")
+            pPermiso.Formulario = pRow("permisoCompuesto_formulario")
         End If
 
         Return pPermiso
@@ -47,10 +49,10 @@ Public Class PermisoDAL
 
         If pCompuesto Then
             mPermiso = New PermisoCompuestoBE
-            mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre FROM PermisoCompuesto WHERE PermisoCompuesto_id = " & pID
+            mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto WHERE PermisoCompuesto_id = " & pID
         Else
             mPermiso = New PermisoBE
-            mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre FROM Permiso WHERE Permiso_id = " & pID
+            mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso WHERE Permiso_id = " & pID
         End If
 
         Try
@@ -78,11 +80,11 @@ Public Class PermisoDAL
         Dim mCommand As String = ""
 
         If TypeOf (pPermiso) Is PermisoBE Then
-            mCommand = "INSERT INTO Permiso(Permiso_id, Permiso_nombre, permiso_padre)
-                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ");"
+            mCommand = "INSERT INTO Permiso(Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario)
+                         VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "')"
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
-            mCommand = "INSERT INTO Permiso(PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre)
-                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ");"
+            mCommand = "INSERT INTO Permiso(PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
+                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
         End If
 
         Try
@@ -105,11 +107,13 @@ Public Class PermisoDAL
             mCommand = "UPDATE Permiso SET " &
                                  "Permiso_nombre = '" & pPermiso.Nombre &
                                  "', permiso_padre = " & pPermiso.Padre &
+                                 ", permiso_formulario = " & pPermiso.Formulario &
                                  " WHERE Permiso_id = " & pPermiso.ID
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             mCommand = "UPDATE Permiso SET " &
                                  "PermisoCompuesto_nombre = '" & pPermiso.Nombre &
                                  "', permisoCompuesto_padre = " & pPermiso.Padre &
+                                 ", permisoCompuesto_padre = " & pPermiso.Formulario &
                                  " WHERE PermisoCompuesto_id = " & pPermiso.ID
         End If
 
@@ -155,9 +159,9 @@ Public Class PermisoDAL
         Dim mCommand As String = ""
 
         If pCompuesto Then
-            mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre FROM PermisoCompuesto"
+            mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto"
         Else
-            mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre FROM Permiso"
+            mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso"
         End If
 
         Dim mDataSet As DataSet

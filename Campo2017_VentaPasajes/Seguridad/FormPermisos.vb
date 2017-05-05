@@ -30,17 +30,14 @@ Public Class FormPermisos
                 Dim nodoNuevo As New TreeNode
 
                 nodoNuevo.Text = nombre
-                patente.Nombre = nombre
-                'patente.Formulario = formulario
+                patente.Nombre = frm.Nombre
+                patente.Formulario = frm.Formulario
                 nodoNuevo.Tag = patente
 
                 nodo.Nodes.Add(nodoNuevo)
                 padre.ListaPermisos.Add(patente)
+                patente.Guardar()
             End If
         End If
-    End Sub
-
-    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-
     End Sub
 End Class

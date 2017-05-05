@@ -1,9 +1,9 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class BD
-    Private Shared mConnectionString As String = "Data Source=PABLO-PC\SQLEXPRESS;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
+    'Private Shared mConnectionString As String = "Data Source=PABLO-PC\SQLEXPRESS;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
     'Private Shared mConnectionString As String = "Data Source=.\SQL14_UAI;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
-    'Private Shared mConnectionString As String = "Data Source=HP;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
+    Private Shared mConnectionString As String = "Data Source=HP;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
 
     Private Shared mConnection As SqlConnection
 
