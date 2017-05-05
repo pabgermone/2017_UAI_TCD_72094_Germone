@@ -81,10 +81,10 @@ Public Class PermisoDAL
 
         If TypeOf (pPermiso) Is PermisoBE Then
             mCommand = "INSERT INTO Permiso(Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario)
-                         VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "')"
+                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & IIf(pPermiso.Padre = 0, "Null", pPermiso.Padre) & ", '" & pPermiso.Formulario & "');"
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
-            mCommand = "INSERT INTO Permiso(PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
-                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
+            mCommand = "INSERT INTO PermisoCompuesto(PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
+                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & IIf(pPermiso.Padre = 0, "Null", pPermiso.Padre) & ", '" & pPermiso.Formulario & "');"
         End If
 
         Try
@@ -107,14 +107,14 @@ Public Class PermisoDAL
             mCommand = "UPDATE Permiso SET " &
                                  "Permiso_nombre = '" & pPermiso.Nombre &
                                  "', permiso_padre = " & pPermiso.Padre &
-                                 ", permiso_formulario = " & pPermiso.Formulario &
-                                 " WHERE Permiso_id = " & pPermiso.ID
+                                 ", permiso_formulario = '" & pPermiso.Formulario &
+                                 "' WHERE Permiso_id = " & pPermiso.ID
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             mCommand = "UPDATE Permiso SET " &
                                  "PermisoCompuesto_nombre = '" & pPermiso.Nombre &
                                  "', permisoCompuesto_padre = " & pPermiso.Padre &
-                                 ", permisoCompuesto_padre = " & pPermiso.Formulario &
-                                 " WHERE PermisoCompuesto_id = " & pPermiso.ID
+                                 ", permisoCompuesto_formulario = '" & pPermiso.Formulario &
+                                 "' WHERE PermisoCompuesto_id = " & pPermiso.ID
         End If
 
         Try

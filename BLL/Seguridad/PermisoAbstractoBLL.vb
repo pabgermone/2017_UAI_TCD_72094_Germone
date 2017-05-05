@@ -5,7 +5,7 @@ Imports DAL
 Public MustInherit Class PermisoAbstractoBLL
     Public Property ID As Integer
     Public Property Nombre As String
-    Public Property Padre As Integer = 0
+    Public Property Padre As Integer
     Public Property Formulario As String
     Public Property Seleccionada As Boolean
 

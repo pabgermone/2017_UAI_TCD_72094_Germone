@@ -12,31 +12,34 @@ Public Class FormPermisos
     End Sub
 
     Private Sub AgregarPermisoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPermisoToolStripMenuItem.Click
-        Dim nodo As TreeNode = Me.treePatentes.SelectedNode
+        Dim mNodo As TreeNode = Me.treePatentes.SelectedNode
 
-        If TypeOf nodo.Tag Is PermisoCompuestoBLL Then
+        If TypeOf mNodo.Tag Is PermisoCompuestoBLL Then
 
-            Dim padre As PermisoCompuestoBLL = nodo.Tag
+            Dim mPadre As PermisoCompuestoBLL = mNodo.Tag
 
-            Dim frm As New FormAgregarPatente
-            frm.ShowDialog()
+            Dim mForm As New FormAgregarPatente
+            mForm.ShowDialog()
 
-            Dim nombre As String = frm.Nombre
-            Dim formulario As String = frm.Formulario
+            Dim mNombrePermiso As String = mForm.Nombre
+            Dim mNombreFormulario As String = mForm.Formulario
 
-            If (nombre.Length > 0) And (formulario.Length > 0) Then
+            If (mNombrePermiso.Length > 0) And (mNombreFormulario.Length > 0) Then
 
-                Dim patente As New PermisoBLL
-                Dim nodoNuevo As New TreeNode
+                Dim mPermiso As New PermisoBLL
+                Dim mNodoNuevo As New TreeNode
 
-                nodoNuevo.Text = nombre
-                patente.Nombre = frm.Nombre
-                patente.Formulario = frm.Formulario
-                nodoNuevo.Tag = patente
+                mNodoNuevo.Text = mNombrePermiso
 
-                nodo.Nodes.Add(nodoNuevo)
-                padre.ListaPermisos.Add(patente)
-                patente.Guardar()
+                mPermiso.Nombre = mForm.Nombre
+                mPermiso.Formulario = mForm.Formulario
+
+                mPermiso.Guardar()
+
+                mNodoNuevo.Tag = mPermiso
+
+                mNodo.Nodes.Add(mNodoNuevo)
+                mPadre.ListaPermisos.Add(mPermiso)
             End If
         End If
     End Sub

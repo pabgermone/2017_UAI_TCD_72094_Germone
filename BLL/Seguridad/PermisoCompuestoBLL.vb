@@ -20,6 +20,7 @@ Public Class PermisoCompuestoBLL
         pBE.ID = Me.ID
         pBE.Nombre = Me.Nombre
         pBE.Padre = Me.Padre
+        pBE.Formulario = Me.Formulario
     End Sub
 
 

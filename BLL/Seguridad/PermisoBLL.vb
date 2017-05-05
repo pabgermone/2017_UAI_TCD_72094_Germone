@@ -9,6 +9,7 @@ Public Class PermisoBLL
         pBE.ID = Me.ID
         pBE.Nombre = Me.Nombre
         pBE.Padre = Me.Padre
+        pBE.Formulario = Me.Formulario
     End Sub
 
 
@@ -17,7 +18,7 @@ Public Class PermisoBLL
     End Sub
 
     Public Overrides Sub Guardar()
-        Dim mBE As New PermisoCompuestoBE
+        Dim mBE As New PermisoBE
 
         If Me.ID = 0 Then
             Me.ID = PermisoDAL.GetProximoID

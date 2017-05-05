@@ -96,6 +96,7 @@ Public Class UsuarioBLL
         Dim mLista As New List(Of UsuarioBLL)
         Dim mListaBE As List(Of UsuarioBE) = UsuarioDAL.ListarUsuarios
 
+
         For Each mBE As UsuarioBE In mListaBE
             Dim mUsuario As New UsuarioBLL(mBE.ID)
 
