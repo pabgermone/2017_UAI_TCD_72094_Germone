@@ -10,8 +10,8 @@ Public Class PermisoBLL
 
     End Sub
 
-    Sub New(pID As Integer)
-        CargarPropiedades(pID)
+    Sub New(pBE As PermisoBE)
+        CargarPropiedades(pBE)
     End Sub
 
     Private Sub CargarBE(pBE As PermisoAbstractoBE)
@@ -21,15 +21,11 @@ Public Class PermisoBLL
         pBE.Formulario = Me.Formulario
     End Sub
 
-    Private Sub CargarPropiedades(pID As Integer)
-        Dim mBE As PermisoBE = PermisoDAL.ObtenerPermiso(pID, False)
-
-        If Not IsNothing(mBE) Then
-            Me.ID = mBE.ID
-            Me.Nombre = mBE.Nombre
-            Me.Padre = mBE.Padre
-            Me.Formulario = mBE.Formulario
-        End If
+    Private Sub CargarPropiedades(pBE As PermisoBE)
+        Me.ID = pBE.ID
+        Me.Nombre = pBE.Nombre
+        Me.Padre = pBE.Padre
+        Me.Formulario = pBE.Formulario
     End Sub
 
 
@@ -57,7 +53,7 @@ Public Class PermisoBLL
         If Not IsNothing(mListBE) Then
             For Each mPermiso As PermisoAbstractoBE In mListBE
                 If TypeOf (mPermiso) Is PermisoBE Then
-                    Dim mPermisoBLL As New PermisoBLL(mPermiso.ID)
+                    Dim mPermisoBLL As New PermisoBLL(mPermiso)
                 End If
             Next
         End If

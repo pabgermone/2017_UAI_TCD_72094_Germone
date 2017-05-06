@@ -16,8 +16,25 @@ Public Class PermisoCompuestoBLL
 
     End Sub
 
+    Sub New(pBE As PermisoCompuestoBE)
+        CargarPropiedades(pBE)
+        CargarHijos()
+    End Sub
+
     Sub New(pID As Integer)
         CargarPropiedades(pID)
+        CargarHijos()
+    End Sub
+
+
+
+    Private Sub CargarPropiedades(pBE As PermisoCompuestoBE)
+        If Not IsNothing(pBE) Then
+            Me.ID = pBE.ID
+            Me.Nombre = pBE.Nombre
+            Me.Padre = pBE.Padre
+            Me.Formulario = pBE.Formulario
+        End If
     End Sub
 
 
@@ -29,15 +46,6 @@ Public Class PermisoCompuestoBLL
             Me.Nombre = mBE.Nombre
             Me.Padre = mBE.Padre
             Me.Formulario = mBE.Formulario
-        End If
-    End Sub
-
-    Private Sub CargarPropiedades(pBE As PermisoCompuestoBE)
-        If Not IsNothing(pBE) Then
-            Me.ID = pBE.ID
-            Me.Nombre = pBE.Nombre
-            Me.Padre = pBE.Padre
-            Me.Formulario = pBE.Formulario
         End If
     End Sub
 
@@ -81,47 +89,55 @@ Public Class PermisoCompuestoBLL
     End Sub
 
 
-    ''' <summary>
-    ''' Agrega a la lsita de permisos de esta instancia, un nuevo permiso hijo
-    ''' </summary>
-    ''' <param name="pPermiso">Objeto BLL que se quiere agregar a la lista</param>
-    Public Sub AgregarPermisoHijo(pPermisoPadre As PermisoCompuestoBE, pTreenode As TreeNode)
-        For Each mPermisoAbstracto As PermisoAbstractoBE In pPermisoPadre.ListaPermisos
+    Public Sub AgregarPermisosHijo(pPermisoPadre As PermisoCompuestoBLL, pTreenode As TreeNode)
+        For Each mPermisoAbstracto As PermisoAbstractoBLL In pPermisoPadre.ListaPermisos
             Dim mNode As New TreeNode
             mNode.Text = mPermisoAbstracto.Nombre
             mNode.Tag = mPermisoAbstracto
             pTreenode.Nodes.Add(mNode)
 
-            If TypeOf (mPermisoAbstracto) Is PermisoCompuestoBE Then
-                mNode.Text = mPermisoAbstracto.Nombre
+            If TypeOf (mPermisoAbstracto) Is PermisoCompuestoBLL Then
+                'mNode.Text = mPermisoAbstracto.Nombre
 
-                Dim mPermisoCompuesto As PermisoCompuestoBE
-                mPermisoCompuesto = DirectCast(mPermisoAbstracto, PermisoCompuestoBE)
+                Dim mPermisoCompuesto As PermisoCompuestoBLL
+                mPermisoCompuesto = DirectCast(mPermisoAbstracto, PermisoCompuestoBLL)
 
-                If Not mPermisoCompuesto.ListaPermisos Is Nothing Then
-                    AgregarPermisoHijo(mPermisoCompuesto, pTreenode.LastNode)
+                If mPermisoCompuesto.ListaPermisos.Count > 0 Then
+                    AgregarPermisosHijo(mPermisoCompuesto, pTreenode.LastNode)
                 End If
             End If
         Next
     End Sub
 
 
-    ''' <summary>
-    ''' ???
-    ''' </summary>
-    ''' <param name="padres"></param>
+    'Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
+    '    Try
+    '        Dim mListaPermisos As List(Of PermisoAbstractoBLL) = ListarPermisos()
+
+    '        'El primer item de la lista deberia ser el permiso compuesto generico que tiene como hijos
+    '        'a todos los demas permisos que no tienen padre
+    '        Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
+    '        mNode.Tag = mListaPermisos.Item(0)
+
+    '        AgregarPermisosHijo(mNode.Tag, mNode)
+    '    Catch ex As Exception
+
+    '    End Try
+
+    '    Return pTreeView
+    'End Function
+
+
     Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
         Try
-            Dim mListaPermisos As New List(Of PermisoAbstractoBE)
-            mListaPermisos = PermisoDAL.ListarPermisos(True)
+            Dim mListaPermisos As List(Of PermisoAbstractoBLL) = ListarPermisos()
 
+            'El primer item de la lista deberia ser el permiso compuesto generico que tiene como hijos
+            'a todos los demas permisos que no tienen padre
             Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
             mNode.Tag = mListaPermisos.Item(0)
 
-            Dim mBE As New PermisoCompuestoBE
-            CargarBE(mNode.Tag)
-
-            AgregarPermisoHijo(mBE, mNode)
+            AgregarPermisosHijo(mNode.Tag, mNode)
         Catch ex As Exception
 
         End Try
@@ -130,10 +146,7 @@ Public Class PermisoCompuestoBLL
     End Function
 
 
-    ''' <summary>
-    ''' ???
-    ''' </summary>
-    ''' <returns></returns>
+
     'Public Overrides Function Clone() As PermisoAbstractoBLL
     '    Dim pat As New PermisoCompuestoBLL
     '    pat.Nombre = Me.Nombre
@@ -153,7 +166,7 @@ Public Class PermisoCompuestoBLL
         If Not IsNothing(mListBE) Then
             For Each mPermiso As PermisoAbstractoBE In mListBE
                 If TypeOf (mPermiso) Is PermisoCompuestoBE Then
-                    Dim mPermisoBLL As New PermisoCompuestoBLL(mPermiso.ID)
+                    Dim mPermisoBLL As New PermisoCompuestoBLL(mPermiso)
                     mListaPermisos.Add(mPermisoBLL)
                 End If
             Next
@@ -161,4 +174,28 @@ Public Class PermisoCompuestoBLL
 
         Return mListaPermisos
     End Function
+
+
+
+    ''' <summary>
+    ''' Carga la lista de permisos hijo de la instancia que llama a este metodo
+    ''' </summary>
+    Private Sub CargarHijos()
+        Dim mListaCompuestos As List(Of PermisoAbstractoBE) = PermisoDAL.ListarPermisos(True, Me.ID)
+        Dim mListaSimples As List(Of PermisoAbstractoBE) = PermisoDAL.ListarPermisos(False, Me.ID)
+
+        If Not IsNothing(mListaCompuestos) Then
+            For Each mPermisoAbs As PermisoAbstractoBE In mListaCompuestos
+                Dim mPermisoBLL As New PermisoCompuestoBLL(mPermisoAbs)
+                Me.ListaPermisos.Add(mPermisoBLL)
+            Next
+        End If
+
+        If Not IsNothing(mListaSimples) Then
+            For Each mPermisoAbs As PermisoAbstractoBE In mListaSimples
+                Dim mPermisoBLL As New PermisoBLL(mPermisoAbs)
+                Me.ListaPermisos.Add(mPermisoBLL)
+            Next
+        End If
+    End Sub
 End Class

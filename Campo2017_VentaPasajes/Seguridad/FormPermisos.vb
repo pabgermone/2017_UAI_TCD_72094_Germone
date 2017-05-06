@@ -4,14 +4,14 @@ Imports BE
 Public Class FormPermisos
     Public Property PermisoCompuesto As PermisoCompuestoBLL
 
-    Sub New()
+    'Sub New()
 
-        ' This call is required by the designer.
-        InitializeComponent()
+    '    ' This call is required by the designer.
+    '    InitializeComponent()
 
-        ' Add any initialization after the InitializeComponent() call.
-        Modelo.GetInstance().PermisoRaiz.MostrarEnTreeview(Me.treePatentes)
-    End Sub
+    '    ' Add any initialization after the InitializeComponent() call.
+    '    Modelo.GetInstance().PermisoRaiz.MostrarEnTreeview(Me.treePatentes)
+    'End Sub
 
     Private Sub AgregarPermisoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPermisoToolStripMenuItem.Click
         Dim mNodo As TreeNode = Me.treePatentes.SelectedNode
@@ -47,7 +47,13 @@ Public Class FormPermisos
     End Sub
 
     Private Sub FormPermisos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        For Each mPermiso As PermisoAbstractoBLL In PermisoCompuestoBLL.ListarPermisos
+        'For Each mPermiso As PermisoAbstractoBLL In PermisoCompuestoBLL.ListarPermisos
+        '    mPermiso.MostrarEnTreeview(treePatentes)
+        'Next
+
+        Dim mPermisoRaiz As New PermisoCompuestoBLL(0)
+
+        For Each mPermiso As PermisoAbstractoBLL In mPermisoRaiz.ListaPermisos
             mPermiso.MostrarEnTreeview(treePatentes)
         Next
     End Sub

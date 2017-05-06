@@ -102,10 +102,10 @@ Public Class PermisoDAL
 
         If TypeOf (pPermiso) Is PermisoBE Then
             mCommand = "INSERT INTO Permiso(Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario)
-                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & IIf(pPermiso.Padre = 0, "Null", pPermiso.Padre) & ", '" & pPermiso.Formulario & "');"
+                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             mCommand = "INSERT INTO PermisoCompuesto(PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
-                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & IIf(pPermiso.Padre = 0, "Null", pPermiso.Padre) & ", '" & pPermiso.Formulario & "');"
+                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
         End If
 
         Try
@@ -175,14 +175,24 @@ Public Class PermisoDAL
     ''' <param name="pCompuesto">False (Default): Indica que se quiere una lista de PermisoBE /
     '''                          True: Indica que se quiere una lista de PermisoCompuestoBE</param>
     ''' <returns>List(Of PermisoAbstracto) con todos los permisos simples o compuestos existentes en BD</returns>
-    Public Shared Function ListarPermisos(Optional pCompuesto As Boolean = False) As List(Of PermisoAbstractoBE)
+    Public Shared Function ListarPermisos(Optional pCompuesto As Boolean = False, Optional pPadreID As Integer = -1) As List(Of PermisoAbstractoBE)
         Dim mLista As New List(Of PermisoAbstractoBE)
         Dim mCommand As String = ""
 
         If pCompuesto Then
-            mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto"
+            If pPadreID <> -1 Then
+                mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto
+                             WHERE permisoCompuesto_padre = " & pPadreID
+            Else
+                mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto"
+            End If
         Else
-            mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso"
+            If pPadreID <> -1 Then
+                mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso
+                             WHERE permiso_padre = " & pPadreID
+            Else
+                mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso"
+            End If
         End If
 
         Dim mDataSet As DataSet
