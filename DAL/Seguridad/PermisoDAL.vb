@@ -104,8 +104,8 @@ Public Class PermisoDAL
             mCommand = "INSERT INTO Permiso(Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario)
                         VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
-            mCommand = "INSERT INTO PermisoCompuesto(PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
-                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
+            mCommand = "INSERT INTO PermisoCompuesto(PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
+                        VALUES ('" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
         End If
 
         Try

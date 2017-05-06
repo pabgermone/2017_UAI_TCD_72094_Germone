@@ -79,7 +79,7 @@ Public Class PermisoCompuestoBLL
         Dim mBE As New PermisoCompuestoBE
 
         If Me.ID = 0 Then
-            Me.ID = PermisoDAL.GetProximoID
+            'Me.ID = PermisoDAL.GetProximoID
             CargarBE(mBE)
             PermisoDAL.GuardarNuevo(mBE)
         Else
