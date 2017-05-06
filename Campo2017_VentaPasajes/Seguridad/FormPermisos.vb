@@ -47,15 +47,8 @@ Public Class FormPermisos
     End Sub
 
     Private Sub FormPermisos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'For Each mPermiso As PermisoAbstractoBLL In PermisoCompuestoBLL.ListarPermisos
-        '    mPermiso.MostrarEnTreeview(treePatentes)
-        'Next
-
         Dim mPermisoRaiz As New PermisoCompuestoBLL(0)
-
-        For Each mPermiso As PermisoAbstractoBLL In mPermisoRaiz.ListaPermisos
-            mPermiso.MostrarEnTreeview(treePatentes)
-        Next
+        mPermisoRaiz.MostrarEnTreeview(treePatentes)
     End Sub
 
     Private Sub AgregarPermisoCompuestoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPermisoCompuestoToolStripMenuItem.Click
