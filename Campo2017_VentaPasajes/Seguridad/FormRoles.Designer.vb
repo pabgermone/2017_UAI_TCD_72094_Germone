@@ -40,7 +40,7 @@ Partial Class FormRoles
         'tableLayoutPanel1
         '
         Me.tableLayoutPanel1.ColumnCount = 2
-        Me.tableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.tableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225.0!))
         Me.tableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tableLayoutPanel1.Controls.Add(Me.lblNombreFamilia, 0, 1)
         Me.tableLayoutPanel1.Controls.Add(Me.lblTituloPatentes, 0, 2)
@@ -50,23 +50,21 @@ Partial Class FormRoles
         Me.tableLayoutPanel1.Controls.Add(Me.tableLayoutPanel2, 0, 3)
         Me.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.tableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.tableLayoutPanel1.Name = "tableLayoutPanel1"
         Me.tableLayoutPanel1.RowCount = 4
-        Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49.0!))
-        Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
+        Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37.0!))
         Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49.0!))
-        Me.tableLayoutPanel1.Size = New System.Drawing.Size(371, 357)
+        Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
+        Me.tableLayoutPanel1.Size = New System.Drawing.Size(556, 549)
         Me.tableLayoutPanel1.TabIndex = 2
         '
         'lblNombreFamilia
         '
         Me.lblNombreFamilia.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblNombreFamilia.Location = New System.Drawing.Point(2, 49)
-        Me.lblNombreFamilia.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblNombreFamilia.Location = New System.Drawing.Point(3, 75)
         Me.lblNombreFamilia.Name = "lblNombreFamilia"
-        Me.lblNombreFamilia.Size = New System.Drawing.Size(146, 24)
+        Me.lblNombreFamilia.Size = New System.Drawing.Size(219, 37)
         Me.lblNombreFamilia.TabIndex = 0
         Me.lblNombreFamilia.Text = "Nombre :"
         Me.lblNombreFamilia.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -74,10 +72,9 @@ Partial Class FormRoles
         'lblTituloPatentes
         '
         Me.lblTituloPatentes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblTituloPatentes.Location = New System.Drawing.Point(2, 73)
-        Me.lblTituloPatentes.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblTituloPatentes.Location = New System.Drawing.Point(3, 112)
         Me.lblTituloPatentes.Name = "lblTituloPatentes"
-        Me.lblTituloPatentes.Size = New System.Drawing.Size(146, 235)
+        Me.lblTituloPatentes.Size = New System.Drawing.Size(219, 362)
         Me.lblTituloPatentes.TabIndex = 1
         Me.lblTituloPatentes.Text = "Patentes :"
         Me.lblTituloPatentes.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -88,10 +85,9 @@ Partial Class FormRoles
         Me.tableLayoutPanel1.SetColumnSpan(Me.panel1, 2)
         Me.panel1.Controls.Add(Me.Familia)
         Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panel1.Location = New System.Drawing.Point(2, 2)
-        Me.panel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.panel1.Location = New System.Drawing.Point(3, 3)
         Me.panel1.Name = "panel1"
-        Me.panel1.Size = New System.Drawing.Size(367, 45)
+        Me.panel1.Size = New System.Drawing.Size(550, 69)
         Me.panel1.TabIndex = 2
         '
         'Familia
@@ -99,9 +95,8 @@ Partial Class FormRoles
         Me.Familia.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Familia.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Familia.Location = New System.Drawing.Point(0, 0)
-        Me.Familia.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Familia.Name = "Familia"
-        Me.Familia.Size = New System.Drawing.Size(367, 45)
+        Me.Familia.Size = New System.Drawing.Size(550, 69)
         Me.Familia.TabIndex = 0
         Me.Familia.Text = "Datos de la Familia"
         Me.Familia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -109,20 +104,18 @@ Partial Class FormRoles
         'txtNombre
         '
         Me.txtNombre.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtNombre.Location = New System.Drawing.Point(152, 51)
-        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNombre.Location = New System.Drawing.Point(228, 78)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(217, 20)
+        Me.txtNombre.Size = New System.Drawing.Size(325, 26)
         Me.txtNombre.TabIndex = 3
         '
         'treePatentes
         '
         Me.treePatentes.CheckBoxes = True
         Me.treePatentes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.treePatentes.Location = New System.Drawing.Point(152, 75)
-        Me.treePatentes.Margin = New System.Windows.Forms.Padding(2)
+        Me.treePatentes.Location = New System.Drawing.Point(228, 115)
         Me.treePatentes.Name = "treePatentes"
-        Me.treePatentes.Size = New System.Drawing.Size(217, 231)
+        Me.treePatentes.Size = New System.Drawing.Size(325, 356)
         Me.treePatentes.TabIndex = 4
         '
         'tableLayoutPanel2
@@ -134,21 +127,19 @@ Partial Class FormRoles
         Me.tableLayoutPanel2.Controls.Add(Me.btnCancelar, 1, 0)
         Me.tableLayoutPanel2.Controls.Add(Me.btnAceptar, 0, 0)
         Me.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tableLayoutPanel2.Location = New System.Drawing.Point(2, 310)
-        Me.tableLayoutPanel2.Margin = New System.Windows.Forms.Padding(2)
+        Me.tableLayoutPanel2.Location = New System.Drawing.Point(3, 477)
         Me.tableLayoutPanel2.Name = "tableLayoutPanel2"
         Me.tableLayoutPanel2.RowCount = 1
         Me.tableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tableLayoutPanel2.Size = New System.Drawing.Size(367, 45)
+        Me.tableLayoutPanel2.Size = New System.Drawing.Size(550, 69)
         Me.tableLayoutPanel2.TabIndex = 5
         '
         'btnCancelar
         '
         Me.btnCancelar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnCancelar.Location = New System.Drawing.Point(185, 2)
-        Me.btnCancelar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancelar.Location = New System.Drawing.Point(278, 3)
         Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(180, 41)
+        Me.btnCancelar.Size = New System.Drawing.Size(269, 63)
         Me.btnCancelar.TabIndex = 0
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
@@ -156,20 +147,20 @@ Partial Class FormRoles
         'btnAceptar
         '
         Me.btnAceptar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnAceptar.Location = New System.Drawing.Point(2, 2)
-        Me.btnAceptar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAceptar.Location = New System.Drawing.Point(3, 3)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(179, 41)
+        Me.btnAceptar.Size = New System.Drawing.Size(269, 63)
         Me.btnAceptar.TabIndex = 1
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
         'FormRoles
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(371, 357)
+        Me.ClientSize = New System.Drawing.Size(556, 549)
         Me.Controls.Add(Me.tableLayoutPanel1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FormRoles"
         Me.Text = "FormRoles"
         Me.tableLayoutPanel1.ResumeLayout(False)

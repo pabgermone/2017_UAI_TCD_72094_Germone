@@ -6,7 +6,7 @@ Public Class RolBLL
 #Region "Propiedades"
     Public Property ID As Integer
     Public Property Nombre As String
-    Public Property ListaPermisos As New List(Of PermisoAbstractoBE)
+    Public Property ListaPermisos As New List(Of PermisoAbstractoBLL)
     Public Property PermisoRaiz As PermisoAbstractoBLL '??
 #End Region
 
@@ -35,7 +35,20 @@ Public Class RolBLL
         If Not IsNothing(mBE) Then
             Me.ID = mBE.ID
             Me.Nombre = mBE.Nombre
-            Me.ListaPermisos = mBE.ListaPermisos
+
+            If mBE.ListaPermisos.Count > 0 Then
+                For Each mPermisoBE As PermisoAbstractoBE In mBE.ListaPermisos
+                    Dim mPermiso As PermisoAbstractoBLL
+
+                    If TypeOf (mPermisoBE) Is PermisoCompuestoBE Then
+                        mPermiso = New PermisoCompuestoBLL(mPermisoBE)
+                    Else
+                        mPermiso = New PermisoBLL(mPermisoBE)
+                    End If
+
+                    Me.ListaPermisos.Add(mPermiso)
+                Next
+            End If
         End If
     End Sub
 
@@ -47,7 +60,19 @@ Public Class RolBLL
     Private Sub CargarBE(mBE As RolBE)
         mBE.ID = Me.ID
         mBE.Nombre = Me.Nombre
-        mBE.ListaPermisos = Me.ListaPermisos
+
+        For Each mPermisoBLL As PermisoAbstractoBLL In Me.ListaPermisos
+            Dim mPermiso As PermisoAbstractoBE
+
+            If TypeOf (mPermisoBLL) Is PermisoCompuestoBLL Then
+                mPermiso = New PermisoCompuestoBE
+            Else
+                mPermiso = New PermisoBE
+            End If
+
+            mPermisoBLL.CargarBE(mPermiso)
+            mBE.ListaPermisos.Add(mPermiso)
+        Next
     End Sub
 
 
@@ -62,19 +87,22 @@ Public Class RolBLL
             CargarBE(mBE)
             RolDAL.GuardarNuevo(mBE)
         Else
+            RolPermisoDAL.EliminarPorRol(Me.ID)
+            RolPermisoCompuestoDAL.EliminarPorRol(Me.ID)
+
             CargarBE(mBE)
             RolDAL.GuardarModificacion(mBE)
         End If
-    End Sub
 
-
-    ''' <summary>
-    ''' Agrega un permiso (simple o compuesto) a la lista de permisos y agrega la relacion entre el rol y el permiso
-    ''' </summary>
-    ''' <param name="pPermiso">Objeto BE con los datos del permiso con el que se quiere relacionar el rol</param>
-    Public Sub AgregarPermiso(pPermiso As PermisoAbstractoBE)
-        Me.ListaPermisos.Add(pPermiso)
-        RolPermisoDAL.GuardarNuevo(Me.ID, pPermiso.ID)
+        If mBE.ListaPermisos.Count > 0 Then
+            For Each mPermiso As PermisoAbstractoBE In mBE.ListaPermisos
+                If TypeOf (mPermiso) Is PermisoBE Then
+                    RolPermisoDAL.GuardarNuevo(mBE.ID, mPermiso.ID)
+                Else
+                    RolPermisoCompuestoDAL.GuardarNuevo(mBE.ID, mPermiso.ID)
+                End If
+            Next
+        End If
     End Sub
 
 

@@ -86,6 +86,7 @@
     <Compile Include="Negocio\PasajeroDAL.vb" />
     <Compile Include="Seguridad\PermisoDAL.vb" />
     <Compile Include="Seguridad\RolDAL.vb" />
+    <Compile Include="Seguridad\RolPermisoCompuestoDAL.vb" />
     <Compile Include="Seguridad\RolPermisoDAL.vb" />
     <Compile Include="Seguridad\UsuarioDAL.vb" />
     <Compile Include="Negocio\VentaDAL.vb" />

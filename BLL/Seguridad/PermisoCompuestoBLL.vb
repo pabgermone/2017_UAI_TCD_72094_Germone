@@ -26,8 +26,6 @@ Public Class PermisoCompuestoBLL
         CargarHijos()
     End Sub
 
-
-
     Private Sub CargarPropiedades(pBE As PermisoCompuestoBE)
         If Not IsNothing(pBE) Then
             Me.ID = pBE.ID
@@ -54,7 +52,7 @@ Public Class PermisoCompuestoBLL
     ''' Carga un objeto BE con los datos de las propiedades de esta instancia
     ''' </summary>
     ''' <param name="pBE">Objeto BE que se quiere cargar con datos</param>
-    Private Sub CargarBE(pBE As PermisoAbstractoBE)
+    Public Overrides Sub CargarBE(pBE As PermisoAbstractoBE)
         pBE.ID = Me.ID
         pBE.Nombre = Me.Nombre
         pBE.Padre = Me.Padre

@@ -14,7 +14,7 @@ Public Class PermisoBLL
         CargarPropiedades(pBE)
     End Sub
 
-    Private Sub CargarBE(pBE As PermisoAbstractoBE)
+    Public Overrides Sub CargarBE(pBE As PermisoAbstractoBE)
         pBE.ID = Me.ID
         pBE.Nombre = Me.Nombre
         pBE.Padre = Me.Padre
