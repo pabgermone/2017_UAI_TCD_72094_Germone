@@ -107,4 +107,9 @@ Public Class UsuarioBLL
 
         Return mLista
     End Function
+
+
+    'Public Overrides Function ToString() As String
+    '    Return Me.UserName
+    'End Function
 End Class

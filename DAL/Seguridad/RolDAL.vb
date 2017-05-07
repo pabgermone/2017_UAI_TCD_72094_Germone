@@ -146,12 +146,12 @@ Public Class RolDAL
     ''' </returns>
     Private Shared Function ObtenerPermisos(pID As Integer) As List(Of PermisoAbstractoBE)
         Dim mLista As New List(Of PermisoAbstractoBE)
-        Dim mCommand As String = "select permiso_id, permiso_nombre, permiso_padre
+        Dim mCommand As String = "select permiso_id, permiso_nombre, permiso_padre, permiso_formulario
                                   from Permiso
                                   inner join RolPermiso on rolPermiso_permiso = permiso_id
                                   where rolPermiso_rol = " & pID
 
-        Dim mCommandComp As String = "select permisoCompuesto_id, permisoCompuesto_nombre, permisoCompuesto_padre
+        Dim mCommandComp As String = "select permisoCompuesto_id, permisoCompuesto_nombre, permisoCompuesto_padre, PermisoCompuesto_formulario
                                       from PermisoCompuesto
                                       inner join RolPermisoCompuesto on rolPermisoCompuesto_permiso = permisoCompuesto_id
                                       where rolPermisoCompuesto_rol = " & pID

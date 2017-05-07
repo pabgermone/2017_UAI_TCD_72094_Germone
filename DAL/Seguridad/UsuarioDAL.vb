@@ -120,7 +120,7 @@ Public Class UsuarioDAL
     ''' <returns>Lista con instancias BE con todos los datos obtenidos de la BD</returns>
     Public Shared Function ListarUsuarios() As List(Of UsuarioBE)
         Dim mLista As New List(Of UsuarioBE)
-        Dim mCommand As String = "SELECT SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario"
+        Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario"
         Dim mDataSet As DataSet
 
         Try

@@ -19,7 +19,7 @@ Public Class RolBLL
     ''' Carga un objeto BLL con los datos que haya guardados en el BD para esta entidad
     ''' </summary>
     ''' <param name="pRol">Nombre que tiene la entidad en la BD</param>
-    Sub New(pRol As String)
+    Sub New(pRol As RolBE)
         CargarPropiedades(pRol)
     End Sub
 #End Region
@@ -29,15 +29,15 @@ Public Class RolBLL
     ''' Carga las propiedades de una instacia con los datos que haya guardados en la BD
     ''' </summary>
     ''' <param name="pRol">Nombre de la entidad en la BD</param>
-    Private Sub CargarPropiedades(pRol As String)
-        Dim mBE As RolBE = RolDAL.ObtenerRol(pRol)
+    Private Sub CargarPropiedades(pBE As RolBE)
+        'Dim mBE As RolBE = RolDAL.ObtenerRol(pRol)
 
-        If Not IsNothing(mBE) Then
-            Me.ID = mBE.ID
-            Me.Nombre = mBE.Nombre
+        If Not IsNothing(pBE) Then
+            Me.ID = pBE.ID
+            Me.Nombre = pBE.Nombre
 
-            If mBE.ListaPermisos.Count > 0 Then
-                For Each mPermisoBE As PermisoAbstractoBE In mBE.ListaPermisos
+            If pBE.ListaPermisos.Count > 0 Then
+                For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
                     Dim mPermiso As PermisoAbstractoBLL
 
                     If TypeOf (mPermisoBE) Is PermisoCompuestoBE Then
@@ -136,7 +136,7 @@ Public Class RolBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As RolBE In mListaBE
-                Dim mRol As New RolBLL(mBE.Nombre)
+                Dim mRol As New RolBLL(mBE)
 
                 mLista.Add(mRol)
             Next
@@ -146,7 +146,7 @@ Public Class RolBLL
     End Function
 
 
-    Public Overrides Function ToString() As String 'Necesario?
+    Public Overrides Function ToString() As String
         Return Me.Nombre
     End Function
 End Class
