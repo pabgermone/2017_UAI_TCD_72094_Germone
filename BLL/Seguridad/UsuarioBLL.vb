@@ -24,6 +24,10 @@ Public Class UsuarioBLL
     Sub New(pUser As String)
         CargarPropiedades(pUser)
     End Sub
+
+    Sub New(pUser As UsuarioBE)
+        CargarPropiedades(pUser)
+    End Sub
 #End Region
 
 
@@ -41,6 +45,18 @@ Public Class UsuarioBLL
             Me.Apellido = mBE.Apellido
             Me.Password = mBE.Password
             Me.Rol = mBE.Rol
+        End If
+    End Sub
+
+
+    Private Sub CargarPropiedades(pUser As UsuarioBE)
+        If Not IsNothing(pUser) Then
+            Me.ID = pUser.ID
+            Me.UserName = pUser.UserName
+            Me.Nombre = pUser.Nombre
+            Me.Apellido = pUser.Apellido
+            Me.Password = pUser.Password
+            Me.Rol = pUser.Rol
         End If
     End Sub
 
@@ -98,7 +114,7 @@ Public Class UsuarioBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As UsuarioBE In mListaBE
-                Dim mUsuario As New UsuarioBLL(mBE.ID)
+                Dim mUsuario As New UsuarioBLL(mBE)
 
                 mLista.Add(mUsuario)
             Next
@@ -109,7 +125,7 @@ Public Class UsuarioBLL
     End Function
 
 
-    'Public Overrides Function ToString() As String
-    '    Return Me.UserName
-    'End Function
+    Public Overrides Function ToString() As String
+        Return Me.UserName
+    End Function
 End Class
