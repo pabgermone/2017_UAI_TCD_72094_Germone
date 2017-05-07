@@ -1,19 +1,20 @@
 ﻿Imports BLL
 
 Public Class FormPrincipal
+    Public Property UsuarioActivo As UsuarioBLL
+
+    Public Sub New(Optional pUsuario As UsuarioBLL = Nothing)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Me.UsuarioActivo = pUsuario
+    End Sub
+
     Private Sub FormPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim p1 As New PermisoBLL
-        Dim p2 As New PermisoBLL
-        Dim p3 As New PermisoBLL
-        Dim p4 As New RolBLL
-
-
-        p1.Nombre = "p1"
-        p2.Nombre = "p1"
-        p3.Nombre = "p3"
-        p4.Nombre = "p1p2"
-
-        Modelo.GetInstance.ListaRoles.Add(p4)
+        Dim mPermisoComp As New PermisoCompuestoBLL
+        mPermisoComp.MostrarEnMenuStrip(MenuStrip1, Me.UsuarioActivo, Me)
     End Sub
 
     Private Sub btnDefinirPatentes_Click(sender As Object, e As EventArgs) Handles btnDefinirPatentes.Click

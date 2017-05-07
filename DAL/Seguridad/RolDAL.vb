@@ -32,11 +32,11 @@ Public Class RolDAL
     ''' <summary>
     ''' Ejecuta un query que obtiene los datos de un Rol
     ''' </summary>
-    ''' <param name="pNombre">Nombre del rol del que se quieren obtener datos</param>
+    ''' <param name="pID">Nombre del rol del que se quieren obtener datos</param>
     ''' <returns>RolBE con los datos recuperados de BD par esa entidad</returns>
-    Public Shared Function ObtenerRol(pNombre As String) As RolBE
+    Public Shared Function ObtenerRol(pID As Integer) As RolBE
         Dim mRol As New RolBE
-        Dim mCommand As String = "SELECT Rol_id, Rol_nombre FROM Rol WHERE Rol_nombre = " & pNombre
+        Dim mCommand As String = "SELECT Rol_id, Rol_nombre FROM Rol WHERE Rol_id = " & pID
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)
@@ -144,7 +144,7 @@ Public Class RolDAL
     ''' <returns>
     ''' List(Of PermisoAbstractoBE) con instancias de los permisos que se relacionan con el Rol indicado
     ''' </returns>
-    Private Shared Function ObtenerPermisos(pID As Integer) As List(Of PermisoAbstractoBE)
+    Public Shared Function ObtenerPermisos(pID As Integer) As List(Of PermisoAbstractoBE)
         Dim mLista As New List(Of PermisoAbstractoBE)
         Dim mCommand As String = "select permiso_id, permiso_nombre, permiso_padre, permiso_formulario
                                   from Permiso

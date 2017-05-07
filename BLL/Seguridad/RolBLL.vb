@@ -22,6 +22,10 @@ Public Class RolBLL
     Sub New(pRol As RolBE)
         CargarPropiedades(pRol)
     End Sub
+
+    Sub New(pID As Integer)
+        CargarPropiedades(pID)
+    End Sub
 #End Region
 
 
@@ -31,6 +35,29 @@ Public Class RolBLL
     ''' <param name="pRol">Nombre de la entidad en la BD</param>
     Private Sub CargarPropiedades(pBE As RolBE)
         'Dim mBE As RolBE = RolDAL.ObtenerRol(pRol)
+
+        If Not IsNothing(pBE) Then
+            Me.ID = pBE.ID
+            Me.Nombre = pBE.Nombre
+
+            If pBE.ListaPermisos.Count > 0 Then
+                For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
+                    Dim mPermiso As PermisoAbstractoBLL
+
+                    If TypeOf (mPermisoBE) Is PermisoCompuestoBE Then
+                        mPermiso = New PermisoCompuestoBLL(mPermisoBE)
+                    Else
+                        mPermiso = New PermisoBLL(mPermisoBE)
+                    End If
+
+                    Me.ListaPermisos.Add(mPermiso)
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub CargarPropiedades(pID As Integer)
+        Dim pBE As RolBE = RolDAL.ObtenerRol(pID)
 
         If Not IsNothing(pBE) Then
             Me.ID = pBE.ID

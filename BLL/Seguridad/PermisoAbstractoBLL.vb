@@ -11,6 +11,7 @@ Public MustInherit Class PermisoAbstractoBLL
 
 
     Public MustOverride Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
+    Public MustOverride Sub MostrarEnMenuStrip(pMenu As MenuStrip, pUsuario As UsuarioBLL, pForm As Form)
     Public MustOverride Sub Guardar()
     Public MustOverride Sub Eliminar()
     Public MustOverride Sub CargarBE(pBE As PermisoAbstractoBE)

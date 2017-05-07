@@ -8,8 +8,8 @@ Public Class FormLogIn
         If mUsuario.ID <> 0 Then
             'Hacer que la contraseña ingresada por el usuario pase por la encripatacion antes de comparar
             If mUsuario.Password = txtPass.Text Then
-                'Pasar a pantalla principal.. mostrar pantalla con menu de opciones dinamico
-                MsgBox("Ingreso")
+                Dim mForm As New FormPrincipal(mUsuario)
+                mForm.ShowDialog()
             Else
                 Label3.Visible = True
             End If
@@ -17,7 +17,6 @@ Public Class FormLogIn
             Label3.Visible = True
         End If
     End Sub
-
 
 
     Private Sub btnRegistro_Click(sender As Object, e As EventArgs) Handles btnRegistro.Click

@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports System.Reflection
 Imports BE
 Imports DAL
 
@@ -195,5 +196,69 @@ Public Class PermisoCompuestoBLL
                 Me.ListaPermisos.Add(mPermisoBLL)
             Next
         End If
+    End Sub
+
+
+    Public Overrides Sub MostrarEnMenuStrip(pMenuStrip As MenuStrip, pUsuario As UsuarioBLL, pFormulario As Form)
+        Dim mRol As New RolBLL(pUsuario.Rol)
+
+        For Each mPermisoAbs As PermisoAbstractoBLL In mRol.ListaPermisos
+            Dim mMenuItem As New ToolStripMenuItem()
+
+            mMenuItem.Name = mPermisoAbs.Nombre
+            mMenuItem.Tag = mPermisoAbs
+
+            pMenuStrip.Items.Add(mMenuItem)
+            pMenuStrip.Items.Item(mMenuItem.Name).Text = mPermisoAbs.Nombre
+
+            If TypeOf mPermisoAbs Is PermisoCompuestoBLL Then
+                AgregarToolStrip(mPermisoAbs, mMenuItem, pFormulario)
+            Else
+                AddHandler mMenuItem.Click, AddressOf Menu_Click
+            End If
+        Next
+    End Sub
+
+
+    Public Sub AgregarToolStrip(pPermiso As PermisoAbstractoBLL, pMenuItem As ToolStripMenuItem, pFormulario As Form)
+        Try
+            Dim mPadre As PermisoCompuestoBLL = DirectCast(pPermiso, PermisoCompuestoBLL)
+
+            If Not mPadre.ListaPermisos Is Nothing Then
+                For Each mPermisoAbs As PermisoAbstractoBLL In mPadre.ListaPermisos
+                    Dim mMenuItem As New ToolStripMenuItem
+
+                    mMenuItem.Name = mPermisoAbs.Nombre
+                    mMenuItem.Tag = mPermisoAbs
+
+                    pMenuItem.DropDownItems.Add(mMenuItem)
+                    pMenuItem.DropDownItems.Item(mMenuItem.Name).Text = mPermisoAbs.Nombre
+
+
+                    If TypeOf mPermisoAbs Is PermisoCompuestoBLL Then
+                        AgregarToolStrip(mPermisoAbs, mMenuItem, pFormulario)
+                    Else
+                        AddHandler mMenuItem.Click, AddressOf Menu_Click
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Public Sub Menu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim mMenuItem As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
+        Click(mMenuItem)
+    End Sub
+
+
+    Private Sub Click(pMenuItem As ToolStripItem)
+        Dim mFormName As String = DirectCast(pMenuItem.Tag, PermisoBLL).Formulario.ToString
+        Dim mAssembly As Assembly = Assembly.GetEntryAssembly
+        Dim mType As Type = mAssembly.GetType(mFormName)
+        Dim mForm = Activator.CreateInstance(mType)
+        mForm.ShowDialog()
     End Sub
 End Class

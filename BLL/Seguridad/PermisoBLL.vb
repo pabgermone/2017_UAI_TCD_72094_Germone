@@ -1,6 +1,5 @@
 ﻿Imports System.Windows.Forms
 Imports BE
-Imports BLL
 Imports DAL
 
 Public Class PermisoBLL
@@ -64,6 +63,10 @@ Public Class PermisoBLL
     Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
         Return Nothing
     End Function
+
+    Public Overrides Sub MostrarEnMenuStrip(pMenu As MenuStrip, pUsuario As UsuarioBLL, pForm As Form)
+
+    End Sub
 
     'Public Overrides Function Clone() As PermisoAbstractoBLL
     '    Dim pat As New PermisoBLL
