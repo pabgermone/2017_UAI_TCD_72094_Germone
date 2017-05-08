@@ -4,10 +4,10 @@ Public Class FormLogIn
 
     Private Sub btnIngreso_Click(sender As Object, e As EventArgs) Handles btnIngreso.Click
         Dim mUsuario As New UsuarioBLL(txtUsername.Text)
+        Dim mEncriptador As Encriptador = Encriptador.GetInstance
 
         If mUsuario.ID <> 0 Then
-            'Hacer que la contraseña ingresada por el usuario pase por la encripatacion antes de comparar
-            If mUsuario.Password = txtPass.Text Then
+            If mEncriptador.ValidarHash(txtPass.Text, mUsuario.Password) Then
                 Dim mForm As New FormPrincipal(mUsuario)
                 mForm.ShowDialog()
             Else
