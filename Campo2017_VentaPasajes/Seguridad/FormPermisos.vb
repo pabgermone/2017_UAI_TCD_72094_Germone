@@ -2,8 +2,6 @@
 Imports BE
 
 Public Class FormPermisos
-    'Public Property PermisoCompuesto As PermisoCompuestoBLL
-
     Private Sub AgregarPermisoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPermisoToolStripMenuItem.Click
         Dim mSelectedNode As TreeNode = Me.treePatentes.SelectedNode
 

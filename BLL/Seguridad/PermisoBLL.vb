@@ -68,9 +68,4 @@ Public Class PermisoBLL
 
     End Sub
 
-    'Public Overrides Function Clone() As PermisoAbstractoBLL
-    '    Dim pat As New PermisoBLL
-    '    pat.Nombre = Me.Nombre
-    '    Return pat
-    'End Function
 End Class

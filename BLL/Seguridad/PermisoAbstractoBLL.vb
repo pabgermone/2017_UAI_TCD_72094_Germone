@@ -15,5 +15,4 @@ Public MustInherit Class PermisoAbstractoBLL
     Public MustOverride Sub Guardar()
     Public MustOverride Sub Eliminar()
     Public MustOverride Sub CargarBE(pBE As PermisoAbstractoBE)
-    'Public MustOverride Function Clone() As PermisoAbstractoBLL
 End Class

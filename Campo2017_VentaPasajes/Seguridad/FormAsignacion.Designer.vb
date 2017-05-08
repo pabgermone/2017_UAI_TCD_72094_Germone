@@ -66,7 +66,7 @@ Partial Class FormAsignacion
         Me.lblNombreFamilia.Name = "lblNombreFamilia"
         Me.lblNombreFamilia.Size = New System.Drawing.Size(219, 37)
         Me.lblNombreFamilia.TabIndex = 0
-        Me.lblNombreFamilia.Text = "Nombre :"
+        Me.lblNombreFamilia.Text = "Nombre de Usuario"
         Me.lblNombreFamilia.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblTituloPatentes
@@ -98,7 +98,7 @@ Partial Class FormAsignacion
         Me.Familia.Name = "Familia"
         Me.Familia.Size = New System.Drawing.Size(690, 69)
         Me.Familia.TabIndex = 0
-        Me.Familia.Text = "Datos del Usuario"
+        Me.Familia.Text = "Asignación de Roles"
         Me.Familia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'tableLayoutPanel2

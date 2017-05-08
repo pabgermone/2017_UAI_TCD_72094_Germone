@@ -16,19 +16,4 @@ Public Class FormPrincipal
         Dim mPermisoComp As New PermisoCompuestoBLL
         mPermisoComp.MostrarEnMenuStrip(MenuStrip1, Me.UsuarioActivo, Me)
     End Sub
-
-    Private Sub btnDefinirPatentes_Click(sender As Object, e As EventArgs) Handles btnDefinirPatentes.Click
-        Dim mForm As New FormPermisos
-        mForm.ShowDialog()
-    End Sub
-
-    Private Sub btnDefinirFamilias_Click(sender As Object, e As EventArgs) Handles btnDefinirFamilias.Click
-        Dim mForm As New FormRoles
-        mForm.ShowDialog()
-    End Sub
-
-    Private Sub btnDefinirUsuarios_Click(sender As Object, e As EventArgs) Handles btnDefinirUsuarios.Click
-        Dim mForm As New FormAsignacion
-        mForm.ShowDialog()
-    End Sub
 End Class

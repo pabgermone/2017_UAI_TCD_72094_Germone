@@ -98,7 +98,7 @@ Partial Class FormRoles
         Me.Familia.Name = "Familia"
         Me.Familia.Size = New System.Drawing.Size(550, 69)
         Me.Familia.TabIndex = 0
-        Me.Familia.Text = "Datos de la Familia"
+        Me.Familia.Text = "Creación de Roles"
         Me.Familia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txtNombre

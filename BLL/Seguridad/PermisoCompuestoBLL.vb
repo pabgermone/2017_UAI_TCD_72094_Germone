@@ -78,7 +78,6 @@ Public Class PermisoCompuestoBLL
         Dim mBE As New PermisoCompuestoBE
 
         If Me.ID = 0 Then
-            'Me.ID = PermisoDAL.GetProximoID
             CargarBE(mBE)
             PermisoDAL.GuardarNuevo(mBE)
         Else
@@ -96,8 +95,6 @@ Public Class PermisoCompuestoBLL
             pTreenode.Nodes.Add(mNode)
 
             If TypeOf (mPermisoAbstracto) Is PermisoCompuestoBLL Then
-                'mNode.Text = mPermisoAbstracto.Nombre
-
                 Dim mPermisoCompuesto As PermisoCompuestoBLL
                 mPermisoCompuesto = DirectCast(mPermisoAbstracto, PermisoCompuestoBLL)
 
@@ -109,30 +106,9 @@ Public Class PermisoCompuestoBLL
     End Sub
 
 
-    'Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
-    '    Try
-    '        Dim mListaPermisos As List(Of PermisoAbstractoBLL) = ListarPermisos()
-
-    '        'El primer item de la lista deberia ser el permiso compuesto generico que tiene como hijos
-    '        'a todos los demas permisos que no tienen padre
-    '        Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
-    '        mNode.Tag = mListaPermisos.Item(0)
-
-    '        AgregarPermisosHijo(mNode.Tag, mNode)
-    '    Catch ex As Exception
-
-    '    End Try
-
-    '    Return pTreeView
-    'End Function
-
-
     Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
         Try
             Dim mListaPermisos As List(Of PermisoAbstractoBLL) = ListarPermisos()
-
-            'El primer item de la lista deberia ser el permiso compuesto generico que tiene como hijos
-            'a todos los demas permisos que no tienen padre
             Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
             mNode.Tag = mListaPermisos.Item(0)
 
@@ -143,19 +119,6 @@ Public Class PermisoCompuestoBLL
 
         Return pTreeView
     End Function
-
-
-
-    'Public Overrides Function Clone() As PermisoAbstractoBLL
-    '    Dim pat As New PermisoCompuestoBLL
-    '    pat.Nombre = Me.Nombre
-
-    '    For Each patente As PermisoAbstractoBLL In ListaPermisos
-    '        pat.ListaPermisos.Add(patente.Clone())
-    '    Next
-
-    '    Return pat
-    'End Function
 
 
     Public Shared Function ListarPermisos() As List(Of PermisoAbstractoBLL)
