@@ -8,8 +8,8 @@ Public Class RolPermisoCompuestoDAL
     ''' <summary>
     ''' Crea una relacion entre una entidad Rol y una entidad Permiso
     ''' </summary>
-    ''' <param name="pRolID"></param>
-    ''' <param name="pPermisoID"></param>
+    ''' <param name="pRolID">ID del Rol que contiene al permiso</param>
+    ''' <param name="pPermisoID">ID del permiso contenido</param>
     Public Shared Sub GuardarNuevo(pRolID As Integer, pPermisoID As Integer)
         Dim mCommand As String = "INSERT INTO RolPermisoCompuesto(RolPermisoCompuesto_rol, RolPermisoCompuesto_permiso) VALUES " &
                                  "(" & pRolID & ", " & pPermisoID & ")"
@@ -26,7 +26,7 @@ Public Class RolPermisoCompuestoDAL
     ''' <summary>
     ''' Elimina todas las relaciones que haya entre algun Rol y el Permiso indicado
     ''' </summary>
-    ''' <param name="pPermisoID"></param>
+    ''' <param name="pPermisoID">ID del rol del que se quieren eliminar las relaciones</param>
     Public Shared Sub EliminarPorPermiso(pPermisoID As Integer)
         Dim mCommand As String = "DELETE FROM RolPermisoCompuesto WHERE RolPermisoCompuesto_permiso = " & pPermisoID
 
@@ -42,7 +42,7 @@ Public Class RolPermisoCompuestoDAL
     ''' <summary>
     ''' Elimina todas las relaciones que haya entre algun Permiso y el Rol indicado
     ''' </summary>
-    ''' <param name="pRolID"></param>
+    ''' <param name="pRolID">ID del rol del que se quieren eliminar las relaciones</param>
     Public Shared Sub EliminarPorRol(pRolID As Integer)
         Dim mCommand As String = "DELETE FROM RolPermisoCompuesto WHERE RolPermisoCompuesto_rol = " & pRolID
 
@@ -58,8 +58,8 @@ Public Class RolPermisoCompuestoDAL
     ''' <summary>
     ''' Elimina una relacion entre un Rol y un Permiso
     ''' </summary>
-    ''' <param name="pRolID"></param>
-    ''' <param name="pPermisoID"></param>
+    ''' <param name="pRolID">ID del rol del que se quieren eliminar relaciones</param>
+    ''' <param name="pPermisoID">ID del permiso del que se quiere eliminar relaciones</param>
     Public Shared Sub Eliminar(pRolID As Integer, pPermisoID As Integer)
         Dim mCommand As String = "DELETE FROM RolPermisoCompuesto WHERE RolPermisoCompuesto_rol = " & pRolID & "AND RolPermisoCompuesto_permiso = " & pPermisoID
 

@@ -4,13 +4,23 @@ Imports System.Data.SqlClient
 Public Class PasajeroDAL
     Private Shared mProximoID As Integer
 
-    'Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+
+    ''' <summary>
+    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' </summary>
+    ''' <returns>ID a asignar a la entidad</returns>
+    <Obsolete("El ID deberia manejarse en BD")>
     Public Shared Function GetProximoID() As Integer
         Return BD.ExecuteScalar("select isnull(max(Pasajero_id), 0) from Pasajero") + 1
     End Function
 
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pPasajero">Objeto BE a cargar</param>
+    ''' <param name="pRow">Fila con datos a cargar al objeto BE</param>
+    ''' <returns>Objeto BE cargado con datos recuperados de BD</returns>
     Private Shared Function CargarBE(pPasajero As PasajeroBE, pRow As DataRow) As PasajeroBE
         pPasajero.ID = pRow("Pasajero_id")
         pPasajero.Nombre = pRow("Pasajero_nombre")
@@ -26,7 +36,11 @@ Public Class PasajeroDAL
     End Function
 
 
-    'Ejecuta un query que obtiene los datos de una Pasajero
+    ''' <summary>
+    ''' Ejecuta un query que obtiene los datos de una Pasajero
+    ''' </summary>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
+    ''' <returns>Objeto BE con los datos recuperados de BD</returns>
     Public Shared Function ObtenerPasajero(pID As Integer) As PasajeroBE
         Dim mPasajero As New PasajeroBE
         Dim mCommand As String = "SELECT Pasajero_id, Pasajero_nombre, pasajero_apellido, pasajero_dni, pasajero_pasaporte, pasajero_fechaNac, pasajero_telefono, pasajero_sexo, pasajero_estadoCivil FROM Pasajero WHERE Pasajero_id = " & pID
@@ -48,7 +62,10 @@ Public Class PasajeroDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Pasajero
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Pasajero
+    ''' </summary>
+    ''' <param name="pPasajero">Objeto BE con datos a persistir en BD</param>
     Public Shared Sub GuardarNuevo(pPasajero As PasajeroBE)
         Dim mCommand As String = "INSERT INTO Pasajero(Pasajero_id, Pasajero_nombre, pasajero_apellido, pasajero_dni, pasajero_pasaporte, pasajero_fechaNac, pasajero_telefono, pasajero_sexo, pasajero_estadoCivil) " &
                                  "VALUES (" & pPasajero.ID & ", '" &
@@ -70,7 +87,10 @@ Public Class PasajeroDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Pasajero
+    ''' <summary>
+    ''' Modifica un registro de la tabla Pasajero
+    ''' </summary>
+    ''' <param name="pPasajero">Objeto BE con datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pPasajero As PasajeroBE)
         Dim mCommand As String = "UPDATE Pasajero SET " &
                                  "Pasajero_nombre = '" & pPasajero.Nombre &
@@ -92,7 +112,10 @@ Public Class PasajeroDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Pasajero
+    ''' <summary>
+    ''' Elimina un registro de la tabla Pasajero
+    ''' </summary>
+    ''' <param name="pPasajero">Objeto BE con datos a eliminar de BD</param>
     Public Shared Sub Eliminar(pPasajero As PasajeroBE)
         Dim mCommand As String = "DELETE FROM Pasajero WHERE Pasajero_id = " & pPasajero.ID
 
@@ -105,7 +128,10 @@ Public Class PasajeroDAL
     End Sub
 
 
-    'Devuelve una lista de objetos PasajeroBE con los datos de cada registro de la tabla Pasajero
+    ''' <summary>
+    ''' Devuelve una lista de objetos PasajeroBE con los datos de cada registro de la tabla Pasajero
+    ''' </summary>
+    ''' <returns>Lista de todos los pasajeros existentes en BD</returns>
     Public Shared Function ListarPasajeros() As List(Of PasajeroBE)
         Dim mLista As New List(Of PasajeroBE)
         Dim mCommand As String = "SELECT Pasajero_id, Pasajero_nombre, pasajero_apellido, pasajero_dni, pasajero_pasaporte, pasajero_fechaNac, pasajero_telefono, pasajero_sexo, pasajero_estadoCivil FROM Pasajero"

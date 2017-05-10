@@ -4,13 +4,22 @@ Imports System.Data.SqlClient
 Public Class AerolineaDAL
     Private Shared mProximoID As Integer
 
-    'Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' <summary>
+    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' </summary>
+    ''' <returns>ID a asignar a la instancia</returns>
+    <Obsolete("El ID deberia ser manejado por BD")>
     Public Shared Function GetProximoID() As Integer
         Return BD.ExecuteScalar("select isnull(max(aerolinea_id), 0) from Aerolinea") + 1
     End Function
 
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pAerolinea">Objeto BE a cargar con datos</param>
+    ''' <param name="pRow">Fila de datos recuperada de BD</param>
+    ''' <returns></returns>
     Private Shared Function CargarBE(pAerolinea As AerolineaBE, pRow As DataRow) As AerolineaBE
         pAerolinea.ID = pRow("aerolinea_id")
         pAerolinea.Nombre = pRow("aerolinea_nombre")
@@ -19,7 +28,11 @@ Public Class AerolineaDAL
     End Function
 
 
-    'Ejecuta un query que obtiene los datos de una aerolinea
+    ''' <summary>
+    ''' Recupera los datos de una Aerolinea de BD
+    ''' </summary>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
+    ''' <returns></returns>
     Public Shared Function ObtenerAerolinea(pID As Integer) As AerolineaBE
         Dim mAerolinea As New AerolineaBE
         Dim mCommand As String = "SELECT aerolinea_id, aerolinea_nombre FROM Aerolinea WHERE aerolinea_id = " & pID
@@ -41,7 +54,10 @@ Public Class AerolineaDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Aerolinea
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Aerolinea
+    ''' </summary>
+    ''' <param name="pAerolinea">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pAerolinea As AerolineaBE)
         Dim mCommand As String = "INSERT INTO Aerolinea(aerolinea_id, aerolinea_nombre) VALUES (" & pAerolinea.ID & ", '" & pAerolinea.Nombre & "')"
 
@@ -54,7 +70,10 @@ Public Class AerolineaDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Aerolinea
+    ''' <summary>
+    ''' Modifica un registro de la tabla Aerolinea
+    ''' </summary>
+    ''' <param name="pAerolinea">Objeto BE con los datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pAerolinea As AerolineaBE)
         Dim mCommand As String = "UPDATE Aerolinea SET " &
                                  "aerolinea_nombre = '" & pAerolinea.Nombre &
@@ -69,7 +88,10 @@ Public Class AerolineaDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Aerolinea
+    ''' <summary>
+    ''' Elimina un registro de la tabla Aerolinea
+    ''' </summary>
+    ''' <param name="pAerolinea">Objeto BE con los datos a eliminar de BD</param>
     Public Shared Sub Eliminar(pAerolinea As AerolineaBE)
         Dim mCommand As String = "DELETE FROM aerolinea WHERE aerolinea_id = " & pAerolinea.ID
 
@@ -82,7 +104,10 @@ Public Class AerolineaDAL
     End Sub
 
 
-    'Devuelve una lista de objetos AerolineaBE con los datos de cada registro de la tabla Aerolinea
+    ''' <summary>
+    ''' Devuelve una lista de objetos AerolineaBE con los datos de cada registro de la tabla Aerolinea
+    ''' </summary>
+    ''' <returns>Lista de todas las Aerolineas existentes en BD</returns>
     Public Shared Function ListarAerolineas() As List(Of AerolineaBE)
         Dim mLista As New List(Of AerolineaBE)
         Dim mCommand As String = "SELECT aerolinea_id, aerolinea_nombre FROM Aerolinea"

@@ -4,13 +4,23 @@ Imports System.Data.SqlClient
 Public Class PaqueteDAL
     Private Shared mProximoID As Integer
 
-    'Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+
+    ''' <summary>
+    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' </summary>
+    ''' <returns>ID a asignar a la entidad</returns>
+    <Obsolete("El ID deberia ser manejado por BD")>
     Public Shared Function GetProximoID() As Integer
         Return BD.ExecuteScalar("select isnull(max(Paquete_id), 0) from Paquete") + 1
     End Function
 
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pPaquete">Objeto BE a cargar</param>
+    ''' <param name="pRow">Fila con datos a cargar en el objeto BE</param>
+    ''' <returns>Objeto BE cargado con los datos recuperados de BD</returns>
     Private Shared Function CargarBE(pPaquete As PaqueteBE, pRow As DataRow) As PaqueteBE
         pPaquete.ID = pRow("Paquete_id")
         pPaquete.Descripcion = pRow("Paquete_Descripcion")
@@ -19,7 +29,11 @@ Public Class PaqueteDAL
     End Function
 
 
-    'Ejecuta un query que obtiene los datos de una Paquete
+    ''' <summary>
+    ''' Ejecuta un query que obtiene los datos de una Paquete
+    ''' </summary>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
+    ''' <returns>Objeto BE con datos recuperados de BD</returns>
     Public Shared Function ObtenerPaquete(pID As Integer) As PaqueteBE
         Dim mPaquete As New PaqueteBE
         Dim mCommand As String = "SELECT Paquete_id, Paquete_Descripcion FROM Paquete WHERE Paquete_id = " & pID
@@ -41,7 +55,10 @@ Public Class PaqueteDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Paquete
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Paquete
+    ''' </summary>
+    ''' <param name="pPaquete">Objeto BE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pPaquete As PaqueteBE)
         Dim mCommand As String = "INSERT INTO Paquete(Paquete_id, Paquete_Descripcion) VALUES (" & pPaquete.ID & ", '" & pPaquete.Descripcion & "')"
 
@@ -54,7 +71,10 @@ Public Class PaqueteDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Paquete
+    ''' <summary>
+    ''' Modifica un registro de la tabla Paquete
+    ''' </summary>
+    ''' <param name="pPaquete">Objeto BE con datos modificados a persistir en BD</param>
     Public Shared Sub GuardarModificacion(pPaquete As PaqueteBE)
         Dim mCommand As String = "UPDATE Paquete SET " &
                                  "Paquete_Descripcion = '" & pPaquete.Descripcion &
@@ -69,7 +89,10 @@ Public Class PaqueteDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Paquete
+    ''' <summary>
+    ''' Elimina un registro de la tabla Paquete
+    ''' </summary>
+    ''' <param name="pPaquete">Objeto BE con datos a eliminar de BD</param>
     Public Shared Sub Eliminar(pPaquete As PaqueteBE)
         Dim mCommand As String = "DELETE FROM Paquete WHERE Paquete_id = " & pPaquete.ID
 
@@ -82,7 +105,10 @@ Public Class PaqueteDAL
     End Sub
 
 
-    'Devuelve una lista de objetos PaqueteBE con los datos de cada registro de la tabla Paquete
+    ''' <summary>
+    ''' Devuelve una lista de objetos PaqueteBE con los datos de cada registro de la tabla Paquete
+    ''' </summary>
+    ''' <returns>Lista de todos los paquetes existentes en BD</returns>
     Public Shared Function ListarPaquetes() As List(Of PaqueteBE)
         Dim mLista As New List(Of PaqueteBE)
         Dim mCommand As String = "SELECT Paquete_id, Paquete_Descripcion FROM Paquete"

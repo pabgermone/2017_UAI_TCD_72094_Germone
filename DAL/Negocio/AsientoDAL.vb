@@ -4,7 +4,13 @@ Imports System.Data.SqlClient
 Public Class AsientoDAL
     Private Shared mProximoID As Integer
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pAsiento">Objeto BE a cargar</param>
+    ''' <param name="pRow">Fila con datos a cargar en el objeto BE</param>
+    ''' <returns></returns>
     Private Shared Function CargarBE(pAsiento As AsientoBE, pRow As DataRow) As AsientoBE
         pAsiento.Numero = pRow("asiento_id")
         pAsiento.NumeroVuelo = pRow("asiento_vuelo_numero")
@@ -14,7 +20,12 @@ Public Class AsientoDAL
     End Function
 
 
-    'Ejecuta un query que obtiene los datos de un Asiento
+    ''' <summary>
+    ''' Ejecuta un query que obtiene los datos de un Asiento
+    ''' </summary>
+    ''' <param name="pAsiento">ID del asiento del registro de BD con los datos deseados</param>
+    ''' <param name="pVuelo">ID del vuelo del registro con los datos deseados</param>
+    ''' <returns>Objeto BE con los datos recuperados de BD</returns>
     Public Shared Function ObtenerAsiento(pAsiento As Integer, pVuelo As Integer) As AsientoBE
         Dim mAsiento As New AsientoBE
         Dim mCommand As String = "SELECT asiento_numero, asiento_vuelo_numero, asiento_ocupado FROM Asiento WHERE Asiento_numero = " & pAsiento & " and asiento_vuelo_numero = " & pVuelo
@@ -36,7 +47,10 @@ Public Class AsientoDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Asiento
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Asiento
+    ''' </summary>
+    ''' <param name="pAsiento">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pAsiento As AsientoBE)
         Dim mCommand As String = "INSERT INTO Asiento(asiento_numero, asiento_vuelo_numero, asiento_ocupado) VALUES (" & pAsiento.Numero & ", " & pAsiento.NumeroVuelo & ", " & pAsiento.Ocupado & ")"
 
@@ -49,7 +63,10 @@ Public Class AsientoDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Asiento
+    ''' <summary>
+    ''' Modifica un registro de la tabla Asiento
+    ''' </summary>
+    ''' <param name="pAsiento">Objeto BE con los datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pAsiento As AsientoBE)
         Dim mCommand As String = "UPDATE Asiento SET " &
                                  "asiento_ocupado = '" & pAsiento.Ocupado &
@@ -65,7 +82,10 @@ Public Class AsientoDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Asiento
+    ''' <summary>
+    ''' Elimina un registro de la tabla Asiento
+    ''' </summary>
+    ''' <param name="pAsiento">Objeto BE con los datos a eliminar</param>
     Public Shared Sub Eliminar(pAsiento As AsientoBE)
         Dim mCommand As String = "DELETE FROM Asiento WHERE Asiento_id = " & pAsiento.Numero & " and asiento_vuelo_numero = " & pAsiento.NumeroVuelo
 
@@ -78,7 +98,10 @@ Public Class AsientoDAL
     End Sub
 
 
-    'Devuelve una lista de objetos AsientoBE con los datos de cada registro de la tabla Asiento
+    ''' <summary>
+    ''' Devuelve una lista de objetos AsientoBE con los datos de cada registro de la tabla Asiento
+    ''' </summary>
+    ''' <returns>Lista de todos los asientos de todos los vuelos existentes en BD</returns>
     Public Shared Function ListarAsientos() As List(Of AsientoBE)
         Dim mLista As New List(Of AsientoBE)
         Dim mCommand As String = "SELECT Asiento_numero, Asiento_vuelo_numero, asiento_ocupado FROM Asiento"

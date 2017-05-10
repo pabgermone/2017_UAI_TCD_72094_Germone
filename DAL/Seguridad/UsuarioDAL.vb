@@ -19,7 +19,7 @@ Public Class UsuarioDAL
     ''' </summary>
     ''' <param name="pUsuario">Objeto BE al que se quiere cargar con datos</param>
     ''' <param name="pRow">Fila de la BD que contiene los datos para el objeto</param>
-    ''' <returns></returns>
+    ''' <returns>Objeto BE cargado con datos recuperados de la base</returns>
     Private Shared Function CargarBE(pUsuario As UsuarioBE, pRow As DataRow) As UsuarioBE
         pUsuario.ID = pRow("Usuario_id")
         pUsuario.UserName = pRow("usuario_userName")
@@ -37,7 +37,7 @@ Public Class UsuarioDAL
     ''' Ejecuta un query que obtiene los datos de una Usuario
     ''' </summary>
     ''' <param name="pUser">Nombre del Usuario que se quiere obtener</param>
-    ''' <returns></returns>
+    ''' <returns>Objeto BE con datos recuperados de BD</returns>
     Public Shared Function ObtenerUsuario(pUser As String) As UsuarioBE
         Dim mUsuario As New UsuarioBE
         Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario WHERE Usuario_userName LIKE '" & pUser & "';"

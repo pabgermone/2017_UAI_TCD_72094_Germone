@@ -32,7 +32,7 @@ Public Class RolDAL
     ''' <summary>
     ''' Ejecuta un query que obtiene los datos de un Rol
     ''' </summary>
-    ''' <param name="pID">Nombre del rol del que se quieren obtener datos</param>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
     ''' <returns>RolBE con los datos recuperados de BD par esa entidad</returns>
     Public Shared Function ObtenerRol(pID As Integer) As RolBE
         Dim mRol As New RolBE

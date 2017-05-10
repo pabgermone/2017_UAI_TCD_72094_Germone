@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports BE
 
+<Obsolete("Falta implementar")>
 Public Class VentaPasajeroDAL
     'Public Shared Sub GuardarNuevo(pCatMov As CategoriasMovimientoDTO)
     '    Dim mCommand As String = "INSERT INTO MovCat(movcat_movimiento_id, movcat_cuenta_id, movcat_categoria_id) VALUES " &

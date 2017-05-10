@@ -4,13 +4,23 @@ Imports System.Data.SqlClient
 Public Class DestinoDAL
     Private Shared mProximoID As Integer
 
-    'Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+
+    ''' <summary>
+    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' </summary>
+    ''' <returns>ID a asignar a la entidad</returns>
+    <Obsolete("El ID deberia ser manejado por BD")>
     Public Shared Function GetProximoID() As Integer
         Return BD.ExecuteScalar("select isnull(max(Destino_id), 0) from Destino") + 1
     End Function
 
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pDestino">Objeto BE a cargar</param>
+    ''' <param name="pRow">Fila con los datos a cargar en el objeto BE</param>
+    ''' <returns></returns>
     Private Shared Function CargarBE(pDestino As DestinoBE, pRow As DataRow) As DestinoBE
         pDestino.ID = pRow("Destino_id")
         pDestino.Nombre = pRow("Destino_nombre")
@@ -19,7 +29,11 @@ Public Class DestinoDAL
     End Function
 
 
-    'Ejecuta un query que obtiene los datos de una Destino
+    ''' <summary>
+    ''' Ejecuta un query que obtiene los datos de una Destino
+    ''' </summary>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
+    ''' <returns></returns>
     Public Shared Function ObtenerDestino(pID As Integer) As DestinoBE
         Dim mDestino As New DestinoBE
         Dim mCommand As String = "SELECT Destino_id, Destino_nombre FROM Destino WHERE Destino_id = " & pID
@@ -41,7 +55,10 @@ Public Class DestinoDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Destino
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Destino
+    ''' </summary>
+    ''' <param name="pDestino">Objeto BE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pDestino As DestinoBE)
         Dim mCommand As String = "INSERT INTO Destino(Destino_id, Destino_nombre) VALUES (" & pDestino.ID & ", '" & pDestino.Nombre & "')"
 
@@ -54,7 +71,10 @@ Public Class DestinoDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Destino
+    ''' <summary>
+    ''' Modifica un registro de la tabla Destino
+    ''' </summary>
+    ''' <param name="pDestino">Objeto BE con datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pDestino As DestinoBE)
         Dim mCommand As String = "UPDATE Destino SET " &
                                  "Destino_nombre = '" & pDestino.Nombre &
@@ -69,7 +89,10 @@ Public Class DestinoDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Destino
+    ''' <summary>
+    ''' Elimina un registro de la tabla Destino
+    ''' </summary>
+    ''' <param name="pDestino">Objeto BE con datos a eliminar de BD</param>
     Public Shared Sub Eliminar(pDestino As DestinoBE)
         Dim mCommand As String = "DELETE FROM Destino WHERE Destino_id = " & pDestino.ID
 
@@ -82,7 +105,10 @@ Public Class DestinoDAL
     End Sub
 
 
-    'Devuelve una lista de objetos DestinoBE con los datos de cada registro de la tabla Destino
+    ''' <summary>
+    ''' Devuelve una lista de objetos DestinoBE con los datos de cada registro de la tabla Destino
+    ''' </summary>
+    ''' <returns>Lista de todos los destinos existentes en BD</returns>
     Public Shared Function ListarDestinos() As List(Of DestinoBE)
         Dim mLista As New List(Of DestinoBE)
         Dim mCommand As String = "SELECT Destino_id, Destino_nombre FROM Destino"

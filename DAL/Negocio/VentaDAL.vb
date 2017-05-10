@@ -4,13 +4,23 @@ Imports System.Data.SqlClient
 Public Class VentaDAL
     Private Shared mProximoID As Integer
 
-    'Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+
+    ''' <summary>
+    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
+    ''' </summary>
+    ''' <returns>ID a asignar a la entidad</returns>
+    <Obsolete("El ID deberia ser manejado en BD")>
     Public Shared Function GetProximoID() As Integer
         Return BD.ExecuteScalar("select isnull(max(Venta_id), 0) from Venta") + 1
     End Function
 
 
-    'Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' <summary>
+    ''' Carga un objeto BE con datos tomados de una fila de la tabla BD
+    ''' </summary>
+    ''' <param name="pVenta">Objeto BE a cargar</param>
+    ''' <param name="pRow">Fila con datos a cargar al objeto BE</param>
+    ''' <returns>Objeto BE cargado con datos recuperados de BD</returns>
     Private Shared Function CargarBE(pVenta As VentaBE, pRow As DataRow) As VentaBE
         pVenta.ID = pRow("Venta_id")
         pVenta.Fecha = pRow("venta_fecha")
@@ -21,7 +31,11 @@ Public Class VentaDAL
     End Function
 
 
-    'Ejecuta un query que obtiene los datos de una Venta
+    ''' <summary>
+    ''' Ejecuta un query que obtiene los datos de una Venta
+    ''' </summary>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
+    ''' <returns>Objeto BE con datos recuperados de BD</returns>
     Public Shared Function ObtenerVenta(pID As Integer) As VentaBE
         Dim mVenta As New VentaBE
         Dim mCommand As String = "SELECT Venta_id, Venta_fecha, venta_precio, venta_paquete FROM Venta WHERE Venta_id = " & pID
@@ -43,7 +57,10 @@ Public Class VentaDAL
     End Function
 
 
-    'Crea un nuevo registro en la tabla Venta
+    ''' <summary>
+    ''' Crea un nuevo registro en la tabla Venta
+    ''' </summary>
+    ''' <param name="pVenta">Objeto BE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pVenta As VentaBE)
         Dim mCommand As String = "INSERT INTO Venta(Venta_id, Venta_fecha, venta_precio, venta_paquete) VALUES (" & pVenta.ID & ", " & pVenta.Fecha & ", " & pVenta.Precio & ", " & ", " & pVenta.Paquete & ")"
 
@@ -56,7 +73,10 @@ Public Class VentaDAL
     End Sub
 
 
-    'Modifica un registro de la tabla Venta
+    ''' <summary>
+    ''' Modifica un registro de la tabla Venta
+    ''' </summary>
+    ''' <param name="pVenta">Objeto BE con datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pVenta As VentaBE)
         Dim mCommand As String = "UPDATE Venta SET " &
                                  "Venta_fecha = '" & pVenta.Fecha &
@@ -73,7 +93,10 @@ Public Class VentaDAL
     End Sub
 
 
-    'Elimina un registro de la tabla Venta
+    ''' <summary>
+    ''' Elimina un registro de la tabla Venta
+    ''' </summary>
+    ''' <param name="pVenta">Objeto BE con datos a eliminar de BD</param>
     Public Shared Sub Eliminar(pVenta As VentaBE)
         Dim mCommand As String = "DELETE FROM Venta WHERE Venta_id = " & pVenta.ID
 
@@ -86,7 +109,10 @@ Public Class VentaDAL
     End Sub
 
 
-    'Devuelve una lista de objetos VentaBE con los datos de cada registro de la tabla Venta
+    ''' <summary>
+    ''' Devuelve una lista de objetos VentaBE con los datos de cada registro de la tabla Venta
+    ''' </summary>
+    ''' <returns>Lista de todas las ventas registradas en BD</returns>
     Public Shared Function ListarVentas() As List(Of VentaBE)
         Dim mLista As New List(Of VentaBE)
         Dim mCommand As String = "SELECT Venta_id, Venta_fecha, venta_precio, venta_paquete FROM Venta"

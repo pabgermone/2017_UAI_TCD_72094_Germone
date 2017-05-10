@@ -7,7 +7,12 @@ Public Class BD
 
     Private Shared mConnection As SqlConnection
 
-    'Ejecuta una Query en la BD y devuelve un objeto DataSet con los datos obtenidos
+
+    ''' <summary>
+    ''' Ejecuta una Query en la BD y devuelve un objeto DataSet con los datos obtenidos
+    ''' </summary>
+    ''' <param name="pCommand">Comando SQL a ejecutar</param>
+    ''' <returns></returns>
     Public Shared Function ExecuteDataSet(pCommand As String) As DataSet
         Try
             mConnection = New SqlConnection(mConnectionString)
@@ -29,7 +34,11 @@ Public Class BD
     End Function
 
 
-    'Ejecuta un cambio en la BD y devuelve el numero de filas afectadas
+    ''' <summary>
+    ''' Ejecuta un cambio en la BD y devuelve el numero de filas afectadas
+    ''' </summary>
+    ''' <param name="pCommand">Comando SQL a ejecutar</param>
+    ''' <returns>Numero de filas afectadas</returns>
     Public Shared Function ExecuteNonQuery(pCommand As String) As Integer
         Try
             mConnection = New SqlConnection(mConnectionString)
@@ -50,7 +59,7 @@ Public Class BD
 
     '??
     Public Shared Function ExecuteReader(pCommandStr As String) As SqlDataReader
-        Dim mReader As SqlDataReader
+        Dim mReader As SqlDataReader = Nothing
 
         Try
             mConnection = New SqlConnection(mConnectionString)
@@ -72,7 +81,11 @@ Public Class BD
     End Function
 
 
-    'Ejecuta una query en la BD y devuelve solo el primer resultado
+    ''' <summary>
+    ''' Ejecuta una query en la BD y devuelve solo el primer resultado
+    ''' </summary>
+    ''' <param name="pCommandStr">Comando SQL a ejecutar</param>
+    ''' <returns></returns>
     Public Shared Function ExecuteScalar(pCommandStr As String) As Integer
         Try
             mConnection = New SqlConnection(mConnectionString)

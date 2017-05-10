@@ -1,8 +1,12 @@
 ﻿Imports BE
 Imports System.Data.SqlClient
 
+''' <summary>
+''' PermisoDAL puede manejar datos de permisos simples y compuestos
+''' </summary>
 Public Class PermisoDAL
     Private Shared mProximoID As Integer
+
 
     ''' <summary>
     '''Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno 
@@ -60,7 +64,7 @@ Public Class PermisoDAL
 
 
     ''' <summary>
-    ''' Ejecuta un query que obtiene los datos de una Permiso
+    ''' Ejecuta un query que obtiene los datos de un Permiso simple o compuesto
     ''' </summary>
     ''' <param name="pID">ID del permiso que se quiere obtener</param>
     ''' <returns>Datos del permiso indicado recuperados de BD</returns>
@@ -146,11 +150,12 @@ Public Class PermisoDAL
         End Try
     End Sub
 
-    'Agregar implementacion para eliminar relaciones
+
     ''' <summary>
-    ''' Elimina un registro de la tabla Permiso
+    ''' Elimina un registro de la tabla Permiso o PermisoCompuesto
     ''' </summary>
     ''' <param name="pPermiso">Objeto BE con datos a eliminar en BD</param>
+    <Obsolete("Falta implementar la eliminacion de relaciones antes de eliminar de BD", True)>
     Public Shared Sub Eliminar(pPermiso As PermisoAbstractoBE)
         Dim mCommand As String = ""
 
@@ -174,6 +179,7 @@ Public Class PermisoDAL
     ''' </summary>
     ''' <param name="pCompuesto">False (Default): Indica que se quiere una lista de PermisoBE /
     '''                          True: Indica que se quiere una lista de PermisoCompuestoBE</param>
+    ''' <param name="pPadreID">ID del PermisoCompuesto padre del que se quieren obtener los hijos</param>
     ''' <returns>List(Of PermisoAbstracto) con todos los permisos simples o compuestos existentes en BD</returns>
     Public Shared Function ListarPermisos(Optional pCompuesto As Boolean = False, Optional pPadreID As Integer = -1) As List(Of PermisoAbstractoBE)
         Dim mLista As New List(Of PermisoAbstractoBE)
