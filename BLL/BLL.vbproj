@@ -82,7 +82,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Seguridad\Encriptador.vb" />
-    <Compile Include="Seguridad\Modelo.vb" />
     <Compile Include="Seguridad\PermisoBLL.vb" />
     <Compile Include="Seguridad\PermisoAbstractoBLL.vb" />
     <Compile Include="Seguridad\PermisoCompuestoBLL.vb" />

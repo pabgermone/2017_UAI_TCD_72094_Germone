@@ -2,6 +2,9 @@
 Imports BE
 Imports DAL
 
+''' <summary>
+''' Representa los dos tipos de permisos presentes en el sistema
+''' </summary>
 Public MustInherit Class PermisoAbstractoBLL
     Public Property ID As Integer
     Public Property Nombre As String

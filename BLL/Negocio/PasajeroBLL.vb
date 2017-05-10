@@ -2,6 +2,8 @@
 Imports BE
 
 Public Class PasajeroBLL
+
+#Region "Propiedades"
     Public Property ID As Integer
     Public Property Nombre As String
     Public Property Apellido As String
@@ -11,8 +13,9 @@ Public Class PasajeroBLL
     Public Property Telefono As Integer
     Public Property Sexo As String
     Public Property EstadoCivil As String
+#End Region
 
-
+#Region "Constructores"
     Sub New()
 
     End Sub
@@ -20,8 +23,13 @@ Public Class PasajeroBLL
     Sub New(pID As Integer)
         CargarPropiedades(pID)
     End Sub
+#End Region
 
 
+    ''' <summary>
+    ''' Carga las propiedades de la instancia con los datos existentes en BD para el registro indicado
+    ''' </summary>
+    ''' <param name="pId">ID del registro que contiene los datos deseados</param>
     Private Sub CargarPropiedades(pId As Integer)
         Dim mBE As PasajeroBE = PasajeroDAL.ObtenerPasajero(pId)
 
@@ -37,6 +45,10 @@ Public Class PasajeroBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Carga un objeto PasajeroBE con los datos guardados en las propiedades de la entidad
+    ''' </summary>
+    ''' <param name="mBE">Instancia BE vacia en la que se quieren cargar los datos</param>
     Private Sub CargarBE(mBE As PasajeroBE)
         mBE.ID = Me.ID
         mBE.Nombre = Me.Nombre
@@ -50,6 +62,9 @@ Public Class PasajeroBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Persiste los datos guardados en las propiedades de la instancia
+    ''' </summary>
     Public Sub Guardar()
         Dim mBE As New PasajeroBE
 
@@ -64,6 +79,9 @@ Public Class PasajeroBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Elimina los datos de BD
+    ''' </summary>
     Public Sub Eliminar()
         Dim mBE As New PasajeroBE
 
@@ -73,6 +91,10 @@ Public Class PasajeroBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Lista los datos de todos los pasajeros registrados en el sistema
+    ''' </summary>
+    ''' <returns>Coleccion de entidades BLL con datos recuperados de BD</returns>
     Public Shared Function ListarPasajeros() As List(Of PasajeroBLL)
         Dim mLista As New List(Of PasajeroBLL)
         Dim mListaBE As List(Of PasajeroBE) = PasajeroDAL.ListarPasajeros

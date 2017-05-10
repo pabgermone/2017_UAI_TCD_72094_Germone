@@ -19,8 +19,8 @@ Public Class FormLogIn
     End Sub
 
 
-    Private Sub btnRegistro_Click(sender As Object, e As EventArgs) Handles btnRegistro.Click
-        Dim mForm As New FormRegistro
-        mForm.ShowDialog()
-    End Sub
+    'Private Sub btnRegistro_Click(sender As Object, e As EventArgs) Handles btnRegistro.Click
+    '    Dim mForm As New FormRegistro
+    '    mForm.ShowDialog()
+    'End Sub
 End Class

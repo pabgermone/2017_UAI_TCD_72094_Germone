@@ -16,26 +16,29 @@ Public Class RolBLL
     End Sub
 
     ''' <summary>
-    ''' Carga un objeto BLL con los datos que haya guardados en el BD para esta entidad
+    ''' Crea una nueva instancia con los datos que tengan las propiedades del objeto BE pasado por parametro
     ''' </summary>
-    ''' <param name="pRol">Nombre que tiene la entidad en la BD</param>
+    ''' <param name="pRol">Objeto BE con los datos que se quieren copiar</param>
     Sub New(pRol As RolBE)
         CargarPropiedades(pRol)
     End Sub
 
+    ''' <summary>
+    ''' Crea una nueva instancia con los datos recuperados de BD
+    ''' </summary>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
     Sub New(pID As Integer)
         CargarPropiedades(pID)
     End Sub
 #End Region
 
+#Region "Carga de Datos"
 
     ''' <summary>
-    ''' Carga las propiedades de una instacia con los datos que haya guardados en la BD
+    ''' Carga las propiedades de la instancia con los datos de un objeto BE
     ''' </summary>
-    ''' <param name="pRol">Nombre de la entidad en la BD</param>
+    ''' <param name="pBE">Objeto BE con los datos deseados</param>
     Private Sub CargarPropiedades(pBE As RolBE)
-        'Dim mBE As RolBE = RolDAL.ObtenerRol(pRol)
-
         If Not IsNothing(pBE) Then
             Me.ID = pBE.ID
             Me.Nombre = pBE.Nombre
@@ -56,6 +59,11 @@ Public Class RolBLL
         End If
     End Sub
 
+
+    ''' <summary>
+    ''' Carga las propiedades de la instancia con los datos recuperados de BD
+    ''' </summary>
+    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
     Private Sub CargarPropiedades(pID As Integer)
         Dim pBE As RolBE = RolDAL.ObtenerRol(pID)
 
@@ -101,6 +109,8 @@ Public Class RolBLL
             mBE.ListaPermisos.Add(mPermiso)
         Next
     End Sub
+
+#End Region
 
 
     ''' <summary>

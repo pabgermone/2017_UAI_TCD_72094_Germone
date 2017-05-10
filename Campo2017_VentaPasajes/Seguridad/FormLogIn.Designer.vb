@@ -27,7 +27,6 @@ Partial Class FormLogIn
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtPass = New System.Windows.Forms.TextBox()
         Me.btnIngreso = New System.Windows.Forms.Button()
-        Me.btnRegistro = New System.Windows.Forms.Button()
         Me.lblPassChange = New System.Windows.Forms.LinkLabel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -65,6 +64,7 @@ Partial Class FormLogIn
         Me.txtPass.Location = New System.Drawing.Point(18, 126)
         Me.txtPass.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtPass.Name = "txtPass"
+        Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPass.Size = New System.Drawing.Size(352, 26)
         Me.txtPass.TabIndex = 2
         '
@@ -73,20 +73,10 @@ Partial Class FormLogIn
         Me.btnIngreso.Location = New System.Drawing.Point(18, 255)
         Me.btnIngreso.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnIngreso.Name = "btnIngreso"
-        Me.btnIngreso.Size = New System.Drawing.Size(166, 35)
+        Me.btnIngreso.Size = New System.Drawing.Size(352, 35)
         Me.btnIngreso.TabIndex = 4
         Me.btnIngreso.Text = "Ingresar"
         Me.btnIngreso.UseVisualStyleBackColor = True
-        '
-        'btnRegistro
-        '
-        Me.btnRegistro.Location = New System.Drawing.Point(206, 255)
-        Me.btnRegistro.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnRegistro.Name = "btnRegistro"
-        Me.btnRegistro.Size = New System.Drawing.Size(166, 35)
-        Me.btnRegistro.TabIndex = 5
-        Me.btnRegistro.Text = "Registrarse"
-        Me.btnRegistro.UseVisualStyleBackColor = True
         '
         'lblPassChange
         '
@@ -111,21 +101,20 @@ Partial Class FormLogIn
         Me.Label3.Text = "*Por favor, revise los datos ingresados"
         Me.Label3.Visible = False
         '
-        'CargaUsuarios
+        'FormLogIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(398, 309)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lblPassChange)
-        Me.Controls.Add(Me.btnRegistro)
         Me.Controls.Add(Me.btnIngreso)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtPass)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtUsername)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.Name = "CargaUsuarios"
+        Me.Name = "FormLogIn"
         Me.Text = "CargaUsuarios"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -137,7 +126,6 @@ Partial Class FormLogIn
     Friend WithEvents Label2 As Label
     Friend WithEvents txtPass As TextBox
     Friend WithEvents btnIngreso As Button
-    Friend WithEvents btnRegistro As Button
     Friend WithEvents lblPassChange As LinkLabel
     Friend WithEvents Label3 As Label
 End Class

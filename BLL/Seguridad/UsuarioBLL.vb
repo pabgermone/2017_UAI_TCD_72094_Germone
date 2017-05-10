@@ -13,24 +13,31 @@ Public Class UsuarioBLL
 #End Region
 
 #Region "Constructores"
+
     Sub New()
 
     End Sub
 
+
     ''' <summary>
     ''' Instancia un UsuarioBLL con los datos que haya en BD
     ''' </summary>
-    ''' <param name="pUser"></param>
+    ''' <param name="pUser">Nombre de usuario del que se quieren recuperar datos</param>
     Sub New(pUser As String)
         CargarPropiedades(pUser)
     End Sub
 
+
+    ''' <summary>
+    ''' Crea una nueva instancia con los datos de un objeto BE
+    ''' </summary>
+    ''' <param name="pUser">Objeto BE con los datos que se quieren copiar</param>
     Sub New(pUser As UsuarioBE)
         CargarPropiedades(pUser)
     End Sub
 #End Region
 
-
+#Region "Carga de Datos"
     ''' <summary>
     ''' Carga las propiedades de un objeto BLL con datos de la BD
     ''' </summary>
@@ -49,6 +56,10 @@ Public Class UsuarioBLL
     End Sub
 
 
+    ''' <summary>
+    ''' Carga las propiedades de la instancia con datos de un Objeto BE
+    ''' </summary>
+    ''' <param name="pUser">Objeto BE con los datos que se quieren copiar</param>
     Private Sub CargarPropiedades(pUser As UsuarioBE)
         If Not IsNothing(pUser) Then
             Me.ID = pUser.ID
@@ -73,6 +84,7 @@ Public Class UsuarioBLL
         mBE.Password = Me.Password
         mBE.Rol = Me.Rol
     End Sub
+#End Region
 
 
     ''' <summary>
