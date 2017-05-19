@@ -49,10 +49,12 @@ Public Class RolDAL
     ''' </summary>
     ''' <param name="pRol">RolBE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pRol As RolBE)
-        Dim mCommand As String = "INSERT INTO Rol(Rol_id, Rol_nombre) VALUES (" & pRol.ID & ", '" & pRol.Nombre & "')"
+        Dim mCommand As String = "INSERT INTO Rol(Rol_nombre) VALUES ('" & pRol.Nombre & "')"
 
         Try
             BD.ExecuteNonQuery(mCommand)
+
+            CrearRelaciones(pRol)
         Catch ex As Exception
             MsgBox("Error - Nuevo - RolDAL")
             MsgBox(ex.Message)
@@ -70,7 +72,12 @@ Public Class RolDAL
                                  "WHERE Rol_id = " & pRol.ID
 
         Try
+            RolPermisoDAL.EliminarPorRol(pRol.ID)
+            RolPermisoCompuestoDAL.EliminarPorRol(pRol.ID)
+
             BD.ExecuteNonQuery(mCommand)
+
+            CrearRelaciones(pRol)
         Catch ex As Exception
             MsgBox("Error - Modificacion - RolDAL")
             MsgBox(ex.Message)
@@ -176,5 +183,35 @@ Public Class RolDAL
             Return Nothing
         End Try
 
+    End Function
+
+
+    ''' <summary>
+    ''' Persiste las relaciones entre un rol y los permisos guardados en su coleccion
+    ''' </summary>
+    ''' <param name="pRol">Objeto BE del que se quieren persistir relaciones</param>
+    Private Shared Sub CrearRelaciones(pRol As RolBE)
+        Dim mID As Integer = ObtenerID(pRol)
+
+        If pRol.ListaPermisos.Count > 0 Then
+            For Each mPermiso As PermisoAbstractoBE In pRol.ListaPermisos
+                If TypeOf (mPermiso) Is PermisoBE Then
+                    RolPermisoDAL.GuardarNuevo(mID, mPermiso.ID)
+                Else
+                    RolPermisoCompuestoDAL.GuardarNuevo(mID, mPermiso.ID)
+                End If
+            Next
+        End If
+    End Sub
+
+
+    ''' <summary>
+    ''' Encuentra el ID de un Rol guardado en BD
+    ''' </summary>
+    ''' <param name="pRol">Objeto BE del que se quiere obtener el ID</param>
+    ''' <returns>ID del Rol recuperado de BD</returns>
+    Private Shared Function ObtenerID(pRol As RolBE) As Integer
+        Dim mCommand As String = "select rol_id from Rol where rol_nombre like '" & pRol.Nombre & "'"
+        Return (BD.ExecuteScalar(mCommand))
     End Function
 End Class

@@ -123,21 +123,12 @@ Public Class RolBLL
             CargarBE(mBE)
             RolDAL.GuardarNuevo(mBE)
         Else
+            'La parte de eliminacion de permisos relacioneados con el Rol deberia ser manejada por DAL
             RolPermisoDAL.EliminarPorRol(Me.ID)
             RolPermisoCompuestoDAL.EliminarPorRol(Me.ID)
 
             CargarBE(mBE)
             RolDAL.GuardarModificacion(mBE)
-        End If
-
-        If mBE.ListaPermisos.Count > 0 Then
-            For Each mPermiso As PermisoAbstractoBE In mBE.ListaPermisos
-                If TypeOf (mPermiso) Is PermisoBE Then
-                    RolPermisoDAL.GuardarNuevo(mBE.ID, mPermiso.ID)
-                Else
-                    RolPermisoCompuestoDAL.GuardarNuevo(mBE.ID, mPermiso.ID)
-                End If
-            Next
         End If
     End Sub
 

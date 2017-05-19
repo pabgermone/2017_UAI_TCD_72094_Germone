@@ -81,6 +81,7 @@ Public Class BD
     ''' <summary>
     ''' Ejecuta una query en la BD y devuelve solo el primer resultado
     ''' </summary>
+    ''' <remarks>Solo sirve para queries que devuelvan resultados numericos</remarks>
     ''' <param name="pCommandStr">Comando SQL a ejecutar</param>
     ''' <returns></returns>
     Public Shared Function ExecuteScalar(pCommandStr As String) As Integer
