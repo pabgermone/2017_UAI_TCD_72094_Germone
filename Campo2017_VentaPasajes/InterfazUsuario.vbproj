@@ -184,6 +184,10 @@
       <Project>{049769c9-d30e-4a28-a160-92a3dcdf67c0}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework\Framework.vbproj">
+      <Project>{81756a59-1a9b-405d-96f0-5f07a1e846e0}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

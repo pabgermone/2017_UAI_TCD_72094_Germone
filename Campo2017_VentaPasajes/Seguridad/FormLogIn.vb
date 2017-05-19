@@ -1,4 +1,5 @@
 ﻿Imports BLL
+Imports Framework
 
 Public Class FormLogIn
 
@@ -18,9 +19,4 @@ Public Class FormLogIn
         End If
     End Sub
 
-
-    'Private Sub btnRegistro_Click(sender As Object, e As EventArgs) Handles btnRegistro.Click
-    '    Dim mForm As New FormRegistro
-    '    mForm.ShowDialog()
-    'End Sub
 End Class
