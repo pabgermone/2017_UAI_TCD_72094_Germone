@@ -1,5 +1,4 @@
 ﻿Imports BLL
-Imports BE
 
 Public Class FormAsignacion
     Private Sub FormularioUsuarios_Load(sender As Object, e As EventArgs) Handles MyBase.Load

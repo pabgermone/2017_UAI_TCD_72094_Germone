@@ -1,5 +1,4 @@
 ﻿Imports BLL
-Imports BE
 
 Public Class FormPermisos
     Private Sub AgregarPermisoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPermisoToolStripMenuItem.Click
