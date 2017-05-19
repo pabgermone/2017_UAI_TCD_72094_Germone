@@ -155,7 +155,7 @@ Public Class PermisoDAL
     ''' Elimina un registro de la tabla Permiso o PermisoCompuesto
     ''' </summary>
     ''' <param name="pPermiso">Objeto BE con datos a eliminar en BD</param>
-    <Obsolete("Falta implementar la eliminacion de relaciones antes de eliminar de BD", True)>
+    <Obsolete("Falta implementar la eliminacion de relaciones antes de eliminar de BD")>
     Public Shared Sub Eliminar(pPermiso As PermisoAbstractoBE)
         Dim mCommand As String = ""
 

@@ -1,10 +1,7 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Configuration.ConfigurationManager
 
 Public Class BD
-    Private Shared mConnectionString As String = "Data Source=PABLO-PC\SQLEXPRESS;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
-    'Private Shared mConnectionString As String = "Data Source=.\SQL14_UAI;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
-    'Private Shared mConnectionString As String = "Data Source=HP;Initial Catalog=Campo2017_VentaPasajes;Integrated Security=True"
-
     Private Shared mConnection As SqlConnection
 
 
@@ -15,7 +12,7 @@ Public Class BD
     ''' <returns></returns>
     Public Shared Function ExecuteDataSet(pCommand As String) As DataSet
         Try
-            mConnection = New SqlConnection(mConnectionString)
+            mConnection = New SqlConnection(ConnectionStrings("BDConnection").ConnectionString)
             Dim mDataSet As New DataSet
             Dim mDataAdapter As New SqlDataAdapter(pCommand, mConnection)
 
@@ -41,7 +38,7 @@ Public Class BD
     ''' <returns>Numero de filas afectadas</returns>
     Public Shared Function ExecuteNonQuery(pCommand As String) As Integer
         Try
-            mConnection = New SqlConnection(mConnectionString)
+            mConnection = New SqlConnection(ConnectionStrings("BDConnection").ConnectionString)
             Dim mCommand As New SqlCommand(pCommand, mConnection)
 
             mConnection.Open()
@@ -62,7 +59,7 @@ Public Class BD
         Dim mReader As SqlDataReader = Nothing
 
         Try
-            mConnection = New SqlConnection(mConnectionString)
+            mConnection = New SqlConnection(ConnectionStrings("BDConnection").ConnectionString)
             Dim mCommand As New SqlCommand(pCommandStr, mConnection)
 
             mConnection.Open()
@@ -88,7 +85,7 @@ Public Class BD
     ''' <returns></returns>
     Public Shared Function ExecuteScalar(pCommandStr As String) As Integer
         Try
-            mConnection = New SqlConnection(mConnectionString)
+            mConnection = New SqlConnection(ConnectionStrings("BDConnection").ConnectionString)
             Dim mCommand As New SqlCommand(pCommandStr, mConnection)
 
             mConnection.Open()
