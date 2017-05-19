@@ -60,7 +60,6 @@ Public Class PermisoBLL
         Dim mBE As New PermisoBE
 
         If Me.ID = 0 Then
-            Me.ID = PermisoDAL.GetProximoID
             CargarBE(mBE)
             PermisoDAL.GuardarNuevo(mBE)
         Else

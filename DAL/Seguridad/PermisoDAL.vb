@@ -5,18 +5,6 @@ Imports System.Data.SqlClient
 ''' PermisoDAL puede manejar datos de permisos simples y compuestos
 ''' </summary>
 Public Class PermisoDAL
-    Private Shared mProximoID As Integer
-
-
-    ''' <summary>
-    '''Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno 
-    ''' </summary>
-    ''' <returns>ID a asignar</returns>
-    <Obsolete("El ID deberia manejarse en la BD")>
-    Public Shared Function GetProximoID() As Integer
-        Return BD.ExecuteScalar("select isnull(max(Permiso_id), 0) from Permiso") + 1
-    End Function
-
 
     ''' <summary>
     ''' Carga un objeto BE con datos tomados de una fila de la tabla BD

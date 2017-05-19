@@ -2,17 +2,6 @@
 Imports System.Data.SqlClient
 
 Public Class RolDAL
-    Private Shared mProximoID As Integer
-
-    ''' <summary>
-    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
-    ''' </summary>
-    ''' <returns>Integer con el ID a asignar</returns>
-    <Obsolete("El ID tiene que ser manejado desde la BD")>
-    Public Shared Function GetProximoID() As Integer
-        Return BD.ExecuteScalar("select isnull(max(Rol_id), 0) from Rol") + 1
-    End Function
-
 
     ''' <summary>
     ''' Carga un objeto BE con datos tomados de una fila de la tabla BD

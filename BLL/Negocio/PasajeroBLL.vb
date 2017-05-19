@@ -69,7 +69,6 @@ Public Class PasajeroBLL
         Dim mBE As New PasajeroBE
 
         If Me.ID = 0 Then
-            Me.ID = PasajeroDAL.GetProximoID
             CargarBE(mBE)
             PasajeroDAL.GuardarNuevo(mBE)
         Else

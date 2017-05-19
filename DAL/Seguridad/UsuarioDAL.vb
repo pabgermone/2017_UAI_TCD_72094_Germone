@@ -2,17 +2,6 @@
 Imports System.Data.SqlClient
 
 Public Class UsuarioDAL
-    Private Shared mProximoID As Integer
-
-    ''' <summary>
-    ''' Ejecuta una query sobre la base para saber cual es el ultimo ID de la tabla y le suma uno
-    ''' </summary>
-    ''' <returns>ID a asignar a la entidad</returns>
-    <Obsolete("Los IDs deberian manejarse desde la BD")>
-    Public Shared Function GetProximoID() As Integer
-        Return BD.ExecuteScalar("select isnull(max(Usuario_id), 0) from Usuario") + 1
-    End Function
-
 
     ''' <summary>
     ''' Carga un objeto BE con datos tomados de una fila de la tabla BD

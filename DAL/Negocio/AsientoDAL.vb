@@ -2,8 +2,6 @@
 Imports System.Data.SqlClient
 
 Public Class AsientoDAL
-    Private Shared mProximoID As Integer
-
 
     ''' <summary>
     ''' Carga un objeto BE con datos tomados de una fila de la tabla BD

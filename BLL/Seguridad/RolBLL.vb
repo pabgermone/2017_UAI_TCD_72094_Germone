@@ -120,7 +120,6 @@ Public Class RolBLL
         Dim mBE As New RolBE
 
         If Me.ID = 0 Then
-            Me.ID = RolDAL.GetProximoID
             CargarBE(mBE)
             RolDAL.GuardarNuevo(mBE)
         Else

@@ -94,7 +94,6 @@ Public Class UsuarioBLL
         Dim mBE As New UsuarioBE
 
         If Me.ID = 0 Then
-            Me.ID = UsuarioDAL.GetProximoID
             CargarBE(mBE)
             UsuarioDAL.GuardarNuevo(mBE)
         Else
