@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Negocio\AerolineaBE.vb" />
     <Compile Include="Negocio\AsientoBE.vb" />
+    <Compile Include="Negocio\ClienteBE.vb" />
     <Compile Include="Negocio\DestinoBE.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

@@ -3,4 +3,5 @@
     Public Property Fecha As Date
     Public Property Hora As Integer
     Public Property Destino As Integer
+    Public Property Aerolinea As Integer
 End Class
