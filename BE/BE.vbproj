@@ -82,17 +82,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Negocio\PaqueteBE.vb" />
-    <Compile Include="Negocio\PasajeroBE.vb" />
     <Compile Include="Seguridad\PermisoAbstractoBE.vb" />
     <Compile Include="Seguridad\PermisoBE.vb" />
     <Compile Include="Seguridad\PermisoCompuestoBE.vb" />
     <Compile Include="Seguridad\RolBE.vb" />
     <Compile Include="Seguridad\UsuarioBE.vb" />
     <Compile Include="Negocio\VentaBE.vb" />
-    <Compile Include="Negocio\VentaPasajeroBE.vb" />
-    <Compile Include="Negocio\VentaVueloBE.vb" />
     <Compile Include="Negocio\VueloBE.vb" />
-    <Compile Include="Negocio\VueloPasajeroBE.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
