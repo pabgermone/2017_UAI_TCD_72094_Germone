@@ -143,13 +143,14 @@ Public Class PermisoDAL
     ''' Elimina un registro de la tabla Permiso o PermisoCompuesto
     ''' </summary>
     ''' <param name="pPermiso">Objeto BE con datos a eliminar en BD</param>
-    <Obsolete("Falta implementar la eliminacion de relaciones antes de eliminar de BD")>
     Public Shared Sub Eliminar(pPermiso As PermisoAbstractoBE)
         Dim mCommand As String = ""
 
         If TypeOf (pPermiso) Is PermisoBE Then
+            RolPermisoDAL.EliminarPorPermiso(pPermiso.ID)
             mCommand = "DELETE FROM Permiso WHERE Permiso_id = " & pPermiso.ID
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
+            RolPermisoCompuestoDAL.EliminarPorPermiso(pPermiso.ID)
             mCommand = "DELETE FROM PermisoCompuesto WHERE PermisoCompuesto_id = " & pPermiso.ID
         End If
 
