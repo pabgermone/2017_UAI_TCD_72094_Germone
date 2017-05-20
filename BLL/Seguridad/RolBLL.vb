@@ -123,10 +123,6 @@ Public Class RolBLL
             CargarBE(mBE)
             RolDAL.GuardarNuevo(mBE)
         Else
-            'La parte de eliminacion de permisos relacioneados con el Rol deberia ser manejada por DAL
-            RolPermisoDAL.EliminarPorRol(Me.ID)
-            RolPermisoCompuestoDAL.EliminarPorRol(Me.ID)
-
             CargarBE(mBE)
             RolDAL.GuardarModificacion(mBE)
         End If
@@ -150,6 +146,19 @@ Public Class RolBLL
 
         RolPermisoDAL.EliminarPorRol(mBE.ID)
         RolDAL.Eliminar(mBE)
+    End Sub
+
+
+    ''' <summary>
+    ''' Elimina un permiso de la lista de permisos del rol
+    ''' </summary>
+    ''' <param name="pPermisoID">ID del permiso que quiere eliminarse</param>
+    Public Sub EliminarRelacion(pPermisoID As Integer)
+        For Each mPermiso As PermisoAbstractoBLL In Me.ListaPermisos
+            If mPermiso.ID = pPermisoID Then
+                Me.ListaPermisos.Remove(mPermiso)
+            End If
+        Next
     End Sub
 
 

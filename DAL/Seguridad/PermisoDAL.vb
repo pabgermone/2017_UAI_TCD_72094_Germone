@@ -218,4 +218,5 @@ Public Class PermisoDAL
             Return Nothing
         End Try
     End Function
+
 End Class
