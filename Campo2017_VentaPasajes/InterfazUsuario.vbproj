@@ -93,10 +93,10 @@
     <Compile Include="Negocio\ABMs\Cliente\ModificarCliente.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\ABMs\FormClientes.Designer.vb">
+    <Compile Include="Negocio\ABMs\Cliente\FormClientes.Designer.vb">
       <DependentUpon>FormClientes.vb</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\ABMs\FormClientes.vb">
+    <Compile Include="Negocio\ABMs\Cliente\FormClientes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Seguridad\FormAgregarPatente.Designer.vb">
@@ -161,7 +161,7 @@
     <EmbeddedResource Include="Negocio\ABMs\Cliente\ModificarCliente.resx">
       <DependentUpon>ModificarCliente.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\ABMs\FormClientes.resx">
+    <EmbeddedResource Include="Negocio\ABMs\Cliente\FormClientes.resx">
       <DependentUpon>FormClientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FormAgregarPatente.resx">
