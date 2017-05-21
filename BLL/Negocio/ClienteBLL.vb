@@ -104,7 +104,7 @@ Public Class ClienteBLL
     Public Sub Guardar()
         Dim mBE As New ClienteBE
 
-        If mBE.ID = 0 Then
+        If Me.ID = 0 Then
             CargarBE(mBE)
             ClienteDAL.GuardarNuevo(mBE)
         Else
@@ -144,5 +144,10 @@ Public Class ClienteBLL
 
 
         Return mLista
+    End Function
+
+
+    Public Overrides Function ToString() As String
+        Return Me.Nombre & " " & Me.Apellido
     End Function
 End Class

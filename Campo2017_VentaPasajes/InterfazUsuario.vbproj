@@ -81,6 +81,24 @@
     <Compile Include="FormPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Negocio\ABMs\Cliente\AltaCliente.Designer.vb">
+      <DependentUpon>AltaCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Cliente\AltaCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Cliente\ModificarCliente.Designer.vb">
+      <DependentUpon>ModificarCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Cliente\ModificarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\ABMs\FormClientes.Designer.vb">
+      <DependentUpon>FormClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABMs\FormClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Seguridad\FormAgregarPatente.Designer.vb">
       <DependentUpon>FormAgregarPatente.vb</DependentUpon>
     </Compile>
@@ -136,6 +154,15 @@
   <ItemGroup>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABMs\Cliente\AltaCliente.resx">
+      <DependentUpon>AltaCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABMs\Cliente\ModificarCliente.resx">
+      <DependentUpon>ModificarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABMs\FormClientes.resx">
+      <DependentUpon>FormClientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FormAgregarPatente.resx">
       <DependentUpon>FormAgregarPatente.vb</DependentUpon>
