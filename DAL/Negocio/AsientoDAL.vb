@@ -85,12 +85,28 @@ Public Class AsientoDAL
     ''' </summary>
     ''' <param name="pAsiento">Objeto BE con los datos a eliminar</param>
     Public Shared Sub Eliminar(pAsiento As AsientoBE)
-        Dim mCommand As String = "DELETE FROM Asiento WHERE Asiento_id = " & pAsiento.Numero & " and asiento_vuelo_numero = " & pAsiento.NumeroVuelo
+        Dim mCommand As String = "DELETE FROM Asiento WHERE Asiento_id = " & pAsiento.Numero & " and asiento_vuelo_numero like '" & pAsiento.NumeroVuelo & "'"
 
         Try
             BD.ExecuteNonQuery(mCommand)
         Catch ex As Exception
             MsgBox("Error - Eliminacion - AsientoDAL")
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+
+    ''' <summary>
+    ''' Elimina todos los asientos resgistrados de un vuelo
+    ''' </summary>
+    ''' <param name="pVuelo">Numero de vuelo del que se quieren eliminar asientos</param>
+    Public Shared Sub EliminarPorVuelo(pVuelo As Integer)
+        Dim mCommand As String = "delete from Asiento where asiento_vuelo_numero like '" & pVuelo & "'"
+
+        Try
+            BD.ExecuteNonQuery(mCommand)
+        Catch ex As Exception
+            MsgBox("Error - Eliminar por Vuelo - AsientoDAL")
             MsgBox(ex.Message)
         End Try
     End Sub

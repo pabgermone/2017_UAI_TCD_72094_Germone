@@ -67,6 +67,7 @@
     <Compile Include="Negocio\AerolineaDAL.vb" />
     <Compile Include="Negocio\AsientoDAL.vb" />
     <Compile Include="Conexion\BD.vb" />
+    <Compile Include="Negocio\ClienteDAL.vb" />
     <Compile Include="Negocio\DestinoDAL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -84,6 +85,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Negocio\PaqueteDAL.vb" />
+    <Compile Include="Negocio\VentaClienteDAL.vb" />
+    <Compile Include="Negocio\VentaVueloDAL.vb" />
+    <Compile Include="Negocio\VueloCliente.vb" />
+    <Compile Include="Negocio\VueloDAL.vb" />
     <Compile Include="Seguridad\PermisoDAL.vb" />
     <Compile Include="Seguridad\RolDAL.vb" />
     <Compile Include="Seguridad\RolPermisoCompuestoDAL.vb" />

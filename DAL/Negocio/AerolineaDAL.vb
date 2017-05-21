@@ -1,5 +1,4 @@
 ﻿Imports BE
-Imports System.Data.SqlClient
 
 Public Class AerolineaDAL
 
@@ -48,7 +47,7 @@ Public Class AerolineaDAL
     ''' </summary>
     ''' <param name="pAerolinea">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pAerolinea As AerolineaBE)
-        Dim mCommand As String = "INSERT INTO Aerolinea(aerolinea_id, aerolinea_nombre) VALUES (" & pAerolinea.ID & ", '" & pAerolinea.Nombre & "')"
+        Dim mCommand As String = "INSERT INTO Aerolinea(aerolinea_nombre) VALUES ('" & pAerolinea.Nombre & "')"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -85,6 +84,7 @@ Public Class AerolineaDAL
         Dim mCommand As String = "DELETE FROM aerolinea WHERE aerolinea_id = " & pAerolinea.ID
 
         Try
+            VueloDAL.EliminarPorAerolinea(pAerolinea.ID)
             BD.ExecuteNonQuery(mCommand)
         Catch ex As Exception
             MsgBox("Error - Eliminacion - AerolineaDAL")
