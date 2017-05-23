@@ -119,10 +119,18 @@ Public Class VueloDAL
     ''' <summary>
     ''' Devuelve una lista de objetos VueloBE con los datos de cada registro de la tabla Vuelo
     ''' </summary>
+    ''' <param name="pAerolinea">(Optional) ID de la aerolinea de la que se quieren recuperar vuelos</param>
     ''' <returns>Lista de todas las Vuelos existentes en BD</returns>
-    Public Shared Function ListarVuelos() As List(Of VueloBE)
+    Public Shared Function ListarVuelos(Optional pAerolinea As Integer = 0) As List(Of VueloBE)
         Dim mLista As New List(Of VueloBE)
-        Dim mCommand As String = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea FROM Vuelo"
+        Dim mCommand As String = ""
+
+        If pAerolinea <> 0 Then
+            mCommand = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea FROM Vuelo where vuelo_aerolinea = " & pAerolinea
+        Else
+            mCommand = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea FROM Vuelo"
+        End If
+
         Dim mDataSet As DataSet
 
         Try

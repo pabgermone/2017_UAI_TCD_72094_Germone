@@ -131,8 +131,27 @@ Public Class VueloBLL
             Next
         End If
 
-
         Return mLista
     End Function
 
+
+    ''' <summary>
+    ''' Lista todos los vuelos pertenecientes a una aerolinea especifica
+    ''' </summary>
+    ''' <param name="pAerolinea">ID de la aerolinea de la que se quieren recuperar vuelos</param>
+    ''' <returns>Lista con datos de todas los vuelos que tenga la aerolinea</returns>
+    Public Shared Function ListarPorAerolinea(pAerolinea As Integer) As List(Of VueloBLL)
+        Dim mLista As New List(Of VueloBLL)
+        Dim mListaBE As List(Of VueloBE) = VueloDAL.ListarVuelos(pAerolinea)
+
+        If Not IsNothing(mListaBE) Then
+            For Each mBE As VueloBE In mListaBE
+                Dim mVuelo As New VueloBLL(mBE)
+
+                mLista.Add(mVuelo)
+            Next
+        End If
+
+        Return mLista
+    End Function
 End Class

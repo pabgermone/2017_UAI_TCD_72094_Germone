@@ -81,6 +81,12 @@
     <Compile Include="FormPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\FormAerolineas.Designer.vb">
+      <DependentUpon>FormAerolineas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\FormAerolineas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Negocio\ABMs\Cliente\AltaCliente.Designer.vb">
       <DependentUpon>AltaCliente.vb</DependentUpon>
     </Compile>
@@ -155,6 +161,9 @@
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABMs\Aerolinea-Vuelo\FormAerolineas.resx">
+      <DependentUpon>FormAerolineas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Negocio\ABMs\Cliente\AltaCliente.resx">
       <DependentUpon>AltaCliente.vb</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +225,7 @@
       <Name>Framework</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
