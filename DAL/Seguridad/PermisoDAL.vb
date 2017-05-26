@@ -93,8 +93,8 @@ Public Class PermisoDAL
         Dim mCommand As String = ""
 
         If TypeOf (pPermiso) Is PermisoBE Then
-            mCommand = "INSERT INTO Permiso(Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario)
-                        VALUES (" & pPermiso.ID & ", '" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
+            mCommand = "INSERT INTO Permiso(Permiso_nombre, permiso_padre, permiso_formulario)
+                        VALUES ('" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             mCommand = "INSERT INTO PermisoCompuesto(PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
                         VALUES ('" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
@@ -123,7 +123,7 @@ Public Class PermisoDAL
                                  ", permiso_formulario = '" & pPermiso.Formulario &
                                  "' WHERE Permiso_id = " & pPermiso.ID
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
-            mCommand = "UPDATE Permiso SET " &
+            mCommand = "UPDATE PermisoCompuesto SET " &
                                  "PermisoCompuesto_nombre = '" & pPermiso.Nombre &
                                  "', permisoCompuesto_padre = " & pPermiso.Padre &
                                  ", permisoCompuesto_formulario = '" & pPermiso.Formulario &

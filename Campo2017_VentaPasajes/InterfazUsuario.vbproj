@@ -186,6 +186,12 @@
     <Compile Include="Seguridad\FormRoles.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Seguridad\ModificarPermiso.Designer.vb">
+      <DependentUpon>ModificarPermiso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\ModificarPermiso.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormPrincipal.resx">
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FormRoles.resx">
       <DependentUpon>FormRoles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\ModificarPermiso.resx">
+      <DependentUpon>ModificarPermiso.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
