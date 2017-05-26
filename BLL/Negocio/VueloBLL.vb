@@ -6,7 +6,7 @@ Public Class VueloBLL
     Public Property Numero As Integer
     Public Property Disponible As Boolean
     Public Property Fecha As Date
-    Public Property Hora As Integer
+    Public Property Hora As String
     Public Property Destino As Integer
     Public Property Aerolinea As Integer
 #End Region
@@ -90,16 +90,20 @@ Public Class VueloBLL
     ''' <summary>
     ''' Persiste en la base los datos de la instancia
     ''' </summary>
-    Public Sub Guardar()
+    Public Sub GuardarNuevo()
         Dim mBE As New VueloBE
+        CargarBE(mBE)
+        VueloDAL.GuardarNuevo(mBE)
+    End Sub
 
-        If Me.Numero = 0 Then
-            CargarBE(mBE)
-            VueloDAL.GuardarNuevo(mBE)
-        Else
-            CargarBE(mBE)
-            VueloDAL.GuardarModificacion(mBE)
-        End If
+
+    ''' <summary>
+    ''' Persiste los cambios hechos a una instancia
+    ''' </summary>
+    Public Sub GuardarModificacion()
+        Dim mBE As New VueloBE
+        CargarBE(mBE)
+        VueloDAL.GuardarModificacion(mBE)
     End Sub
 
 

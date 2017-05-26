@@ -65,7 +65,7 @@ Public Class AerolineaDAL
     Public Shared Sub GuardarModificacion(pAerolinea As AerolineaBE)
         Dim mCommand As String = "UPDATE Aerolinea SET " &
                                  "aerolinea_nombre = '" & pAerolinea.Nombre &
-                                 "WHERE aerolinea_id = " & pAerolinea.ID
+                                 "' WHERE aerolinea_id = " & pAerolinea.ID
 
         Try
             BD.ExecuteNonQuery(mCommand)

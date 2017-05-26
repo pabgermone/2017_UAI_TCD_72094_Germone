@@ -114,7 +114,11 @@ Public Class DestinoBLL
             Next
         End If
 
-
         Return mLista
+    End Function
+
+
+    Public Overrides Function ToString() As String
+        Return Me.Nombre
     End Function
 End Class

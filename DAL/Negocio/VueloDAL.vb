@@ -11,7 +11,7 @@ Public Class VueloDAL
         pVuelo.Numero = pRow("Vuelo_Numero")
         pVuelo.Disponible = pRow("vuelo_disponible")
         pVuelo.Fecha = pRow("vuelo_fecha")
-        pVuelo.Hora = pRow("vuelo_hora")
+        pVuelo.Hora = CType(pRow("vuelo_hora"), TimeSpan).ToString("hh\:mm")
         pVuelo.Destino = pRow("vuelo_destino")
         pVuelo.Aerolinea = pRow("vuelo_aerolinea")
 
@@ -51,7 +51,7 @@ Public Class VueloDAL
     ''' <param name="pVuelo">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pVuelo As VueloBE)
         Dim mCommand As String = "INSERT INTO Vuelo(Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea) 
-                                  VALUES ('" & pVuelo.Numero & "', " & pVuelo.Disponible & ", " & pVuelo.Fecha & ", " & pVuelo.Hora & ", " & pVuelo.Destino & ", " & pVuelo.Aerolinea & ")"
+                                  VALUES ('" & pVuelo.Numero & "', " & IIf(pVuelo.Disponible, 1, 0) & ", '" & pVuelo.Fecha.ToString("yyyy-MM-dd") & "', '" & pVuelo.Hora & "', " & pVuelo.Destino & ", " & pVuelo.Aerolinea & ")"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -68,10 +68,10 @@ Public Class VueloDAL
     ''' <param name="pVuelo">Objeto BE con los datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pVuelo As VueloBE)
         Dim mCommand As String = "UPDATE Vuelo SET " &
-                                 "vuelo_disponible = " & pVuelo.Disponible &
-                                 ", vuelo_fecha = " & pVuelo.Fecha &
-                                 ", vuelo_hora = " & pVuelo.Hora &
-                                 ", vuelo_destino = " & pVuelo.Destino &
+                                 "vuelo_disponible = " & IIf(pVuelo.Disponible, 1, 0) &
+                                 ", vuelo_fecha = '" & pVuelo.Fecha.ToString("yyyy-MM-dd") &
+                                 "', vuelo_hora = '" & pVuelo.Hora &
+                                 "', vuelo_destino = " & pVuelo.Destino &
                                  ", vuelo_aerolinea = " & pVuelo.Aerolinea &
                                  " WHERE Vuelo_Numero like '" & pVuelo.Numero & "'"
 
