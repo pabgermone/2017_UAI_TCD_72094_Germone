@@ -123,6 +123,18 @@
     <Compile Include="Negocio\ABMs\Destino\FormDestinos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Negocio\ABMs\Venta\AltaVenta.Designer.vb">
+      <DependentUpon>AltaVenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Venta\AltaVenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Venta\FormVentas.Designer.vb">
+      <DependentUpon>FormVentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Venta\FormVentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Seguridad\FormAgregarPatente.Designer.vb">
       <DependentUpon>FormAgregarPatente.vb</DependentUpon>
     </Compile>
@@ -199,6 +211,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\ABMs\Destino\FormDestinos.resx">
       <DependentUpon>FormDestinos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABMs\Venta\AltaVenta.resx">
+      <DependentUpon>AltaVenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABMs\Venta\FormVentas.resx">
+      <DependentUpon>FormVentas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\FormAgregarPatente.resx">
       <DependentUpon>FormAgregarPatente.vb</DependentUpon>
