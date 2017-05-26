@@ -48,7 +48,7 @@ Public Class DestinoDAL
     ''' </summary>
     ''' <param name="pDestino">Objeto BE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pDestino As DestinoBE)
-        Dim mCommand As String = "INSERT INTO Destino(Destino_id, Destino_nombre) VALUES (" & pDestino.ID & ", '" & pDestino.Nombre & "')"
+        Dim mCommand As String = "INSERT INTO Destino(Destino_nombre) VALUES ('" & pDestino.Nombre & "')"
 
         Try
             BD.ExecuteNonQuery(mCommand)
