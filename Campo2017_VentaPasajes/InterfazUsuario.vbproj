@@ -135,34 +135,34 @@
     <Compile Include="Negocio\ABMs\Venta\FormVentas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Seguridad\FormAgregarPatente.Designer.vb">
-      <DependentUpon>FormAgregarPatente.vb</DependentUpon>
+    <Compile Include="Seguridad\Permisos\AltaPermiso.Designer.vb">
+      <DependentUpon>AltaPermiso.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\FormAgregarPatente.vb">
+    <Compile Include="Seguridad\Permisos\AltaPermiso.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Seguridad\FormAsignacion.Designer.vb">
+    <Compile Include="Seguridad\Roles\FormAsignacion.Designer.vb">
       <DependentUpon>FormAsignacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\FormAsignacion.vb">
+    <Compile Include="Seguridad\Roles\FormAsignacion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Seguridad\FormLogIn.Designer.vb">
+    <Compile Include="Seguridad\Usuario\FormLogIn.Designer.vb">
       <DependentUpon>FormLogIn.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\FormLogIn.vb">
+    <Compile Include="Seguridad\Usuario\FormLogIn.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Seguridad\FormPermisos.Designer.vb">
+    <Compile Include="Seguridad\Permisos\FormPermisos.Designer.vb">
       <DependentUpon>FormPermisos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\FormPermisos.vb">
+    <Compile Include="Seguridad\Permisos\FormPermisos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Seguridad\FormRegistro.Designer.vb">
+    <Compile Include="Seguridad\Usuario\FormRegistro.Designer.vb">
       <DependentUpon>FormRegistro.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\FormRegistro.vb">
+    <Compile Include="Seguridad\Usuario\FormRegistro.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -180,16 +180,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Seguridad\FormRoles.Designer.vb">
+    <Compile Include="Seguridad\Roles\FormRoles.Designer.vb">
       <DependentUpon>FormRoles.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\FormRoles.vb">
+    <Compile Include="Seguridad\Roles\FormRoles.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Seguridad\ModificarPermiso.Designer.vb">
+    <Compile Include="Seguridad\Permisos\ModificarPermiso.Designer.vb">
       <DependentUpon>ModificarPermiso.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\ModificarPermiso.vb">
+    <Compile Include="Seguridad\Permisos\ModificarPermiso.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -224,19 +224,19 @@
     <EmbeddedResource Include="Negocio\ABMs\Venta\FormVentas.resx">
       <DependentUpon>FormVentas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\FormAgregarPatente.resx">
-      <DependentUpon>FormAgregarPatente.vb</DependentUpon>
+    <EmbeddedResource Include="Seguridad\Permisos\AltaPermiso.resx">
+      <DependentUpon>AltaPermiso.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\FormAsignacion.resx">
+    <EmbeddedResource Include="Seguridad\Roles\FormAsignacion.resx">
       <DependentUpon>FormAsignacion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\FormLogIn.resx">
+    <EmbeddedResource Include="Seguridad\Usuario\FormLogIn.resx">
       <DependentUpon>FormLogIn.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\FormPermisos.resx">
+    <EmbeddedResource Include="Seguridad\Permisos\FormPermisos.resx">
       <DependentUpon>FormPermisos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\FormRegistro.resx">
+    <EmbeddedResource Include="Seguridad\Usuario\FormRegistro.resx">
       <DependentUpon>FormRegistro.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -245,10 +245,10 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\FormRoles.resx">
+    <EmbeddedResource Include="Seguridad\Roles\FormRoles.resx">
       <DependentUpon>FormRoles.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\ModificarPermiso.resx">
+    <EmbeddedResource Include="Seguridad\Permisos\ModificarPermiso.resx">
       <DependentUpon>ModificarPermiso.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

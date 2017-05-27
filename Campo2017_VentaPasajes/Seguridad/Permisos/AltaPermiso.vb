@@ -1,7 +1,7 @@
 ﻿Imports System.Reflection
 Imports BLL
 
-Public Class FormAgregarPatente
+Public Class AltaPermiso
     Public Sub New()
 
         ' Llamada necesaria para el diseñador.
