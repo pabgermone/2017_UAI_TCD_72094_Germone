@@ -30,6 +30,8 @@ Partial Class FormRoles
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.BtnDeshacer = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.BtnEliminar = New System.Windows.Forms.Button()
+        Me.BtnRenombrar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListRoles
@@ -71,7 +73,7 @@ Partial Class FormRoles
         '
         Me.BtnNvoRol.Location = New System.Drawing.Point(12, 528)
         Me.BtnNvoRol.Name = "BtnNvoRol"
-        Me.BtnNvoRol.Size = New System.Drawing.Size(146, 32)
+        Me.BtnNvoRol.Size = New System.Drawing.Size(109, 32)
         Me.BtnNvoRol.TabIndex = 4
         Me.BtnNvoRol.Text = "Nuevo Rol"
         Me.BtnNvoRol.UseVisualStyleBackColor = True
@@ -104,11 +106,31 @@ Partial Class FormRoles
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Roles del Sistema"
         '
+        'BtnEliminar
+        '
+        Me.BtnEliminar.Location = New System.Drawing.Point(127, 528)
+        Me.BtnEliminar.Name = "BtnEliminar"
+        Me.BtnEliminar.Size = New System.Drawing.Size(121, 32)
+        Me.BtnEliminar.TabIndex = 9
+        Me.BtnEliminar.Text = "Eliminar"
+        Me.BtnEliminar.UseVisualStyleBackColor = True
+        '
+        'BtnRenombrar
+        '
+        Me.BtnRenombrar.Location = New System.Drawing.Point(12, 566)
+        Me.BtnRenombrar.Name = "BtnRenombrar"
+        Me.BtnRenombrar.Size = New System.Drawing.Size(109, 32)
+        Me.BtnRenombrar.TabIndex = 10
+        Me.BtnRenombrar.Text = "Renombrar"
+        Me.BtnRenombrar.UseVisualStyleBackColor = True
+        '
         'FormRoles
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(647, 577)
+        Me.ClientSize = New System.Drawing.Size(647, 602)
+        Me.Controls.Add(Me.BtnRenombrar)
+        Me.Controls.Add(Me.BtnEliminar)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.BtnDeshacer)
         Me.Controls.Add(Me.BtnGuardar)
@@ -133,4 +155,6 @@ Partial Class FormRoles
     Friend WithEvents BtnGuardar As Button
     Friend WithEvents BtnDeshacer As Button
     Friend WithEvents Label3 As Label
+    Friend WithEvents BtnEliminar As Button
+    Friend WithEvents BtnRenombrar As Button
 End Class

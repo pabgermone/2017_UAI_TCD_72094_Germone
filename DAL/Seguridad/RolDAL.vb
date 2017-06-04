@@ -69,7 +69,7 @@ Public Class RolDAL
     Public Shared Sub GuardarModificacion(pRol As RolBE)
         Dim mCommand As String = "UPDATE Rol SET " &
                                  "Rol_nombre = '" & pRol.Nombre &
-                                 "WHERE Rol_id = " & pRol.ID
+                                 "' WHERE Rol_id = " & pRol.ID
 
         Try
             RolPermisoDAL.EliminarPorRol(pRol.ID)

@@ -2,13 +2,9 @@
 
 Public Class FormRoles
     Dim mRolSelec As RolBLL
-    Dim mEstadoOriginal As TreeNodeCollection 'Contiene el estado de los nodos del treeview antes de que se cambie
 
 #Region "Eventos Form"
     Private Sub FormRoles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'BtnGuardar.Enabled = False
-        'BtnDeshacer.Enabled = False
-
         ActualizarRoles()
     End Sub
 
@@ -20,10 +16,6 @@ Public Class FormRoles
         End If
     End Sub
 
-
-    Private Sub TreePermisos_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles TreePermisos.AfterCheck
-
-    End Sub
 #End Region
 
 
@@ -37,14 +29,51 @@ Public Class FormRoles
 
         ActualizarRoles()
     End Sub
+
+
+    Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+        If MsgBox("Esta seguro que desea eliminar el rol seleccinado", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            mRolSelec.Eliminar()
+        End If
+
+        ActualizarRoles()
+    End Sub
+
+
+    Private Sub BtnRenombrar_Click(sender As Object, e As EventArgs) Handles BtnRenombrar.Click
+        mRolSelec.Nombre = InputBox("Ingrese el nuevo nombre para el rol:")
+
+        mRolSelec.Guardar()
+
+        ActualizarRoles()
+    End Sub
+
+
+    Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        Dim mListaPermisos As New List(Of PermisoAbstractoBLL)
+
+        For Each mNodo As TreeNode In TreePermisos.Nodes
+            'Llena la lista con los permisos que hay seleccionados en el treeview
+            CargarPermisosSelec(mNodo, mListaPermisos)
+        Next
+
+        mRolSelec.ListaPermisos = mListaPermisos
+
+        mRolSelec.Guardar()
+
+        ActualizarRoles()
+    End Sub
+
+
+    Private Sub BtnDeshacer_Click(sender As Object, e As EventArgs) Handles BtnDeshacer.Click
+        ActualizarPermisos()
+    End Sub
 #End Region
 
 
     Public Sub ActualizarRoles()
         ListRoles.DataSource = Nothing
         ListRoles.DataSource = RolBLL.ListarRoles
-
-        GuardarEstado()
     End Sub
 
 
@@ -91,7 +120,7 @@ Public Class FormRoles
 
 
     ''' <summary>
-    ''' Marca como seleccionado aun nodo y todos los nodos que dependan de este. Si alguno de esos nodos, tiene
+    ''' Marca como seleccionado a un nodo y todos los nodos que dependan de este. Si alguno de esos nodos, tiene
     ''' mas nodos, tambien los selecciona
     ''' </summary>
     ''' <param name="pNodo">Nodo con el PermisoCompuesto que se quiere seleccionar</param>
@@ -105,69 +134,23 @@ Public Class FormRoles
 
 
     ''' <summary>
-    ''' Guarda el estado de los nodos del treeview en caso de que se quieran deshacer cambios
+    ''' Carga a una lista de permisos los permisos que haya seleccionados en los nodos de un nodo del treeview
     ''' </summary>
-    Public Sub GuardarEstado()
-        mEstadoOriginal = TreePermisos.Nodes
+    ''' <param name="pNodo">Nodo que se quiere recorrer</param>
+    ''' <param name="pLista">Lista que lleva los permisos seleccionados en el treeview</param>
+    Public Sub CargarPermisosSelec(pNodo As TreeNode, pLista As List(Of PermisoAbstractoBLL))
+        If TypeOf (pNodo.Tag) Is PermisoCompuestoBLL Then
+            If pNodo.Checked = True Then
+                pLista.Add(pNodo.Tag)
+            Else
+                For Each mNodo In pNodo.Nodes
+                    CargarPermisosSelec(mNodo, pLista)
+                Next
+            End If
+        ElseIf TypeOf (pNodo.Tag) Is PermisoBLL Then
+            If pNodo.Checked = True Then
+                pLista.Add(pNodo.Tag)
+            End If
+        End If
     End Sub
-
-
-    ''' <summary>
-    ''' Vuelve a cargar en el treeview los nodos de la forma en que estaban antes de realizar los cambios
-    ''' </summary>
-    Public Sub RecuperarEstado()
-        TreePermisos.Nodes.Clear()
-
-        For Each mNodo As TreeNode In mEstadoOriginal
-            TreePermisos.Nodes.Add(mNodo)
-        Next
-    End Sub
-
-
-
-
-
-
-
-
-
-    'Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-    '    Dim mRol As New RolBLL
-    '    Dim mListaPermisos As New List(Of PermisoAbstractoBLL)
-
-    '    mRol.Nombre = txtNombre.Text
-    '    GetPermisosSeleccionados(treePatentes.Nodes, mListaPermisos)
-    '    mRol.ListaPermisos = mListaPermisos
-    '    mRol.Guardar()
-
-    '    Me.Close()
-    'End Sub
-
-
-    'Public Sub GetPermisosSeleccionados(pNodos As TreeNodeCollection, pListaPermisos As List(Of PermisoAbstractoBLL))
-    '    For Each mNode As TreeNode In pNodos
-    '        If mNode.Checked Then
-    '            pListaPermisos.Add(CType(mNode.Tag, PermisoAbstractoBLL))
-    '        End If
-
-    '        GetPermisosSeleccionados(mNode.Nodes, pListaPermisos)
-    '    Next
-    'End Sub
-
-
-    'Private Sub treePatentes_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles treePatentes.AfterCheck
-    '    e.Node.Tag.Seleccionada = e.Node.Checked
-    'End Sub
-
-
-
-    'Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-    '    Me.Close()
-    'End Sub
-
-
-    'Private Sub FormRoles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    '    Dim mPermisoRaiz As New PermisoCompuestoBLL(0)
-    '    mPermisoRaiz.MostrarEnTreeview(Me.treePatentes)
-    'End Sub
 End Class
