@@ -49,7 +49,11 @@ Public Class PermisoBLL
     ''' Elimina los datos de esta instancia de BD
     ''' </summary>
     Public Overrides Sub Eliminar()
-        Throw New NotImplementedException()
+        Dim mBE As New PermisoBE
+
+        CargarBE(mBE)
+
+        PermisoDAL.Eliminar(mBE)
     End Sub
 
 

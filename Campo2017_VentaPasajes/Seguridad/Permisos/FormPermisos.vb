@@ -121,5 +121,8 @@ Public Class FormPermisos
                 CType(TreePermisos.SelectedNode.Tag, PermisoBLL).Eliminar()
             End If
         End If
+
+        TreePermisos.Nodes.Clear()
+        FormPermisos_Load(Nothing, Nothing)
     End Sub
 End Class

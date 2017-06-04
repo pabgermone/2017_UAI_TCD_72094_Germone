@@ -53,8 +53,8 @@ Public Class UsuarioDAL
     ''' </summary>
     ''' <param name="pUsuario">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pUsuario As UsuarioBE)
-        Dim mCommand As String = "INSERT INTO Usuario(Usuario_id, Usuario_userName, usuario_nombre, usuario_apellido, usuario_password) " &
-                                 "VALUES (" & pUsuario.ID & ", '" & pUsuario.UserName & "', '" & pUsuario.Nombre & "', '" & pUsuario.Apellido & "', '" & pUsuario.Password & "');"
+        Dim mCommand As String = "INSERT INTO Usuario(Usuario_userName, usuario_nombre, usuario_apellido, usuario_password) " &
+                                 "VALUES ('" & pUsuario.UserName & "', '" & pUsuario.Nombre & "', '" & pUsuario.Apellido & "', '" & pUsuario.Password & "');"
 
         Try
             BD.ExecuteNonQuery(mCommand)

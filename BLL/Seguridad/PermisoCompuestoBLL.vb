@@ -78,6 +78,19 @@ Public Class PermisoCompuestoBLL
         pBE.Nombre = Me.Nombre
         pBE.Padre = Me.Padre
         pBE.Formulario = Me.Formulario
+
+        For Each mPermiso As PermisoAbstractoBLL In Me.ListaPermisos
+            Dim mPermisoBE As PermisoAbstractoBE = Nothing
+
+            If TypeOf (mPermiso) Is PermisoBLL Then
+                mPermisoBE = New PermisoBE
+            ElseIf TypeOf (mPermiso) Is PermisoCompuestoBLL Then
+                mPermisoBE = New PermisoCompuestoBE
+            End If
+
+            mPermiso.CargarBE(mPermisoBE)
+            CType(pBE, PermisoCompuestoBE).ListaPermisos.Add(mPermisoBE)
+        Next
     End Sub
 
 

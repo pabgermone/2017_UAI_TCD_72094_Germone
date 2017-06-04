@@ -150,6 +150,9 @@ Public Class PermisoDAL
             RolPermisoDAL.EliminarPorPermiso(pPermiso.ID)
             mCommand = "DELETE FROM Permiso WHERE Permiso_id = " & pPermiso.ID
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
+            For Each mPermiso As PermisoAbstractoBE In CType(pPermiso, PermisoCompuestoBE).ListaPermisos
+                Eliminar(mPermiso)
+            Next
             RolPermisoCompuestoDAL.EliminarPorPermiso(pPermiso.ID)
             mCommand = "DELETE FROM PermisoCompuesto WHERE PermisoCompuesto_id = " & pPermiso.ID
         End If
