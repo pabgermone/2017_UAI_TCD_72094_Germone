@@ -22,6 +22,7 @@ Partial Class ModificarVuelo
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ModificarVuelo))
         Me.ComboDestinos = New System.Windows.Forms.ComboBox()
         Me.BtnNuevo = New System.Windows.Forms.Button()
         Me.TxtHora = New System.Windows.Forms.TextBox()
@@ -36,82 +37,98 @@ Partial Class ModificarVuelo
         'ComboDestinos
         '
         Me.ComboDestinos.FormattingEnabled = True
-        Me.ComboDestinos.Location = New System.Drawing.Point(16, 224)
+        Me.ComboDestinos.Location = New System.Drawing.Point(11, 146)
+        Me.ComboDestinos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ComboDestinos.Name = "ComboDestinos"
-        Me.ComboDestinos.Size = New System.Drawing.Size(269, 28)
+        Me.ComboDestinos.Size = New System.Drawing.Size(181, 21)
         Me.ComboDestinos.TabIndex = 64
         '
         'BtnNuevo
         '
-        Me.BtnNuevo.Location = New System.Drawing.Point(51, 276)
+        Me.BtnNuevo.BackColor = System.Drawing.Color.LightSalmon
+        Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNuevo.Location = New System.Drawing.Point(45, 190)
+        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.BtnNuevo.Name = "BtnNuevo"
-        Me.BtnNuevo.Size = New System.Drawing.Size(199, 36)
+        Me.BtnNuevo.Size = New System.Drawing.Size(129, 43)
         Me.BtnNuevo.TabIndex = 63
         Me.BtnNuevo.Text = "Guardar"
-        Me.BtnNuevo.UseVisualStyleBackColor = True
+        Me.BtnNuevo.UseVisualStyleBackColor = False
         '
         'TxtHora
         '
-        Me.TxtHora.Location = New System.Drawing.Point(16, 160)
+        Me.TxtHora.Location = New System.Drawing.Point(11, 104)
+        Me.TxtHora.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtHora.Name = "TxtHora"
-        Me.TxtHora.Size = New System.Drawing.Size(269, 26)
+        Me.TxtHora.Size = New System.Drawing.Size(181, 20)
         Me.TxtHora.TabIndex = 62
         '
         'TxtFecha
         '
-        Me.TxtFecha.Location = New System.Drawing.Point(16, 96)
+        Me.TxtFecha.Location = New System.Drawing.Point(11, 62)
+        Me.TxtFecha.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtFecha.Name = "TxtFecha"
-        Me.TxtFecha.Size = New System.Drawing.Size(269, 26)
+        Me.TxtFecha.Size = New System.Drawing.Size(181, 20)
         Me.TxtFecha.TabIndex = 61
         '
         'TxtNroVuelo
         '
-        Me.TxtNroVuelo.Location = New System.Drawing.Point(16, 32)
+        Me.TxtNroVuelo.Location = New System.Drawing.Point(11, 21)
+        Me.TxtNroVuelo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtNroVuelo.Name = "TxtNroVuelo"
-        Me.TxtNroVuelo.Size = New System.Drawing.Size(269, 26)
+        Me.TxtNroVuelo.Size = New System.Drawing.Size(181, 20)
         Me.TxtNroVuelo.TabIndex = 60
         '
         'LblDestino
         '
         Me.LblDestino.AutoSize = True
-        Me.LblDestino.Location = New System.Drawing.Point(12, 201)
+        Me.LblDestino.BackColor = System.Drawing.Color.Transparent
+        Me.LblDestino.Location = New System.Drawing.Point(8, 131)
+        Me.LblDestino.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblDestino.Name = "LblDestino"
-        Me.LblDestino.Size = New System.Drawing.Size(68, 20)
+        Me.LblDestino.Size = New System.Drawing.Size(46, 13)
         Me.LblDestino.TabIndex = 59
         Me.LblDestino.Text = "Destino:"
         '
         'LblHora
         '
         Me.LblHora.AutoSize = True
-        Me.LblHora.Location = New System.Drawing.Point(12, 137)
+        Me.LblHora.BackColor = System.Drawing.Color.Transparent
+        Me.LblHora.Location = New System.Drawing.Point(8, 89)
+        Me.LblHora.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblHora.Name = "LblHora"
-        Me.LblHora.Size = New System.Drawing.Size(48, 20)
+        Me.LblHora.Size = New System.Drawing.Size(33, 13)
         Me.LblHora.TabIndex = 58
         Me.LblHora.Text = "Hora:"
         '
         'LblFecha
         '
         Me.LblFecha.AutoSize = True
-        Me.LblFecha.Location = New System.Drawing.Point(12, 73)
+        Me.LblFecha.BackColor = System.Drawing.Color.Transparent
+        Me.LblFecha.Location = New System.Drawing.Point(8, 47)
+        Me.LblFecha.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblFecha.Name = "LblFecha"
-        Me.LblFecha.Size = New System.Drawing.Size(58, 20)
+        Me.LblFecha.Size = New System.Drawing.Size(40, 13)
         Me.LblFecha.TabIndex = 57
         Me.LblFecha.Text = "Fecha:"
         '
         'LblNroVuelo
         '
         Me.LblNroVuelo.AutoSize = True
-        Me.LblNroVuelo.Location = New System.Drawing.Point(12, 9)
+        Me.LblNroVuelo.BackColor = System.Drawing.Color.Transparent
+        Me.LblNroVuelo.Location = New System.Drawing.Point(8, 6)
+        Me.LblNroVuelo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblNroVuelo.Name = "LblNroVuelo"
-        Me.LblNroVuelo.Size = New System.Drawing.Size(132, 20)
+        Me.LblNroVuelo.Size = New System.Drawing.Size(91, 13)
         Me.LblNroVuelo.TabIndex = 56
         Me.LblNroVuelo.Text = "Numero de vuelo:"
         '
         'ModificarVuelo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(298, 333)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(223, 253)
         Me.Controls.Add(Me.ComboDestinos)
         Me.Controls.Add(Me.BtnNuevo)
         Me.Controls.Add(Me.TxtHora)
@@ -121,6 +138,7 @@ Partial Class ModificarVuelo
         Me.Controls.Add(Me.LblHora)
         Me.Controls.Add(Me.LblFecha)
         Me.Controls.Add(Me.LblNroVuelo)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "ModificarVuelo"
         Me.Text = "ModificarVuelo"
         Me.ResumeLayout(False)

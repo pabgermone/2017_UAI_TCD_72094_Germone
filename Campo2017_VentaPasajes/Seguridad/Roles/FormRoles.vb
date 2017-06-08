@@ -153,4 +153,8 @@ Public Class FormRoles
             End If
         End If
     End Sub
+
+    Private Sub TreePermisos_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles TreePermisos.AfterCheck
+
+    End Sub
 End Class

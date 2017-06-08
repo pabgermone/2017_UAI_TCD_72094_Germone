@@ -22,6 +22,7 @@ Partial Class FormPermisos
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPermisos))
         Me.TreePermisos = New System.Windows.Forms.TreeView()
         Me.BtnNvoPermiso = New System.Windows.Forms.Button()
         Me.BtnNvoCompuesto = New System.Windows.Forms.Button()
@@ -32,52 +33,61 @@ Partial Class FormPermisos
         '
         'TreePermisos
         '
-        Me.TreePermisos.Location = New System.Drawing.Point(262, 81)
+        Me.TreePermisos.Location = New System.Drawing.Point(274, 82)
         Me.TreePermisos.Name = "TreePermisos"
-        Me.TreePermisos.Size = New System.Drawing.Size(339, 427)
+        Me.TreePermisos.Size = New System.Drawing.Size(326, 427)
         Me.TreePermisos.TabIndex = 0
         '
         'BtnNvoPermiso
         '
-        Me.BtnNvoPermiso.Location = New System.Drawing.Point(12, 81)
+        Me.BtnNvoPermiso.BackColor = System.Drawing.Color.LightSalmon
+        Me.BtnNvoPermiso.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNvoPermiso.Location = New System.Drawing.Point(12, 82)
         Me.BtnNvoPermiso.Name = "BtnNvoPermiso"
-        Me.BtnNvoPermiso.Size = New System.Drawing.Size(232, 34)
+        Me.BtnNvoPermiso.Size = New System.Drawing.Size(256, 34)
         Me.BtnNvoPermiso.TabIndex = 1
         Me.BtnNvoPermiso.Text = "Nuevo Permiso"
-        Me.BtnNvoPermiso.UseVisualStyleBackColor = True
+        Me.BtnNvoPermiso.UseVisualStyleBackColor = False
         '
         'BtnNvoCompuesto
         '
-        Me.BtnNvoCompuesto.Location = New System.Drawing.Point(12, 139)
+        Me.BtnNvoCompuesto.BackColor = System.Drawing.Color.LightSalmon
+        Me.BtnNvoCompuesto.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNvoCompuesto.Location = New System.Drawing.Point(12, 138)
         Me.BtnNvoCompuesto.Name = "BtnNvoCompuesto"
-        Me.BtnNvoCompuesto.Size = New System.Drawing.Size(232, 34)
+        Me.BtnNvoCompuesto.Size = New System.Drawing.Size(256, 34)
         Me.BtnNvoCompuesto.TabIndex = 2
         Me.BtnNvoCompuesto.Text = "Nuevo Permiso Compuesto"
-        Me.BtnNvoCompuesto.UseVisualStyleBackColor = True
+        Me.BtnNvoCompuesto.UseVisualStyleBackColor = False
         '
         'BtnModificar
         '
+        Me.BtnModificar.BackColor = System.Drawing.Color.LightSalmon
+        Me.BtnModificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnModificar.Location = New System.Drawing.Point(12, 197)
         Me.BtnModificar.Name = "BtnModificar"
-        Me.BtnModificar.Size = New System.Drawing.Size(232, 34)
+        Me.BtnModificar.Size = New System.Drawing.Size(256, 34)
         Me.BtnModificar.TabIndex = 3
         Me.BtnModificar.Text = "Modificar Permiso"
-        Me.BtnModificar.UseVisualStyleBackColor = True
+        Me.BtnModificar.UseVisualStyleBackColor = False
         '
         'BtnEliminar
         '
+        Me.BtnEliminar.BackColor = System.Drawing.Color.LightSalmon
+        Me.BtnEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnEliminar.Location = New System.Drawing.Point(12, 255)
         Me.BtnEliminar.Name = "BtnEliminar"
-        Me.BtnEliminar.Size = New System.Drawing.Size(232, 34)
+        Me.BtnEliminar.Size = New System.Drawing.Size(256, 34)
         Me.BtnEliminar.TabIndex = 4
         Me.BtnEliminar.Text = "Eliminar Permiso"
-        Me.BtnEliminar.UseVisualStyleBackColor = True
+        Me.BtnEliminar.UseVisualStyleBackColor = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(231, 18)
+        Me.Label1.Location = New System.Drawing.Point(232, 18)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(150, 37)
         Me.Label1.TabIndex = 0
@@ -87,7 +97,8 @@ Partial Class FormPermisos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(613, 520)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(614, 520)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtnEliminar)
         Me.Controls.Add(Me.BtnModificar)

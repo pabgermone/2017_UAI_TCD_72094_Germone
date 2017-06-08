@@ -9,6 +9,9 @@ Public Class FormLogIn
 
         If mUsuario.ID <> 0 Then
             If mEncriptador.ValidarHash(txtPass.Text, mUsuario.Password) Then
+                txtUsername.Clear()
+                txtPass.Clear()
+
                 Dim mForm As New FormPrincipal(mUsuario)
                 mForm.ShowDialog()
             Else
