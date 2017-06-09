@@ -147,6 +147,12 @@
     <Compile Include="Seguridad\Roles\FormAsignacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Seguridad\Usuario\FormCambioRolUsuario.Designer.vb">
+      <DependentUpon>FormCambioRolUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Usuario\FormCambioRolUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Seguridad\Usuario\FormLogIn.Designer.vb">
       <DependentUpon>FormLogIn.vb</DependentUpon>
     </Compile>
@@ -192,6 +198,24 @@
     <Compile Include="Seguridad\Permisos\ModificarPermiso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Seguridad\Usuario\FormUsuarios.Designer.vb">
+      <DependentUpon>FormUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Usuario\FormUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Usuario\FormVerPermisos.Designer.vb">
+      <DependentUpon>FormVerPermisos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Usuario\FormVerPermisos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Usuario\ModificarUsuario.Designer.vb">
+      <DependentUpon>ModificarUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Usuario\ModificarUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormPrincipal.resx">
@@ -230,6 +254,9 @@
     <EmbeddedResource Include="Seguridad\Roles\FormAsignacion.resx">
       <DependentUpon>FormAsignacion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\Usuario\FormCambioRolUsuario.resx">
+      <DependentUpon>FormCambioRolUsuario.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\Usuario\FormLogIn.resx">
       <DependentUpon>FormLogIn.vb</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +277,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\Permisos\ModificarPermiso.resx">
       <DependentUpon>ModificarPermiso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\Usuario\FormUsuarios.resx">
+      <DependentUpon>FormUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\Usuario\FormVerPermisos.resx">
+      <DependentUpon>FormVerPermisos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seguridad\Usuario\ModificarUsuario.resx">
+      <DependentUpon>ModificarUsuario.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
