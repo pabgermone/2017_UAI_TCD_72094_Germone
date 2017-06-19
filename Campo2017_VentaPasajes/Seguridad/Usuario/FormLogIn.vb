@@ -3,6 +3,11 @@ Imports Framework
 
 Public Class FormLogIn
 
+    Private Sub FormLogIn_Load(sender As Object, e As EventArgs) Handles Me.Load
+        CreadorBD.GetInstance.Crear()
+    End Sub
+
+
     Private Sub btnIngreso_Click(sender As Object, e As EventArgs) Handles btnIngreso.Click
         Dim mUsuario As New UsuarioBLL(txtUsername.Text)
         Dim mEncriptador As Encriptador = Encriptador.GetInstance
@@ -21,5 +26,4 @@ Public Class FormLogIn
             Label3.Visible = True
         End If
     End Sub
-
 End Class
