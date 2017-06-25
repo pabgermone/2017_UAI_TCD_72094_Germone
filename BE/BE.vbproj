@@ -83,6 +83,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Negocio\PaqueteBE.vb" />
+    <Compile Include="Seguridad\DiccionarioBE.vb" />
+    <Compile Include="Seguridad\IdiomaBE.vb" />
     <Compile Include="Seguridad\PermisoAbstractoBE.vb" />
     <Compile Include="Seguridad\PermisoBE.vb" />
     <Compile Include="Seguridad\PermisoCompuestoBE.vb" />
