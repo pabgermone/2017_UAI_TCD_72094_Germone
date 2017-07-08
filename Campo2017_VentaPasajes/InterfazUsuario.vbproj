@@ -135,10 +135,10 @@
     <Compile Include="Negocio\ABMs\Venta\FormVentas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Seguridad\Multi-Idioma\FormIdiomas.Designer.vb">
+    <Compile Include="Multi-Idioma\FormIdiomas.Designer.vb">
       <DependentUpon>FormIdiomas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Seguridad\Multi-Idioma\FormIdiomas.vb">
+    <Compile Include="Multi-Idioma\FormIdiomas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Seguridad\Permisos\AltaPermiso.Designer.vb">
@@ -254,7 +254,7 @@
     <EmbeddedResource Include="Negocio\ABMs\Venta\FormVentas.resx">
       <DependentUpon>FormVentas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Seguridad\Multi-Idioma\FormIdiomas.resx">
+    <EmbeddedResource Include="Multi-Idioma\FormIdiomas.resx">
       <DependentUpon>FormIdiomas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\Permisos\AltaPermiso.resx">

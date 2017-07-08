@@ -66,10 +66,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreadorBD.vb" />
-    <Compile Include="Encriptador.vb" />
-    <Compile Include="IObservado.vb" />
-    <Compile Include="IObservador.vb" />
+    <Compile Include="BD\CreadorBD.vb" />
+    <Compile Include="Seguridad\Encriptador.vb" />
+    <Compile Include="Observer\IObservado.vb" />
+    <Compile Include="Observer\IObservador.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -85,8 +85,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Traductor.vb" />
-    <Compile Include="VistaDiccionario.vb" />
+    <Compile Include="Multi-Idioma\Traductor.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -3,17 +3,15 @@ Imports DAL
 
 Public Class IdiomaBLL
 
-
 #Region "Propiedades"
     Public Property ID As Integer
     Public Property Nombre As String
-
-    Public Property Diccionario As Dictionary(Of String, String)
+    Public Property Diccionario As New Dictionary(Of String, String)
 #End Region
 
 #Region "Constructores"
     Sub New()
-
+        Me.Diccionario = IdiomaDAL.ObtenerIdioma("Español").Diccionario
     End Sub
 
     ''' <summary>
@@ -27,9 +25,9 @@ Public Class IdiomaBLL
     ''' <summary>
     ''' Crea una nueva instancia con los datos recuperados de BD
     ''' </summary>
-    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
-    Sub New(pID As Integer)
-        CargarPropiedades(pID)
+    ''' <param name="pIdioma">ID del registro de BD con los datos deseados</param>
+    Sub New(pIdioma As String)
+        CargarPropiedades(pIdioma)
     End Sub
 #End Region
 
@@ -51,9 +49,9 @@ Public Class IdiomaBLL
     ''' <summary>
     ''' Carga las propiedades de la instancia con los datos recuperados de BD
     ''' </summary>
-    ''' <param name="pID">ID del registro de BD con los datos deseados</param>
-    Private Sub CargarPropiedades(pID As Integer)
-        Dim pBE As IdiomaBE = IdiomaDAL.ObtenerIdioma(pID)
+    ''' <param name="pIdioma">ID del registro de BD con los datos deseados</param>
+    Private Sub CargarPropiedades(pIdioma As String)
+        Dim pBE As IdiomaBE = IdiomaDAL.ObtenerIdioma(pIdioma)
 
         If Not IsNothing(pBE) Then
             Me.ID = pBE.ID
@@ -82,20 +80,13 @@ Public Class IdiomaBLL
     Public Sub Guardar()
         Dim mBE As New IdiomaBE
 
-        If Me.ID = 0 Then
+        If mBE.ID = 0 Then
             CargarBE(mBE)
             IdiomaDAL.GuardarNuevo(mBE)
         Else
             CargarBE(mBE)
             IdiomaDAL.GuardarModificacion(mBE)
         End If
-    End Sub
-
-
-    <Obsolete("Falta implementar")>
-    Public Sub QuitarPermiso(pPermiso As PermisoAbstractoBE)
-        'Buscar forma de apuntar el permiso seleccionado al permiso dentro de la lista del Idioma
-        Throw New NotImplementedException
     End Sub
 
 
@@ -112,10 +103,22 @@ Public Class IdiomaBLL
 
 
     ''' <summary>
+    ''' Guarda los cambios hechos a las traducciones del Idioma
+    ''' </summary>
+    Public Sub GuardarTraducciones()
+        Dim mBE As New IdiomaBE
+
+        CargarBE(mBE)
+
+        IdiomaDAL.ModificarTraducciones(mBE)
+    End Sub
+
+
+    ''' <summary>
     ''' Lista todos los Idiomaes guardados en la BD
     ''' </summary>
     ''' <returns>List(Of IdiomaBLL) que contiene todos los Idiomaes existentes en la BD</returns>
-    Public Shared Function ListarIdiomaes() As List(Of IdiomaBLL)
+    Public Shared Function ListarIdiomas() As List(Of IdiomaBLL)
         Dim mLista As New List(Of IdiomaBLL)
         Dim mListaBE As List(Of IdiomaBE) = IdiomaDAL.ListarIdiomas
 

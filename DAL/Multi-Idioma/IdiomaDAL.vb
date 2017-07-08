@@ -86,9 +86,6 @@ Public Class IdiomaDAL
 
         Try
             BD.ExecuteNonQuery(mCommand)
-
-            'Agregar forma de guardar en la tabla intermedia los cambios hechos a las traducciones
-
         Catch ex As Exception
             MsgBox("Error - Modificacion - IdiomaDAL")
             MsgBox(ex.Message)
@@ -97,16 +94,41 @@ Public Class IdiomaDAL
 
 
     ''' <summary>
-    ''' Elimina un registro de la tabla Idioma
+    ''' Se encarga de guardar los cambios hechos a las traducciones de un idioma
+    ''' </summary>
+    ''' <param name="pIdioma">Idioma del que se quieren guardar modificaciones</param>
+    Public Shared Sub ModificarTraducciones(pIdioma As IdiomaBE)
+        Dim mCommandEliminacion As String = "delete from textoIdioma where textoIdioma_idioma = " & pIdioma.ID
+        Dim mCommand As String
+
+        Try
+            BD.ExecuteNonQuery(mCommandEliminacion)
+
+            For Each mTraduccion As KeyValuePair(Of String, String) In pIdioma.Diccionario
+                mCommand = "insert into TextoIdioma(textoIdioma_texto, textoIdioma_idioma, textoIdioma_traduccion) " &
+                           "values( " &
+                           "(select texto_id from texto where texto_texto like '" & mTraduccion.Key & "'), " & pIdioma.ID & ", " &
+                           "'" & mTraduccion.Value & "')"
+
+                BD.ExecuteNonQuery(mCommand)
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    ''' <summary>
+    ''' Elimina un registro de la tabla Idioma y todas las traducciones que haya para ese Idioma
     ''' </summary>
     ''' <param name="pIdioma">Objeto BE con los datos a eliminar de la BD</param>
     Public Shared Sub Eliminar(pIdioma As IdiomaBE)
         Dim mCommand As String = "DELETE FROM Idioma WHERE Idioma_id = " & pIdioma.ID
+        Dim mCommandElimTraducciones As String = "delete from textoIdioma where textoIdioma_idioma = " & pIdioma.ID
 
         Try
-            'Agregar forma de eliminar todas las traducciones de un idioma de la tabla intermedia
-
             BD.ExecuteNonQuery(mCommand)
+            BD.ExecuteNonQuery(mCommandElimTraducciones)
         Catch ex As Exception
             MsgBox("Error - Eliminacion - IdiomaDAL")
             MsgBox(ex.Message)
