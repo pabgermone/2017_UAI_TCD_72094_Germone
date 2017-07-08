@@ -89,8 +89,7 @@
     <Compile Include="Negocio\VentaVueloDAL.vb" />
     <Compile Include="Negocio\VueloCliente.vb" />
     <Compile Include="Negocio\VueloDAL.vb" />
-    <Compile Include="Seguridad\DiccionarioDAL.vb" />
-    <Compile Include="Seguridad\IdiomaDAL.vb" />
+    <Compile Include="Multi-Idioma\IdiomaDAL.vb" />
     <Compile Include="Seguridad\PermisoDAL.vb" />
     <Compile Include="Seguridad\RolDAL.vb" />
     <Compile Include="Seguridad\RolPermisoCompuestoDAL.vb" />

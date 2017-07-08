@@ -13,7 +13,7 @@ Public Class IdiomaDAL
         pIdioma.ID = pRow("Idioma_id")
         pIdioma.Nombre = pRow("Idioma_nombre")
 
-        CargarDiccionario(pIdioma.Diccionario, DiccionarioDAL.ListarDiccionarios(pIdioma.ID))
+        CargarDiccionario(pIdioma)
 
         Return pIdioma
     End Function
@@ -53,18 +53,21 @@ Public Class IdiomaDAL
         Dim mCommand As String = "INSERT INTO Idioma(Idioma_nombre) " &
                                  "VALUES ('" & pIdioma.Nombre & "');"
 
+        Dim mCommandTraduccion As String
+
         Try
             BD.ExecuteNonQuery(mCommand)
 
-            For Each mItem In pIdioma.Diccionario
-                Dim mDiccionario As New DiccionarioBE
+            For Each mTraduccion As KeyValuePair(Of String, String) In pIdioma.Diccionario
+                mCommandTraduccion = "insert into TextoIdioma(textoIdioma_texto, textoIdioma_idioma, textoIdioma_traduccion) " &
+                                     "values( " &
+                                     "(select texto_id from texto where texto_texto like '" & mTraduccion.Key & "'), " &
+                                     "(select max(idioma_id) from idioma), " &
+                                     "'" & mTraduccion.Value & "')"
 
-                mDiccionario.IDIdioma = pIdioma.ID
-                mDiccionario.IDPalabra = mItem.Key 'Deberia ser el orden que tiene la palabra en el diccionario
-                mDiccionario.Traduccion = mItem.Value
-
-                DiccionarioDAL.GuardarNuevo(mDiccionario)
+                BD.ExecuteNonQuery(mCommandTraduccion)
             Next
+
         Catch ex As Exception
             MsgBox("Error - Nuevo - IdiomaDAL")
             MsgBox(ex.Message)
@@ -83,6 +86,9 @@ Public Class IdiomaDAL
 
         Try
             BD.ExecuteNonQuery(mCommand)
+
+            'Agregar forma de guardar en la tabla intermedia los cambios hechos a las traducciones
+
         Catch ex As Exception
             MsgBox("Error - Modificacion - IdiomaDAL")
             MsgBox(ex.Message)
@@ -98,7 +104,7 @@ Public Class IdiomaDAL
         Dim mCommand As String = "DELETE FROM Idioma WHERE Idioma_id = " & pIdioma.ID
 
         Try
-            DiccionarioDAL.Eliminar(pIdioma.ID)
+            'Agregar forma de eliminar todas las traducciones de un idioma de la tabla intermedia
 
             BD.ExecuteNonQuery(mCommand)
         Catch ex As Exception
@@ -141,8 +147,12 @@ Public Class IdiomaDAL
     End Function
 
 
-    Public Shared Sub CargarDiccionario(pDiccionario As Dictionary(Of String, String), pLista As List(Of DiccionarioBE))
-        Dim mCommand As String = "select Diccionario_palabra, IdiomaDiccionario_Traduccion from Diccionario inner join IdiomaDiccionario on Diccionario.id = IdiomaDiccionario.IdDiccionario"
+    ''' <summary>
+    ''' Se encarga de la carga del diciconario de traducciones para el Idioma
+    ''' </summary>
+    ''' <param name="pIdioma">Idioma del que se quiere cargar el diccionario</param>
+    Public Shared Sub CargarDiccionario(pIdioma As IdiomaBE)
+        Dim mCommand As String = "select texto_texto, textoIdioma_traduccion from Texto inner join TextoIdioma on texto_id = textoIdioma_texto where textoIdioma_idioma = " & pIdioma.ID
         Dim mDataSet As DataSet
 
         Try
@@ -150,7 +160,7 @@ Public Class IdiomaDAL
 
             If Not IsNothing(mDataSet) And mDataSet.Tables.Count > 0 And mDataSet.Tables(0).Rows.Count > 0 Then
                 For Each mRow As DataRow In mDataSet.Tables(0).Rows
-                    pDiccionario.Add(mRow("Diccionario_palabra"), mRow("IdiomaDiccionario_Traduccion"))
+                    pIdioma.Diccionario.Add(mRow("texto_texto"), mRow("textoIdioma_traduccion"))
                 Next
             End If
 
