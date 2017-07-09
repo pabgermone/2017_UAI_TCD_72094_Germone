@@ -10,11 +10,40 @@ Public Class FormIdiomas
     Dim mTraductor As Traductor = Traductor.GetInstance
     Dim mIdiomaSelec As IdiomaBLL = Nothing
 
-    'Falta implementar Actualizar()
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        For Each mControl As Control In Me.Controls
+            Try
+                mControl.Tag = mControl.Text
+            Catch ex As Exception
+
+            End Try
+        Next
+    End Sub
+
+
 #Region "Observer"
 
-    Public Sub Actualizar() Implements IObservador.Actualizar
-        Throw New NotImplementedException()
+    ''' <summary>
+    ''' Cambia el todos los mensajes de los controles por los mensajes que haya en Traductor.GetInstance().IdiomaSeleccionado.Diccionario
+    ''' </summary>
+    Public Sub Actualizar(pControl As Control) Implements IObservador.Actualizar
+        For Each mControl As Control In pControl.Controls
+            Try
+                mControl.Text = mTraductor.IdiomaSeleccionado.Diccionario.Item(mControl.Tag)
+
+                If mControl.Controls.Count > 0 Then
+                    Actualizar(pControl)
+                End If
+            Catch ex As Exception
+
+            End Try
+        Next
     End Sub
 
 #End Region
@@ -23,8 +52,10 @@ Public Class FormIdiomas
 #Region "Eventos Form"
 
     Private Sub FormIdiomas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GridTextos.ColumnCount = 1
-        GridTextos.Columns(0).Name = "Texto"
+        GridTextos.ColumnCount = 2
+        GridTextos.Columns(0).Name = "Key"
+        GridTextos.Columns(0).Visible = False
+        GridTextos.Columns(1).Name = "Texto"
 
         mTraductor.RegistrarObservador(Me)
 
@@ -48,8 +79,8 @@ Public Class FormIdiomas
     Private Sub GridTextos_SelectionChanged(sender As Object, e As EventArgs) Handles GridTextos.SelectionChanged
         If GridTextos.SelectedRows.Count > 0 Then
             If GridTextos.SelectedRows(0).Cells(0).Value <> "" Then
-                TxtPalabraSelec.Text = GridTextos.SelectedRows(0).Cells(0).Value
-                TxtTraduccion.Text = GridTextos.SelectedRows(0).Cells(0).Value
+                TxtPalabraSelec.Text = GridTextos.SelectedRows(0).Cells(1).Value
+                TxtTraduccion.Text = GridTextos.SelectedRows(0).Cells(1).Value
             End If
         End If
     End Sub
@@ -62,19 +93,45 @@ Public Class FormIdiomas
     Private Sub BtnCambiar_Click(sender As Object, e As EventArgs) Handles BtnCambiar.Click
         If GridTextos.SelectedRows.Count > 0 Then
             If GridTextos.SelectedRows(0).Cells(0).Value <> "" Then
-                GridTextos.SelectedRows(0).Cells(0).Value = TxtTraduccion.Text
-                TxtPalabraSelec.Text = GridTextos.SelectedRows(0).Cells(0).Value
+                GridTextos.SelectedRows(0).Cells(1).Value = TxtTraduccion.Text
+                TxtPalabraSelec.Text = GridTextos.SelectedRows(0).Cells(1).Value
             End If
         End If
     End Sub
 
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        For Each mRow As DataGridViewRow In GridTextos.Rows
-            mIdiomaSelec.Diccionario.Item(mRow.Tag) = mRow.Cells(0).Value
-        Next
+        If Not IsNothing(mIdiomaSelec) Then
+            For i = 0 To GridTextos.ColumnCount - 1
+                mIdiomaSelec.Diccionario.Item(GridTextos.Rows.Item(i).Cells(0).Value) = GridTextos.Rows.Item(i).Cells(1).Value
+            Next
 
-        mIdiomaSelec.GuardarTraducciones()
+            mIdiomaSelec.GuardarTraducciones()
+        End If
+    End Sub
+
+
+    Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
+        Dim mIdioma As New IdiomaBLL
+
+        mIdioma.Nombre = InputBox("Ingrese el nombre del nuevo idioma")
+
+        mIdioma.Guardar()
+
+        ActualizarCombo()
+        ActualizarGrid()
+    End Sub
+
+
+    Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+        If Not IsNothing(mIdiomaSelec) Then
+            If MsgBox("Esta seguro que desea borrar este idioma del sistema?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                mIdiomaSelec.Eliminar()
+            End If
+
+            ActualizarCombo()
+            ActualizarGrid()
+        End If
     End Sub
 
 #End Region
@@ -84,6 +141,8 @@ Public Class FormIdiomas
     ''' Carga en ComboIdiomas todos los idiomas que haya guardados en BD
     ''' </summary>
     Public Sub ActualizarCombo()
+        ComboIdiomas.Items.Clear()
+
         For Each mIdioma As IdiomaBLL In IdiomaBLL.ListarIdiomas
             ComboIdiomas.Items.Add(mIdioma)
         Next
@@ -98,11 +157,14 @@ Public Class FormIdiomas
 
         If Not IsNothing(mIdiomaSelec) Then
             For Each mTexto As KeyValuePair(Of String, String) In mIdiomaSelec.Diccionario
-                GridTextos.Rows.Add(mTexto.Value)
-                GridTextos.Rows.Item(GridTextos.Rows.Count - 1).Tag = mTexto.Key
+                GridTextos.Rows.Add(mTexto.Key, mTexto.Value)
             Next
         End If
     End Sub
+
+
+
+
 
 
 

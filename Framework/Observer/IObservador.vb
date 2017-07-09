@@ -1,3 +1,3 @@
 ﻿Public Interface IObservador
-    Sub Actualizar()
+    Sub Actualizar(pObservador As System.Windows.Forms.Control)
 End Interface
