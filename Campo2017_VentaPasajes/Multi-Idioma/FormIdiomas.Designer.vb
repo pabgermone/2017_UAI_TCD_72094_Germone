@@ -38,103 +38,93 @@ Partial Class FormIdiomas
         'GridTextos
         '
         Me.GridTextos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GridTextos.Location = New System.Drawing.Point(18, 65)
-        Me.GridTextos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GridTextos.Location = New System.Drawing.Point(12, 42)
         Me.GridTextos.Name = "GridTextos"
-        Me.GridTextos.Size = New System.Drawing.Size(328, 492)
+        Me.GridTextos.Size = New System.Drawing.Size(219, 320)
         Me.GridTextos.TabIndex = 0
         '
         'ComboIdiomas
         '
         Me.ComboIdiomas.FormattingEnabled = True
-        Me.ComboIdiomas.Location = New System.Drawing.Point(18, 18)
-        Me.ComboIdiomas.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ComboIdiomas.Location = New System.Drawing.Point(12, 12)
         Me.ComboIdiomas.Name = "ComboIdiomas"
-        Me.ComboIdiomas.Size = New System.Drawing.Size(817, 28)
+        Me.ComboIdiomas.Size = New System.Drawing.Size(546, 21)
         Me.ComboIdiomas.TabIndex = 1
         '
         'TxtPalabraSelec
         '
-        Me.TxtPalabraSelec.Location = New System.Drawing.Point(352, 97)
-        Me.TxtPalabraSelec.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TxtPalabraSelec.Location = New System.Drawing.Point(235, 63)
         Me.TxtPalabraSelec.Name = "TxtPalabraSelec"
-        Me.TxtPalabraSelec.Size = New System.Drawing.Size(482, 26)
+        Me.TxtPalabraSelec.Size = New System.Drawing.Size(323, 20)
         Me.TxtPalabraSelec.TabIndex = 2
         '
         'TxtTraduccion
         '
-        Me.TxtTraduccion.Location = New System.Drawing.Point(356, 186)
-        Me.TxtTraduccion.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TxtTraduccion.Location = New System.Drawing.Point(237, 121)
         Me.TxtTraduccion.Multiline = True
         Me.TxtTraduccion.Name = "TxtTraduccion"
-        Me.TxtTraduccion.Size = New System.Drawing.Size(480, 173)
+        Me.TxtTraduccion.Size = New System.Drawing.Size(321, 114)
         Me.TxtTraduccion.TabIndex = 3
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(356, 72)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(237, 47)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(148, 20)
+        Me.Label1.Size = New System.Drawing.Size(102, 13)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Texto Seleccionado"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(356, 162)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(237, 105)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(87, 20)
+        Me.Label2.Size = New System.Drawing.Size(61, 13)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Traduccion"
         '
         'BtnGuardar
         '
-        Me.BtnGuardar.Location = New System.Drawing.Point(356, 445)
-        Me.BtnGuardar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnGuardar.Location = New System.Drawing.Point(237, 289)
         Me.BtnGuardar.Name = "BtnGuardar"
-        Me.BtnGuardar.Size = New System.Drawing.Size(196, 35)
+        Me.BtnGuardar.Size = New System.Drawing.Size(131, 23)
         Me.BtnGuardar.TabIndex = 6
         Me.BtnGuardar.Text = "Guardar cambios"
         Me.BtnGuardar.UseVisualStyleBackColor = True
         '
         'BtnNuevo
         '
-        Me.BtnNuevo.Location = New System.Drawing.Point(356, 522)
-        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnNuevo.Location = New System.Drawing.Point(237, 339)
         Me.BtnNuevo.Name = "BtnNuevo"
-        Me.BtnNuevo.Size = New System.Drawing.Size(196, 35)
+        Me.BtnNuevo.Size = New System.Drawing.Size(131, 23)
         Me.BtnNuevo.TabIndex = 7
         Me.BtnNuevo.Text = "Nuevo Idioma"
         Me.BtnNuevo.UseVisualStyleBackColor = True
         '
         'BtnEliminar
         '
-        Me.BtnEliminar.Location = New System.Drawing.Point(640, 522)
-        Me.BtnEliminar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnEliminar.Location = New System.Drawing.Point(427, 339)
         Me.BtnEliminar.Name = "BtnEliminar"
-        Me.BtnEliminar.Size = New System.Drawing.Size(196, 35)
+        Me.BtnEliminar.Size = New System.Drawing.Size(131, 23)
         Me.BtnEliminar.TabIndex = 8
         Me.BtnEliminar.Text = "Eliminar Idioma"
         Me.BtnEliminar.UseVisualStyleBackColor = True
         '
         'BtnCambiar
         '
-        Me.BtnCambiar.Location = New System.Drawing.Point(638, 369)
-        Me.BtnCambiar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnCambiar.Location = New System.Drawing.Point(427, 241)
         Me.BtnCambiar.Name = "BtnCambiar"
-        Me.BtnCambiar.Size = New System.Drawing.Size(196, 35)
+        Me.BtnCambiar.Size = New System.Drawing.Size(131, 23)
         Me.BtnCambiar.TabIndex = 9
         Me.BtnCambiar.Text = "Cambiar Traduccion"
         Me.BtnCambiar.UseVisualStyleBackColor = True
         '
         'FormIdiomas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(852, 571)
+        Me.ClientSize = New System.Drawing.Size(568, 371)
         Me.Controls.Add(Me.BtnCambiar)
         Me.Controls.Add(Me.BtnEliminar)
         Me.Controls.Add(Me.BtnNuevo)
@@ -145,7 +135,6 @@ Partial Class FormIdiomas
         Me.Controls.Add(Me.TxtPalabraSelec)
         Me.Controls.Add(Me.ComboIdiomas)
         Me.Controls.Add(Me.GridTextos)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FormIdiomas"
         Me.Text = "FormIdiomas"
         CType(Me.GridTextos, System.ComponentModel.ISupportInitialize).EndInit()

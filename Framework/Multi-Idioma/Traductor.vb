@@ -1,5 +1,4 @@
 ﻿Imports BLL
-Imports BE
 
 ''' <summary>
 ''' Clase Singleton

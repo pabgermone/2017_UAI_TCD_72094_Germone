@@ -23,9 +23,14 @@ Public Class FormIdiomas
 #Region "Eventos Form"
 
     Private Sub FormIdiomas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        GridTextos.ColumnCount = 1
+        GridTextos.Columns(0).Name = "Texto"
+
         mTraductor.RegistrarObservador(Me)
+
         ActualizarCombo()
         ComboIdiomas.SelectedIndex = 0
+
         ActualizarGrid()
     End Sub
 
@@ -37,6 +42,39 @@ Public Class FormIdiomas
                 ActualizarGrid()
             End If
         End If
+    End Sub
+
+
+    Private Sub GridTextos_SelectionChanged(sender As Object, e As EventArgs) Handles GridTextos.SelectionChanged
+        If GridTextos.SelectedRows.Count > 0 Then
+            If GridTextos.SelectedRows(0).Cells(0).Value <> "" Then
+                TxtPalabraSelec.Text = GridTextos.SelectedRows(0).Cells(0).Value
+                TxtTraduccion.Text = GridTextos.SelectedRows(0).Cells(0).Value
+            End If
+        End If
+    End Sub
+
+#End Region
+
+
+#Region "Botones"
+
+    Private Sub BtnCambiar_Click(sender As Object, e As EventArgs) Handles BtnCambiar.Click
+        If GridTextos.SelectedRows.Count > 0 Then
+            If GridTextos.SelectedRows(0).Cells(0).Value <> "" Then
+                GridTextos.SelectedRows(0).Cells(0).Value = TxtTraduccion.Text
+                TxtPalabraSelec.Text = GridTextos.SelectedRows(0).Cells(0).Value
+            End If
+        End If
+    End Sub
+
+
+    Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        For Each mRow As DataGridViewRow In GridTextos.Rows
+            mIdiomaSelec.Diccionario.Item(mRow.Tag) = mRow.Cells(0).Value
+        Next
+
+        mIdiomaSelec.GuardarTraducciones()
     End Sub
 
 #End Region
@@ -56,9 +94,21 @@ Public Class FormIdiomas
     ''' Carga en GridTextos todas las traducciones que haya en mIdiomaSelec.Diccionario
     ''' </summary>
     Public Sub ActualizarGrid()
-        GridTextos.Columns.Clear()
+        GridTextos.Rows.Clear()
 
+        If Not IsNothing(mIdiomaSelec) Then
+            For Each mTexto As KeyValuePair(Of String, String) In mIdiomaSelec.Diccionario
+                GridTextos.Rows.Add(mTexto.Value)
+                GridTextos.Rows.Item(GridTextos.Rows.Count - 1).Tag = mTexto.Key
+            Next
+        End If
     End Sub
+
+
+
+
+
+
 
 
 
