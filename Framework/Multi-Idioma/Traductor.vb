@@ -37,6 +37,7 @@ Public Class Traductor
         Set(ByVal value As IdiomaBLL)
             If mIdiomaSelec Is Nothing OrElse mIdiomaSelec.Nombre <> value.Nombre Then
                 mIdiomaSelec = value
+                ActualizarObservadores()
             End If
         End Set
     End Property
@@ -93,7 +94,7 @@ Public Class Traductor
     ''' </summary>
     Public Sub ActualizarObservadores() Implements IObservado.ActualizarObservadores
         For Each mObservador As IObservador In mListaRegistrados
-            mObservador.Actualizar()
+            mObservador.Actualizar(mObservador)
         Next
     End Sub
 

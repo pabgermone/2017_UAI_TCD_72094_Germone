@@ -45,7 +45,7 @@ Partial Class AltaCliente
         Me.BtnNuevo.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNuevo.Location = New System.Drawing.Point(31, 301)
-        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(158, 44)
         Me.BtnNuevo.TabIndex = 39
@@ -55,7 +55,7 @@ Partial Class AltaCliente
         'TxtEstado
         '
         Me.TxtEstado.Location = New System.Drawing.Point(8, 270)
-        Me.TxtEstado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtEstado.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtEstado.Name = "TxtEstado"
         Me.TxtEstado.Size = New System.Drawing.Size(181, 20)
         Me.TxtEstado.TabIndex = 38
@@ -63,7 +63,7 @@ Partial Class AltaCliente
         'TxtSexo
         '
         Me.TxtSexo.Location = New System.Drawing.Point(11, 229)
-        Me.TxtSexo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtSexo.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtSexo.Name = "TxtSexo"
         Me.TxtSexo.Size = New System.Drawing.Size(181, 20)
         Me.TxtSexo.TabIndex = 37
@@ -71,7 +71,7 @@ Partial Class AltaCliente
         'TxtTel
         '
         Me.TxtTel.Location = New System.Drawing.Point(11, 187)
-        Me.TxtTel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtTel.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtTel.Name = "TxtTel"
         Me.TxtTel.Size = New System.Drawing.Size(181, 20)
         Me.TxtTel.TabIndex = 36
@@ -79,7 +79,7 @@ Partial Class AltaCliente
         'TxtFechaNac
         '
         Me.TxtFechaNac.Location = New System.Drawing.Point(11, 146)
-        Me.TxtFechaNac.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtFechaNac.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtFechaNac.Name = "TxtFechaNac"
         Me.TxtFechaNac.Size = New System.Drawing.Size(181, 20)
         Me.TxtFechaNac.TabIndex = 35
@@ -87,7 +87,7 @@ Partial Class AltaCliente
         'TxtPasaporte
         '
         Me.TxtPasaporte.Location = New System.Drawing.Point(11, 104)
-        Me.TxtPasaporte.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtPasaporte.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtPasaporte.Name = "TxtPasaporte"
         Me.TxtPasaporte.Size = New System.Drawing.Size(181, 20)
         Me.TxtPasaporte.TabIndex = 34
@@ -95,7 +95,7 @@ Partial Class AltaCliente
         'TxtDNI
         '
         Me.TxtDNI.Location = New System.Drawing.Point(11, 62)
-        Me.TxtDNI.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtDNI.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtDNI.Name = "TxtDNI"
         Me.TxtDNI.Size = New System.Drawing.Size(181, 20)
         Me.TxtDNI.TabIndex = 33
@@ -103,7 +103,7 @@ Partial Class AltaCliente
         'TxtNomAp
         '
         Me.TxtNomAp.Location = New System.Drawing.Point(11, 21)
-        Me.TxtNomAp.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtNomAp.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtNomAp.Name = "TxtNomAp"
         Me.TxtNomAp.Size = New System.Drawing.Size(181, 20)
         Me.TxtNomAp.TabIndex = 32
@@ -206,7 +206,7 @@ Partial Class AltaCliente
         Me.Controls.Add(Me.LblPasaporte)
         Me.Controls.Add(Me.LblDNI)
         Me.Controls.Add(Me.LblNomAp)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "AltaCliente"
         Me.Text = "AltaCliente"
         Me.ResumeLayout(False)

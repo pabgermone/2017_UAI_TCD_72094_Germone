@@ -49,7 +49,7 @@ Partial Class FormAsignacion
         '
         Me.ComboUsuarios.FormattingEnabled = True
         Me.ComboUsuarios.Location = New System.Drawing.Point(8, 66)
-        Me.ComboUsuarios.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ComboUsuarios.Margin = New System.Windows.Forms.Padding(2)
         Me.ComboUsuarios.Name = "ComboUsuarios"
         Me.ComboUsuarios.Size = New System.Drawing.Size(230, 21)
         Me.ComboUsuarios.TabIndex = 1
@@ -58,7 +58,7 @@ Partial Class FormAsignacion
         '
         Me.ComboRoles.FormattingEnabled = True
         Me.ComboRoles.Location = New System.Drawing.Point(8, 105)
-        Me.ComboRoles.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ComboRoles.Margin = New System.Windows.Forms.Padding(2)
         Me.ComboRoles.Name = "ComboRoles"
         Me.ComboRoles.Size = New System.Drawing.Size(230, 21)
         Me.ComboRoles.TabIndex = 2
@@ -66,7 +66,7 @@ Partial Class FormAsignacion
         'TreePermisos
         '
         Me.TreePermisos.Location = New System.Drawing.Point(8, 138)
-        Me.TreePermisos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TreePermisos.Margin = New System.Windows.Forms.Padding(2)
         Me.TreePermisos.Name = "TreePermisos"
         Me.TreePermisos.Size = New System.Drawing.Size(230, 233)
         Me.TreePermisos.TabIndex = 3
@@ -76,7 +76,7 @@ Partial Class FormAsignacion
         Me.BtnAceptar.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnAceptar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAceptar.Location = New System.Drawing.Point(8, 374)
-        Me.BtnAceptar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnAceptar.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnAceptar.Name = "BtnAceptar"
         Me.BtnAceptar.Size = New System.Drawing.Size(105, 40)
         Me.BtnAceptar.TabIndex = 4
@@ -88,7 +88,7 @@ Partial Class FormAsignacion
         Me.BtnCancelar.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnCancelar.Location = New System.Drawing.Point(142, 374)
-        Me.BtnCancelar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnCancelar.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(96, 40)
         Me.BtnCancelar.TabIndex = 5
@@ -122,7 +122,7 @@ Partial Class FormAsignacion
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(276, 415)
+        Me.ClientSize = New System.Drawing.Size(250, 415)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.BtnCancelar)

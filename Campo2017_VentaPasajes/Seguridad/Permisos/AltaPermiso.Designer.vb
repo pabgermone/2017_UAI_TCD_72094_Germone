@@ -33,7 +33,7 @@ Partial Class AltaPermiso
         'txtNombre
         '
         Me.txtNombre.Location = New System.Drawing.Point(8, 29)
-        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(248, 20)
         Me.txtNombre.TabIndex = 5
@@ -43,7 +43,7 @@ Partial Class AltaPermiso
         Me.Button1.BackColor = System.Drawing.Color.LightSalmon
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Location = New System.Drawing.Point(176, 94)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(80, 35)
         Me.Button1.TabIndex = 4
@@ -54,7 +54,7 @@ Partial Class AltaPermiso
         '
         Me.cmbFormularios.FormattingEnabled = True
         Me.cmbFormularios.Location = New System.Drawing.Point(8, 68)
-        Me.cmbFormularios.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cmbFormularios.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbFormularios.Name = "cmbFormularios"
         Me.cmbFormularios.Size = New System.Drawing.Size(248, 21)
         Me.cmbFormularios.TabIndex = 3

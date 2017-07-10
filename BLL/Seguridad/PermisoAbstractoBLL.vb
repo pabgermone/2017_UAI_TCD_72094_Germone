@@ -10,7 +10,7 @@ Public MustInherit Class PermisoAbstractoBLL
     Public Property Nombre As String
     Public Property Padre As Integer
     Public Property Formulario As String
-    Public Property Seleccionada As Boolean
+    Public Property Texto As String
 
 
     Public MustOverride Function MostrarEnTreeview(pTreeView As TreeView) As TreeView

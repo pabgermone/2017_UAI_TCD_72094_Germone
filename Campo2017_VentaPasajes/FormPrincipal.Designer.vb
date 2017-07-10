@@ -24,6 +24,7 @@ Partial Class FormPrincipal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPrincipal))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.ComboIdiomas = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -37,12 +38,21 @@ Partial Class FormPrincipal
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
+        'ComboIdiomas
+        '
+        Me.ComboIdiomas.FormattingEnabled = True
+        Me.ComboIdiomas.Location = New System.Drawing.Point(543, 421)
+        Me.ComboIdiomas.Name = "ComboIdiomas"
+        Me.ComboIdiomas.Size = New System.Drawing.Size(193, 21)
+        Me.ComboIdiomas.TabIndex = 10
+        '
         'FormPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(748, 445)
+        Me.Controls.Add(Me.ComboIdiomas)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Name = "FormPrincipal"
         Me.Text = "FormPrincipal"
@@ -51,4 +61,5 @@ Partial Class FormPrincipal
 
     End Sub
     Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents ComboIdiomas As ComboBox
 End Class

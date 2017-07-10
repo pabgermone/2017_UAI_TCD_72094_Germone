@@ -292,7 +292,7 @@ Public Class PermisoCompuestoBLL
         Dim mAssembly As Assembly = Assembly.GetEntryAssembly
         Dim mType As Type = mAssembly.GetType(mFormName)
         Dim mForm = Activator.CreateInstance(mType)
-        mForm.ShowDialog()
+        mForm.Show()
     End Sub
 #End Region
 
