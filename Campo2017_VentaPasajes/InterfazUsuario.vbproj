@@ -81,22 +81,22 @@
     <Compile Include="FormPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\AltaVuelo.Designer.vb">
+    <Compile Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\AltaVuelo.Designer.vb">
       <DependentUpon>AltaVuelo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\AltaVuelo.vb">
+    <Compile Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\AltaVuelo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\FormAerolineas.Designer.vb">
+    <Compile Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\FormAerolineas.Designer.vb">
       <DependentUpon>FormAerolineas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\FormAerolineas.vb">
+    <Compile Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\FormAerolineas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\ModificarVuelo.Designer.vb">
+    <Compile Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\ModificarVuelo.Designer.vb">
       <DependentUpon>ModificarVuelo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\ABMs\Aerolinea-Vuelo\ModificarVuelo.vb">
+    <Compile Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\ModificarVuelo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Negocio\ABMs\Cliente\AltaCliente.Designer.vb">
@@ -117,28 +117,22 @@
     <Compile Include="Negocio\ABMs\Cliente\FormClientes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\ABMs\Destino\FormDestinos.Designer.vb">
+    <Compile Include="Negocio\ABMs\Demo\Destino\FormDestinos.Designer.vb">
       <DependentUpon>FormDestinos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\ABMs\Destino\FormDestinos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Negocio\ABMs\Venta\AltaVenta.Designer.vb">
-      <DependentUpon>AltaVenta.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Negocio\ABMs\Venta\AltaVenta.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Negocio\ABMs\Venta\FormVentas.Designer.vb">
-      <DependentUpon>FormVentas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Negocio\ABMs\Venta\FormVentas.vb">
+    <Compile Include="Negocio\ABMs\Demo\Destino\FormDestinos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Multi-Idioma\FormIdiomas.Designer.vb">
       <DependentUpon>FormIdiomas.vb</DependentUpon>
     </Compile>
     <Compile Include="Multi-Idioma\FormIdiomas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Venta\FormVentas.Designer.vb">
+      <DependentUpon>FormVentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABMs\Venta\FormVentas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Seguridad\Permisos\AltaPermiso.Designer.vb">
@@ -227,13 +221,13 @@
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\ABMs\Aerolinea-Vuelo\AltaVuelo.resx">
+    <EmbeddedResource Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\AltaVuelo.resx">
       <DependentUpon>AltaVuelo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\ABMs\Aerolinea-Vuelo\FormAerolineas.resx">
+    <EmbeddedResource Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\FormAerolineas.resx">
       <DependentUpon>FormAerolineas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\ABMs\Aerolinea-Vuelo\ModificarVuelo.resx">
+    <EmbeddedResource Include="Negocio\ABMs\Demo\Aerolinea-Vuelo\ModificarVuelo.resx">
       <DependentUpon>ModificarVuelo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\ABMs\Cliente\AltaCliente.resx">
@@ -245,17 +239,14 @@
     <EmbeddedResource Include="Negocio\ABMs\Cliente\FormClientes.resx">
       <DependentUpon>FormClientes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\ABMs\Destino\FormDestinos.resx">
+    <EmbeddedResource Include="Negocio\ABMs\Demo\Destino\FormDestinos.resx">
       <DependentUpon>FormDestinos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\ABMs\Venta\AltaVenta.resx">
-      <DependentUpon>AltaVenta.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\ABMs\Venta\FormVentas.resx">
-      <DependentUpon>FormVentas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Multi-Idioma\FormIdiomas.resx">
       <DependentUpon>FormIdiomas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABMs\Venta\FormVentas.resx">
+      <DependentUpon>FormVentas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\Permisos\AltaPermiso.resx">
       <DependentUpon>AltaPermiso.vb</DependentUpon>
