@@ -103,11 +103,19 @@ Public Class FormAsignacion
 
 #Region "Botones"
     Private Sub BtnAceptar_Click(sender As Object, e As EventArgs) Handles BtnAceptar.Click
-        mUsuarioSelec.Rol = CType(ComboRoles.SelectedItem, RolBLL).ID
+        If Not IsNothing(mUsuarioSelec) Then
+            If TypeOf ComboRoles.SelectedItem Is RolBLL Then
+                mUsuarioSelec.Rol = CType(ComboRoles.SelectedItem, RolBLL).ID
 
-        mUsuarioSelec.Guardar()
+                mUsuarioSelec.Guardar()
 
-        Me.Close()
+                Me.Close()
+            Else
+                MsgBox("Debe seleccionar el rol que quiere asignar al usuario")
+            End If
+        Else
+            MsgBox("Debe seleccionar un usuario")
+        End If
     End Sub
 
 

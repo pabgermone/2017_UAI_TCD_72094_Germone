@@ -101,16 +101,24 @@ Public Class FormUsuarios
             mForm.ShowDialog()
 
             ActualizarLabels()
+        Else
+            MsgBox("Debe seleccionar un usuario")
         End If
     End Sub
 
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
-        If MsgBox("Esta seguro que desea eliminar al usuario " & mUsuarioSelec.ToString, MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-            mUsuarioSelec.Eliminar()
+        If Not IsNothing(mUsuarioSelec) Then
+            If MsgBox("Esta seguro que desea eliminar al usuario " & mUsuarioSelec.ToString, MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                mUsuarioSelec.Eliminar()
 
-            ActualizarUsuarios()
+                ActualizarUsuarios()
+            End If
+        Else
+            MsgBox("Debe seleccionar un usuario")
         End If
+
+
     End Sub
 #End Region
 

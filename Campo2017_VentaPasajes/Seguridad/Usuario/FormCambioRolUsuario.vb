@@ -145,6 +145,8 @@ Public Class FormCambioRolUsuario
 
                 Me.Close()
             End If
+        Else
+            MsgBox("Debe seleccionar un rol")
         End If
 
     End Sub

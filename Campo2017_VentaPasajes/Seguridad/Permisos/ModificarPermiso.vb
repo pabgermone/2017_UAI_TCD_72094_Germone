@@ -90,11 +90,20 @@ Public Class ModificarPermiso
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        mPermiso.Nombre = txtNombre.Text
+        Dim mValido As Boolean = True
+
+        If txtNombre.Text <> "" Then
+            mPermiso.Nombre = txtNombre.Text
+        Else
+            MsgBox("El permiso debe tener un nombre")
+        End If
+
         mPermiso.Formulario = cmbFormularios.SelectedItem
 
-        mPermiso.Guardar()
+        If mValido Then
+            mPermiso.Guardar()
 
-        Me.Close()
+            Me.Close()
+        End If
     End Sub
 End Class

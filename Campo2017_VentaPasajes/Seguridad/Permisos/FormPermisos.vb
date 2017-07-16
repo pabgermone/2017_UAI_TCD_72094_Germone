@@ -147,6 +147,8 @@ Public Class FormPermisos
 
                 FormPermisos_Load(Nothing, Nothing)
                 TreePermisos.ExpandAll()
+            Else
+                MsgBox("Debe ingresar un nombre para el nuevo permiso compuesto")
             End If
         End If
     End Sub
@@ -166,6 +168,8 @@ Public Class FormPermisos
             TreePermisos.SelectedNode.Tag = mPermiso
             TreePermisos.Nodes.Clear()
             FormPermisos_Load(Nothing, Nothing)
+        Else
+            MsgBox("Debe seleccionar un nodo")
         End If
     End Sub
 
@@ -175,10 +179,12 @@ Public Class FormPermisos
             If MsgBox("Esta seguro que quiere eliminar este permiso y todos sus componentes?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                 CType(TreePermisos.SelectedNode.Tag, PermisoCompuestoBLL).Eliminar()
             End If
-        Else
+        ElseIf TypeOf TreePermisos.SelectedNode.Tag Is PermisoBLL Then
             If MsgBox("Esta seguro que desea eliminar este permiso?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                 CType(TreePermisos.SelectedNode.Tag, PermisoBLL).Eliminar()
             End If
+        Else
+            MsgBox("Debe seleccionar un nodo")
         End If
 
         TreePermisos.Nodes.Clear()

@@ -85,15 +85,23 @@ Public Class FormRoles
 
         mRol.Nombre = InputBox("Ingrese el nombre del rol:")
 
-        mRol.Guardar()
+        If mRol.Nombre <> "" Then
+            mRol.Guardar()
 
-        ActualizarRoles()
+            ActualizarRoles()
+        Else
+            MsgBox("El nuevo rol debe tener un nombre")
+        End If
     End Sub
 
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
         If MsgBox("Esta seguro que desea eliminar el rol seleccinado", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-            mRolSelec.Eliminar()
+            If Not IsNothing(mRolSelec) Then
+                mRolSelec.Eliminar()
+            Else
+                MsgBox("Debe seleccionar un rol")
+            End If
         End If
 
         ActualizarRoles()
@@ -101,11 +109,19 @@ Public Class FormRoles
 
 
     Private Sub BtnRenombrar_Click(sender As Object, e As EventArgs) Handles BtnRenombrar.Click
-        mRolSelec.Nombre = InputBox("Ingrese el nuevo nombre para el rol:")
+        If Not IsNothing(mRolSelec) Then
+            mRolSelec.Nombre = InputBox("Ingrese el nuevo nombre para el rol:")
 
-        mRolSelec.Guardar()
+            If mRolSelec.Nombre <> "" Then
+                mRolSelec.Guardar()
 
-        ActualizarRoles()
+                ActualizarRoles()
+            Else
+                MsgBox("Debe ingresar un nuevo nombre para el rol")
+            End If
+        Else
+            MsgBox("Debe seleccionar un rol")
+        End If
     End Sub
 
 

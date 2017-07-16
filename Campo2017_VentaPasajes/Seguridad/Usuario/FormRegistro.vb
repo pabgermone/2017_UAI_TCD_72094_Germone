@@ -60,21 +60,55 @@ Public Class FormRegistro
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         Dim mUsuario As New UsuarioBLL
         Dim mEncriptador As Encriptador = Encriptador.GetInstance
+        Dim mValido As Boolean = True
 
-        mUsuario.Nombre = txtNombre.Text
-        mUsuario.Apellido = txtApellido.Text
-        mUsuario.UserName = txtUser.Text
-
-        If txtPass.Text = txtVerif.Text Then
-            mUsuario.Password = mEncriptador.Encriptar(txtPass.Text)
+        If txtNombre.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z]+$", txtNombre.Text) Then
+            mUsuario.Nombre = txtNombre.Text
         Else
-            Label6.Visible = True
+            MsgBox("Debe ingresar un Nombre valido")
+            txtNombre.BackColor = Color.Red
+
+            mValido = False
         End If
 
-        mUsuario.Guardar()
+        If txtNombre.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z]+$", txtNombre.Text) Then
+            mUsuario.Apellido = txtApellido.Text
+        Else
+            MsgBox("Debe ingresar un Apellido valido")
+            txtNombre.BackColor = Color.Red
 
-        MsgBox("Usuario registrado")
-        Me.Close()
+            mValido = False
+        End If
+
+        If txtUser.Text <> "" Then
+            mUsuario.UserName = txtUser.Text
+        Else
+            MsgBox("Debe ingresar un nombre de usuario valido")
+            txtNombre.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If txtPass.Text <> "" And txtVerif.Text <> "" Then
+            If txtPass.Text = txtVerif.Text Then
+                mUsuario.Password = mEncriptador.Encriptar(txtPass.Text)
+            Else
+                Label6.Visible = True
+            End If
+        Else
+            MsgBox("Debe ingresar una contraseña")
+            txtPass.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+
+        If mValido Then
+            mUsuario.Guardar()
+
+            MsgBox("Usuario registrado")
+            Me.Close()
+        End If
     End Sub
 
 
