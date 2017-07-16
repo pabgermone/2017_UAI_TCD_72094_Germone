@@ -5,4 +5,5 @@
     Public Property Hora As String
     Public Property Destino As Integer
     Public Property Aerolinea As Integer
+    Public Property Precio As Decimal
 End Class

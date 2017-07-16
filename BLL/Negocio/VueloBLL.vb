@@ -9,6 +9,7 @@ Public Class VueloBLL
     Public Property Hora As String
     Public Property Destino As Integer
     Public Property Aerolinea As Integer
+    Public Property Precio As Decimal
 #End Region
 
 #Region "Constructores"
@@ -51,6 +52,7 @@ Public Class VueloBLL
             Me.Hora = mBE.Hora
             Me.Destino = mBE.Destino
             Me.Aerolinea = mBE.Aerolinea
+            Me.Precio = mBE.Precio
         End If
     End Sub
 
@@ -67,6 +69,7 @@ Public Class VueloBLL
             Me.Hora = pVuelo.Hora
             Me.Destino = pVuelo.Destino
             Me.Aerolinea = pVuelo.Aerolinea
+            Me.Precio = pVuelo.Precio
         End If
     End Sub
 
@@ -83,6 +86,7 @@ Public Class VueloBLL
         mBE.Hora = Me.Hora
         mBE.Destino = Me.Destino
         mBE.Aerolinea = Me.Aerolinea
+        mBE.Precio = Me.Precio
     End Sub
 #End Region
 

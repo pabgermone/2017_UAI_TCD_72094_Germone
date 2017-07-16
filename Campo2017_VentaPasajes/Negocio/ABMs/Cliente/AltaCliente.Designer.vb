@@ -44,78 +44,69 @@ Partial Class AltaCliente
         '
         Me.BtnNuevo.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnNuevo.Location = New System.Drawing.Point(31, 301)
-        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnNuevo.Location = New System.Drawing.Point(28, 468)
         Me.BtnNuevo.Name = "BtnNuevo"
-        Me.BtnNuevo.Size = New System.Drawing.Size(158, 44)
+        Me.BtnNuevo.Size = New System.Drawing.Size(237, 68)
         Me.BtnNuevo.TabIndex = 39
         Me.BtnNuevo.Text = "Guardar"
         Me.BtnNuevo.UseVisualStyleBackColor = False
         '
         'TxtEstado
         '
-        Me.TxtEstado.Location = New System.Drawing.Point(8, 270)
-        Me.TxtEstado.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtEstado.Location = New System.Drawing.Point(12, 415)
         Me.TxtEstado.Name = "TxtEstado"
-        Me.TxtEstado.Size = New System.Drawing.Size(181, 20)
+        Me.TxtEstado.Size = New System.Drawing.Size(270, 26)
         Me.TxtEstado.TabIndex = 38
         '
         'TxtSexo
         '
-        Me.TxtSexo.Location = New System.Drawing.Point(11, 229)
-        Me.TxtSexo.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtSexo.Location = New System.Drawing.Point(16, 352)
         Me.TxtSexo.Name = "TxtSexo"
-        Me.TxtSexo.Size = New System.Drawing.Size(181, 20)
+        Me.TxtSexo.Size = New System.Drawing.Size(270, 26)
         Me.TxtSexo.TabIndex = 37
         '
         'TxtTel
         '
-        Me.TxtTel.Location = New System.Drawing.Point(11, 187)
-        Me.TxtTel.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtTel.Location = New System.Drawing.Point(16, 288)
         Me.TxtTel.Name = "TxtTel"
-        Me.TxtTel.Size = New System.Drawing.Size(181, 20)
+        Me.TxtTel.Size = New System.Drawing.Size(270, 26)
         Me.TxtTel.TabIndex = 36
         '
         'TxtFechaNac
         '
-        Me.TxtFechaNac.Location = New System.Drawing.Point(11, 146)
-        Me.TxtFechaNac.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtFechaNac.Location = New System.Drawing.Point(16, 225)
         Me.TxtFechaNac.Name = "TxtFechaNac"
-        Me.TxtFechaNac.Size = New System.Drawing.Size(181, 20)
+        Me.TxtFechaNac.Size = New System.Drawing.Size(270, 26)
         Me.TxtFechaNac.TabIndex = 35
         '
         'TxtPasaporte
         '
-        Me.TxtPasaporte.Location = New System.Drawing.Point(11, 104)
-        Me.TxtPasaporte.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtPasaporte.Location = New System.Drawing.Point(16, 160)
         Me.TxtPasaporte.Name = "TxtPasaporte"
-        Me.TxtPasaporte.Size = New System.Drawing.Size(181, 20)
+        Me.TxtPasaporte.Size = New System.Drawing.Size(270, 26)
         Me.TxtPasaporte.TabIndex = 34
         '
         'TxtDNI
         '
-        Me.TxtDNI.Location = New System.Drawing.Point(11, 62)
-        Me.TxtDNI.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtDNI.Location = New System.Drawing.Point(16, 95)
         Me.TxtDNI.Name = "TxtDNI"
-        Me.TxtDNI.Size = New System.Drawing.Size(181, 20)
+        Me.TxtDNI.Size = New System.Drawing.Size(270, 26)
         Me.TxtDNI.TabIndex = 33
         '
         'TxtNomAp
         '
-        Me.TxtNomAp.Location = New System.Drawing.Point(11, 21)
-        Me.TxtNomAp.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtNomAp.Location = New System.Drawing.Point(16, 32)
         Me.TxtNomAp.Name = "TxtNomAp"
-        Me.TxtNomAp.Size = New System.Drawing.Size(181, 20)
+        Me.TxtNomAp.Size = New System.Drawing.Size(270, 26)
         Me.TxtNomAp.TabIndex = 32
         '
         'LblEstado
         '
         Me.LblEstado.AutoSize = True
         Me.LblEstado.BackColor = System.Drawing.Color.Transparent
-        Me.LblEstado.Location = New System.Drawing.Point(8, 255)
-        Me.LblEstado.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblEstado.Location = New System.Drawing.Point(12, 392)
         Me.LblEstado.Name = "LblEstado"
-        Me.LblEstado.Size = New System.Drawing.Size(68, 13)
+        Me.LblEstado.Size = New System.Drawing.Size(99, 20)
         Me.LblEstado.TabIndex = 31
         Me.LblEstado.Text = "Estado Civil: "
         '
@@ -123,10 +114,9 @@ Partial Class AltaCliente
         '
         Me.LblSexo.AutoSize = True
         Me.LblSexo.BackColor = System.Drawing.Color.Transparent
-        Me.LblSexo.Location = New System.Drawing.Point(8, 214)
-        Me.LblSexo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblSexo.Location = New System.Drawing.Point(12, 329)
         Me.LblSexo.Name = "LblSexo"
-        Me.LblSexo.Size = New System.Drawing.Size(37, 13)
+        Me.LblSexo.Size = New System.Drawing.Size(53, 20)
         Me.LblSexo.TabIndex = 30
         Me.LblSexo.Text = "Sexo: "
         '
@@ -134,10 +124,9 @@ Partial Class AltaCliente
         '
         Me.LblTel.AutoSize = True
         Me.LblTel.BackColor = System.Drawing.Color.Transparent
-        Me.LblTel.Location = New System.Drawing.Point(8, 172)
-        Me.LblTel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblTel.Location = New System.Drawing.Point(12, 265)
         Me.LblTel.Name = "LblTel"
-        Me.LblTel.Size = New System.Drawing.Size(55, 13)
+        Me.LblTel.Size = New System.Drawing.Size(79, 20)
         Me.LblTel.TabIndex = 29
         Me.LblTel.Text = "Telefono: "
         '
@@ -145,10 +134,9 @@ Partial Class AltaCliente
         '
         Me.LblFechaNac.AutoSize = True
         Me.LblFechaNac.BackColor = System.Drawing.Color.Transparent
-        Me.LblFechaNac.Location = New System.Drawing.Point(8, 131)
-        Me.LblFechaNac.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblFechaNac.Location = New System.Drawing.Point(12, 202)
         Me.LblFechaNac.Name = "LblFechaNac"
-        Me.LblFechaNac.Size = New System.Drawing.Size(114, 13)
+        Me.LblFechaNac.Size = New System.Drawing.Size(167, 20)
         Me.LblFechaNac.TabIndex = 28
         Me.LblFechaNac.Text = "Fecha de Nacimiento: "
         '
@@ -156,10 +144,9 @@ Partial Class AltaCliente
         '
         Me.LblPasaporte.AutoSize = True
         Me.LblPasaporte.BackColor = System.Drawing.Color.Transparent
-        Me.LblPasaporte.Location = New System.Drawing.Point(8, 89)
-        Me.LblPasaporte.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblPasaporte.Location = New System.Drawing.Point(12, 137)
         Me.LblPasaporte.Name = "LblPasaporte"
-        Me.LblPasaporte.Size = New System.Drawing.Size(61, 13)
+        Me.LblPasaporte.Size = New System.Drawing.Size(90, 20)
         Me.LblPasaporte.TabIndex = 27
         Me.LblPasaporte.Text = "Pasaporte: "
         '
@@ -167,10 +154,9 @@ Partial Class AltaCliente
         '
         Me.LblDNI.AutoSize = True
         Me.LblDNI.BackColor = System.Drawing.Color.Transparent
-        Me.LblDNI.Location = New System.Drawing.Point(8, 47)
-        Me.LblDNI.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblDNI.Location = New System.Drawing.Point(12, 72)
         Me.LblDNI.Name = "LblDNI"
-        Me.LblDNI.Size = New System.Drawing.Size(32, 13)
+        Me.LblDNI.Size = New System.Drawing.Size(45, 20)
         Me.LblDNI.TabIndex = 26
         Me.LblDNI.Text = "DNI: "
         '
@@ -178,19 +164,18 @@ Partial Class AltaCliente
         '
         Me.LblNomAp.AutoSize = True
         Me.LblNomAp.BackColor = System.Drawing.Color.Transparent
-        Me.LblNomAp.Location = New System.Drawing.Point(8, 6)
-        Me.LblNomAp.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblNomAp.Location = New System.Drawing.Point(12, 9)
         Me.LblNomAp.Name = "LblNomAp"
-        Me.LblNomAp.Size = New System.Drawing.Size(98, 13)
+        Me.LblNomAp.Size = New System.Drawing.Size(144, 20)
         Me.LblNomAp.TabIndex = 25
         Me.LblNomAp.Text = "Nombre y Apellido: "
         '
         'AltaCliente
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(232, 356)
+        Me.ClientSize = New System.Drawing.Size(307, 548)
         Me.Controls.Add(Me.BtnNuevo)
         Me.Controls.Add(Me.TxtEstado)
         Me.Controls.Add(Me.TxtSexo)
@@ -206,7 +191,6 @@ Partial Class AltaCliente
         Me.Controls.Add(Me.LblPasaporte)
         Me.Controls.Add(Me.LblDNI)
         Me.Controls.Add(Me.LblNomAp)
-        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "AltaCliente"
         Me.Text = "AltaCliente"
         Me.ResumeLayout(False)

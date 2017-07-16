@@ -32,52 +32,49 @@ Partial Class AltaVuelo
         Me.LblFecha = New System.Windows.Forms.Label()
         Me.LblNroVuelo = New System.Windows.Forms.Label()
         Me.ComboDestinos = New System.Windows.Forms.ComboBox()
+        Me.TxtPrecio = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'BtnNuevo
         '
         Me.BtnNuevo.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnNuevo.Location = New System.Drawing.Point(34, 179)
-        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnNuevo.Location = New System.Drawing.Point(42, 347)
         Me.BtnNuevo.Name = "BtnNuevo"
-        Me.BtnNuevo.Size = New System.Drawing.Size(142, 42)
+        Me.BtnNuevo.Size = New System.Drawing.Size(213, 65)
         Me.BtnNuevo.TabIndex = 54
         Me.BtnNuevo.Text = "Guardar"
         Me.BtnNuevo.UseVisualStyleBackColor = False
         '
         'TxtHora
         '
-        Me.TxtHora.Location = New System.Drawing.Point(11, 104)
-        Me.TxtHora.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtHora.Location = New System.Drawing.Point(16, 160)
         Me.TxtHora.Name = "TxtHora"
-        Me.TxtHora.Size = New System.Drawing.Size(181, 20)
+        Me.TxtHora.Size = New System.Drawing.Size(270, 26)
         Me.TxtHora.TabIndex = 49
         '
         'TxtFecha
         '
-        Me.TxtFecha.Location = New System.Drawing.Point(11, 62)
-        Me.TxtFecha.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtFecha.Location = New System.Drawing.Point(16, 95)
         Me.TxtFecha.Name = "TxtFecha"
-        Me.TxtFecha.Size = New System.Drawing.Size(181, 20)
+        Me.TxtFecha.Size = New System.Drawing.Size(270, 26)
         Me.TxtFecha.TabIndex = 48
         '
         'TxtNroVuelo
         '
-        Me.TxtNroVuelo.Location = New System.Drawing.Point(11, 21)
-        Me.TxtNroVuelo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtNroVuelo.Location = New System.Drawing.Point(16, 32)
         Me.TxtNroVuelo.Name = "TxtNroVuelo"
-        Me.TxtNroVuelo.Size = New System.Drawing.Size(181, 20)
+        Me.TxtNroVuelo.Size = New System.Drawing.Size(270, 26)
         Me.TxtNroVuelo.TabIndex = 47
         '
         'LblDestino
         '
         Me.LblDestino.AutoSize = True
         Me.LblDestino.BackColor = System.Drawing.Color.Transparent
-        Me.LblDestino.Location = New System.Drawing.Point(8, 131)
-        Me.LblDestino.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblDestino.Location = New System.Drawing.Point(12, 202)
         Me.LblDestino.Name = "LblDestino"
-        Me.LblDestino.Size = New System.Drawing.Size(46, 13)
+        Me.LblDestino.Size = New System.Drawing.Size(68, 20)
         Me.LblDestino.TabIndex = 43
         Me.LblDestino.Text = "Destino:"
         '
@@ -85,10 +82,9 @@ Partial Class AltaVuelo
         '
         Me.LblHora.AutoSize = True
         Me.LblHora.BackColor = System.Drawing.Color.Transparent
-        Me.LblHora.Location = New System.Drawing.Point(8, 89)
-        Me.LblHora.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblHora.Location = New System.Drawing.Point(12, 137)
         Me.LblHora.Name = "LblHora"
-        Me.LblHora.Size = New System.Drawing.Size(33, 13)
+        Me.LblHora.Size = New System.Drawing.Size(48, 20)
         Me.LblHora.TabIndex = 42
         Me.LblHora.Text = "Hora:"
         '
@@ -96,10 +92,9 @@ Partial Class AltaVuelo
         '
         Me.LblFecha.AutoSize = True
         Me.LblFecha.BackColor = System.Drawing.Color.Transparent
-        Me.LblFecha.Location = New System.Drawing.Point(8, 47)
-        Me.LblFecha.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblFecha.Location = New System.Drawing.Point(12, 72)
         Me.LblFecha.Name = "LblFecha"
-        Me.LblFecha.Size = New System.Drawing.Size(40, 13)
+        Me.LblFecha.Size = New System.Drawing.Size(58, 20)
         Me.LblFecha.TabIndex = 41
         Me.LblFecha.Text = "Fecha:"
         '
@@ -107,28 +102,45 @@ Partial Class AltaVuelo
         '
         Me.LblNroVuelo.AutoSize = True
         Me.LblNroVuelo.BackColor = System.Drawing.Color.Transparent
-        Me.LblNroVuelo.Location = New System.Drawing.Point(8, 6)
-        Me.LblNroVuelo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LblNroVuelo.Location = New System.Drawing.Point(12, 9)
         Me.LblNroVuelo.Name = "LblNroVuelo"
-        Me.LblNroVuelo.Size = New System.Drawing.Size(91, 13)
+        Me.LblNroVuelo.Size = New System.Drawing.Size(132, 20)
         Me.LblNroVuelo.TabIndex = 40
         Me.LblNroVuelo.Text = "Numero de vuelo:"
         '
         'ComboDestinos
         '
         Me.ComboDestinos.FormattingEnabled = True
-        Me.ComboDestinos.Location = New System.Drawing.Point(11, 146)
-        Me.ComboDestinos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ComboDestinos.Location = New System.Drawing.Point(16, 225)
         Me.ComboDestinos.Name = "ComboDestinos"
-        Me.ComboDestinos.Size = New System.Drawing.Size(181, 21)
+        Me.ComboDestinos.Size = New System.Drawing.Size(270, 28)
         Me.ComboDestinos.TabIndex = 55
+        '
+        'TxtPrecio
+        '
+        Me.TxtPrecio.Location = New System.Drawing.Point(16, 294)
+        Me.TxtPrecio.Name = "TxtPrecio"
+        Me.TxtPrecio.Size = New System.Drawing.Size(270, 26)
+        Me.TxtPrecio.TabIndex = 57
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Location = New System.Drawing.Point(12, 271)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(57, 20)
+        Me.Label1.TabIndex = 56
+        Me.Label1.Text = "Precio:"
         '
         'AltaVuelo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(225, 232)
+        Me.ClientSize = New System.Drawing.Size(308, 424)
+        Me.Controls.Add(Me.TxtPrecio)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ComboDestinos)
         Me.Controls.Add(Me.BtnNuevo)
         Me.Controls.Add(Me.TxtHora)
@@ -138,7 +150,6 @@ Partial Class AltaVuelo
         Me.Controls.Add(Me.LblHora)
         Me.Controls.Add(Me.LblFecha)
         Me.Controls.Add(Me.LblNroVuelo)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "AltaVuelo"
         Me.Text = "AltaVuelo"
         Me.ResumeLayout(False)
@@ -155,4 +166,6 @@ Partial Class AltaVuelo
     Friend WithEvents LblFecha As Label
     Friend WithEvents LblNroVuelo As Label
     Friend WithEvents ComboDestinos As ComboBox
+    Friend WithEvents TxtPrecio As TextBox
+    Friend WithEvents Label1 As Label
 End Class

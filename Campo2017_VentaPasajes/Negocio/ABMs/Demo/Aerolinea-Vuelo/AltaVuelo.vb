@@ -78,6 +78,7 @@ Public Class AltaVuelo
         mVuelo.Hora = TxtHora.Text
         mVuelo.Destino = CType(ComboDestinos.SelectedItem, DestinoBLL).ID
         mVuelo.Aerolinea = mAerolinea
+        mVuelo.Precio = TxtPrecio.Text
 
         mVuelo.GuardarNuevo()
 

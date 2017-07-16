@@ -29,8 +29,9 @@ Partial Class FormVentas
         Me.TxtBusqueda = New System.Windows.Forms.TextBox()
         Me.GridVuelos = New System.Windows.Forms.DataGridView()
         Me.TabPasajeros = New System.Windows.Forms.TabPage()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.BtnRegistrar = New System.Windows.Forms.Button()
         Me.BtnAgregar = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.RadioFemenino = New System.Windows.Forms.RadioButton()
         Me.RadioMasculino = New System.Windows.Forms.RadioButton()
@@ -45,8 +46,6 @@ Partial Class FormVentas
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TxtNombre = New System.Windows.Forms.TextBox()
         Me.ComboClientes = New System.Windows.Forms.ComboBox()
-        Me.RadioNoRegistrado = New System.Windows.Forms.RadioButton()
-        Me.RadioRegistrado = New System.Windows.Forms.RadioButton()
         Me.GridPasajeros = New System.Windows.Forms.DataGridView()
         Me.BtnAnteriorTab2 = New System.Windows.Forms.Button()
         Me.BtnSiguienteTab2 = New System.Windows.Forms.Button()
@@ -127,10 +126,10 @@ Partial Class FormVentas
         '
         'TabPasajeros
         '
+        Me.TabPasajeros.Controls.Add(Me.BtnRegistrar)
+        Me.TabPasajeros.Controls.Add(Me.BtnAgregar)
         Me.TabPasajeros.Controls.Add(Me.GroupBox1)
         Me.TabPasajeros.Controls.Add(Me.ComboClientes)
-        Me.TabPasajeros.Controls.Add(Me.RadioNoRegistrado)
-        Me.TabPasajeros.Controls.Add(Me.RadioRegistrado)
         Me.TabPasajeros.Controls.Add(Me.GridPasajeros)
         Me.TabPasajeros.Controls.Add(Me.BtnAnteriorTab2)
         Me.TabPasajeros.Controls.Add(Me.BtnSiguienteTab2)
@@ -142,9 +141,26 @@ Partial Class FormVentas
         Me.TabPasajeros.Text = "TabPage2"
         Me.TabPasajeros.UseVisualStyleBackColor = True
         '
+        'BtnRegistrar
+        '
+        Me.BtnRegistrar.Location = New System.Drawing.Point(8, 433)
+        Me.BtnRegistrar.Name = "BtnRegistrar"
+        Me.BtnRegistrar.Size = New System.Drawing.Size(220, 33)
+        Me.BtnRegistrar.TabIndex = 11
+        Me.BtnRegistrar.Text = "Registrar nuevo Pasajero"
+        Me.BtnRegistrar.UseVisualStyleBackColor = True
+        '
+        'BtnAgregar
+        '
+        Me.BtnAgregar.Location = New System.Drawing.Point(8, 485)
+        Me.BtnAgregar.Name = "BtnAgregar"
+        Me.BtnAgregar.Size = New System.Drawing.Size(220, 33)
+        Me.BtnAgregar.TabIndex = 10
+        Me.BtnAgregar.Text = "Agregar pasajero"
+        Me.BtnAgregar.UseVisualStyleBackColor = True
+        '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.BtnAgregar)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.RadioFemenino)
         Me.GroupBox1.Controls.Add(Me.RadioMasculino)
@@ -158,20 +174,11 @@ Partial Class FormVentas
         Me.GroupBox1.Controls.Add(Me.TxtApellido)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.TxtNombre)
-        Me.GroupBox1.Location = New System.Drawing.Point(8, 106)
+        Me.GroupBox1.Location = New System.Drawing.Point(8, 40)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(302, 419)
+        Me.GroupBox1.Size = New System.Drawing.Size(302, 378)
         Me.GroupBox1.TabIndex = 9
         Me.GroupBox1.TabStop = False
-        '
-        'BtnAgregar
-        '
-        Me.BtnAgregar.Location = New System.Drawing.Point(133, 380)
-        Me.BtnAgregar.Name = "BtnAgregar"
-        Me.BtnAgregar.Size = New System.Drawing.Size(163, 33)
-        Me.BtnAgregar.TabIndex = 10
-        Me.BtnAgregar.Text = "Agregar pasajero"
-        Me.BtnAgregar.UseVisualStyleBackColor = True
         '
         'Label7
         '
@@ -288,32 +295,10 @@ Partial Class FormVentas
         '
         Me.ComboClientes.FormattingEnabled = True
         Me.ComboClientes.Items.AddRange(New Object() {"- Seleccione un pasajero -"})
-        Me.ComboClientes.Location = New System.Drawing.Point(8, 72)
+        Me.ComboClientes.Location = New System.Drawing.Point(8, 6)
         Me.ComboClientes.Name = "ComboClientes"
         Me.ComboClientes.Size = New System.Drawing.Size(302, 28)
         Me.ComboClientes.TabIndex = 1
-        '
-        'RadioNoRegistrado
-        '
-        Me.RadioNoRegistrado.AutoSize = True
-        Me.RadioNoRegistrado.Location = New System.Drawing.Point(8, 36)
-        Me.RadioNoRegistrado.Name = "RadioNoRegistrado"
-        Me.RadioNoRegistrado.Size = New System.Drawing.Size(193, 24)
-        Me.RadioNoRegistrado.TabIndex = 8
-        Me.RadioNoRegistrado.TabStop = True
-        Me.RadioNoRegistrado.Text = "Pasajero no registrado"
-        Me.RadioNoRegistrado.UseVisualStyleBackColor = True
-        '
-        'RadioRegistrado
-        '
-        Me.RadioRegistrado.AutoSize = True
-        Me.RadioRegistrado.Location = New System.Drawing.Point(8, 6)
-        Me.RadioRegistrado.Name = "RadioRegistrado"
-        Me.RadioRegistrado.Size = New System.Drawing.Size(171, 24)
-        Me.RadioRegistrado.TabIndex = 7
-        Me.RadioRegistrado.TabStop = True
-        Me.RadioRegistrado.Text = "Pasajero registrado"
-        Me.RadioRegistrado.UseVisualStyleBackColor = True
         '
         'GridPasajeros
         '
@@ -396,7 +381,6 @@ Partial Class FormVentas
         Me.TabVuelos.PerformLayout()
         CType(Me.GridVuelos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPasajeros.ResumeLayout(False)
-        Me.TabPasajeros.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.GridPasajeros, System.ComponentModel.ISupportInitialize).EndInit()
@@ -420,8 +404,6 @@ Partial Class FormVentas
     Friend WithEvents BtnFinalizar As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ComboClientes As ComboBox
-    Friend WithEvents RadioNoRegistrado As RadioButton
-    Friend WithEvents RadioRegistrado As RadioButton
     Friend WithEvents GridPasajeros As DataGridView
     Friend WithEvents BtnAgregar As Button
     Friend WithEvents Label7 As Label
@@ -438,4 +420,5 @@ Partial Class FormVentas
     Friend WithEvents TxtNombre As TextBox
     Friend WithEvents RadioFemenino As RadioButton
     Friend WithEvents Label8 As Label
+    Friend WithEvents BtnRegistrar As Button
 End Class

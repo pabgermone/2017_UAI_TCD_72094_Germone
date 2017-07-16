@@ -5,9 +5,10 @@ Public Class AltaCliente
     Implements IObservador
 
     Dim mTraductor As Traductor = Traductor.GetInstance
+    Dim mForm As Form
 
 
-    Public Sub New()
+    Public Sub New(Optional pForm As Form = Nothing)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -20,6 +21,10 @@ Public Class AltaCliente
 
             End Try
         Next
+
+        If Not IsNothing(pForm) Then
+            mForm = pForm
+        End If
     End Sub
 
 
@@ -72,6 +77,10 @@ Public Class AltaCliente
         mCliente.EstadoCivil = TxtEstado.Text
 
         mCliente.Guardar()
+
+        If Not IsNothing(mForm) Then
+            CType(mForm, FormVentas).ActualizarComboClientes()
+        End If
 
         Me.Close()
     End Sub

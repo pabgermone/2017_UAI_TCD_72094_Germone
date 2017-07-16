@@ -14,6 +14,7 @@ Public Class VueloDAL
         pVuelo.Hora = CType(pRow("vuelo_hora"), TimeSpan).ToString("hh\:mm")
         pVuelo.Destino = pRow("vuelo_destino")
         pVuelo.Aerolinea = pRow("vuelo_aerolinea")
+        pVuelo.Precio = pRow("vuelo_precio")
 
         Return pVuelo
     End Function
@@ -26,7 +27,7 @@ Public Class VueloDAL
     ''' <returns></returns>
     Public Shared Function ObtenerVuelo(pNumero As Integer) As VueloBE
         Dim mVuelo As New VueloBE
-        Dim mCommand As String = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea FROM Vuelo WHERE Vuelo_Numero = " & pNumero
+        Dim mCommand As String = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea, vuelo_precio FROM Vuelo WHERE Vuelo_Numero = " & pNumero
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)
@@ -50,8 +51,8 @@ Public Class VueloDAL
     ''' </summary>
     ''' <param name="pVuelo">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pVuelo As VueloBE)
-        Dim mCommand As String = "INSERT INTO Vuelo(Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea) 
-                                  VALUES ('" & pVuelo.Numero & "', " & IIf(pVuelo.Disponible, 1, 0) & ", '" & pVuelo.Fecha.ToString("yyyy-MM-dd") & "', '" & pVuelo.Hora & "', " & pVuelo.Destino & ", " & pVuelo.Aerolinea & ")"
+        Dim mCommand As String = "INSERT INTO Vuelo(Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea, vuelo_precio) 
+                                  VALUES ('" & pVuelo.Numero & "', " & IIf(pVuelo.Disponible, 1, 0) & ", '" & pVuelo.Fecha.ToString("yyyy-MM-dd") & "', '" & pVuelo.Hora & "', " & pVuelo.Destino & ", " & pVuelo.Aerolinea & ", " & pVuelo.Precio & ")"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -73,6 +74,7 @@ Public Class VueloDAL
                                  "', vuelo_hora = '" & pVuelo.Hora &
                                  "', vuelo_destino = " & pVuelo.Destino &
                                  ", vuelo_aerolinea = " & pVuelo.Aerolinea &
+                                 ", vuelo_precio = " & pVuelo.Precio &
                                  " WHERE Vuelo_Numero like '" & pVuelo.Numero & "'"
 
         Try
@@ -126,9 +128,9 @@ Public Class VueloDAL
         Dim mCommand As String = ""
 
         If pAerolinea <> 0 Then
-            mCommand = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea FROM Vuelo where vuelo_aerolinea = " & pAerolinea
+            mCommand = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea, vuelo_precio FROM Vuelo where vuelo_aerolinea = " & pAerolinea
         Else
-            mCommand = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea FROM Vuelo"
+            mCommand = "SELECT Vuelo_Numero, vuelo_disponible, Vuelo_fecha, vuelo_hora, vuelo_destino, vuelo_aerolinea, vuelo_precio FROM Vuelo"
         End If
 
         Dim mDataSet As DataSet

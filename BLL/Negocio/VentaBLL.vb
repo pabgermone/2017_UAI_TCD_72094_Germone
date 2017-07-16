@@ -6,8 +6,9 @@ Public Class VentaBLL
     Public Property ID As Integer
     Public Property Usuario As Integer
     Public Property Fecha As Date
-    Public Property Precio As Double
     Public Property Paquete As Integer
+    Public Property Cliente As Integer
+    Public Property Vuelo As String
 #End Region
 
 #Region "Constructores"
@@ -47,8 +48,9 @@ Public Class VentaBLL
             Me.ID = mBE.ID
             Me.Usuario = mBE.Usuario
             Me.Fecha = mBE.Fecha
-            Me.Precio = mBE.Precio
             Me.Paquete = mBE.Paquete
+            Me.Cliente = mBE.Cliente
+            Me.Vuelo = mBE.Vuelo
         End If
     End Sub
 
@@ -62,8 +64,9 @@ Public Class VentaBLL
             Me.ID = pVenta.ID
             Me.Usuario = pVenta.Usuario
             Me.Fecha = pVenta.Fecha
-            Me.Precio = pVenta.Precio
             Me.Paquete = pVenta.Paquete
+            Me.Cliente = pVenta.Cliente
+            Me.Vuelo = pVenta.Vuelo
         End If
     End Sub
 
@@ -76,8 +79,9 @@ Public Class VentaBLL
         mBE.ID = Me.ID
         mBE.Usuario = Me.Usuario
         mBE.Fecha = Me.Fecha
-        mBE.Precio = Me.Precio
         mBE.Paquete = Me.Paquete
+        mBE.Cliente = Me.Cliente
+        mBE.Vuelo = Me.Vuelo
     End Sub
 #End Region
 

@@ -85,9 +85,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Negocio\PaqueteDAL.vb" />
-    <Compile Include="Negocio\VentaClienteDAL.vb" />
-    <Compile Include="Negocio\VentaVueloDAL.vb" />
-    <Compile Include="Negocio\VueloCliente.vb" />
     <Compile Include="Negocio\VueloDAL.vb" />
     <Compile Include="Multi-Idioma\IdiomaDAL.vb" />
     <Compile Include="Seguridad\PermisoDAL.vb" />

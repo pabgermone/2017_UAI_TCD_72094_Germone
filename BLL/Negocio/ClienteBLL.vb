@@ -84,7 +84,7 @@ Public Class ClienteBLL
     ''' Carga un objeto BE con los datos de las propiedades de esta instancia
     ''' </summary>
     ''' <param name="pBE">Objeto BE que se quiere cargar con datos</param>
-    Private Sub CargarBE(pBE As ClienteBE)
+    Public Sub CargarBE(pBE As ClienteBE)
         pBE.ID = Me.ID
         pBE.Nombre = Me.Nombre
         pBE.Apellido = Me.Apellido
