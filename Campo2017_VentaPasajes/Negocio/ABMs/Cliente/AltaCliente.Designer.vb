@@ -24,46 +24,31 @@ Partial Class AltaCliente
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AltaCliente))
         Me.BtnNuevo = New System.Windows.Forms.Button()
-        Me.TxtEstado = New System.Windows.Forms.TextBox()
-        Me.TxtSexo = New System.Windows.Forms.TextBox()
         Me.TxtTel = New System.Windows.Forms.TextBox()
         Me.TxtFechaNac = New System.Windows.Forms.TextBox()
         Me.TxtPasaporte = New System.Windows.Forms.TextBox()
         Me.TxtDNI = New System.Windows.Forms.TextBox()
         Me.TxtNomAp = New System.Windows.Forms.TextBox()
-        Me.LblEstado = New System.Windows.Forms.Label()
         Me.LblSexo = New System.Windows.Forms.Label()
         Me.LblTel = New System.Windows.Forms.Label()
         Me.LblFechaNac = New System.Windows.Forms.Label()
         Me.LblPasaporte = New System.Windows.Forms.Label()
         Me.LblDNI = New System.Windows.Forms.Label()
         Me.LblNomAp = New System.Windows.Forms.Label()
+        Me.RadioMasculino = New System.Windows.Forms.RadioButton()
+        Me.RadioFemenino = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'BtnNuevo
         '
         Me.BtnNuevo.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnNuevo.Location = New System.Drawing.Point(28, 468)
+        Me.BtnNuevo.Location = New System.Drawing.Point(28, 400)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(237, 68)
         Me.BtnNuevo.TabIndex = 39
         Me.BtnNuevo.Text = "Guardar"
         Me.BtnNuevo.UseVisualStyleBackColor = False
-        '
-        'TxtEstado
-        '
-        Me.TxtEstado.Location = New System.Drawing.Point(12, 415)
-        Me.TxtEstado.Name = "TxtEstado"
-        Me.TxtEstado.Size = New System.Drawing.Size(270, 26)
-        Me.TxtEstado.TabIndex = 38
-        '
-        'TxtSexo
-        '
-        Me.TxtSexo.Location = New System.Drawing.Point(16, 352)
-        Me.TxtSexo.Name = "TxtSexo"
-        Me.TxtSexo.Size = New System.Drawing.Size(270, 26)
-        Me.TxtSexo.TabIndex = 37
         '
         'TxtTel
         '
@@ -100,21 +85,11 @@ Partial Class AltaCliente
         Me.TxtNomAp.Size = New System.Drawing.Size(270, 26)
         Me.TxtNomAp.TabIndex = 32
         '
-        'LblEstado
-        '
-        Me.LblEstado.AutoSize = True
-        Me.LblEstado.BackColor = System.Drawing.Color.Transparent
-        Me.LblEstado.Location = New System.Drawing.Point(12, 392)
-        Me.LblEstado.Name = "LblEstado"
-        Me.LblEstado.Size = New System.Drawing.Size(99, 20)
-        Me.LblEstado.TabIndex = 31
-        Me.LblEstado.Text = "Estado Civil: "
-        '
         'LblSexo
         '
         Me.LblSexo.AutoSize = True
         Me.LblSexo.BackColor = System.Drawing.Color.Transparent
-        Me.LblSexo.Location = New System.Drawing.Point(12, 329)
+        Me.LblSexo.Location = New System.Drawing.Point(12, 342)
         Me.LblSexo.Name = "LblSexo"
         Me.LblSexo.Size = New System.Drawing.Size(53, 20)
         Me.LblSexo.TabIndex = 30
@@ -170,21 +145,44 @@ Partial Class AltaCliente
         Me.LblNomAp.TabIndex = 25
         Me.LblNomAp.Text = "Nombre y Apellido: "
         '
+        'RadioMasculino
+        '
+        Me.RadioMasculino.AutoSize = True
+        Me.RadioMasculino.BackColor = System.Drawing.Color.Transparent
+        Me.RadioMasculino.Checked = True
+        Me.RadioMasculino.Location = New System.Drawing.Point(84, 342)
+        Me.RadioMasculino.Name = "RadioMasculino"
+        Me.RadioMasculino.Size = New System.Drawing.Size(47, 24)
+        Me.RadioMasculino.TabIndex = 40
+        Me.RadioMasculino.TabStop = True
+        Me.RadioMasculino.Text = "M"
+        Me.RadioMasculino.UseVisualStyleBackColor = False
+        '
+        'RadioFemenino
+        '
+        Me.RadioFemenino.AutoSize = True
+        Me.RadioFemenino.BackColor = System.Drawing.Color.Transparent
+        Me.RadioFemenino.Location = New System.Drawing.Point(188, 342)
+        Me.RadioFemenino.Name = "RadioFemenino"
+        Me.RadioFemenino.Size = New System.Drawing.Size(44, 24)
+        Me.RadioFemenino.TabIndex = 41
+        Me.RadioFemenino.Text = "F"
+        Me.RadioFemenino.UseVisualStyleBackColor = False
+        '
         'AltaCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(307, 548)
+        Me.ClientSize = New System.Drawing.Size(307, 477)
+        Me.Controls.Add(Me.RadioFemenino)
+        Me.Controls.Add(Me.RadioMasculino)
         Me.Controls.Add(Me.BtnNuevo)
-        Me.Controls.Add(Me.TxtEstado)
-        Me.Controls.Add(Me.TxtSexo)
         Me.Controls.Add(Me.TxtTel)
         Me.Controls.Add(Me.TxtFechaNac)
         Me.Controls.Add(Me.TxtPasaporte)
         Me.Controls.Add(Me.TxtDNI)
         Me.Controls.Add(Me.TxtNomAp)
-        Me.Controls.Add(Me.LblEstado)
         Me.Controls.Add(Me.LblSexo)
         Me.Controls.Add(Me.LblTel)
         Me.Controls.Add(Me.LblFechaNac)
@@ -199,18 +197,17 @@ Partial Class AltaCliente
     End Sub
 
     Friend WithEvents BtnNuevo As Button
-    Friend WithEvents TxtEstado As TextBox
-    Friend WithEvents TxtSexo As TextBox
     Friend WithEvents TxtTel As TextBox
     Friend WithEvents TxtFechaNac As TextBox
     Friend WithEvents TxtPasaporte As TextBox
     Friend WithEvents TxtDNI As TextBox
     Friend WithEvents TxtNomAp As TextBox
-    Friend WithEvents LblEstado As Label
     Friend WithEvents LblSexo As Label
     Friend WithEvents LblTel As Label
     Friend WithEvents LblFechaNac As Label
     Friend WithEvents LblPasaporte As Label
     Friend WithEvents LblDNI As Label
     Friend WithEvents LblNomAp As Label
+    Friend WithEvents RadioMasculino As RadioButton
+    Friend WithEvents RadioFemenino As RadioButton
 End Class
