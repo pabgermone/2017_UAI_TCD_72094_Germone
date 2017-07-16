@@ -55,6 +55,7 @@ Partial Class FormIdiomas
         '
         'TxtPalabraSelec
         '
+        Me.TxtPalabraSelec.Enabled = False
         Me.TxtPalabraSelec.Location = New System.Drawing.Point(352, 97)
         Me.TxtPalabraSelec.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TxtPalabraSelec.Name = "TxtPalabraSelec"
