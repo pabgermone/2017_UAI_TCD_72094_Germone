@@ -11,7 +11,6 @@ Public Class ClienteBLL
     Public Property FechaNac As Date
     Public Property Telefono As Integer
     Public Property Sexo As String
-    Public Property EstadoCivil As String
 #End Region
 
 #Region "Constructores"
@@ -56,7 +55,6 @@ Public Class ClienteBLL
             Me.FechaNac = mBE.FechaNac
             Me.Telefono = mBE.Telefono
             Me.Sexo = mBE.Sexo
-            Me.EstadoCivil = mBE.EstadoCivil
         End If
     End Sub
 
@@ -75,7 +73,6 @@ Public Class ClienteBLL
             Me.FechaNac = pCliente.FechaNac
             Me.Telefono = pCliente.Telefono
             Me.Sexo = pCliente.Sexo
-            Me.EstadoCivil = pCliente.EstadoCivil
         End If
     End Sub
 
@@ -93,7 +90,6 @@ Public Class ClienteBLL
         pBE.FechaNac = Me.FechaNac
         pBE.Telefono = Me.Telefono
         pBE.Sexo = Me.Sexo
-        pBE.EstadoCivil = Me.EstadoCivil
     End Sub
 #End Region
 

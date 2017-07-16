@@ -134,6 +134,8 @@ Public Class FormVentas
     Private Sub BtnAgregar_Click(sender As Object, e As EventArgs) Handles BtnAgregar.Click
         If Not IsNothing(mClienteSelec) Then
             mPasajeros.Add(mClienteSelec)
+        Else
+            MsgBox("Debe seleccionar un pasajero")
         End If
 
         ActualizarGridPasajeros()
@@ -152,7 +154,11 @@ Public Class FormVentas
 
 
     Private Sub BtnSiguienteTab2_Click(sender As Object, e As EventArgs) Handles BtnSiguienteTab2.Click
-        TabControlVentas.SelectedTab = TabAsientos
+        If mPasajeros.Count > 0 Then
+            TabControlVentas.SelectedTab = TabAsientos
+        Else
+            MsgBox("Debe agregar al menos un pasajero")
+        End If
     End Sub
 
 #End Region

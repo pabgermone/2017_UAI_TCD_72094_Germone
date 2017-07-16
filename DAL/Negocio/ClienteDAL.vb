@@ -17,7 +17,6 @@ Public Class ClienteDAL
         pCliente.FechaNac = pRow("cliente_fechaNac")
         pCliente.Telefono = pRow("cliente_telefono")
         pCliente.Sexo = pRow("cliente_sexo")
-        pCliente.EstadoCivil = pRow("cliente_estadoCivil")
 
         Return pCliente
     End Function
@@ -54,8 +53,8 @@ Public Class ClienteDAL
     ''' </summary>
     ''' <param name="pCliente">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pCliente As ClienteBE)
-        Dim mCommand As String = "INSERT INTO Cliente(Cliente_nombre, cliente_apellido, cliente_dni, cliente_pasaporte, cliente_fechaNac, cliente_telefono, cliente_sexo, cliente_estadoCivil) 
-                                  VALUES ('" & pCliente.Nombre & "', '" & pCliente.Apellido & "', " & pCliente.DNI & ", " & pCliente.Pasaporte & ", '" & pCliente.FechaNac.ToString("yyyy-MM-dd") & "', " & pCliente.Telefono & ", '" & pCliente.Sexo & "', '" & pCliente.EstadoCivil & "')"
+        Dim mCommand As String = "INSERT INTO Cliente(Cliente_nombre, cliente_apellido, cliente_dni, cliente_pasaporte, cliente_fechaNac, cliente_telefono, cliente_sexo) 
+                                  VALUES ('" & pCliente.Nombre & "', '" & pCliente.Apellido & "', " & pCliente.DNI & ", " & pCliente.Pasaporte & ", '" & pCliente.FechaNac.ToString("yyyy-MM-dd") & "', " & pCliente.Telefono & ", '" & pCliente.Sexo & "')"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -79,7 +78,6 @@ Public Class ClienteDAL
                                  ", cliente_fechaNac = '" & pCliente.FechaNac.ToString("yyyy-MM-dd") &
                                  "', cliente_telefono = " & pCliente.Telefono &
                                  ", cliente_sexo = '" & pCliente.Sexo &
-                                 "', cliente_estadoCivil = '" & pCliente.EstadoCivil &
                                  "' WHERE Cliente_id = " & pCliente.ID
 
         Try
