@@ -65,6 +65,7 @@ Public Class ModificarVuelo
         TxtNroVuelo.Text = mVuelo.Numero
         TxtFecha.Text = mVuelo.Fecha
         TxtHora.Text = mVuelo.Hora
+        TxtPrecio.Text = mVuelo.Precio
 
         Dim mDestino As New DestinoBLL(mVuelo.Destino)
 
@@ -81,11 +82,59 @@ Public Class ModificarVuelo
 
 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
-        mVuelo.Numero = TxtNroVuelo.Text
-        mVuelo.Fecha = TxtFecha.Text
-        mVuelo.Hora = TxtHora.Text
-        mVuelo.Destino = CType(ComboDestinos.SelectedItem, DestinoBLL).ID
+        Dim mValido As Boolean = True
 
-        mVuelo.GuardarModificacion()
+        If TxtNroVuelo.Text <> "" Then
+            mVuelo.Numero = TxtNroVuelo.Text
+        Else
+            MsgBox("Debe ingresar un numero de vuelo")
+            TxtNroVuelo.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtFecha.Text <> "" Then
+            mVuelo.Fecha = TxtFecha.Text
+        Else
+            MsgBox("Debe ingresar una fecha para el vuelo")
+            TxtFecha.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtHora.Text <> "" Then
+            mVuelo.Hora = TxtHora.Text
+        Else
+            MsgBox("Debe ingresar una hora para el vuelo")
+            TxtHora.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TypeOf ComboDestinos.SelectedItem Is DestinoBLL Then
+            mVuelo.Destino = CType(ComboDestinos.SelectedItem, DestinoBLL).ID
+        Else
+            MsgBox("Debe seleccionar un destino")
+
+            mValido = False
+        End If
+
+        If TxtPrecio.Text <> "" And IsNumeric(TxtPrecio.Text) Then
+            mVuelo.Precio = TxtPrecio.Text
+        Else
+            MsgBox("Debe ingresar un precio para el vuelo")
+            TxtPrecio.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+
+        If mValido Then
+            mVuelo.GuardarModificacion()
+
+            MsgBox("Se guardaron los cambios")
+
+            Me.Close()
+        End If
     End Sub
 End Class

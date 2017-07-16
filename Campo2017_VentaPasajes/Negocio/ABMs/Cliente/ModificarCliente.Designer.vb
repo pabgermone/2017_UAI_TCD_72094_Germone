@@ -23,7 +23,6 @@ Partial Class ModificarCliente
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ModificarCliente))
-        Me.LblEstado = New System.Windows.Forms.Label()
         Me.LblSexo = New System.Windows.Forms.Label()
         Me.LblTel = New System.Windows.Forms.Label()
         Me.LblFechaNac = New System.Windows.Forms.Label()
@@ -35,28 +34,17 @@ Partial Class ModificarCliente
         Me.TxtPasaporte = New System.Windows.Forms.TextBox()
         Me.TxtFechaNac = New System.Windows.Forms.TextBox()
         Me.TxtTel = New System.Windows.Forms.TextBox()
-        Me.TxtSexo = New System.Windows.Forms.TextBox()
-        Me.TxtEstado = New System.Windows.Forms.TextBox()
         Me.BtnEditar = New System.Windows.Forms.Button()
         Me.LinkEliminar = New System.Windows.Forms.LinkLabel()
+        Me.RadioFemenino = New System.Windows.Forms.RadioButton()
+        Me.RadioMasculino = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
-        '
-        'LblEstado
-        '
-        Me.LblEstado.AutoSize = True
-        Me.LblEstado.BackColor = System.Drawing.Color.Transparent
-        Me.LblEstado.Location = New System.Drawing.Point(8, 255)
-        Me.LblEstado.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.LblEstado.Name = "LblEstado"
-        Me.LblEstado.Size = New System.Drawing.Size(68, 13)
-        Me.LblEstado.TabIndex = 16
-        Me.LblEstado.Text = "Estado Civil: "
         '
         'LblSexo
         '
         Me.LblSexo.AutoSize = True
         Me.LblSexo.BackColor = System.Drawing.Color.Transparent
-        Me.LblSexo.Location = New System.Drawing.Point(8, 214)
+        Me.LblSexo.Location = New System.Drawing.Point(8, 228)
         Me.LblSexo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblSexo.Name = "LblSexo"
         Me.LblSexo.Size = New System.Drawing.Size(37, 13)
@@ -158,27 +146,11 @@ Partial Class ModificarCliente
         Me.TxtTel.Size = New System.Drawing.Size(181, 20)
         Me.TxtTel.TabIndex = 21
         '
-        'TxtSexo
-        '
-        Me.TxtSexo.Location = New System.Drawing.Point(11, 229)
-        Me.TxtSexo.Margin = New System.Windows.Forms.Padding(2)
-        Me.TxtSexo.Name = "TxtSexo"
-        Me.TxtSexo.Size = New System.Drawing.Size(181, 20)
-        Me.TxtSexo.TabIndex = 22
-        '
-        'TxtEstado
-        '
-        Me.TxtEstado.Location = New System.Drawing.Point(8, 270)
-        Me.TxtEstado.Margin = New System.Windows.Forms.Padding(2)
-        Me.TxtEstado.Name = "TxtEstado"
-        Me.TxtEstado.Size = New System.Drawing.Size(181, 20)
-        Me.TxtEstado.TabIndex = 23
-        '
         'BtnEditar
         '
         Me.BtnEditar.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnEditar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnEditar.Location = New System.Drawing.Point(33, 294)
+        Me.BtnEditar.Location = New System.Drawing.Point(33, 265)
         Me.BtnEditar.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnEditar.Name = "BtnEditar"
         Me.BtnEditar.Size = New System.Drawing.Size(138, 38)
@@ -191,7 +163,7 @@ Partial Class ModificarCliente
         Me.LinkEliminar.AutoSize = True
         Me.LinkEliminar.BackColor = System.Drawing.Color.Transparent
         Me.LinkEliminar.LinkColor = System.Drawing.Color.Red
-        Me.LinkEliminar.Location = New System.Drawing.Point(61, 341)
+        Me.LinkEliminar.Location = New System.Drawing.Point(61, 312)
         Me.LinkEliminar.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LinkEliminar.Name = "LinkEliminar"
         Me.LinkEliminar.Size = New System.Drawing.Size(72, 13)
@@ -199,22 +171,47 @@ Partial Class ModificarCliente
         Me.LinkEliminar.TabStop = True
         Me.LinkEliminar.Text = "Eliminar datos"
         '
+        'RadioFemenino
+        '
+        Me.RadioFemenino.AutoSize = True
+        Me.RadioFemenino.BackColor = System.Drawing.Color.Transparent
+        Me.RadioFemenino.Location = New System.Drawing.Point(133, 228)
+        Me.RadioFemenino.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioFemenino.Name = "RadioFemenino"
+        Me.RadioFemenino.Size = New System.Drawing.Size(31, 17)
+        Me.RadioFemenino.TabIndex = 44
+        Me.RadioFemenino.Text = "F"
+        Me.RadioFemenino.UseVisualStyleBackColor = False
+        '
+        'RadioMasculino
+        '
+        Me.RadioMasculino.AutoSize = True
+        Me.RadioMasculino.BackColor = System.Drawing.Color.Transparent
+        Me.RadioMasculino.Checked = True
+        Me.RadioMasculino.Location = New System.Drawing.Point(64, 228)
+        Me.RadioMasculino.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioMasculino.Name = "RadioMasculino"
+        Me.RadioMasculino.Size = New System.Drawing.Size(34, 17)
+        Me.RadioMasculino.TabIndex = 43
+        Me.RadioMasculino.TabStop = True
+        Me.RadioMasculino.Text = "M"
+        Me.RadioMasculino.UseVisualStyleBackColor = False
+        '
         'ModificarCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(218, 373)
+        Me.ClientSize = New System.Drawing.Size(205, 339)
+        Me.Controls.Add(Me.RadioFemenino)
+        Me.Controls.Add(Me.RadioMasculino)
         Me.Controls.Add(Me.LinkEliminar)
         Me.Controls.Add(Me.BtnEditar)
-        Me.Controls.Add(Me.TxtEstado)
-        Me.Controls.Add(Me.TxtSexo)
         Me.Controls.Add(Me.TxtTel)
         Me.Controls.Add(Me.TxtFechaNac)
         Me.Controls.Add(Me.TxtPasaporte)
         Me.Controls.Add(Me.TxtDNI)
         Me.Controls.Add(Me.TxtNomAp)
-        Me.Controls.Add(Me.LblEstado)
         Me.Controls.Add(Me.LblSexo)
         Me.Controls.Add(Me.LblTel)
         Me.Controls.Add(Me.LblFechaNac)
@@ -228,8 +225,6 @@ Partial Class ModificarCliente
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents LblEstado As Label
     Friend WithEvents LblSexo As Label
     Friend WithEvents LblTel As Label
     Friend WithEvents LblFechaNac As Label
@@ -241,8 +236,8 @@ Partial Class ModificarCliente
     Friend WithEvents TxtPasaporte As TextBox
     Friend WithEvents TxtFechaNac As TextBox
     Friend WithEvents TxtTel As TextBox
-    Friend WithEvents TxtSexo As TextBox
-    Friend WithEvents TxtEstado As TextBox
     Friend WithEvents BtnEditar As Button
     Friend WithEvents LinkEliminar As LinkLabel
+    Friend WithEvents RadioFemenino As RadioButton
+    Friend WithEvents RadioMasculino As RadioButton
 End Class

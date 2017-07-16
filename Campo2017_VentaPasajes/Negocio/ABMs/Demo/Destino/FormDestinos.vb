@@ -84,9 +84,14 @@ Public Class FormDestinos
 
         mDestino.Nombre = InputBox("Ingrese el nombre del destino:")
 
-        mDestino.Guardar()
+        If mDestino.Nombre <> "" Then
+            mDestino.Guardar()
 
-        ActualizarDestinos()
+            ActualizarDestinos()
+        Else
+            MsgBox("Debe el nombre del nuevo destino")
+        End If
+
     End Sub
 
 
@@ -95,6 +100,8 @@ Public Class FormDestinos
             mDestinoSelec.Eliminar()
 
             ActualizarDestinos()
+        Else
+            MsgBox("Debe seleccionar un destino")
         End If
     End Sub
 

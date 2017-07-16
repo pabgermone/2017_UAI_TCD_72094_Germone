@@ -21,8 +21,12 @@ Public Class ModificarCliente
             TxtPasaporte.Text = pCliente.Pasaporte
             TxtFechaNac.Text = pCliente.FechaNac
             TxtTel.Text = pCliente.Telefono
-            TxtSexo.Text = pCliente.Sexo
-            TxtEstado.Text = pCliente.EstadoCivil
+
+            If pCliente.Sexo = "Masculino" Then
+                RadioMasculino.Checked = True
+            Else
+                RadioFemenino.Checked = False
+            End If
         End If
 
         For Each mControl As Control In Me.Controls
@@ -70,22 +74,70 @@ Public Class ModificarCliente
 
 
     Private Sub BtnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
-        Dim NomAp As String() = Split(TxtNomAp.Text)
+        Dim mValido As Boolean = True
 
-        mCliente.Nombre = NomAp(0)
-        mCliente.Apellido = NomAp(1)
-        mCliente.DNI = TxtDNI.Text
-        mCliente.Pasaporte = TxtPasaporte.Text
-        mCliente.FechaNac = TxtFechaNac.Text
-        mCliente.Telefono = TxtTel.Text
-        mCliente.Sexo = TxtSexo.Text
-        mCliente.EstadoCivil = TxtEstado.Text
+        If TxtNomAp.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z\s]*$", TxtDNI.Text) Then
+            Dim NomAp As String() = Split(TxtNomAp.Text)
 
-        mCliente.Guardar()
+            mCliente.Nombre = NomAp(0)
+            mCliente.Apellido = NomAp(1)
+        Else
+            MsgBox("Debe ingresar Nombre y Apellido")
+            TxtNomAp.BackColor = Color.Red
 
-        MsgBox("Se guardaron las modificaciones")
+            mValido = False
+        End If
 
-        Me.Close()
+        If TxtDNI.Text <> "" And IsNumeric(TxtDNI.Text) And TxtDNI.TextLength = 8 Then
+            mCliente.DNI = TxtDNI.Text
+        Else
+            MsgBox("Debe ingresar un numero de DNI valido")
+            TxtNomAp.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtPasaporte.Text <> "" And IsNumeric(TxtPasaporte.Text) Then
+            mCliente.Pasaporte = TxtPasaporte.Text
+        Else
+            MsgBox("Debe ingresar un numero de pasaporte valido")
+            TxtNomAp.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtFechaNac.Text <> "" Then
+            mCliente.FechaNac = TxtFechaNac.Text
+        Else
+            MsgBox("Debe ingresar una fecha de nacimineto")
+            TxtNomAp.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtTel.Text <> "" And IsNumeric(TxtTel.Text) Then
+            mCliente.Telefono = TxtTel.Text
+        Else
+            MsgBox("Debe ingresar un numero de telefono valido")
+            TxtNomAp.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If RadioMasculino.Checked Then
+            mCliente.Sexo = "Masculino"
+        Else
+            mCliente.Sexo = "Femenino"
+        End If
+
+
+        If mValido Then
+            mCliente.Guardar()
+
+            MsgBox("Se guardaron las modificaciones")
+
+            Me.Close()
+        End If
     End Sub
 
 

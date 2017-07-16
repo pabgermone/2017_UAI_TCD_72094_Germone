@@ -71,19 +71,63 @@ Public Class AltaVuelo
 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
         Dim mVuelo As New VueloBLL
+        Dim mValido As Boolean = True
 
-        mVuelo.Numero = TxtNroVuelo.Text
+        If TxtNroVuelo.Text <> "" Then
+            mVuelo.Numero = TxtNroVuelo.Text
+        Else
+            MsgBox("Debe ingresar un numero de vuelo")
+            TxtNroVuelo.BackColor = Color.Red
+
+            mValido = False
+        End If
+
         mVuelo.Disponible = True
-        mVuelo.Fecha = TxtFecha.Text
-        mVuelo.Hora = TxtHora.Text
-        mVuelo.Destino = CType(ComboDestinos.SelectedItem, DestinoBLL).ID
+
+        If TxtFecha.Text <> "" Then
+            mVuelo.Fecha = TxtFecha.Text
+        Else
+            MsgBox("Debe ingresar una fecha para el vuelo")
+            TxtFecha.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtHora.Text <> "" Then
+            mVuelo.Hora = TxtHora.Text
+        Else
+            MsgBox("Debe ingresar una hora para el vuelo")
+            TxtHora.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TypeOf ComboDestinos.SelectedItem Is DestinoBLL Then
+            mVuelo.Destino = CType(ComboDestinos.SelectedItem, DestinoBLL).ID
+        Else
+            MsgBox("Debe seleccionar un destino")
+
+            mValido = False
+        End If
+
         mVuelo.Aerolinea = mAerolinea
-        mVuelo.Precio = TxtPrecio.Text
 
-        mVuelo.GuardarNuevo()
+        If TxtPrecio.Text <> "" And IsNumeric(TxtPrecio.Text) Then
+            mVuelo.Precio = TxtPrecio.Text
+        Else
+            MsgBox("Debe ingresar un precio para el vuelo")
+            TxtPrecio.BackColor = Color.Red
 
-        MsgBox("El vuelo se guardo correctamente")
+            mValido = False
+        End If
 
-        Me.Close()
+
+        If mValido Then
+            mVuelo.GuardarNuevo()
+
+            MsgBox("El vuelo se guardo correctamente")
+
+            Me.Close()
+        End If
     End Sub
 End Class

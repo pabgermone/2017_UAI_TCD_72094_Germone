@@ -64,24 +64,55 @@ Public Class AltaCliente
 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
         Dim mCliente As New ClienteBLL
+        Dim mValido As Boolean = True
 
-        If Not TxtNomAp.Text = "" Or Not System.Text.RegularExpressions.Regex.IsMatch("", TxtDNI.Text) Then
+        If TxtNomAp.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z\s]*$", TxtDNI.Text) Then
             Dim NomAp As String() = Split(TxtNomAp.Text)
 
             mCliente.Nombre = NomAp(0)
             mCliente.Apellido = NomAp(1)
         Else
-            MsgBox("Falta ingresar Nombre y Apellido")
+            MsgBox("Debe ingresar Nombre y Apellido")
             TxtNomAp.BackColor = Color.Red
+
+            mValido = False
         End If
 
-        If Not TxtDNI.Text = "" Then
+        If TxtDNI.Text <> "" And IsNumeric(TxtDNI.Text) And TxtDNI.TextLength = 8 Then
+            mCliente.DNI = TxtDNI.Text
+        Else
+            MsgBox("Debe ingresar un numero de DNI valido")
+            TxtNomAp.BackColor = Color.Red
 
+            mValido = False
         End If
-        mCliente.DNI = TxtDNI.Text
-        mCliente.Pasaporte = TxtPasaporte.Text
-        mCliente.FechaNac = TxtFechaNac.Text
-        mCliente.Telefono = TxtTel.Text
+
+        If TxtPasaporte.Text <> "" And IsNumeric(TxtPasaporte.Text) Then
+            mCliente.Pasaporte = TxtPasaporte.Text
+        Else
+            MsgBox("Debe ingresar un numero de pasaporte valido")
+            TxtNomAp.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtFechaNac.Text <> "" Then
+            mCliente.FechaNac = TxtFechaNac.Text
+        Else
+            MsgBox("Debe ingresar una fecha de nacimineto")
+            TxtNomAp.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtTel.Text <> "" And IsNumeric(TxtTel.Text) Then
+            mCliente.Telefono = TxtTel.Text
+        Else
+            MsgBox("Debe ingresar un numero de telefono valido")
+            TxtNomAp.BackColor = Color.Red
+
+            mValido = False
+        End If
 
         If RadioMasculino.Checked Then
             mCliente.Sexo = "Masculino"
@@ -89,13 +120,16 @@ Public Class AltaCliente
             mCliente.Sexo = "Femenino"
         End If
 
-        mCliente.Guardar()
 
-        If Not IsNothing(mForm) Then
-            CType(mForm, FormVentas).ActualizarComboClientes()
+        If mValido Then
+            mCliente.Guardar()
+
+            If Not IsNothing(mForm) Then
+                CType(mForm, FormVentas).ActualizarComboClientes()
+            End If
+
+            Me.Close()
         End If
-
-        Me.Close()
     End Sub
 
 

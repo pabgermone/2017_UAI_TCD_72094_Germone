@@ -96,10 +96,15 @@ Public Class FormAerolineas
         Dim mAerolinea As New AerolineaBLL
 
         mAerolinea.Nombre = InputBox("Ingrese el nombre de la nueva aerolinea")
-        mAerolinea.Guardar()
 
-        ActualizarAerolineas()
-        ActualizarVuelos()
+        If mAerolinea.Nombre <> "" Then
+            mAerolinea.Guardar()
+
+            ActualizarAerolineas()
+            ActualizarVuelos()
+        Else
+            MsgBox("Debe ingresar un nombre para la nueva aerolinea")
+        End If
     End Sub
 
 
@@ -128,6 +133,8 @@ Public Class FormAerolineas
 
             ActualizarAerolineas()
             ActualizarVuelos()
+        Else
+            MsgBox("Debe seleccionar una aerolinea")
         End If
     End Sub
 
@@ -139,6 +146,8 @@ Public Class FormAerolineas
 
             ActualizarAerolineas()
             ActualizarVuelos()
+        Else
+            MsgBox("Debe seleccionar un vuelo")
         End If
     End Sub
 
@@ -151,6 +160,8 @@ Public Class FormAerolineas
 
             ActualizarAerolineas()
             ActualizarVuelos()
+        Else
+            MsgBox("Debe seleccionar un vuelo")
         End If
     End Sub
 #End Region

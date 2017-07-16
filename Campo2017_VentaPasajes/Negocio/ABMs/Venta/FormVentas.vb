@@ -68,7 +68,11 @@ Public Class FormVentas
 
 
     Private Sub BtnSiguienteTab1_Click(sender As Object, e As EventArgs) Handles BtnSiguienteTab1.Click
-        TabControlVentas.SelectedTab = TabPasajeros
+        If Not IsNothing(mVueloSelec) Then
+            TabControlVentas.SelectedTab = TabPasajeros
+        Else
+            MsgBox("Debe seleccionar un vuelo")
+        End If
     End Sub
 
 #End Region

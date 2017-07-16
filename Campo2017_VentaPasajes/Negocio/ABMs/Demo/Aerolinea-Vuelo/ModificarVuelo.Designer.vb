@@ -32,13 +32,15 @@ Partial Class ModificarVuelo
         Me.LblHora = New System.Windows.Forms.Label()
         Me.LblFecha = New System.Windows.Forms.Label()
         Me.LblNroVuelo = New System.Windows.Forms.Label()
+        Me.TxtPrecio = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ComboDestinos
         '
         Me.ComboDestinos.FormattingEnabled = True
         Me.ComboDestinos.Location = New System.Drawing.Point(11, 146)
-        Me.ComboDestinos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ComboDestinos.Margin = New System.Windows.Forms.Padding(2)
         Me.ComboDestinos.Name = "ComboDestinos"
         Me.ComboDestinos.Size = New System.Drawing.Size(181, 21)
         Me.ComboDestinos.TabIndex = 64
@@ -47,8 +49,8 @@ Partial Class ModificarVuelo
         '
         Me.BtnNuevo.BackColor = System.Drawing.Color.LightSalmon
         Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnNuevo.Location = New System.Drawing.Point(45, 190)
-        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnNuevo.Location = New System.Drawing.Point(37, 217)
+        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(129, 43)
         Me.BtnNuevo.TabIndex = 63
@@ -58,7 +60,7 @@ Partial Class ModificarVuelo
         'TxtHora
         '
         Me.TxtHora.Location = New System.Drawing.Point(11, 104)
-        Me.TxtHora.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtHora.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtHora.Name = "TxtHora"
         Me.TxtHora.Size = New System.Drawing.Size(181, 20)
         Me.TxtHora.TabIndex = 62
@@ -66,7 +68,7 @@ Partial Class ModificarVuelo
         'TxtFecha
         '
         Me.TxtFecha.Location = New System.Drawing.Point(11, 62)
-        Me.TxtFecha.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtFecha.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtFecha.Name = "TxtFecha"
         Me.TxtFecha.Size = New System.Drawing.Size(181, 20)
         Me.TxtFecha.TabIndex = 61
@@ -74,7 +76,7 @@ Partial Class ModificarVuelo
         'TxtNroVuelo
         '
         Me.TxtNroVuelo.Location = New System.Drawing.Point(11, 21)
-        Me.TxtNroVuelo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtNroVuelo.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtNroVuelo.Name = "TxtNroVuelo"
         Me.TxtNroVuelo.Size = New System.Drawing.Size(181, 20)
         Me.TxtNroVuelo.TabIndex = 60
@@ -123,12 +125,33 @@ Partial Class ModificarVuelo
         Me.LblNroVuelo.TabIndex = 56
         Me.LblNroVuelo.Text = "Numero de vuelo:"
         '
+        'TxtPrecio
+        '
+        Me.TxtPrecio.Location = New System.Drawing.Point(11, 184)
+        Me.TxtPrecio.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtPrecio.Name = "TxtPrecio"
+        Me.TxtPrecio.Size = New System.Drawing.Size(181, 20)
+        Me.TxtPrecio.TabIndex = 66
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Location = New System.Drawing.Point(8, 169)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(40, 13)
+        Me.Label1.TabIndex = 65
+        Me.Label1.Text = "Precio:"
+        '
         'ModificarVuelo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(223, 253)
+        Me.ClientSize = New System.Drawing.Size(205, 273)
+        Me.Controls.Add(Me.TxtPrecio)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ComboDestinos)
         Me.Controls.Add(Me.BtnNuevo)
         Me.Controls.Add(Me.TxtHora)
@@ -138,7 +161,7 @@ Partial Class ModificarVuelo
         Me.Controls.Add(Me.LblHora)
         Me.Controls.Add(Me.LblFecha)
         Me.Controls.Add(Me.LblNroVuelo)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "ModificarVuelo"
         Me.Text = "ModificarVuelo"
         Me.ResumeLayout(False)
@@ -155,4 +178,6 @@ Partial Class ModificarVuelo
     Friend WithEvents LblHora As Label
     Friend WithEvents LblFecha As Label
     Friend WithEvents LblNroVuelo As Label
+    Friend WithEvents TxtPrecio As TextBox
+    Friend WithEvents Label1 As Label
 End Class
