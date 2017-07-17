@@ -116,7 +116,6 @@ Public Class FormClientes
             LblFechaNac.Text = "Fecha de Nacimiento: " & mClienteSelec.FechaNac
             LblTel.Text = "Telefono: " & mClienteSelec.Telefono
             LblSexo.Text = "Sexo: " & mClienteSelec.Sexo
-            LblEstado.Text = "Estado Civil: " & mClienteSelec.EstadoCivil
         Else
             LblNomAp.Text = "Nombre y Apellido: "
             LblDNI.Text = "DNI: "
@@ -124,7 +123,6 @@ Public Class FormClientes
             LblFechaNac.Text = "Fecha de Nacimiento: "
             LblTel.Text = "Telefono: "
             LblSexo.Text = "Sexo: "
-            LblEstado.Text = "Estado Civil: "
         End If
     End Sub
 End Class

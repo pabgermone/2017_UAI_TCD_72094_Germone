@@ -81,13 +81,41 @@ Public Class ModificarUsuario
     End Sub
 
     Private Sub BtnAceptar_Click(sender As Object, e As EventArgs) Handles BtnAceptar.Click
-        mUsuario.UserName = TxtUserName.Text
-        mUsuario.Nombre = TxtNombre.Text
-        mUsuario.Apellido = TxtApellido.Text
+        Dim mValido As Boolean = True
 
-        mUsuario.Guardar()
+        If TxtUserName.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z]+$", TxtUserName.Text) Then
+            mUsuario.UserName = TxtUserName.Text
+        Else
+            MsgBox("El nombre de usuario ingresado no es valido")
+            TxtUserName.BackColor = Color.Red
 
-        Me.Close()
+            mValido = False
+        End If
+
+        If TxtNombre.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z]+$", TxtNombre.Text) Then
+            mUsuario.Nombre = TxtNombre.Text
+        Else
+            MsgBox("El nombre ingresado no es valido")
+            TxtNombre.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+        If TxtNombre.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z]+$", TxtNombre.Text) Then
+            mUsuario.Apellido = TxtApellido.Text
+        Else
+            MsgBox("El apellido ingresado no es valido")
+            TxtApellido.BackColor = Color.Red
+
+            mValido = False
+        End If
+
+
+        If mValido Then
+            mUsuario.Guardar()
+
+            Me.Close()
+        End If
     End Sub
 
     Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
