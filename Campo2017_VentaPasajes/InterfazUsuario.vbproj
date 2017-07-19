@@ -317,7 +317,12 @@
       <Name>Framework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\584767382.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bloggif_593487372d8dd.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

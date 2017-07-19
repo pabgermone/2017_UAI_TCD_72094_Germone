@@ -33,59 +33,58 @@ Partial Class FormLogIn
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(18, 43)
-        Me.txtUsername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtUsername.Location = New System.Drawing.Point(12, 28)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(352, 26)
+        Me.txtUsername.Size = New System.Drawing.Size(236, 20)
         Me.txtUsername.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(18, 18)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Location = New System.Drawing.Point(12, 12)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(146, 20)
+        Me.Label1.Size = New System.Drawing.Size(98, 13)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Nombre de Usuario"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(18, 102)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Location = New System.Drawing.Point(12, 66)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 20)
+        Me.Label2.Size = New System.Drawing.Size(61, 13)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Contraseña"
         '
         'txtPass
         '
-        Me.txtPass.Location = New System.Drawing.Point(18, 126)
-        Me.txtPass.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtPass.Location = New System.Drawing.Point(12, 82)
         Me.txtPass.Name = "txtPass"
         Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPass.Size = New System.Drawing.Size(352, 26)
+        Me.txtPass.Size = New System.Drawing.Size(236, 20)
         Me.txtPass.TabIndex = 2
         '
         'btnIngreso
         '
-        Me.btnIngreso.Location = New System.Drawing.Point(18, 255)
-        Me.btnIngreso.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnIngreso.BackColor = System.Drawing.Color.LightSalmon
+        Me.btnIngreso.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnIngreso.Location = New System.Drawing.Point(12, 153)
         Me.btnIngreso.Name = "btnIngreso"
-        Me.btnIngreso.Size = New System.Drawing.Size(352, 35)
+        Me.btnIngreso.Size = New System.Drawing.Size(235, 36)
         Me.btnIngreso.TabIndex = 4
         Me.btnIngreso.Text = "Ingresar"
-        Me.btnIngreso.UseVisualStyleBackColor = True
+        Me.btnIngreso.UseVisualStyleBackColor = False
         '
         'lblPassChange
         '
         Me.lblPassChange.AutoSize = True
+        Me.lblPassChange.BackColor = System.Drawing.Color.Transparent
         Me.lblPassChange.LinkColor = System.Drawing.SystemColors.ControlText
-        Me.lblPassChange.Location = New System.Drawing.Point(116, 157)
-        Me.lblPassChange.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPassChange.Location = New System.Drawing.Point(77, 102)
         Me.lblPassChange.Name = "lblPassChange"
-        Me.lblPassChange.Size = New System.Drawing.Size(157, 20)
+        Me.lblPassChange.Size = New System.Drawing.Size(107, 13)
         Me.lblPassChange.TabIndex = 6
         Me.lblPassChange.TabStop = True
         Me.lblPassChange.Text = "Olvido su contraseña"
@@ -93,19 +92,22 @@ Partial Class FormLogIn
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.ForeColor = System.Drawing.Color.Red
-        Me.Label3.Location = New System.Drawing.Point(56, 199)
+        Me.Label3.Location = New System.Drawing.Point(37, 129)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(277, 20)
+        Me.Label3.Size = New System.Drawing.Size(187, 13)
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "*Por favor, revise los datos ingresados"
         Me.Label3.Visible = False
         '
         'FormLogIn
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(398, 309)
+        Me.BackgroundImage = Global.InterfazUsuario.My.Resources.Resources._584767382
+        Me.ClientSize = New System.Drawing.Size(265, 201)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lblPassChange)
         Me.Controls.Add(Me.btnIngreso)
@@ -113,9 +115,8 @@ Partial Class FormLogIn
         Me.Controls.Add(Me.txtPass)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtUsername)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FormLogIn"
-        Me.Text = "CargaUsuarios"
+        Me.Text = "Inicio de Sesion"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

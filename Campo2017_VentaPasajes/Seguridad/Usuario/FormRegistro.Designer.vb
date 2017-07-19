@@ -39,7 +39,7 @@ Partial Class FormRegistro
         'txtNombre
         '
         Me.txtNombre.Location = New System.Drawing.Point(8, 21)
-        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(170, 20)
         Me.txtNombre.TabIndex = 0
@@ -47,6 +47,7 @@ Partial Class FormRegistro
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Location = New System.Drawing.Point(8, 6)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
@@ -57,6 +58,7 @@ Partial Class FormRegistro
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Location = New System.Drawing.Point(5, 51)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
@@ -67,7 +69,7 @@ Partial Class FormRegistro
         'txtApellido
         '
         Me.txtApellido.Location = New System.Drawing.Point(8, 66)
-        Me.txtApellido.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtApellido.Margin = New System.Windows.Forms.Padding(2)
         Me.txtApellido.Name = "txtApellido"
         Me.txtApellido.Size = New System.Drawing.Size(170, 20)
         Me.txtApellido.TabIndex = 2
@@ -75,6 +77,7 @@ Partial Class FormRegistro
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Location = New System.Drawing.Point(5, 96)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
@@ -85,7 +88,7 @@ Partial Class FormRegistro
         'txtUser
         '
         Me.txtUser.Location = New System.Drawing.Point(8, 110)
-        Me.txtUser.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtUser.Margin = New System.Windows.Forms.Padding(2)
         Me.txtUser.Name = "txtUser"
         Me.txtUser.Size = New System.Drawing.Size(170, 20)
         Me.txtUser.TabIndex = 4
@@ -93,6 +96,7 @@ Partial Class FormRegistro
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Location = New System.Drawing.Point(8, 140)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
@@ -103,7 +107,7 @@ Partial Class FormRegistro
         'txtPass
         '
         Me.txtPass.Location = New System.Drawing.Point(8, 155)
-        Me.txtPass.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtPass.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPass.Name = "txtPass"
         Me.txtPass.Size = New System.Drawing.Size(170, 20)
         Me.txtPass.TabIndex = 6
@@ -111,6 +115,7 @@ Partial Class FormRegistro
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Location = New System.Drawing.Point(8, 185)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
@@ -121,24 +126,27 @@ Partial Class FormRegistro
         'txtVerif
         '
         Me.txtVerif.Location = New System.Drawing.Point(8, 200)
-        Me.txtVerif.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtVerif.Margin = New System.Windows.Forms.Padding(2)
         Me.txtVerif.Name = "txtVerif"
         Me.txtVerif.Size = New System.Drawing.Size(170, 20)
         Me.txtVerif.TabIndex = 8
         '
         'btnAceptar
         '
-        Me.btnAceptar.Location = New System.Drawing.Point(56, 258)
-        Me.btnAceptar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAceptar.BackColor = System.Drawing.Color.LightSalmon
+        Me.btnAceptar.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAceptar.Location = New System.Drawing.Point(41, 259)
+        Me.btnAceptar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(72, 21)
+        Me.btnAceptar.Size = New System.Drawing.Size(101, 31)
         Me.btnAceptar.TabIndex = 10
         Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = True
+        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.ForeColor = System.Drawing.Color.Red
         Me.Label6.Location = New System.Drawing.Point(17, 229)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
@@ -152,7 +160,8 @@ Partial Class FormRegistro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(187, 290)
+        Me.BackgroundImage = Global.InterfazUsuario.My.Resources.Resources._584767382
+        Me.ClientSize = New System.Drawing.Size(187, 300)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.Label5)
@@ -165,9 +174,9 @@ Partial Class FormRegistro
         Me.Controls.Add(Me.txtApellido)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtNombre)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FormRegistro"
-        Me.Text = "FormRegistro"
+        Me.Text = "Nuevo usuario"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
