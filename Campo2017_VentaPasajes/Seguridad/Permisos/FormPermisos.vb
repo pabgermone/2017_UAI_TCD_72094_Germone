@@ -119,6 +119,8 @@ Public Class FormPermisos
                 mSelectedNode.Nodes.Add(mNodoNuevo)
                 mPadre.ListaPermisos.Add(mPermiso)
             End If
+
+            TreePermisos.ExpandAll()
         End If
     End Sub
 
@@ -158,16 +160,22 @@ Public Class FormPermisos
         If TypeOf (TreePermisos.SelectedNode.Tag) Is PermisoBLL Then
             Dim mFormulario As New ModificarPermiso(TreePermisos.SelectedNode.Tag)
             mFormulario.ShowDialog()
+            TreePermisos.ExpandAll()
         ElseIf TypeOf (TreePermisos.SelectedNode.Tag) Is PermisoCompuestoBLL Then
             Dim mPermiso As PermisoCompuestoBLL = TreePermisos.SelectedNode.Tag
 
             mPermiso.Nombre = InputBox("Ingrese el nuevo nombre para el permiso compuesto:")
 
-            mPermiso.Guardar()
+            If mPermiso.Nombre <> "" Then
+                mPermiso.Guardar()
 
-            TreePermisos.SelectedNode.Tag = mPermiso
-            TreePermisos.Nodes.Clear()
-            FormPermisos_Load(Nothing, Nothing)
+                TreePermisos.SelectedNode.Tag = mPermiso
+                TreePermisos.Nodes.Clear()
+                FormPermisos_Load(Nothing, Nothing)
+                TreePermisos.ExpandAll()
+            Else
+                MsgBox("Debe ingresar el nuevo nombre para el permiso")
+            End If
         Else
             MsgBox("Debe seleccionar un nodo")
         End If
@@ -189,5 +197,6 @@ Public Class FormPermisos
 
         TreePermisos.Nodes.Clear()
         FormPermisos_Load(Nothing, Nothing)
+        TreePermisos.ExpandAll()
     End Sub
 End Class
