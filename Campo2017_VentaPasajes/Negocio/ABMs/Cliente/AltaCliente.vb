@@ -66,11 +66,15 @@ Public Class AltaCliente
         Dim mCliente As New ClienteBLL
         Dim mValido As Boolean = True
 
-        If TxtNomAp.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z\s]*$", TxtDNI.Text) Then
-            Dim NomAp As String() = Split(TxtNomAp.Text)
+        If TxtNomAp.Text <> "" Then
+            Try
+                Dim NomAp As String() = Split(TxtNomAp.Text)
 
-            mCliente.Nombre = NomAp(0)
-            mCliente.Apellido = NomAp(1)
+                mCliente.Nombre = NomAp(0)
+                mCliente.Apellido = NomAp(1)
+            Catch ex As Exception
+                MsgBox("El nombre y apellido ingresados no son validos")
+            End Try
         Else
             MsgBox("Debe ingresar Nombre y Apellido")
             TxtNomAp.BackColor = Color.Red
@@ -82,7 +86,7 @@ Public Class AltaCliente
             mCliente.DNI = TxtDNI.Text
         Else
             MsgBox("Debe ingresar un numero de DNI valido")
-            TxtNomAp.BackColor = Color.Red
+            TxtDNI.BackColor = Color.Red
 
             mValido = False
         End If
@@ -91,7 +95,7 @@ Public Class AltaCliente
             mCliente.Pasaporte = TxtPasaporte.Text
         Else
             MsgBox("Debe ingresar un numero de pasaporte valido")
-            TxtNomAp.BackColor = Color.Red
+            TxtPasaporte.BackColor = Color.Red
 
             mValido = False
         End If
@@ -100,7 +104,7 @@ Public Class AltaCliente
             mCliente.FechaNac = TxtFechaNac.Text
         Else
             MsgBox("Debe ingresar una fecha de nacimineto")
-            TxtNomAp.BackColor = Color.Red
+            TxtFechaNac.BackColor = Color.Red
 
             mValido = False
         End If
@@ -109,7 +113,7 @@ Public Class AltaCliente
             mCliente.Telefono = TxtTel.Text
         Else
             MsgBox("Debe ingresar un numero de telefono valido")
-            TxtNomAp.BackColor = Color.Red
+            TxtTel.BackColor = Color.Red
 
             mValido = False
         End If
