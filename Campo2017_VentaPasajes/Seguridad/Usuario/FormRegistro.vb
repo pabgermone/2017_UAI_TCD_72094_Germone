@@ -62,7 +62,7 @@ Public Class FormRegistro
         Dim mEncriptador As Encriptador = Encriptador.GetInstance
         Dim mValido As Boolean = True
 
-        If txtNombre.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z]+$", txtNombre.Text) Then
+        If txtNombre.Text <> "" Then
             mUsuario.Nombre = txtNombre.Text
         Else
             MsgBox("Debe ingresar un Nombre valido")
@@ -71,11 +71,11 @@ Public Class FormRegistro
             mValido = False
         End If
 
-        If txtNombre.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z]+$", txtNombre.Text) Then
+        If txtNombre.Text <> "" Then
             mUsuario.Apellido = txtApellido.Text
         Else
             MsgBox("Debe ingresar un Apellido valido")
-            txtNombre.BackColor = Color.Red
+            txtApellido.BackColor = Color.Red
 
             mValido = False
         End If
@@ -84,20 +84,23 @@ Public Class FormRegistro
             mUsuario.UserName = txtUser.Text
         Else
             MsgBox("Debe ingresar un nombre de usuario valido")
-            txtNombre.BackColor = Color.Red
+            txtUser.BackColor = Color.Red
 
             mValido = False
         End If
 
-        If txtPass.Text <> "" And txtVerif.Text <> "" Then
+        If txtPass.Text <> "" Then
             If txtPass.Text = txtVerif.Text Then
                 mUsuario.Password = mEncriptador.Encriptar(txtPass.Text)
             Else
                 Label6.Visible = True
+                txtVerif.BackColor = Color.Red
+                mValido = False
             End If
         Else
             MsgBox("Debe ingresar una contraseña")
             txtPass.BackColor = Color.Red
+            txtVerif.BackColor = Color.Red
 
             mValido = False
         End If
