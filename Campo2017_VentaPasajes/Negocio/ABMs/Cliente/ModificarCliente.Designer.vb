@@ -32,12 +32,12 @@ Partial Class ModificarCliente
         Me.TxtNomAp = New System.Windows.Forms.TextBox()
         Me.TxtDNI = New System.Windows.Forms.TextBox()
         Me.TxtPasaporte = New System.Windows.Forms.TextBox()
-        Me.TxtFechaNac = New System.Windows.Forms.TextBox()
         Me.TxtTel = New System.Windows.Forms.TextBox()
         Me.BtnEditar = New System.Windows.Forms.Button()
         Me.LinkEliminar = New System.Windows.Forms.LinkLabel()
         Me.RadioFemenino = New System.Windows.Forms.RadioButton()
         Me.RadioMasculino = New System.Windows.Forms.RadioButton()
+        Me.DateTimeFechaNac = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'LblSexo
@@ -130,14 +130,6 @@ Partial Class ModificarCliente
         Me.TxtPasaporte.Size = New System.Drawing.Size(181, 20)
         Me.TxtPasaporte.TabIndex = 19
         '
-        'TxtFechaNac
-        '
-        Me.TxtFechaNac.Location = New System.Drawing.Point(11, 146)
-        Me.TxtFechaNac.Margin = New System.Windows.Forms.Padding(2)
-        Me.TxtFechaNac.Name = "TxtFechaNac"
-        Me.TxtFechaNac.Size = New System.Drawing.Size(181, 20)
-        Me.TxtFechaNac.TabIndex = 20
-        '
         'TxtTel
         '
         Me.TxtTel.Location = New System.Drawing.Point(11, 187)
@@ -197,18 +189,27 @@ Partial Class ModificarCliente
         Me.RadioMasculino.Text = "M"
         Me.RadioMasculino.UseVisualStyleBackColor = False
         '
+        'DateTimeFechaNac
+        '
+        Me.DateTimeFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimeFechaNac.Location = New System.Drawing.Point(11, 147)
+        Me.DateTimeFechaNac.MinDate = New Date(1810, 1, 1, 0, 0, 0, 0)
+        Me.DateTimeFechaNac.Name = "DateTimeFechaNac"
+        Me.DateTimeFechaNac.Size = New System.Drawing.Size(181, 20)
+        Me.DateTimeFechaNac.TabIndex = 45
+        '
         'ModificarCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(205, 339)
+        Me.Controls.Add(Me.DateTimeFechaNac)
         Me.Controls.Add(Me.RadioFemenino)
         Me.Controls.Add(Me.RadioMasculino)
         Me.Controls.Add(Me.LinkEliminar)
         Me.Controls.Add(Me.BtnEditar)
         Me.Controls.Add(Me.TxtTel)
-        Me.Controls.Add(Me.TxtFechaNac)
         Me.Controls.Add(Me.TxtPasaporte)
         Me.Controls.Add(Me.TxtDNI)
         Me.Controls.Add(Me.TxtNomAp)
@@ -234,10 +235,10 @@ Partial Class ModificarCliente
     Friend WithEvents TxtNomAp As TextBox
     Friend WithEvents TxtDNI As TextBox
     Friend WithEvents TxtPasaporte As TextBox
-    Friend WithEvents TxtFechaNac As TextBox
     Friend WithEvents TxtTel As TextBox
     Friend WithEvents BtnEditar As Button
     Friend WithEvents LinkEliminar As LinkLabel
     Friend WithEvents RadioFemenino As RadioButton
     Friend WithEvents RadioMasculino As RadioButton
+    Friend WithEvents DateTimeFechaNac As DateTimePicker
 End Class

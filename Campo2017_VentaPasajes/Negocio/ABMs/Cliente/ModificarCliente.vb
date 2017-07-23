@@ -19,7 +19,7 @@ Public Class ModificarCliente
             TxtNomAp.Text = pCliente.ToString
             TxtDNI.Text = pCliente.DNI
             TxtPasaporte.Text = pCliente.Pasaporte
-            TxtFechaNac.Text = pCliente.FechaNac
+            DateTimeFechaNac.Value = mCliente.FechaNac
             TxtTel.Text = pCliente.Telefono
 
             If pCliente.Sexo = "Masculino" Then
@@ -76,11 +76,18 @@ Public Class ModificarCliente
     Private Sub BtnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
         Dim mValido As Boolean = True
 
-        If TxtNomAp.Text <> "" And System.Text.RegularExpressions.Regex.IsMatch("^[a-zA-Z\s]*$", TxtDNI.Text) Then
-            Dim NomAp As String() = Split(TxtNomAp.Text)
+        If TxtNomAp.Text <> "" Then
+            Try
+                Dim NomAp As String() = Split(TxtNomAp.Text)
 
-            mCliente.Nombre = NomAp(0)
-            mCliente.Apellido = NomAp(1)
+                mCliente.Nombre = NomAp(0)
+                mCliente.Apellido = NomAp(1)
+            Catch ex As Exception
+                MsgBox("El nombre y apellido ingresados no son validos")
+                TxtNomAp.BackColor = Color.Red
+
+                mValido = False
+            End Try
         Else
             MsgBox("Debe ingresar Nombre y Apellido")
             TxtNomAp.BackColor = Color.Red
@@ -91,7 +98,7 @@ Public Class ModificarCliente
         If TxtDNI.Text <> "" And IsNumeric(TxtDNI.Text) And TxtDNI.TextLength = 8 Then
             mCliente.DNI = TxtDNI.Text
         Else
-            MsgBox("Debe ingresar un numero de DNI valido")
+            MsgBox("Debe ingresar un numero de DNI valido (8 caracteres)")
             TxtNomAp.BackColor = Color.Red
 
             mValido = False
@@ -106,11 +113,10 @@ Public Class ModificarCliente
             mValido = False
         End If
 
-        If TxtFechaNac.Text <> "" Then
-            mCliente.FechaNac = TxtFechaNac.Text
+        If DateTimeFechaNac.Value.Year <= Date.Now.Year Then
+            mCliente.FechaNac = DateTimeFechaNac.Value
         Else
-            MsgBox("Debe ingresar una fecha de nacimineto")
-            TxtNomAp.BackColor = Color.Red
+            MsgBox("La fecha de nacimiento seleccionada no es valida")
 
             mValido = False
         End If
@@ -142,8 +148,10 @@ Public Class ModificarCliente
 
 
     Private Sub LinkEliminar_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkEliminar.LinkClicked
-        mCliente.Eliminar()
-        Me.Close()
+        If MsgBox("Esta seguro que desea eliminar todos los datos del cliente seleccionado?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            mCliente.Eliminar()
+            Me.Close()
+        End If
     End Sub
 
 

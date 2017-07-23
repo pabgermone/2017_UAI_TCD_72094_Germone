@@ -72,17 +72,25 @@ Public Class FormClientes
         If Not IsNothing(ComboClientes.SelectedItem) Then
             If TypeOf (ComboClientes.SelectedItem) Is ClienteBLL Then
                 mClienteSelec = ComboClientes.SelectedItem
-                ActualizarLabels()
+            Else
+                mClienteSelec = Nothing
             End If
+
+            ActualizarLabels()
         End If
     End Sub
 #End Region
 
+
 #Region "Botones"
     Private Sub BtnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
-        Dim mForm As New ModificarCliente(mClienteSelec)
-        mForm.ShowDialog()
-        ActualizarLista()
+        If Not IsNothing(mClienteSelec) Then
+            Dim mForm As New ModificarCliente(mClienteSelec)
+            mForm.ShowDialog()
+            ActualizarLista()
+        Else
+            MsgBox("Debe seleccionar un cliente")
+        End If
     End Sub
 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
@@ -97,8 +105,12 @@ Public Class FormClientes
     ''' Actualiza los datos mostrados en el ComboBox
     ''' </summary>
     Public Sub ActualizarLista()
-        ComboClientes.DataSource = Nothing
-        ComboClientes.DataSource = ClienteBLL.Listar
+        ComboClientes.Items.Clear()
+        ComboClientes.Items.Add("- Seleccione un cliente -")
+
+        For Each mCliente As ClienteBLL In ClienteBLL.Listar
+            ComboClientes.Items.Add(mCliente)
+        Next
 
         ActualizarLabels()
     End Sub

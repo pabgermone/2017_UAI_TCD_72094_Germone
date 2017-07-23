@@ -74,6 +74,9 @@ Public Class AltaCliente
                 mCliente.Apellido = NomAp(1)
             Catch ex As Exception
                 MsgBox("El nombre y apellido ingresados no son validos")
+                TxtNomAp.BackColor = Color.Red
+
+                mValido = False
             End Try
         Else
             MsgBox("Debe ingresar Nombre y Apellido")
@@ -85,7 +88,7 @@ Public Class AltaCliente
         If TxtDNI.Text <> "" And IsNumeric(TxtDNI.Text) And TxtDNI.TextLength = 8 Then
             mCliente.DNI = TxtDNI.Text
         Else
-            MsgBox("Debe ingresar un numero de DNI valido")
+            MsgBox("Debe ingresar un numero de DNI valido (8 caracteres)")
             TxtDNI.BackColor = Color.Red
 
             mValido = False
@@ -100,11 +103,10 @@ Public Class AltaCliente
             mValido = False
         End If
 
-        If TxtFechaNac.Text <> "" Then
-            mCliente.FechaNac = TxtFechaNac.Text
+        If DateTimeFechaNac.Value.Year <= Date.Now.Year Then
+            mCliente.FechaNac = DateTimeFechaNac.Value
         Else
-            MsgBox("Debe ingresar una fecha de nacimineto")
-            TxtFechaNac.BackColor = Color.Red
+            MsgBox("La fecha de nacimiento seleccionada no es valida")
 
             mValido = False
         End If
