@@ -114,12 +114,14 @@ Public Class FormIdiomas
 
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        If Not IsNothing(mIdiomaSelec) Then
-            For i = 0 To (GridTextos.RowCount - 2)
-                mIdiomaSelec.Diccionario.Item(GridTextos.Rows.Item(i).Cells(0).Value) = GridTextos.Rows.Item(i).Cells(1).Value
-            Next
+        If MsgBox("Esta seguro que desea guardar los cambios hechos a las traducciones de este idioma?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            If Not IsNothing(mIdiomaSelec) Then
+                For i = 0 To (GridTextos.RowCount - 2)
+                    mIdiomaSelec.Diccionario.Item(GridTextos.Rows.Item(i).Cells(0).Value) = GridTextos.Rows.Item(i).Cells(1).Value
+                Next
 
-            mIdiomaSelec.GuardarTraducciones()
+                mIdiomaSelec.GuardarTraducciones()
+            End If
         End If
     End Sub
 

@@ -101,9 +101,11 @@ Public Class ModificarPermiso
         mPermiso.Formulario = cmbFormularios.SelectedItem
 
         If mValido Then
-            mPermiso.Guardar()
+            If MsgBox("Esta seguro que desea guardar los cambios realizados al permiso?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                mPermiso.Guardar()
 
-            Me.Close()
+                Me.Close()
+            End If
         End If
     End Sub
 End Class

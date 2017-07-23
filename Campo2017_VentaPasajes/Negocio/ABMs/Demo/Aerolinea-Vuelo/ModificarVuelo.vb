@@ -130,11 +130,13 @@ Public Class ModificarVuelo
 
 
         If mValido Then
-            mVuelo.GuardarModificacion()
+            If MsgBox("Esta seguro que esea guardar los cambios realizados?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                mVuelo.GuardarModificacion()
 
-            MsgBox("Se guardaron los cambios")
+                MsgBox("Se guardaron los cambios")
 
-            Me.Close()
+                Me.Close()
+            End If
         End If
     End Sub
 End Class

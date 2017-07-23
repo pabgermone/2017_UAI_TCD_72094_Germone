@@ -74,6 +74,7 @@ Public Class FormLogIn
             If mEncriptador.ValidarHash(txtPass.Text, mUsuario.Password) Then
                 txtUsername.Clear()
                 txtPass.Clear()
+                Label3.Visible = False
 
                 Dim mForm As New FormPrincipal(mUsuario)
                 mForm.ShowDialog()

@@ -138,11 +138,13 @@ Public Class ModificarCliente
 
 
         If mValido Then
-            mCliente.Guardar()
+            If MsgBox("Esta seguro que desea guardar los cambios hechos a este cliente?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                mCliente.Guardar()
 
-            MsgBox("Se guardaron las modificaciones")
+                MsgBox("Se guardaron las modificaciones")
 
-            Me.Close()
+                Me.Close()
+            End If
         End If
     End Sub
 

@@ -112,9 +112,11 @@ Public Class ModificarUsuario
 
 
         If mValido Then
-            mUsuario.Guardar()
+            If MsgBox("Esta seguro que quiere guardar los cambios realizados?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                mUsuario.Guardar()
 
-            Me.Close()
+                Me.Close()
+            End If
         End If
     End Sub
 

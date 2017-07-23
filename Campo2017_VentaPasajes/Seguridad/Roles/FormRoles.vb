@@ -126,18 +126,20 @@ Public Class FormRoles
 
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        Dim mListaPermisos As New List(Of PermisoAbstractoBLL)
+        If MsgBox("Esta seguro que desea guardar los cambios realizados?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            Dim mListaPermisos As New List(Of PermisoAbstractoBLL)
 
-        For Each mNodo As TreeNode In TreePermisos.Nodes
-            'Llena la lista con los permisos que hay seleccionados en el treeview
-            CargarPermisosSelec(mNodo, mListaPermisos)
-        Next
+            For Each mNodo As TreeNode In TreePermisos.Nodes
+                'Llena la lista con los permisos que hay seleccionados en el treeview
+                CargarPermisosSelec(mNodo, mListaPermisos)
+            Next
 
-        mRolSelec.ListaPermisos = mListaPermisos
+            mRolSelec.ListaPermisos = mListaPermisos
 
-        mRolSelec.Guardar()
+            mRolSelec.Guardar()
 
-        ActualizarRoles()
+            ActualizarRoles()
+        End If
     End Sub
 
 

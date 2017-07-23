@@ -111,7 +111,7 @@ Public Class FormAsignacion
 
                 Me.Close()
             Else
-                MsgBox("Debe seleccionar el rol que quiere asignar al usuario")
+                    MsgBox("Debe seleccionar el rol que quiere asignar al usuario")
             End If
         Else
             MsgBox("Debe seleccionar un usuario")
