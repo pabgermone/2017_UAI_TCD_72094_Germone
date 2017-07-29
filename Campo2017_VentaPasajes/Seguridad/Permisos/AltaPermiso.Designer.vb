@@ -32,37 +32,43 @@ Partial Class AltaPermiso
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(12, 45)
+        Me.txtNombre.Location = New System.Drawing.Point(8, 29)
+        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(370, 26)
+        Me.txtNombre.Size = New System.Drawing.Size(248, 20)
         Me.txtNombre.TabIndex = 5
         '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.LightSalmon
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(261, 171)
+        Me.Button1.Location = New System.Drawing.Point(174, 111)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(120, 54)
+        Me.Button1.Size = New System.Drawing.Size(80, 35)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "Aceptar"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'cmbFormularios
         '
+        Me.cmbFormularios.Enabled = False
         Me.cmbFormularios.FormattingEnabled = True
-        Me.cmbFormularios.Location = New System.Drawing.Point(11, 123)
+        Me.cmbFormularios.Items.AddRange(New Object() {"- Seleccionar formulario -"})
+        Me.cmbFormularios.Location = New System.Drawing.Point(7, 80)
+        Me.cmbFormularios.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cmbFormularios.Name = "cmbFormularios"
-        Me.cmbFormularios.Size = New System.Drawing.Size(370, 28)
+        Me.cmbFormularios.Size = New System.Drawing.Size(248, 21)
         Me.cmbFormularios.TabIndex = 3
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Location = New System.Drawing.Point(8, 22)
+        Me.Label1.Location = New System.Drawing.Point(5, 14)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(151, 20)
+        Me.Label1.Size = New System.Drawing.Size(101, 13)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "Nombre del Permiso"
         '
@@ -70,25 +76,25 @@ Partial Class AltaPermiso
         '
         Me.CheckFormulario.AutoSize = True
         Me.CheckFormulario.BackColor = System.Drawing.Color.Transparent
-        Me.CheckFormulario.Location = New System.Drawing.Point(12, 93)
+        Me.CheckFormulario.Location = New System.Drawing.Point(8, 60)
+        Me.CheckFormulario.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.CheckFormulario.Name = "CheckFormulario"
-        Me.CheckFormulario.Size = New System.Drawing.Size(175, 24)
+        Me.CheckFormulario.Size = New System.Drawing.Size(118, 17)
         Me.CheckFormulario.TabIndex = 8
         Me.CheckFormulario.Text = "Asociar a formulario"
         Me.CheckFormulario.UseVisualStyleBackColor = False
         '
         'AltaPermiso
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(393, 238)
+        Me.ClientSize = New System.Drawing.Size(262, 155)
         Me.Controls.Add(Me.CheckFormulario)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.cmbFormularios)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "AltaPermiso"
         Me.Text = "FormAgregarPatente"
         Me.ResumeLayout(False)

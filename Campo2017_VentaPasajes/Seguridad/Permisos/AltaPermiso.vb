@@ -80,18 +80,20 @@ Public Class AltaPermiso
         Return Me.cmbFormularios.Text
     End Function
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If txtNombre.Text <> "" And cmbFormularios.Text <> "" Then
-            Me.Close()
-        Else
-            MsgBox("El nuevo permiso debe tener un nombre y estar asociado a un formulario")
-        End If
-
-    End Sub
 
     Private Sub AltaPermiso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mTraductor.RegistrarObservador(Me)
 
         Actualizar(Me)
     End Sub
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If txtNombre.Text <> "" And cmbFormularios.Text <> "" Then
+            Me.Close()
+        Else
+            MsgBox("El nuevo permiso debe tener un nombre y estar asociado a un formulario")
+        End If
+    End Sub
+
 End Class
