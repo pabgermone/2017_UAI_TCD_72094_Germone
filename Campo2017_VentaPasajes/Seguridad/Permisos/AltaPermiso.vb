@@ -89,11 +89,19 @@ Public Class AltaPermiso
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If txtNombre.Text <> "" And cmbFormularios.Text <> "" Then
+        If txtNombre.Text <> "" Then
             Me.Close()
         Else
-            MsgBox("El nuevo permiso debe tener un nombre y estar asociado a un formulario")
+            MsgBox("El nuevo permiso debe tener un nombre")
         End If
     End Sub
 
+
+    Private Sub CheckFormulario_CheckedChanged(sender As Object, e As EventArgs) Handles CheckFormulario.CheckedChanged
+        If CheckFormulario.Checked = True Then
+            cmbFormularios.Enabled = True
+        Else
+            cmbFormularios.Enabled = False
+        End If
+    End Sub
 End Class
