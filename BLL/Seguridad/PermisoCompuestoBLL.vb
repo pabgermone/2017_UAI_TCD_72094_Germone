@@ -167,48 +167,81 @@ Public Class PermisoCompuestoBLL
 
 
 #Region "Metodos Composite"
+
+    '''' <summary>
+    '''' Agrega al TreeNode todos los permisos hijo que tenga asociado el PermisoCompuesto guardado en el TreeNode
+    '''' </summary>
+    '''' <param name="pPermisoPadre">PermisoCompuesto guardado en el TreeNode</param>
+    '''' <param name="pTreenode">TreeNode al que se quieren agregar los permisos</param>
+    'Public Sub AgregarPermisosHijo(pPermisoPadre As PermisoCompuestoBLL, pTreenode As TreeNode)
+    '    For Each mPermisoAbstracto As PermisoAbstractoBLL In pPermisoPadre.ListaPermisos
+    '        Dim mNode As New TreeNode
+    '        mNode.Text = mPermisoAbstracto.Nombre
+    '        mNode.Tag = mPermisoAbstracto
+    '        pTreenode.Nodes.Add(mNode)
+
+    '        If TypeOf (mPermisoAbstracto) Is PermisoCompuestoBLL Then
+    '            Dim mPermisoCompuesto As PermisoCompuestoBLL
+    '            mPermisoCompuesto = DirectCast(mPermisoAbstracto, PermisoCompuestoBLL)
+
+    '            If mPermisoCompuesto.ListaPermisos.Count > 0 Then
+    '                AgregarPermisosHijo(mPermisoCompuesto, pTreenode.LastNode)
+    '            End If
+    '        End If
+    '    Next
+    'End Sub
+
+
+    '''' <summary>
+    '''' Carga en un TreeView todos los permisos simples y compuestos del sistema
+    '''' </summary>
+    '''' <param name="pTreeView"></param>
+    '''' <returns></returns>
+    'Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
+    '    Try
+    '        Dim mListaPermisos As List(Of PermisoAbstractoBLL) = ListarPermisos()
+    '        Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
+    '        mNode.Tag = mListaPermisos.Item(0)
+
+    '        AgregarPermisosHijo(mNode.Tag, mNode)
+    '    Catch ex As Exception
+
+    '    End Try
+
+    '    Return pTreeView
+    'End Function
+
+
     ''' <summary>
-    ''' Agrega al TreeNode todos los permisos hijo que tenga asociado el PermisoCompuesto guardado en el TreeNode
+    ''' Agrega a un TreeView o TreeNode un nodo que represente al PermisoCompuesto
     ''' </summary>
-    ''' <param name="pPermisoPadre">PermisoCompuesto guardado en el TreeNode</param>
-    ''' <param name="pTreenode">TreeNode al que se quieren agregar los permisos</param>
-    Public Sub AgregarPermisosHijo(pPermisoPadre As PermisoCompuestoBLL, pTreenode As TreeNode)
-        For Each mPermisoAbstracto As PermisoAbstractoBLL In pPermisoPadre.ListaPermisos
-            Dim mNode As New TreeNode
-            mNode.Text = mPermisoAbstracto.Nombre
-            mNode.Tag = mPermisoAbstracto
-            pTreenode.Nodes.Add(mNode)
+    ''' <param name="pTreeView">(Optional) TreeView al que se quiere agregar el nodo</param>
+    ''' <param name="pNode">(Optional) TreeNode al que se quiere agregar el nodo</param>
+    ''' <remarks>Si se le pasa por parametro un TreeView y un TreeNode, solo se tomara en cuenta el TreeNode</remarks>
+    Public Overrides Sub MostrarEnTreeview(Optional pTreeView As TreeView = Nothing, Optional pNode As TreeNode = Nothing)
+        'Dim mListaPermisos As List(Of PermisoAbstractoBLL) = ListarPermisos()
+        'Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
+        'mNode.Tag = mListaPermisos.Item(0)
 
-            If TypeOf (mPermisoAbstracto) Is PermisoCompuestoBLL Then
-                Dim mPermisoCompuesto As PermisoCompuestoBLL
-                mPermisoCompuesto = DirectCast(mPermisoAbstracto, PermisoCompuestoBLL)
+        'AgregarPermisosHijo(mNode.Tag, mNode)
 
-                If mPermisoCompuesto.ListaPermisos.Count > 0 Then
-                    AgregarPermisosHijo(mPermisoCompuesto, pTreenode.LastNode)
-                End If
-            End If
+        Dim mNode As New TreeNode
+
+        mNode.Text = Me.Nombre
+        mNode.Tag = Me
+
+        If Not IsNothing(pTreeView) Then
+            pTreeView.Nodes.Add(mNode)
+
+        ElseIf Not IsNothing(pNode) Then
+            pNode.Nodes.Add(mNode)
+
+        End If
+
+        For Each mPermiso As PermisoAbstractoBLL In Me.ListaPermisos
+            mPermiso.MostrarEnTreeview(Nothing, mNode)
         Next
     End Sub
-
-
-    ''' <summary>
-    ''' Carga en un TreeView todos los permisos simples y compuestos del sistema
-    ''' </summary>
-    ''' <param name="pTreeView"></param>
-    ''' <returns></returns>
-    Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
-        Try
-            Dim mListaPermisos As List(Of PermisoAbstractoBLL) = ListarPermisos()
-            Dim mNode As TreeNode = pTreeView.Nodes.Add(mListaPermisos.Item(0).Nombre)
-            mNode.Tag = mListaPermisos.Item(0)
-
-            AgregarPermisosHijo(mNode.Tag, mNode)
-        Catch ex As Exception
-
-        End Try
-
-        Return pTreeView
-    End Function
 
 
     ''' <summary>

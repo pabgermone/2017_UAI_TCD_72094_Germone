@@ -13,7 +13,7 @@ Public MustInherit Class PermisoAbstractoBLL
     Public Property Texto As String
 
 
-    Public MustOverride Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
+    Public MustOverride Sub MostrarEnTreeview(Optional pTreeView As TreeView = Nothing, Optional pNode As TreeNode = Nothing)
     Public MustOverride Sub MostrarEnMenuStrip(pMenu As MenuStrip, pUsuario As UsuarioBLL, pForm As Form)
     Public MustOverride Sub Guardar()
     Public MustOverride Sub Eliminar()

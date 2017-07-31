@@ -94,9 +94,30 @@ Public Class PermisoBLL
 
 
 #Region "Metodos Composite"
-    Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
-        Return Nothing
-    End Function
+    'Public Overrides Function MostrarEnTreeview(pTreeView As TreeView) As TreeView
+    '    Return Nothing
+    'End Function
+
+    ''' <summary>
+    ''' Agrega a un TreeView o TreeNode un nodo que represente al Permiso
+    ''' </summary>
+    ''' <param name="pTreeView">(Optional) TreeView al que se quiere agregar el nodo</param>
+    ''' <param name="pNode">(Optional) TreeNode al que se quiere agregar el nodo</param>
+    ''' <remarks>Si se le pasa por parametros un TreeView y un TreeNode, solo se tomara en cuenta el TreeView</remarks>
+    Public Overrides Sub MostrarEnTreeview(Optional pTreeView As TreeView = Nothing, Optional pNode As TreeNode = Nothing)
+        Dim mNode As New TreeNode
+
+        mNode.Text = Me.Nombre
+        mNode.Tag = Me
+
+        If Not IsNothing(pTreeView) Then
+            pTreeView.Nodes.Add(mNode)
+
+        ElseIf Not IsNothing(pNode) Then
+            pNode.Nodes.Add(mNode)
+
+        End If
+    End Sub
 
     Public Overrides Sub MostrarEnMenuStrip(pMenu As MenuStrip, pUsuario As UsuarioBLL, pForm As Form)
 
