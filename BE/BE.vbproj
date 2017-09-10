@@ -87,6 +87,7 @@
     <Compile Include="Seguridad\PermisoAbstractoBE.vb" />
     <Compile Include="Seguridad\PermisoBE.vb" />
     <Compile Include="Seguridad\PermisoCompuestoBE.vb" />
+    <Compile Include="Seguridad\RegistroBE.vb" />
     <Compile Include="Seguridad\RolBE.vb" />
     <Compile Include="Seguridad\UsuarioBE.vb" />
     <Compile Include="Negocio\VentaBE.vb" />

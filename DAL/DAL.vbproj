@@ -87,6 +87,7 @@
     <Compile Include="Negocio\PaqueteDAL.vb" />
     <Compile Include="Negocio\VueloDAL.vb" />
     <Compile Include="Multi-Idioma\IdiomaDAL.vb" />
+    <Compile Include="Seguridad\BitacoraDAL.vb" />
     <Compile Include="Seguridad\PermisoDAL.vb" />
     <Compile Include="Seguridad\RolDAL.vb" />
     <Compile Include="Seguridad\RolPermisoCompuestoDAL.vb" />

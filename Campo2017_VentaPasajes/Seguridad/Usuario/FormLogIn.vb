@@ -5,6 +5,7 @@ Public Class FormLogIn
     Implements IObservador
 
     Dim mTraductor As Traductor = Traductor.GetInstance
+    Dim mBitacora As Bitacora = Bitacora.GetInstance
 
 
     Public Sub New()
@@ -75,6 +76,8 @@ Public Class FormLogIn
                 txtUsername.Clear()
                 txtPass.Clear()
                 Label3.Visible = False
+
+                mBitacora.GuardarRegistro(mUsuario.UserName, System.DateTime.Now.Date, "Ingreso al sistema")
 
                 Dim mForm As New FormPrincipal(mUsuario)
                 mForm.ShowDialog()

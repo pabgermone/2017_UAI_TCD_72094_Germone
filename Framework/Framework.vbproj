@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BD\CreadorBD.vb" />
+    <Compile Include="Seguridad\Bitacora.vb" />
     <Compile Include="Seguridad\Encriptador.vb" />
     <Compile Include="Observer\IObservado.vb" />
     <Compile Include="Observer\IObservador.vb" />
@@ -114,6 +115,10 @@
     <ProjectReference Include="..\BLL\BLL.vbproj">
       <Project>{049769c9-d30e-4a28-a160-92a3dcdf67c0}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.vbproj">
+      <Project>{ce91c09f-fee9-46af-8fc0-72e4500cb14b}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
