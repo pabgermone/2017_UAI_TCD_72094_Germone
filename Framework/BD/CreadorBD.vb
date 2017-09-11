@@ -80,7 +80,7 @@ Public Class CreadorBD
     ''' Se encarga de la creacion de la BD, si es que no existe
     ''' </summary>
     Private Sub CrearBD()
-        Dim mScript As New FileStream(Application.StartupPath & "\Script - Campo2017_VentaPasajes.sql", FileMode.Open)
+        Dim mScript As New FileStream(Application.StartupPath & "\Script - Diploma2017_VentaPasajes.sql", FileMode.Open)
         Dim mReader As New StreamReader(mScript)
         Dim mConnectionString As String = ConfigurationManager.ConnectionStrings.Item("BDConnection").ConnectionString
         Dim mStringBuilder As New SqlConnectionStringBuilder
@@ -97,15 +97,15 @@ Public Class CreadorBD
         Try
             mCommand = New SqlCommand("IF (NOT EXISTS (SELECT name " &
                                                       "FROM master.dbo.sysdatabases " &
-                                                      "WHERE ('[' + name + ']' = 'Campo2017_VentaPasajes' " &
-                                                             "OR name = 'Campo2017_VentaPasajes'))) " &
-                                                      "CREATE DATABASE [Campo2017_VentaPasajes]", mConnection)
+                                                      "WHERE ('[' + name + ']' = 'Diploma2017_VentaPasajes' " &
+                                                             "OR name = 'Diploma2017_VentaPasajes'))) " &
+                                                      "CREATE DATABASE [Diploma2017_VentaPasajes]", mConnection)
             mCommand.ExecuteNonQuery()
         Catch ex As Exception
             MsgBox("Error en creacion de la BD:" & vbCrLf & ex.Message)
         End Try
         Try
-            mConnection.ChangeDatabase("Campo2017_VentaPasajes")
+            mConnection.ChangeDatabase("Diploma2017_VentaPasajes")
             mCommand.CommandText = mReader.ReadToEnd
             mCommand.ExecuteNonQuery()
         Catch ex As Exception
