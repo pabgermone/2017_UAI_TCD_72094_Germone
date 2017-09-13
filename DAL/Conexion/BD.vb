@@ -54,6 +54,30 @@ Public Class BD
     End Function
 
 
+    ''' <summary>
+    ''' Ejecuta un cambio en la BD y devuelve el numero de filas afectadas
+    ''' </summary>
+    ''' <param name="pCommand">Comando SQL a ejecutar</param>
+    ''' <param name="pConnection">String de conexion en el que ejecutar el comando</param>
+    ''' <returns></returns>
+    Public Shared Function ExecuteNonQuery(pCommand As String, pConnection As String) As Integer
+        Try
+            mConnection = New SqlConnection(pConnection)
+            Dim mCommand As New SqlCommand(pCommand, mConnection)
+
+            mConnection.Open()
+            Return mCommand.ExecuteNonQuery
+        Catch ex As Exception
+            MsgBox("Error - NonQuery - BD")
+            MsgBox(ex.Message)
+            Return Nothing
+        Finally
+            mConnection.Close()
+            mConnection.Dispose()
+        End Try
+    End Function
+
+
     '??
     Public Shared Function ExecuteReader(pCommandStr As String) As SqlDataReader
         Dim mReader As SqlDataReader = Nothing

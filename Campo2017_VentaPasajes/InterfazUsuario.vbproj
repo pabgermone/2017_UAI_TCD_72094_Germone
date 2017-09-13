@@ -75,10 +75,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backup\FormCreacionBackup.Designer.vb">
-      <DependentUpon>FormCreacionBackup.vb</DependentUpon>
+    <Compile Include="Backup\FormBackup.Designer.vb">
+      <DependentUpon>FormBackup.vb</DependentUpon>
     </Compile>
-    <Compile Include="Backup\FormCreacionBackup.vb">
+    <Compile Include="Backup\FormBackup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPrincipal.Designer.vb">
@@ -224,8 +224,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Backup\FormCreacionBackup.resx">
-      <DependentUpon>FormCreacionBackup.vb</DependentUpon>
+    <EmbeddedResource Include="Backup\FormBackup.resx">
+      <DependentUpon>FormBackup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.vb</DependentUpon>
