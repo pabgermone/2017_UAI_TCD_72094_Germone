@@ -69,6 +69,7 @@
     <Compile Include="BD\ControladorBackup.vb" />
     <Compile Include="BD\CreadorBD.vb" />
     <Compile Include="Seguridad\Bitacora.vb" />
+    <Compile Include="Seguridad\CalculadorDV.vb" />
     <Compile Include="Seguridad\Encriptador.vb" />
     <Compile Include="Observer\IObservado.vb" />
     <Compile Include="Observer\IObservador.vb" />
