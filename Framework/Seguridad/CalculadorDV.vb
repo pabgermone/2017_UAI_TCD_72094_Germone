@@ -2,7 +2,12 @@
 
 Public Class CalculadorDV
 
-    Public Shared Sub CalcularDV(pString As String)
+    ''' <summary>
+    ''' Calcula el DV para un String de datos
+    ''' </summary>
+    ''' <param name="pString">Datos con los que calcular el DV</param>
+    ''' <returns>DV calculado</returns>
+    Public Shared Function CalcularDV(pString As String) As Integer
         Dim mDV As Integer
 
         pString = pString.ToUpper
@@ -28,6 +33,23 @@ Public Class CalculadorDV
         mTotal = Math.Abs(mTotal) + 10
 
         mDV = (10 - (mTotal Mod 10)) Mod 10
-    End Sub
+
+        Return mDV
+    End Function
+
+
+    ''' <summary>
+    ''' Valida los datos con su DV
+    ''' </summary>
+    ''' <param name="pString">Datos que se quieren verificar</param>
+    ''' <param name="pDV">DV qeu verifica esos datos</param>
+    ''' <returns></returns>
+    Public Shared Function VerificarDV(pString As String, pDV As Integer) As Boolean
+        If CalcularDV(pString) = pDV Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
 End Class
