@@ -250,3 +250,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/Campo2017_VentaPasajes/Form2.Designer.vb
+/Campo2017_VentaPasajes/Form2.resx
+/Campo2017_VentaPasajes/Form2.vb

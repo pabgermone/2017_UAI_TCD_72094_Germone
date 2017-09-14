@@ -7,12 +7,13 @@ Public Class BitacoraDAL
         pRegistro.Usuario = pRow("bitacora_usuario")
         pRegistro.Fecha = pRow("bitacora_fecha")
         pRegistro.Descripcion = pRow("bitacora_descripcion")
+        pRegistro.DV = pRow("bitacora_dv")
     End Sub
 
 
     Public Shared Sub GuardarRegistro(pRegistro As RegistroBE)
-        Dim mCommand As String = "insert into Bitacora(bitacora_usuario, bitacora_fecha, bitacora_descripcion) 
-                                  values('" & pRegistro.Usuario & "', '" & pRegistro.Fecha.ToString("yyyy-MM-dd") & "', '" & pRegistro.Descripcion & "');"
+        Dim mCommand As String = "insert into Bitacora(bitacora_usuario, bitacora_fecha, bitacora_descripcion, bitacora_dv) 
+                                  values('" & pRegistro.Usuario & "', '" & pRegistro.Fecha.ToString("yyyy-MM-dd") & "', '" & pRegistro.Descripcion & "', " & pRegistro.DV & ");"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -25,7 +26,7 @@ Public Class BitacoraDAL
 
     Public Shared Function ListarRegistros() As List(Of RegistroBE)
         Dim mLista As New List(Of RegistroBE)
-        Dim mCommand As String = "select bitacora_usuario, bitacora_fecha, bitacora_descripcion from Bitacora"
+        Dim mCommand As String = "select bitacora_usuario, bitacora_fecha, bitacora_descripcion, bitacora_dv from Bitacora"
         Dim mDataSet As DataSet
 
         Try
