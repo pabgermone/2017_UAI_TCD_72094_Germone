@@ -7,4 +7,5 @@
     Public Property FechaNac As Date
     Public Property Telefono As Integer
     Public Property Sexo As String
+    Public Property DV As Integer
 End Class
