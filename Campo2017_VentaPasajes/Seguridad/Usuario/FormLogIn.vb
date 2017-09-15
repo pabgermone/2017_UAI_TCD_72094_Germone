@@ -59,7 +59,7 @@ Public Class FormLogIn
 
 
     Private Sub FormLogIn_Load(sender As Object, e As EventArgs) Handles Me.Load
-        CreadorBD.GetInstance.Crear()
+        'CreadorBD.GetInstance.Crear()
 
         mTraductor.RegistrarObservador(Me)
 

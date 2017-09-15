@@ -1,4 +1,5 @@
 ﻿Imports BLL
+Imports Framework
 
 ''' <summary>
 ''' Clase Singleton

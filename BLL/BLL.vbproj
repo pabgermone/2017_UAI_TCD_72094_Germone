@@ -65,6 +65,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Multi-Idioma\Traductor.vb" />
     <Compile Include="Negocio\ClienteBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -121,6 +122,10 @@
     <ProjectReference Include="..\DAL\DAL.vbproj">
       <Project>{ce91c09f-fee9-46af-8fc0-72e4500cb14b}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Framework.vbproj">
+      <Project>{81756a59-1a9b-405d-96f0-5f07a1e846e0}</Project>
+      <Name>Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

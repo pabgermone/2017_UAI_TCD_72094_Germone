@@ -88,7 +88,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Multi-Idioma\Traductor.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -114,14 +113,13 @@
       <Project>{707d6341-23ac-46c9-b175-b20cd68e6083}</Project>
       <Name>BE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BLL\BLL.vbproj">
-      <Project>{049769c9-d30e-4a28-a160-92a3dcdf67c0}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.vbproj">
       <Project>{ce91c09f-fee9-46af-8fc0-72e4500cb14b}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Multi-Idioma\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

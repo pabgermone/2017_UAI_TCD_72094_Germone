@@ -1,5 +1,6 @@
 ﻿Imports System.Reflection
 Imports Framework
+Imports BLL
 
 Public Class AltaPermiso
     Implements IObservador
