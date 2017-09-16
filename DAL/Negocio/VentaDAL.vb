@@ -11,10 +11,12 @@ Public Class VentaDAL
     ''' <returns>Objeto BE cargado con datos recuperados de BD</returns>
     Private Shared Function CargarBE(pVenta As VentaBE, pRow As DataRow) As VentaBE
         pVenta.ID = pRow("Venta_id")
+        pVenta.Usuario = pRow("venta_usuario")
         pVenta.Fecha = pRow("venta_fecha")
         pVenta.Paquete = pRow("venta_paquete")
         pVenta.Cliente = pRow("venta_cliente")
         pVenta.Vuelo = pRow("venta_vuelo")
+        pVenta.DV = pRow("venta_dv")
 
         Return pVenta
     End Function
@@ -27,7 +29,7 @@ Public Class VentaDAL
     ''' <returns>Objeto BE con datos recuperados de BD</returns>
     Public Shared Function ObtenerVenta(pID As Integer) As VentaBE
         Dim mVenta As New VentaBE
-        Dim mCommand As String = "SELECT Venta_id, Venta_fecha, venta_paquete, venta_cliente, venta_vuelo FROM Venta WHERE Venta_id = " & pID
+        Dim mCommand As String = "SELECT Venta_id, venta_usuario, Venta_fecha, venta_paquete, venta_cliente, venta_vuelo, venta_dv FROM Venta WHERE Venta_id = " & pID
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)
@@ -51,7 +53,7 @@ Public Class VentaDAL
     ''' </summary>
     ''' <param name="pVenta">Objeto BE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pVenta As VentaBE)
-        Dim mCommand As String = "INSERT INTO Venta(venta_usuario, Venta_fecha, venta_paquete, venta_cliente, venta_vuelo) VALUES (" & pVenta.Usuario & ", '" & pVenta.Fecha.ToString("yyyy-MM-dd") & "', " & pVenta.Paquete & ", " & pVenta.Cliente & ", '" & pVenta.Vuelo & "')"
+        Dim mCommand As String = "INSERT INTO Venta(venta_usuario, Venta_fecha, venta_paquete, venta_cliente, venta_vuelo, venta_dv) VALUES (" & pVenta.Usuario & ", '" & pVenta.Fecha.ToString("yyyy-MM-dd") & "', " & pVenta.Paquete & ", " & pVenta.Cliente & ", '" & pVenta.Vuelo & "', " & pVenta.DV & ")"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -68,11 +70,13 @@ Public Class VentaDAL
     ''' <param name="pVenta">Objeto BE con datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pVenta As VentaBE)
         Dim mCommand As String = "UPDATE Venta SET " &
-                                 "Venta_fecha = '" & pVenta.Fecha.ToString("yyyy-MM-dd") &
+                                 "venta_usuario = " & pVenta.Usuario &
+                                 ", Venta_fecha = '" & pVenta.Fecha.ToString("yyyy-MM-dd") &
                                  "', venta_paquete = " & pVenta.Paquete &
                                  ", venta_cliente = " & pVenta.Cliente &
                                  ", venta_vuelo = '" & pVenta.Vuelo &
-                                 "' WHERE Venta_id = " & pVenta.ID
+                                 "', venta_dv = " & pVenta.DV &
+                                 " WHERE Venta_id = " & pVenta.ID
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -105,7 +109,7 @@ Public Class VentaDAL
     ''' <returns>Lista de todas las ventas registradas en BD</returns>
     Public Shared Function ListarVentas() As List(Of VentaBE)
         Dim mLista As New List(Of VentaBE)
-        Dim mCommand As String = "SELECT Venta_id, Venta_fecha, venta_paquete, venta_cliente, venta_vuelo FROM Venta"
+        Dim mCommand As String = "SELECT Venta_id, venta_usuario, Venta_fecha, venta_paquete, venta_cliente, venta_vuelo, venta_dv FROM Venta"
         Dim mDataSet As DataSet
 
         Try

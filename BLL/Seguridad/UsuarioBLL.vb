@@ -1,5 +1,6 @@
 ﻿Imports DAL
 Imports BE
+Imports Framework
 
 Public Class UsuarioBLL
 
@@ -10,6 +11,7 @@ Public Class UsuarioBLL
     Public Property Apellido As String
     Public Property Password As String
     Public Property Rol As Integer = 0
+    Public Property DV As Integer
 #End Region
 
 #Region "Constructores"
@@ -46,12 +48,17 @@ Public Class UsuarioBLL
         Dim mBE As UsuarioBE = UsuarioDAL.ObtenerUsuario(pUser)
 
         If Not IsNothing(mBE) Then
-            Me.ID = mBE.ID
-            Me.UserName = mBE.UserName
-            Me.Nombre = mBE.Nombre
-            Me.Apellido = mBE.Apellido
-            Me.Password = mBE.Password
-            Me.Rol = mBE.Rol
+            If CalculadorDV.VerificarDV(mBE.ID & mBE.UserName & mBE.Nombre & mBE.Apellido & mBE.Password & mBE.Rol, mBE.DV) Then
+                Me.ID = mBE.ID
+                Me.UserName = mBE.UserName
+                Me.Nombre = mBE.Nombre
+                Me.Apellido = mBE.Apellido
+                Me.Password = mBE.Password
+                Me.Rol = mBE.Rol
+                Me.DV = mBE.DV
+            Else
+                MsgBox("Error - DV - Usuario - CargarPropieades(String)")
+            End If
         End If
     End Sub
 
@@ -68,6 +75,7 @@ Public Class UsuarioBLL
             Me.Apellido = pUser.Apellido
             Me.Password = pUser.Password
             Me.Rol = pUser.Rol
+            Me.DV = pUser.DV
         End If
     End Sub
 
@@ -83,6 +91,7 @@ Public Class UsuarioBLL
         mBE.Apellido = Me.Apellido
         mBE.Password = Me.Password
         mBE.Rol = Me.Rol
+        mBE.DV = Me.DV
     End Sub
 #End Region
 
@@ -92,6 +101,8 @@ Public Class UsuarioBLL
     ''' </summary>
     Public Sub Guardar()
         Dim mBE As New UsuarioBE
+
+        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.UserName & Me.Nombre & Me.Apellido & Me.Password & Me.Rol)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -125,9 +136,13 @@ Public Class UsuarioBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As UsuarioBE In mListaBE
-                Dim mUsuario As New UsuarioBLL(mBE)
+                If CalculadorDV.VerificarDV(mBE.ID & mBE.UserName & mBE.Nombre & mBE.Apellido & mBE.Password & mBE.Rol, mBE.DV) Then
+                    Dim mUsuario As New UsuarioBLL(mBE)
 
-                mLista.Add(mUsuario)
+                    mLista.Add(mUsuario)
+                Else
+                    MsgBox("Error - DV - Usuario - Listar")
+                End If
             Next
         End If
 

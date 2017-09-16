@@ -18,6 +18,7 @@ Public Class UsuarioDAL
         If IsNumeric(pRow("usuario_rol")) Then
             pUsuario.Rol = pRow("usuario_rol")
         End If
+        pUsuario.DV = pRow("usuario_dv")
 
         Return pUsuario
     End Function
@@ -29,7 +30,7 @@ Public Class UsuarioDAL
     ''' <returns>Objeto BE con datos recuperados de BD</returns>
     Public Shared Function ObtenerUsuario(pUser As String) As UsuarioBE
         Dim mUsuario As New UsuarioBE
-        Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario WHERE Usuario_userName LIKE '" & pUser & "';"
+        Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol, usuario_dv FROM Usuario WHERE Usuario_userName LIKE '" & pUser & "';"
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)
@@ -53,8 +54,8 @@ Public Class UsuarioDAL
     ''' </summary>
     ''' <param name="pUsuario">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pUsuario As UsuarioBE)
-        Dim mCommand As String = "INSERT INTO Usuario(Usuario_userName, usuario_nombre, usuario_apellido, usuario_password) " &
-                                 "VALUES ('" & pUsuario.UserName & "', '" & pUsuario.Nombre & "', '" & pUsuario.Apellido & "', '" & pUsuario.Password & "');"
+        Dim mCommand As String = "INSERT INTO Usuario(Usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_dv) " &
+                                 "VALUES ('" & pUsuario.UserName & "', '" & pUsuario.Nombre & "', '" & pUsuario.Apellido & "', '" & pUsuario.Password & "', " & pUsuario.DV & ");"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -76,6 +77,7 @@ Public Class UsuarioDAL
                                  "', usuario_apellido = '" & pUsuario.Apellido &
                                  "', usuario_password = '" & pUsuario.Password &
                                  "', usuario_rol = " & pUsuario.Rol &
+                                 ", usuario_dv = " & pUsuario.DV &
                                  " WHERE Usuario_id = " & pUsuario.ID
 
         Try
@@ -109,7 +111,7 @@ Public Class UsuarioDAL
     ''' <returns>Lista con instancias BE con todos los datos obtenidos de la BD</returns>
     Public Shared Function ListarUsuarios() As List(Of UsuarioBE)
         Dim mLista As New List(Of UsuarioBE)
-        Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol FROM Usuario"
+        Dim mCommand As String = "SELECT Usuario_id, usuario_userName, usuario_nombre, usuario_apellido, usuario_password, usuario_rol, usuario_dv FROM Usuario"
         Dim mDataSet As DataSet
 
         Try

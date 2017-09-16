@@ -5,4 +5,5 @@
     Public Property Paquete As Integer
     Public Property Cliente As Integer
     Public Property Vuelo As String
+    Public Property DV As Integer
 End Class

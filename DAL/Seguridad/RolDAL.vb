@@ -12,6 +12,7 @@ Public Class RolDAL
     Private Shared Function CargarBE(pRol As RolBE, pRow As DataRow) As RolBE
         pRol.ID = pRow("Rol_id")
         pRol.Nombre = pRow("Rol_nombre")
+        pRol.DV = pRow("rol_dv")
         pRol.ListaPermisos = ObtenerPermisos(pRol.ID)
 
         Return pRol
@@ -25,7 +26,7 @@ Public Class RolDAL
     ''' <returns>RolBE con los datos recuperados de BD par esa entidad</returns>
     Public Shared Function ObtenerRol(pID As Integer) As RolBE
         Dim mRol As New RolBE
-        Dim mCommand As String = "SELECT Rol_id, Rol_nombre FROM Rol WHERE Rol_id = " & pID
+        Dim mCommand As String = "SELECT Rol_id, Rol_nombre, rol_dv FROM Rol WHERE Rol_id = " & pID
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)
@@ -49,7 +50,7 @@ Public Class RolDAL
     ''' </summary>
     ''' <param name="pRol">RolBE con datos a persistir</param>
     Public Shared Sub GuardarNuevo(pRol As RolBE)
-        Dim mCommand As String = "INSERT INTO Rol(Rol_nombre) VALUES ('" & pRol.Nombre & "')"
+        Dim mCommand As String = "INSERT INTO Rol(Rol_nombre, rol_dv) VALUES ('" & pRol.Nombre & "', " & pRol.DV & ")"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -69,7 +70,8 @@ Public Class RolDAL
     Public Shared Sub GuardarModificacion(pRol As RolBE)
         Dim mCommand As String = "UPDATE Rol SET " &
                                  "Rol_nombre = '" & pRol.Nombre &
-                                 "' WHERE Rol_id = " & pRol.ID
+                                 "', rol_dv = " & pRol.DV &
+                                 " WHERE Rol_id = " & pRol.ID
 
         Try
             RolPermisoDAL.EliminarPorRol(pRol.ID)
@@ -107,7 +109,7 @@ Public Class RolDAL
     ''' <returns>List(Of RolBE) con objetos BE cargados con datos obtenidos de BD</returns>
     Public Shared Function ListarRoles() As List(Of RolBE)
         Dim mLista As New List(Of RolBE)
-        Dim mCommand As String = "SELECT Rol_id, Rol_nombre FROM Rol"
+        Dim mCommand As String = "SELECT Rol_id, Rol_nombre, rol_dv FROM Rol"
         Dim mDataSet As DataSet
 
         Try
@@ -142,12 +144,12 @@ Public Class RolDAL
     ''' </returns>
     Public Shared Function ObtenerPermisos(pID As Integer) As List(Of PermisoAbstractoBE)
         Dim mLista As New List(Of PermisoAbstractoBE)
-        Dim mCommand As String = "select permiso_id, permiso_nombre, permiso_padre, permiso_formulario
+        Dim mCommand As String = "select permiso_id, permiso_nombre, permiso_padre, permiso_formulario, permiso_dv
                                   from Permiso
                                   inner join RolPermiso on rolPermiso_permiso = permiso_id
                                   where rolPermiso_rol = " & pID
 
-        Dim mCommandComp As String = "select permisoCompuesto_id, permisoCompuesto_nombre, permisoCompuesto_padre, PermisoCompuesto_formulario
+        Dim mCommandComp As String = "select permisoCompuesto_id, permisoCompuesto_nombre, permisoCompuesto_padre, PermisoCompuesto_formulario, permisoCompuesto_dv
                                       from PermisoCompuesto
                                       inner join RolPermisoCompuesto on rolPermisoCompuesto_permiso = permisoCompuesto_id
                                       where rolPermisoCompuesto_rol = " & pID

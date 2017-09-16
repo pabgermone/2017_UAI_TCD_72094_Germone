@@ -1,11 +1,13 @@
 ﻿Imports BE
 Imports DAL
+Imports Framework
 
 Public Class RolBLL
 
 #Region "Propiedades"
     Public Property ID As Integer
     Public Property Nombre As String
+    Public Property DV As Integer
     Public Property ListaPermisos As New List(Of PermisoAbstractoBLL)
     Public Property PermisoRaiz As PermisoAbstractoBLL '??
 #End Region
@@ -42,6 +44,7 @@ Public Class RolBLL
         If Not IsNothing(pBE) Then
             Me.ID = pBE.ID
             Me.Nombre = pBE.Nombre
+            Me.DV = pBE.DV
 
             If pBE.ListaPermisos.Count > 0 Then
                 For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
@@ -70,6 +73,7 @@ Public Class RolBLL
         If Not IsNothing(pBE) Then
             Me.ID = pBE.ID
             Me.Nombre = pBE.Nombre
+            Me.DV = pBE.DV
 
             If pBE.ListaPermisos.Count > 0 Then
                 For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
@@ -95,6 +99,7 @@ Public Class RolBLL
     Private Sub CargarBE(mBE As RolBE)
         mBE.ID = Me.ID
         mBE.Nombre = Me.Nombre
+        mBE.DV = Me.DV
 
         For Each mPermisoBLL As PermisoAbstractoBLL In Me.ListaPermisos
             Dim mPermiso As PermisoAbstractoBE

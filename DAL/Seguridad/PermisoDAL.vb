@@ -17,6 +17,7 @@ Public Class PermisoDAL
         If TypeOf (pPermiso) Is PermisoBE Then
             pPermiso.ID = pRow("Permiso_id")
             pPermiso.Nombre = pRow("Permiso_nombre")
+            pPermiso.DV = pRow("permiso_dv")
 
             If TypeOf (pRow("permiso_padre")) Is DBNull Then
                 pPermiso.Padre = 0
@@ -24,7 +25,7 @@ Public Class PermisoDAL
                 pPermiso.Padre = pRow("permiso_padre")
             End If
 
-            If TypeOf (pRow("permiso_padre")) Is DBNull Then
+            If TypeOf (pRow("permiso_formulario")) Is DBNull Then
                 pPermiso.Formulario = ""
             Else
                 pPermiso.Formulario = pRow("permiso_formulario")
@@ -33,6 +34,7 @@ Public Class PermisoDAL
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             pPermiso.ID = pRow("permisoCompuesto_id")
             pPermiso.Nombre = pRow("permisoCompuesto_nombre")
+            pPermiso.DV = pRow("permisoCompuesto_dv")
 
             If TypeOf (pRow("permisoCompuesto_padre")) Is DBNull Then
                 pPermiso.Padre = 0
@@ -62,10 +64,10 @@ Public Class PermisoDAL
 
         If pCompuesto Then
             mPermiso = New PermisoCompuestoBE
-            mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto WHERE PermisoCompuesto_id = " & pID
+            mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario, permisoCompuesto_dv FROM PermisoCompuesto WHERE PermisoCompuesto_id = " & pID
         Else
             mPermiso = New PermisoBE
-            mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso WHERE Permiso_id = " & pID
+            mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario, permisoCompuesto_dv FROM Permiso WHERE Permiso_id = " & pID
         End If
 
         Try
@@ -93,11 +95,11 @@ Public Class PermisoDAL
         Dim mCommand As String = ""
 
         If TypeOf (pPermiso) Is PermisoBE Then
-            mCommand = "INSERT INTO Permiso(Permiso_nombre, permiso_padre, permiso_formulario)
-                        VALUES ('" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
+            mCommand = "INSERT INTO Permiso(Permiso_nombre, permiso_padre, permiso_formulario, permiso_dv)
+                        VALUES ('" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "', " & pPermiso.DV & ");"
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
-            mCommand = "INSERT INTO PermisoCompuesto(PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario)
-                        VALUES ('" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "');"
+            mCommand = "INSERT INTO PermisoCompuesto(PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario, permisoCompuesto_dv)
+                        VALUES ('" & pPermiso.Nombre & "', " & pPermiso.Padre & ", '" & pPermiso.Formulario & "', " & pPermiso.DV & ");"
         End If
 
         Try
@@ -121,13 +123,15 @@ Public Class PermisoDAL
                                  "Permiso_nombre = '" & pPermiso.Nombre &
                                  "', permiso_padre = " & pPermiso.Padre &
                                  ", permiso_formulario = '" & pPermiso.Formulario &
-                                 "' WHERE Permiso_id = " & pPermiso.ID
+                                 "', permiso_dv = " & pPermiso.DV &
+                                 " WHERE Permiso_id = " & pPermiso.ID
         ElseIf TypeOf (pPermiso) Is PermisoCompuestoBE Then
             mCommand = "UPDATE PermisoCompuesto SET " &
                                  "PermisoCompuesto_nombre = '" & pPermiso.Nombre &
                                  "', permisoCompuesto_padre = " & pPermiso.Padre &
                                  ", permisoCompuesto_formulario = '" & pPermiso.Formulario &
-                                 "' WHERE PermisoCompuesto_id = " & pPermiso.ID
+                                 "', permisoCompuesto_dv = " & pPermiso.DV &
+                                 " WHERE PermisoCompuesto_id = " & pPermiso.ID
         End If
 
         Try
@@ -179,17 +183,17 @@ Public Class PermisoDAL
 
         If pCompuesto Then
             If pPadreID <> -1 Then
-                mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto
+                mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario, permisoCompuesto_dv FROM PermisoCompuesto
                              WHERE permisoCompuesto_padre = " & pPadreID
             Else
-                mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario FROM PermisoCompuesto"
+                mCommand = "SELECT PermisoCompuesto_id, PermisoCompuesto_nombre, permisoCompuesto_padre, permisoCompuesto_formulario, permisoCompuesto_dv FROM PermisoCompuesto"
             End If
         Else
             If pPadreID <> -1 Then
-                mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso
+                mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario, permiso_dv FROM Permiso
                              WHERE permiso_padre = " & pPadreID
             Else
-                mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario FROM Permiso"
+                mCommand = "SELECT Permiso_id, Permiso_nombre, permiso_padre, permiso_formulario, permiso_dv FROM Permiso"
             End If
         End If
 

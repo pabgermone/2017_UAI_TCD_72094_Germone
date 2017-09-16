@@ -6,4 +6,5 @@
     Public Property Destino As Integer
     Public Property Aerolinea As Integer
     Public Property Precio As Decimal
+    Public Property DV As Integer
 End Class

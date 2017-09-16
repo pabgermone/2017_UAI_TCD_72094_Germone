@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Forms
 Imports BE
 Imports DAL
+Imports Framework
 
 Public Class PermisoBLL
     Inherits PermisoAbstractoBLL
@@ -29,6 +30,7 @@ Public Class PermisoBLL
         pBE.Nombre = Me.Nombre
         pBE.Padre = Me.Padre
         pBE.Formulario = Me.Formulario
+        pBE.DV = Me.DV
     End Sub
 
 
@@ -41,6 +43,7 @@ Public Class PermisoBLL
         Me.Nombre = pBE.Nombre
         Me.Padre = pBE.Padre
         Me.Formulario = pBE.Formulario
+        Me.DV = pBE.DV
     End Sub
 #End Region
 
@@ -63,6 +66,8 @@ Public Class PermisoBLL
     Public Overrides Sub Guardar()
         Dim mBE As New PermisoBE
 
+        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.Nombre & Me.Padre & Me.Formulario)
+
         If Me.ID = 0 Then
             CargarBE(mBE)
             PermisoDAL.GuardarNuevo(mBE)
@@ -84,7 +89,11 @@ Public Class PermisoBLL
         If Not IsNothing(mListBE) Then
             For Each mPermiso As PermisoAbstractoBE In mListBE
                 If TypeOf (mPermiso) Is PermisoBE Then
-                    Dim mPermisoBLL As New PermisoBLL(mPermiso)
+                    If CalculadorDV.VerificarDV(mPermiso.ID & mPermiso.Nombre & mPermiso.Padre & mPermiso.Formulario, mPermiso.DV) Then
+                        Dim mPermisoBLL As New PermisoBLL(mPermiso)
+
+                        mListaPermisos.Add(mPermisoBLL)
+                    End If
                 End If
             Next
         End If

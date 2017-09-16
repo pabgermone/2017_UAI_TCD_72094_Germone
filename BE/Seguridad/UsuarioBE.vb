@@ -5,4 +5,5 @@
     Public Property Apellido As String
     Public Property Password As String
     Public Property Rol As Integer = 0
+    Public Property DV As Integer
 End Class

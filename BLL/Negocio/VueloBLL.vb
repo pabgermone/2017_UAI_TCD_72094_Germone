@@ -1,5 +1,6 @@
 ﻿Imports BE
 Imports DAL
+Imports Framework
 
 Public Class VueloBLL
 #Region "Propiedades"
@@ -10,6 +11,7 @@ Public Class VueloBLL
     Public Property Destino As Integer
     Public Property Aerolinea As Integer
     Public Property Precio As Decimal
+    Public Property DV As Integer
 #End Region
 
 #Region "Constructores"
@@ -46,13 +48,18 @@ Public Class VueloBLL
         Dim mBE As VueloBE = VueloDAL.ObtenerVuelo(pVuelo)
 
         If Not IsNothing(mBE) Then
-            Me.Numero = mBE.Numero
-            Me.Disponible = mBE.Disponible
-            Me.Fecha = mBE.Fecha
-            Me.Hora = mBE.Hora
-            Me.Destino = mBE.Destino
-            Me.Aerolinea = mBE.Aerolinea
-            Me.Precio = mBE.Precio
+            If CalculadorDV.VerificarDV(mBE.Numero & mBE.Disponible & mBE.Fecha.ToString("yyyymmdd") & mBE.Hora & mBE.Destino & mBE.Aerolinea & mBE.Precio, mBE.DV) Then
+                Me.Numero = mBE.Numero
+                Me.Disponible = mBE.Disponible
+                Me.Fecha = mBE.Fecha
+                Me.Hora = mBE.Hora
+                Me.Destino = mBE.Destino
+                Me.Aerolinea = mBE.Aerolinea
+                Me.Precio = mBE.Precio
+            Else
+                MsgBox("Error - DV - Vuelo - CargarPropiedades(Integer)")
+            End If
+
         End If
     End Sub
 
@@ -82,11 +89,11 @@ Public Class VueloBLL
         mBE.Numero = Me.Numero
         mBE.Disponible = Me.Disponible
         mBE.Fecha = Me.Fecha
-        mBE.Fecha = Me.Fecha
         mBE.Hora = Me.Hora
         mBE.Destino = Me.Destino
         mBE.Aerolinea = Me.Aerolinea
         mBE.Precio = Me.Precio
+        mBE.DV = Me.DV
     End Sub
 #End Region
 
@@ -96,6 +103,9 @@ Public Class VueloBLL
     ''' </summary>
     Public Sub GuardarNuevo()
         Dim mBE As New VueloBE
+
+        Me.DV = CalculadorDV.CalcularDV(Me.Numero & Me.Disponible & Me.Fecha.ToString("yyyymmdd") & Me.Hora & Me.Destino & Me.Aerolinea & Me.Precio)
+
         CargarBE(mBE)
         VueloDAL.GuardarNuevo(mBE)
     End Sub
@@ -106,6 +116,9 @@ Public Class VueloBLL
     ''' </summary>
     Public Sub GuardarModificacion()
         Dim mBE As New VueloBE
+
+        Me.DV = CalculadorDV.CalcularDV(Me.Numero & Me.Disponible & Me.Fecha.ToString("yyyymmdd") & Me.Hora & Me.Destino & Me.Aerolinea & Me.Precio)
+
         CargarBE(mBE)
         VueloDAL.GuardarModificacion(mBE)
     End Sub
@@ -133,9 +146,13 @@ Public Class VueloBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As VueloBE In mListaBE
-                Dim mVuelo As New VueloBLL(mBE)
+                If CalculadorDV.VerificarDV(mBE.Numero & mBE.Disponible & mBE.Fecha.ToString("yyyymmdd") & mBE.Hora & mBE.Destino & mBE.Aerolinea & mBE.Precio, mBE.DV) Then
+                    Dim mVuelo As New VueloBLL(mBE)
 
-                mLista.Add(mVuelo)
+                    mLista.Add(mVuelo)
+                Else
+                    MsgBox("Error - DV - Vuelo - Listar")
+                End If
             Next
         End If
 
@@ -154,9 +171,13 @@ Public Class VueloBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As VueloBE In mListaBE
-                Dim mVuelo As New VueloBLL(mBE)
+                If CalculadorDV.VerificarDV(mBE.Numero & mBE.Disponible & mBE.Fecha.ToString("yyyymmdd") & mBE.Hora & mBE.Destino & mBE.Aerolinea & mBE.Precio, mBE.DV) Then
+                    Dim mVuelo As New VueloBLL(mBE)
 
-                mLista.Add(mVuelo)
+                    mLista.Add(mVuelo)
+                Else
+                    MsgBox("Error - DV - Vuelo - Listar")
+                End If
             Next
         End If
 

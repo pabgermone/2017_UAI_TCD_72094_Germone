@@ -1,5 +1,6 @@
 ﻿Imports BE
 Imports DAL
+Imports Framework
 
 Public Class VentaBLL
 #Region "Propiedades"
@@ -9,6 +10,7 @@ Public Class VentaBLL
     Public Property Paquete As Integer
     Public Property Cliente As Integer
     Public Property Vuelo As String
+    Public Property DV As Integer
 #End Region
 
 #Region "Constructores"
@@ -45,12 +47,16 @@ Public Class VentaBLL
         Dim mBE As VentaBE = VentaDAL.ObtenerVenta(pVenta)
 
         If Not IsNothing(mBE) Then
-            Me.ID = mBE.ID
-            Me.Usuario = mBE.Usuario
-            Me.Fecha = mBE.Fecha
-            Me.Paquete = mBE.Paquete
-            Me.Cliente = mBE.Cliente
-            Me.Vuelo = mBE.Vuelo
+            If CalculadorDV.VerificarDV(mBE.ID & mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
+                Me.ID = mBE.ID
+                Me.Usuario = mBE.Usuario
+                Me.Fecha = mBE.Fecha
+                Me.Paquete = mBE.Paquete
+                Me.Cliente = mBE.Cliente
+                Me.Vuelo = mBE.Vuelo
+            Else
+                MsgBox("Error - DV - Venta - CargarPropiedades(Integer)")
+            End If
         End If
     End Sub
 
@@ -82,6 +88,7 @@ Public Class VentaBLL
         mBE.Paquete = Me.Paquete
         mBE.Cliente = Me.Cliente
         mBE.Vuelo = Me.Vuelo
+        mBE.DV = Me.DV
     End Sub
 #End Region
 
@@ -91,6 +98,8 @@ Public Class VentaBLL
     ''' </summary>
     Public Sub Guardar()
         Dim mBE As New VentaBE
+
+        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.Usuario & Me.Fecha.ToString("yyyymmdd") & Me.Paquete & Me.Cliente & Me.Vuelo)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -124,9 +133,13 @@ Public Class VentaBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As VentaBE In mListaBE
-                Dim mVenta As New VentaBLL(mBE)
+                If CalculadorDV.VerificarDV(mBE.ID & mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
+                    Dim mVenta As New VentaBLL(mBE)
 
-                mLista.Add(mVenta)
+                    mLista.Add(mVenta)
+                Else
+                    MsgBox("Error - DV - Venta - Listar")
+                End If
             Next
         End If
 

@@ -2,6 +2,7 @@
 Imports System.Reflection
 Imports BE
 Imports DAL
+Imports Framework
 
 Public Class PermisoCompuestoBLL
     Inherits PermisoAbstractoBLL
@@ -49,6 +50,7 @@ Public Class PermisoCompuestoBLL
             Me.Nombre = pBE.Nombre
             Me.Padre = pBE.Padre
             Me.Formulario = pBE.Formulario
+            Me.DV = pBE.DV
         End If
     End Sub
 
@@ -61,10 +63,15 @@ Public Class PermisoCompuestoBLL
         Dim mBE As PermisoCompuestoBE = PermisoDAL.ObtenerPermiso(pID, True)
 
         If Not IsNothing(mBE) Then
-            Me.ID = mBE.ID
-            Me.Nombre = mBE.Nombre
-            Me.Padre = mBE.Padre
-            Me.Formulario = mBE.Formulario
+            If CalculadorDV.VerificarDV(mBE.ID & mBE.Nombre & mBE.Padre & mBE.Formulario, mBE.DV) Then
+                Me.ID = mBE.ID
+                Me.Nombre = mBE.Nombre
+                Me.Padre = mBE.Padre
+                Me.Formulario = mBE.Formulario
+                Me.DV = mBE.DV
+            Else
+                MsgBox("Error - DV - PermisoCompuesto - CargarPropiedades(Integer)")
+            End If
         End If
     End Sub
 
@@ -78,6 +85,7 @@ Public Class PermisoCompuestoBLL
         pBE.Nombre = Me.Nombre
         pBE.Padre = Me.Padre
         pBE.Formulario = Me.Formulario
+        pBE.DV = Me.DV
 
         For Each mPermiso As PermisoAbstractoBLL In Me.ListaPermisos
             Dim mPermisoBE As PermisoAbstractoBE = Nothing
@@ -103,15 +111,24 @@ Public Class PermisoCompuestoBLL
 
         If Not IsNothing(mListaCompuestos) Then
             For Each mPermisoAbs As PermisoAbstractoBE In mListaCompuestos
-                Dim mPermisoBLL As New PermisoCompuestoBLL(mPermisoAbs)
-                Me.ListaPermisos.Add(mPermisoBLL)
-            Next
+                If CalculadorDV.VerificarDV(mPermisoAbs.ID & mPermisoAbs.Nombre & mPermisoAbs.Padre & mPermisoAbs.Formulario, mPermisoAbs.DV) Then
+                    Dim mPermisoBLL As New PermisoCompuestoBLL(mPermisoAbs)
+                    Me.ListaPermisos.Add(mPermisoBLL)
+                Else
+                    MsgBox("Error - DV - PermisoCompuesto - CargarHijos - Comp")
+                    MsgBox("permiso: " & mPermisoAbs.Nombre)
+                End If
+        Next
         End If
 
         If Not IsNothing(mListaSimples) Then
             For Each mPermisoAbs As PermisoAbstractoBE In mListaSimples
-                Dim mPermisoBLL As New PermisoBLL(mPermisoAbs)
-                Me.ListaPermisos.Add(mPermisoBLL)
+                If CalculadorDV.VerificarDV(mPermisoAbs.ID & mPermisoAbs.Nombre & mPermisoAbs.Padre & mPermisoAbs.Formulario, mPermisoAbs.DV) Then
+                    Dim mPermisoBLL As New PermisoBLL(mPermisoAbs)
+                    Me.ListaPermisos.Add(mPermisoBLL)
+                Else
+                    MsgBox("Error - DV - PermisoCompuesto - Simples")
+                End If
             Next
         End If
     End Sub
@@ -124,6 +141,8 @@ Public Class PermisoCompuestoBLL
     ''' </summary>
     Public Overrides Sub Guardar()
         Dim mBE As New PermisoCompuestoBE
+
+        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.Nombre & Me.Padre & Me.Formulario)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -156,8 +175,12 @@ Public Class PermisoCompuestoBLL
         If Not IsNothing(mListBE) Then
             For Each mPermiso As PermisoAbstractoBE In mListBE
                 If TypeOf (mPermiso) Is PermisoCompuestoBE Then
-                    Dim mPermisoBLL As New PermisoCompuestoBLL(mPermiso)
-                    mListaPermisos.Add(mPermisoBLL)
+                    If CalculadorDV.VerificarDV(mPermiso.ID & mPermiso.Nombre & mPermiso.Padre & mPermiso.Formulario, mPermiso.DV) Then
+                        Dim mPermisoBLL As New PermisoCompuestoBLL(mPermiso)
+                        mListaPermisos.Add(mPermisoBLL)
+                    Else
+                        MsgBox("Error - DV - PermisoCompuesto - Listar")
+                    End If
                 End If
             Next
         End If
