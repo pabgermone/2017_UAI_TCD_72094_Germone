@@ -107,6 +107,8 @@ Public Class VentaBLL
         Else
             CargarBE(mBE)
             VentaDAL.GuardarModificacion(mBE)
+
+            ControladorDVV.ModificarDigito("Venta", ControladorDVV.CalcularDVV("Venta"))
         End If
     End Sub
 
@@ -120,6 +122,8 @@ Public Class VentaBLL
         CargarBE(mBE)
 
         VentaDAL.Eliminar(mBE)
+
+        ControladorDVV.ModificarDigito("Venta", ControladorDVV.CalcularDVV("Venta"))
     End Sub
 
 

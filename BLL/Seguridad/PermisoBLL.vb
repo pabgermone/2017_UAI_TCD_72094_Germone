@@ -57,6 +57,8 @@ Public Class PermisoBLL
         CargarBE(mBE)
 
         PermisoDAL.Eliminar(mBE)
+
+        ControladorDVV.ModificarDigito("Permiso", ControladorDVV.CalcularDVV("Permiso"))
     End Sub
 
 
@@ -75,6 +77,8 @@ Public Class PermisoBLL
             CargarBE(mBE)
             PermisoDAL.GuardarModificacion(mBE)
         End If
+
+        ControladorDVV.ModificarDigito("Permiso", ControladorDVV.CalcularDVV("Permiso"))
     End Sub
 
 

@@ -108,6 +108,8 @@ Public Class VueloBLL
 
         CargarBE(mBE)
         VueloDAL.GuardarNuevo(mBE)
+
+        ControladorDVV.ModificarDigito("Vuelo", ControladorDVV.CalcularDVV("Vuelo"))
     End Sub
 
 
@@ -121,6 +123,8 @@ Public Class VueloBLL
 
         CargarBE(mBE)
         VueloDAL.GuardarModificacion(mBE)
+
+        ControladorDVV.ModificarDigito("Vuelo", ControladorDVV.CalcularDVV("Vuelo"))
     End Sub
 
 
@@ -133,6 +137,8 @@ Public Class VueloBLL
         CargarBE(mBE)
 
         VueloDAL.Eliminar(mBE)
+
+        ControladorDVV.ModificarDigito("Vuelo", ControladorDVV.CalcularDVV("Vuelo"))
     End Sub
 
 

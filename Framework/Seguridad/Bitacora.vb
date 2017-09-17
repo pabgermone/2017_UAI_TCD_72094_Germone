@@ -43,6 +43,8 @@ Public Class Bitacora
         mRegistro.DV = CalculadorDV.CalcularDV(mRegistro.Usuario & mRegistro.Fecha.ToString("yyyymmdd") & mRegistro.Descripcion)
 
         BitacoraDAL.GuardarRegistro(mRegistro)
+
+        ControladorDVV.ModificarDigito("Bitacora", ControladorDVV.CalcularDVV("Bitacora"))
     End Sub
 
 

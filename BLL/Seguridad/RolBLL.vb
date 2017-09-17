@@ -131,6 +131,8 @@ Public Class RolBLL
             CargarBE(mBE)
             RolDAL.GuardarModificacion(mBE)
         End If
+
+        ControladorDVV.ModificarDigito("Rol", ControladorDVV.CalcularDVV("Rol"))
     End Sub
 
 
@@ -151,6 +153,8 @@ Public Class RolBLL
 
         RolPermisoDAL.EliminarPorRol(mBE.ID)
         RolDAL.Eliminar(mBE)
+
+        ControladorDVV.ModificarDigito("Rol", ControladorDVV.CalcularDVV("Rol"))
     End Sub
 
 

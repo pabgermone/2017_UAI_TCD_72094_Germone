@@ -6,7 +6,7 @@
     ''' <param name="pTabla">Nombre de la tabla a la que corresponde en DVV</param>
     ''' <param name="pDigito">DVV a persistir</param>
     Public Shared Sub GuardarDigito(pTabla As String, pDigito As Integer)
-        Dim mCommand As String = "insert into DVV(dvv_tabla, dvv_digito) values('" & pTabla & "', " & pDigito & ")"
+        Dim mCommand As String = "insert into DVV(dvv_tabla, dvv_digito, dvv_fechaVerificacion) values('" & pTabla & "', " & pDigito & ", '" & Date.Now.Date.ToString("yyy-MM-dd") & "')"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -23,7 +23,7 @@
     ''' <param name="pTabla">Tabla a la que corresponde el DVV a modificar</param>
     ''' <param name="pDigito">DVV a modificar</param>
     Public Shared Sub ModificarDigito(pTabla As String, pDigito As Integer)
-        Dim mCommand As String = "update DVV set dvv_digito = " & pDigito & " where dvv_tabla like '" & pTabla & "'"
+        Dim mCommand As String = "update DVV set dvv_digito = " & pDigito & ", dvv_fechaVerificacion = '" & Date.Now.Date.ToString("yyyy-MM-dd") & "' where dvv_tabla like '" & pTabla & "'"
 
         Try
             BD.ExecuteNonQuery(mCommand)

@@ -122,6 +122,8 @@ Public Class ClienteBLL
             CargarBE(mBE)
             ClienteDAL.GuardarModificacion(mBE)
         End If
+
+        ControladorDVV.ModificarDigito("Cliente", ControladorDVV.CalcularDVV("Cliente"))
     End Sub
 
 
@@ -134,6 +136,8 @@ Public Class ClienteBLL
         CargarBE(mBE)
 
         ClienteDAL.Eliminar(mBE)
+
+        ControladorDVV.ModificarDigito("Cliente", ControladorDVV.CalcularDVV("Cliente"))
     End Sub
 
 

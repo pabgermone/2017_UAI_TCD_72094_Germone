@@ -111,6 +111,8 @@ Public Class UsuarioBLL
             CargarBE(mBE)
             UsuarioDAL.GuardarModificacion(mBE)
         End If
+
+        ControladorDVV.ModificarDigito("Usuario", ControladorDVV.CalcularDVV("Usuario"))
     End Sub
 
 
@@ -123,6 +125,8 @@ Public Class UsuarioBLL
         CargarBE(mBE)
 
         UsuarioDAL.Eliminar(mBE)
+
+        ControladorDVV.ModificarDigito("Usuario", ControladorDVV.CalcularDVV("Usuario"))
     End Sub
 
 

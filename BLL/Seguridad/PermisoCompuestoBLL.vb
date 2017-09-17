@@ -151,6 +151,8 @@ Public Class PermisoCompuestoBLL
             CargarBE(mBE)
             PermisoDAL.GuardarModificacion(mBE)
         End If
+
+        ControladorDVV.ModificarDigito("PermisoCompuesto", ControladorDVV.CalcularDVV("PermisoCompuesto"))
     End Sub
 
 
@@ -161,6 +163,8 @@ Public Class PermisoCompuestoBLL
         Dim mBE As New PermisoCompuestoBE
         CargarBE(mBE)
         PermisoDAL.Eliminar(mBE)
+
+        ControladorDVV.ModificarDigito("PermisoCompuesto", ControladorDVV.CalcularDVV("PermisoCompuesto"))
     End Sub
 
 
