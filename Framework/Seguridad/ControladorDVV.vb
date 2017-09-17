@@ -63,6 +63,10 @@ Public Class ControladorDVV
     End Function
 
 
+    ''' <summary>
+    ''' Actualiza la fecha de ultima verificacion de un registro de la tabla DVV de BD
+    ''' </summary>
+    ''' <param name="pTabla">Nombre de la tabla a la que corresponde el registro del que se quiere actualizar la fecha de ultima verificacion</param>
     Private Shared Sub ActualizarFecha(pTabla As String)
         Dim mCommand As String = "update DVV set dvv_fechaVerificacion = '" & Date.Now.Date.ToString("yyyy-MM-dd") & "' where dvv_tabla like '" & pTabla & "'"
 
@@ -75,6 +79,11 @@ Public Class ControladorDVV
     End Sub
 
 
+    ''' <summary>
+    ''' Calcula el DVV para una tabla de BD
+    ''' </summary>
+    ''' <param name="pTabla">Nombre de la tabla de la que se quiere calcular el DVV</param>
+    ''' <returns>DVV calculado</returns>
     Public Shared Function CalcularDVV(pTabla As String)
         Dim mStringDVs As String = ""
         Dim mCommand As String = "select " & pTabla & "_dv from " & pTabla
@@ -99,16 +108,31 @@ Public Class ControladorDVV
     End Function
 
 
+    ''' <summary>
+    ''' Persiste un DVV en la tabla de BD
+    ''' </summary>
+    ''' <param name="pTabla">Nombre de la tabla a la que pertenece el DVV a persistir</param>
+    ''' <param name="pDigito">Digito a persistir</param>
     Public Shared Sub GuardarNuevo(pTabla As String, pDigito As Integer)
         DVVDAL.GuardarDigito(pTabla, pDigito)
     End Sub
 
 
+    ''' <summary>
+    ''' Modifica el DVV perteneciente a una de las tablas de BD
+    ''' </summary>
+    ''' <param name="pTabla">Tabla a la que pertenece el DVV que se quiere modificar</param>
+    ''' <param name="pDigito">DVV que se quiere persistir</param>
     Public Shared Sub ModificarDigito(pTabla As String, pDigito As Integer)
         DVVDAL.ModificarDigito(pTabla, pDigito)
     End Sub
 
 
+    ''' <summary>
+    ''' Recupera el DVV de una de las tablas de BD
+    ''' </summary>
+    ''' <param name="pTabla">Tabla de la que se quiere recuperar el DVV</param>
+    ''' <returns>DVV recuperado de BD</returns>
     Public Shared Function ObtenerDigito(pTabla As String) As Integer
         Return DVVDAL.ObtenerDVV(pTabla)
     End Function
