@@ -61,6 +61,10 @@ Public Class FormLogIn
     Private Sub FormLogIn_Load(sender As Object, e As EventArgs) Handles Me.Load
         'CreadorBD.GetInstance.Crear()
 
+        txtUsername.Text = "Administrador"
+        txtPass.Text = "Administrador"
+
+
         If Not ControladorDVV.VerificarBD() Then
             MsgBox("Error en los datos")
         End If
