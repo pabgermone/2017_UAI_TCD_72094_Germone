@@ -115,8 +115,8 @@ Public Class PermisoCompuestoBLL
                     Dim mPermisoBLL As New PermisoCompuestoBLL(mPermisoAbs)
                     Me.ListaPermisos.Add(mPermisoBLL)
                 Else
-                    MsgBox("Error - DV - PermisoCompuesto - CargarHijos - Comp")
-                    MsgBox("permiso: " & mPermisoAbs.Nombre)
+                MsgBox("Error - DV - PermisoCompuesto - CargarHijos - Comp")
+                MsgBox("permiso: " & mPermisoAbs.Nombre)
                 End If
         Next
         End If
@@ -127,9 +127,9 @@ Public Class PermisoCompuestoBLL
                     Dim mPermisoBLL As New PermisoBLL(mPermisoAbs)
                     Me.ListaPermisos.Add(mPermisoBLL)
                 Else
-                    MsgBox("Error - DV - PermisoCompuesto - Simples")
+                MsgBox("Error - DV - PermisoCompuesto - Simples")
                 End If
-            Next
+        Next
         End If
     End Sub
 
@@ -182,9 +182,9 @@ Public Class PermisoCompuestoBLL
                     If CalculadorDV.VerificarDV(mPermiso.Nombre & mPermiso.Padre & mPermiso.Formulario, mPermiso.DV) Then
                         Dim mPermisoBLL As New PermisoCompuestoBLL(mPermiso)
                         mListaPermisos.Add(mPermisoBLL)
-                    Else
-                        MsgBox("Error - DV - PermisoCompuesto - Listar")
-                    End If
+                Else
+                    MsgBox("Error - DV - PermisoCompuesto - Listar")
+                End If
                 End If
             Next
         End If

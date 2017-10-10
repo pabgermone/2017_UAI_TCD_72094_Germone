@@ -145,9 +145,9 @@ Public Class UsuarioBLL
 
                     mLista.Add(mUsuario)
                 Else
-                    MsgBox("Error - DV - Usuario - Listar")
+                MsgBox("Error - DV - Usuario - Listar")
                 End If
-            Next
+        Next
         End If
 
 
