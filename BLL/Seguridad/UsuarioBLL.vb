@@ -48,7 +48,7 @@ Public Class UsuarioBLL
         Dim mBE As UsuarioBE = UsuarioDAL.ObtenerUsuario(pUser)
 
         If Not IsNothing(mBE) Then
-            If CalculadorDV.VerificarDV(mBE.ID & mBE.UserName & mBE.Nombre & mBE.Apellido & mBE.Password & mBE.Rol, mBE.DV) Then
+            If CalculadorDV.VerificarDV(mBE.UserName & mBE.Nombre & mBE.Apellido & mBE.Password & mBE.Rol, mBE.DV) Then
                 Me.ID = mBE.ID
                 Me.UserName = mBE.UserName
                 Me.Nombre = mBE.Nombre
@@ -102,7 +102,7 @@ Public Class UsuarioBLL
     Public Sub Guardar()
         Dim mBE As New UsuarioBE
 
-        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.UserName & Me.Nombre & Me.Apellido & Me.Password & Me.Rol)
+        Me.DV = CalculadorDV.CalcularDV(Me.UserName & Me.Nombre & Me.Apellido & Me.Password & Me.Rol)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -140,14 +140,14 @@ Public Class UsuarioBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As UsuarioBE In mListaBE
-                If CalculadorDV.VerificarDV(mBE.ID & mBE.UserName & mBE.Nombre & mBE.Apellido & mBE.Password & mBE.Rol, mBE.DV) Then
+                If CalculadorDV.VerificarDV(mBE.UserName & mBE.Nombre & mBE.Apellido & mBE.Password & mBE.Rol, mBE.DV) Then
                     Dim mUsuario As New UsuarioBLL(mBE)
 
                     mLista.Add(mUsuario)
                 Else
-                    MsgBox("Error - DV - Usuario - Listar")
+                MsgBox("Error - DV - Usuario - Listar")
                 End If
-            Next
+        Next
         End If
 
 

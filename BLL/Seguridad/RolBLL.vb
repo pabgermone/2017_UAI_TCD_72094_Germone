@@ -42,22 +42,26 @@ Public Class RolBLL
     ''' <param name="pBE">Objeto BE con los datos deseados</param>
     Private Sub CargarPropiedades(pBE As RolBE)
         If Not IsNothing(pBE) Then
-            Me.ID = pBE.ID
-            Me.Nombre = pBE.Nombre
-            Me.DV = pBE.DV
+            If CalculadorDV.VerificarDV(pBE.Nombre, pBE.DV) Then
+                Me.ID = pBE.ID
+                Me.Nombre = pBE.Nombre
+                Me.DV = pBE.DV
 
-            If pBE.ListaPermisos.Count > 0 Then
-                For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
-                    Dim mPermiso As PermisoAbstractoBLL
+                If pBE.ListaPermisos.Count > 0 Then
+                    For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
+                        Dim mPermiso As PermisoAbstractoBLL
 
-                    If TypeOf (mPermisoBE) Is PermisoCompuestoBE Then
-                        mPermiso = New PermisoCompuestoBLL(mPermisoBE)
-                    Else
-                        mPermiso = New PermisoBLL(mPermisoBE)
-                    End If
+                        If TypeOf (mPermisoBE) Is PermisoCompuestoBE Then
+                            mPermiso = New PermisoCompuestoBLL(mPermisoBE)
+                        Else
+                            mPermiso = New PermisoBLL(mPermisoBE)
+                        End If
 
-                    Me.ListaPermisos.Add(mPermiso)
-                Next
+                        Me.ListaPermisos.Add(mPermiso)
+                    Next
+                End If
+            Else
+                MsgBox("Error DV - CargarPropiedades(BE) - RolBLL")
             End If
         End If
     End Sub
@@ -71,23 +75,28 @@ Public Class RolBLL
         Dim pBE As RolBE = RolDAL.ObtenerRol(pID)
 
         If Not IsNothing(pBE) Then
-            Me.ID = pBE.ID
-            Me.Nombre = pBE.Nombre
-            Me.DV = pBE.DV
+            If CalculadorDV.VerificarDV(pBE.Nombre, pBE.DV) Then
+                Me.ID = pBE.ID
+                Me.Nombre = pBE.Nombre
+                Me.DV = pBE.DV
 
-            If pBE.ListaPermisos.Count > 0 Then
-                For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
-                    Dim mPermiso As PermisoAbstractoBLL
+                If pBE.ListaPermisos.Count > 0 Then
+                    For Each mPermisoBE As PermisoAbstractoBE In pBE.ListaPermisos
+                        Dim mPermiso As PermisoAbstractoBLL
 
-                    If TypeOf (mPermisoBE) Is PermisoCompuestoBE Then
-                        mPermiso = New PermisoCompuestoBLL(mPermisoBE)
-                    Else
-                        mPermiso = New PermisoBLL(mPermisoBE)
-                    End If
+                        If TypeOf (mPermisoBE) Is PermisoCompuestoBE Then
+                            mPermiso = New PermisoCompuestoBLL(mPermisoBE)
+                        Else
+                            mPermiso = New PermisoBLL(mPermisoBE)
+                        End If
 
-                    Me.ListaPermisos.Add(mPermiso)
-                Next
+                        Me.ListaPermisos.Add(mPermiso)
+                    Next
+                End If
+            Else
+                MsgBox("Error DV - CargarPropiedades(int) - RolBLL")
             End If
+
         End If
     End Sub
 
@@ -123,6 +132,8 @@ Public Class RolBLL
     ''' </summary>
     Public Sub Guardar()
         Dim mBE As New RolBE
+
+        Me.DV = CalculadorDV.CalcularDV(Me.Nombre)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
