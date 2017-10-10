@@ -63,7 +63,7 @@ Public Class PermisoCompuestoBLL
         Dim mBE As PermisoCompuestoBE = PermisoDAL.ObtenerPermiso(pID, True)
 
         If Not IsNothing(mBE) Then
-            If CalculadorDV.VerificarDV(mBE.ID & mBE.Nombre & mBE.Padre & mBE.Formulario, mBE.DV) Then
+            If CalculadorDV.VerificarDV(mBE.Nombre & mBE.Padre & mBE.Formulario, mBE.DV) Then
                 Me.ID = mBE.ID
                 Me.Nombre = mBE.Nombre
                 Me.Padre = mBE.Padre
@@ -111,7 +111,7 @@ Public Class PermisoCompuestoBLL
 
         If Not IsNothing(mListaCompuestos) Then
             For Each mPermisoAbs As PermisoAbstractoBE In mListaCompuestos
-                If CalculadorDV.VerificarDV(mPermisoAbs.ID & mPermisoAbs.Nombre & mPermisoAbs.Padre & mPermisoAbs.Formulario, mPermisoAbs.DV) Then
+                If CalculadorDV.VerificarDV(mPermisoAbs.Nombre & mPermisoAbs.Padre & mPermisoAbs.Formulario, mPermisoAbs.DV) Then
                     Dim mPermisoBLL As New PermisoCompuestoBLL(mPermisoAbs)
                     Me.ListaPermisos.Add(mPermisoBLL)
                 Else
@@ -123,7 +123,7 @@ Public Class PermisoCompuestoBLL
 
         If Not IsNothing(mListaSimples) Then
             For Each mPermisoAbs As PermisoAbstractoBE In mListaSimples
-                If CalculadorDV.VerificarDV(mPermisoAbs.ID & mPermisoAbs.Nombre & mPermisoAbs.Padre & mPermisoAbs.Formulario, mPermisoAbs.DV) Then
+                If CalculadorDV.VerificarDV(mPermisoAbs.Nombre & mPermisoAbs.Padre & mPermisoAbs.Formulario, mPermisoAbs.DV) Then
                     Dim mPermisoBLL As New PermisoBLL(mPermisoAbs)
                     Me.ListaPermisos.Add(mPermisoBLL)
                 Else
@@ -142,7 +142,7 @@ Public Class PermisoCompuestoBLL
     Public Overrides Sub Guardar()
         Dim mBE As New PermisoCompuestoBE
 
-        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.Nombre & Me.Padre & Me.Formulario)
+        Me.DV = CalculadorDV.CalcularDV(Me.Nombre & Me.Padre & Me.Formulario)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -179,7 +179,7 @@ Public Class PermisoCompuestoBLL
         If Not IsNothing(mListBE) Then
             For Each mPermiso As PermisoAbstractoBE In mListBE
                 If TypeOf (mPermiso) Is PermisoCompuestoBE Then
-                    If CalculadorDV.VerificarDV(mPermiso.ID & mPermiso.Nombre & mPermiso.Padre & mPermiso.Formulario, mPermiso.DV) Then
+                    If CalculadorDV.VerificarDV(mPermiso.Nombre & mPermiso.Padre & mPermiso.Formulario, mPermiso.DV) Then
                         Dim mPermisoBLL As New PermisoCompuestoBLL(mPermiso)
                         mListaPermisos.Add(mPermisoBLL)
                     Else

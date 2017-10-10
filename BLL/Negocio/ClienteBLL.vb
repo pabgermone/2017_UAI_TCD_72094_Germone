@@ -49,7 +49,7 @@ Public Class ClienteBLL
         Dim mBE As ClienteBE = ClienteDAL.ObtenerCliente(pCliente)
 
         If Not IsNothing(mBE) Then
-            If CalculadorDV.VerificarDV(mBE.ID & mBE.Nombre & mBE.Apellido & mBE.DNI & mBE.Pasaporte & mBE.FechaNac.ToString("yyyymmdd") & mBE.Telefono & mBE.Sexo, mBE.DV) Then
+            If CalculadorDV.VerificarDV(mBE.Nombre & mBE.Apellido & mBE.DNI & mBE.Pasaporte & mBE.FechaNac.ToString("yyyymmdd") & mBE.Telefono & mBE.Sexo, mBE.DV) Then
                 Me.ID = mBE.ID
                 Me.Nombre = mBE.Nombre
                 Me.Apellido = mBE.Apellido
@@ -72,7 +72,7 @@ Public Class ClienteBLL
     ''' <param name="pCliente">Objeto BE con los datos que se quieren copiar</param>
     Private Sub CargarPropiedades(pCliente As ClienteBE)
         If Not IsNothing(pCliente) Then
-            If CalculadorDV.VerificarDV(pCliente.ID & pCliente.Nombre & pCliente.Apellido & pCliente.DNI & pCliente.Pasaporte & pCliente.FechaNac.ToString("yyyymmdd") & pCliente.Telefono & pCliente.Sexo, pCliente.DV) Then
+            If CalculadorDV.VerificarDV(pCliente.Nombre & pCliente.Apellido & pCliente.DNI & pCliente.Pasaporte & pCliente.FechaNac.ToString("yyyymmdd") & pCliente.Telefono & pCliente.Sexo, pCliente.DV) Then
                 Me.ID = pCliente.ID
                 Me.Nombre = pCliente.Nombre
                 Me.Apellido = pCliente.Apellido
@@ -111,7 +111,7 @@ Public Class ClienteBLL
     ''' Persiste en la base los datos de la instancia
     ''' </summary>
     Public Sub Guardar()
-        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.Nombre & Me.Apellido & Me.DNI & Me.Pasaporte & Me.FechaNac & Me.Telefono & Me.Sexo)
+        Me.DV = CalculadorDV.CalcularDV(Me.Nombre & Me.Apellido & Me.DNI & Me.Pasaporte & Me.FechaNac & Me.Telefono & Me.Sexo)
 
         Dim mBE As New ClienteBE
 

@@ -68,7 +68,7 @@ Public Class PermisoBLL
     Public Overrides Sub Guardar()
         Dim mBE As New PermisoBE
 
-        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.Nombre & Me.Padre & Me.Formulario)
+        Me.DV = CalculadorDV.CalcularDV(Me.Nombre & Me.Padre & Me.Formulario)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -93,7 +93,7 @@ Public Class PermisoBLL
         If Not IsNothing(mListBE) Then
             For Each mPermiso As PermisoAbstractoBE In mListBE
                 If TypeOf (mPermiso) Is PermisoBE Then
-                    If CalculadorDV.VerificarDV(mPermiso.ID & mPermiso.Nombre & mPermiso.Padre & mPermiso.Formulario, mPermiso.DV) Then
+                    If CalculadorDV.VerificarDV(mPermiso.Nombre & mPermiso.Padre & mPermiso.Formulario, mPermiso.DV) Then
                         Dim mPermisoBLL As New PermisoBLL(mPermiso)
 
                         mListaPermisos.Add(mPermisoBLL)

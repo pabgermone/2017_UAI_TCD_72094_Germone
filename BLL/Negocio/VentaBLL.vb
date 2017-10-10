@@ -47,7 +47,7 @@ Public Class VentaBLL
         Dim mBE As VentaBE = VentaDAL.ObtenerVenta(pVenta)
 
         If Not IsNothing(mBE) Then
-            If CalculadorDV.VerificarDV(mBE.ID & mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
+            If CalculadorDV.VerificarDV(mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
                 Me.ID = mBE.ID
                 Me.Usuario = mBE.Usuario
                 Me.Fecha = mBE.Fecha
@@ -99,7 +99,7 @@ Public Class VentaBLL
     Public Sub Guardar()
         Dim mBE As New VentaBE
 
-        Me.DV = CalculadorDV.CalcularDV(Me.ID & Me.Usuario & Me.Fecha.ToString("yyyymmdd") & Me.Paquete & Me.Cliente & Me.Vuelo)
+        Me.DV = CalculadorDV.CalcularDV(Me.Usuario & Me.Fecha.ToString("yyyymmdd") & Me.Paquete & Me.Cliente & Me.Vuelo)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -137,7 +137,7 @@ Public Class VentaBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As VentaBE In mListaBE
-                If CalculadorDV.VerificarDV(mBE.ID & mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
+                If CalculadorDV.VerificarDV(mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
                     Dim mVenta As New VentaBLL(mBE)
 
                     mLista.Add(mVenta)
