@@ -85,11 +85,11 @@ Partial Class FormVentas
         Me.TabVuelos.Controls.Add(Me.Label1)
         Me.TabVuelos.Controls.Add(Me.TxtBusqueda)
         Me.TabVuelos.Controls.Add(Me.GridVuelos)
-        Me.TabVuelos.Location = New System.Drawing.Point(4, 14)
+        Me.TabVuelos.Location = New System.Drawing.Point(4, 5)
         Me.TabVuelos.Margin = New System.Windows.Forms.Padding(2)
         Me.TabVuelos.Name = "TabVuelos"
         Me.TabVuelos.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabVuelos.Size = New System.Drawing.Size(469, 370)
+        Me.TabVuelos.Size = New System.Drawing.Size(469, 379)
         Me.TabVuelos.TabIndex = 0
         Me.TabVuelos.Text = "TabPage1"
         '
@@ -143,11 +143,11 @@ Partial Class FormVentas
         Me.TabPasajeros.Controls.Add(Me.GridPasajeros)
         Me.TabPasajeros.Controls.Add(Me.BtnAnteriorTab2)
         Me.TabPasajeros.Controls.Add(Me.BtnSiguienteTab2)
-        Me.TabPasajeros.Location = New System.Drawing.Point(4, 14)
+        Me.TabPasajeros.Location = New System.Drawing.Point(4, 5)
         Me.TabPasajeros.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPasajeros.Name = "TabPasajeros"
         Me.TabPasajeros.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPasajeros.Size = New System.Drawing.Size(469, 370)
+        Me.TabPasajeros.Size = New System.Drawing.Size(469, 379)
         Me.TabPasajeros.TabIndex = 1
         Me.TabPasajeros.Text = "TabPage2"
         Me.TabPasajeros.UseVisualStyleBackColor = True
@@ -423,7 +423,7 @@ Partial Class FormVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(477, 387)
+        Me.ClientSize = New System.Drawing.Size(477, 386)
         Me.Controls.Add(Me.TabControlVentas)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FormVentas"
