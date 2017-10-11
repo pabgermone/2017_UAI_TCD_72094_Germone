@@ -7,11 +7,15 @@ Public Class ClienteBLL
     Public Property ID As Integer
     Public Property Nombre As String
     Public Property Apellido As String
-    Public Property DNI As Integer
+    Public Property TipoDocumento As String
+    Public Property NumeroDocumento As Integer
     Public Property Pasaporte As Integer
     Public Property FechaNac As Date
-    Public Property Telefono As Integer
-    Public Property Sexo As String
+    Public Property Pais As String
+    Public Property Direccion As String
+    Public Property CodigoPostal As Integer
+    Public Property Telefonos As Integer()
+    Public Property Emails As String()
     Public Property DV As Integer
 #End Region
 
@@ -49,16 +53,26 @@ Public Class ClienteBLL
         Dim mBE As ClienteBE = ClienteDAL.ObtenerCliente(pCliente)
 
         If Not IsNothing(mBE) Then
-            If CalculadorDV.VerificarDV(mBE.Nombre & mBE.Apellido & mBE.DNI & mBE.Pasaporte & mBE.FechaNac.ToString("yyyymmdd") & mBE.Telefono & mBE.Sexo, mBE.DV) Then
+            If CalculadorDV.VerificarDV(mBE.Nombre & mBE.Apellido & mBE.TipoDocumento & mBE.NumeroDocumento & mBE.Pasaporte & mBE.FechaNac.ToString("yyyymmdd") & mBE.Pais & mBE.Direccion & mBE.CodigoPostal, mBE.DV) Then
                 Me.ID = mBE.ID
                 Me.Nombre = mBE.Nombre
                 Me.Apellido = mBE.Apellido
-                Me.DNI = mBE.DNI
+                Me.TipoDocumento = mBE.TipoDocumento
+                Me.NumeroDocumento = mBE.NumeroDocumento
                 Me.Pasaporte = mBE.Pasaporte
                 Me.FechaNac = mBE.FechaNac
-                Me.Telefono = mBE.Telefono
-                Me.Sexo = mBE.Sexo
+                Me.Pais = mBE.Pais
+                Me.Direccion = mBE.Direccion
+                Me.CodigoPostal = mBE.CodigoPostal
                 Me.DV = mBE.DV
+
+                For Each mTelefono As Integer In mBE.Telefonos
+                    Me.Telefonos(Me.Telefonos.Count) = mTelefono
+                Next
+
+                For Each mMail As String In mBE.Emails
+                    Me.Emails(Me.Emails.Count) = mMail
+                Next
             Else
                 MsgBox("Error DV - ClienteBLL")
             End If
@@ -72,16 +86,26 @@ Public Class ClienteBLL
     ''' <param name="pCliente">Objeto BE con los datos que se quieren copiar</param>
     Private Sub CargarPropiedades(pCliente As ClienteBE)
         If Not IsNothing(pCliente) Then
-            If CalculadorDV.VerificarDV(pCliente.Nombre & pCliente.Apellido & pCliente.DNI & pCliente.Pasaporte & pCliente.FechaNac.ToString("yyyymmdd") & pCliente.Telefono & pCliente.Sexo, pCliente.DV) Then
+            If CalculadorDV.VerificarDV(pCliente.Nombre & pCliente.Apellido & pCliente.TipoDocumento & pCliente.NumeroDocumento & pCliente.Pasaporte & pCliente.FechaNac.ToString("yyyymmdd") & pCliente.Pais & pCliente.Direccion & pCliente.CodigoPostal, pCliente.DV) Then
                 Me.ID = pCliente.ID
                 Me.Nombre = pCliente.Nombre
                 Me.Apellido = pCliente.Apellido
-                Me.DNI = pCliente.DNI
+                Me.TipoDocumento = pCliente.TipoDocumento
+                Me.NumeroDocumento = pCliente.NumeroDocumento
                 Me.Pasaporte = pCliente.Pasaporte
                 Me.FechaNac = pCliente.FechaNac
-                Me.Telefono = pCliente.Telefono
-                Me.Sexo = pCliente.Sexo
+                Me.Pais = pCliente.Pais
+                Me.Direccion = pCliente.Direccion
+                Me.CodigoPostal = pCliente.CodigoPostal
                 Me.DV = pCliente.DV
+
+                For Each mTelefono As Integer In pCliente.Telefonos
+                    Me.Telefonos(Me.Telefonos.Count) = mTelefono
+                Next
+
+                For Each mMail As String In pCliente.Emails
+                    Me.Emails(Me.Emails.Count) = mMail
+                Next
             Else
                 MsgBox("Error DV - ClienteBLL")
             End If
@@ -97,12 +121,22 @@ Public Class ClienteBLL
         pBE.ID = Me.ID
         pBE.Nombre = Me.Nombre
         pBE.Apellido = Me.Apellido
-        pBE.DNI = Me.DNI
+        pBE.TipoDocumento = Me.TipoDocumento
+        pBE.NumeroDocumento = Me.NumeroDocumento
         pBE.Pasaporte = Me.Pasaporte
         pBE.FechaNac = Me.FechaNac
-        pBE.Telefono = Me.Telefono
-        pBE.Sexo = Me.Sexo
+        pBE.Pais = Me.Pais
+        pBE.Direccion = Me.Direccion
+        pBE.CodigoPostal = Me.CodigoPostal
         pBE.DV = Me.DV
+
+        For Each mTelefono As Integer In Me.Telefonos
+            pBE.Telefonos(pBE.Telefonos.Count) = mTelefono
+        Next
+
+        For Each mMail As String In Me.Emails
+            pBE.Emails(pBE.Emails.Count) = mMail
+        Next
     End Sub
 #End Region
 
@@ -111,7 +145,7 @@ Public Class ClienteBLL
     ''' Persiste en la base los datos de la instancia
     ''' </summary>
     Public Sub Guardar()
-        Me.DV = CalculadorDV.CalcularDV(Me.Nombre & Me.Apellido & Me.DNI & Me.Pasaporte & Me.FechaNac & Me.Telefono & Me.Sexo)
+        Me.DV = CalculadorDV.CalcularDV(Me.Nombre & Me.Apellido & Me.TipoDocumento & Me.NumeroDocumento & Me.Pasaporte & Me.FechaNac & Me.Pais & Me.Direccion & Me.CodigoPostal)
 
         Dim mBE As New ClienteBE
 
