@@ -1,5 +1,6 @@
 ﻿Imports BLL
 Imports Framework
+Imports System.Text
 
 Public Class AltaCliente
     Implements IObservador
@@ -25,6 +26,13 @@ Public Class AltaCliente
         If Not IsNothing(pForm) Then
             mForm = pForm
         End If
+    End Sub
+
+
+    Private Sub AltaCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mTraductor.RegistrarObservador(Me)
+
+        Actualizar(Me)
     End Sub
 
 
@@ -66,66 +74,75 @@ Public Class AltaCliente
         Dim mCliente As New ClienteBLL
         Dim mValido As Boolean = True
 
-        If TxtNomAp.Text <> "" Then
-            Try
-                Dim NomAp As String() = Split(TxtNomAp.Text)
-
-                mCliente.Nombre = NomAp(0)
-                mCliente.Apellido = NomAp(1)
-            Catch ex As Exception
-                MsgBox("El nombre y apellido ingresados no son validos")
-                TxtNomAp.BackColor = Color.Red
-
-                mValido = False
-            End Try
+        If Not TxtNombre.Text = "" And RegularExpressions.Regex.IsMatch(TxtNombre.Text, "^[a-zA-Z\s]*$") Then
+            mCliente.Nombre = TxtNombre.Text
         Else
-            MsgBox("Debe ingresar Nombre y Apellido")
-            TxtNomAp.BackColor = Color.Red
-
+            TxtNombre.BackColor = Color.Red
             mValido = False
         End If
 
-        If TxtDNI.Text <> "" And IsNumeric(TxtDNI.Text) And TxtDNI.TextLength = 8 Then
-            mCliente.DNI = TxtDNI.Text
+        If Not TxtApellido.Text = "" And RegularExpressions.Regex.IsMatch(TxtApellido.Text, "^[a-zA-Z\s]*$") Then
+            mCliente.Apellido = TxtApellido.Text
         Else
-            MsgBox("Debe ingresar un numero de DNI valido (8 caracteres)")
-            TxtDNI.BackColor = Color.Red
-
+            TxtApellido.BackColor = Color.Red
             mValido = False
         End If
 
-        If TxtPasaporte.Text <> "" And IsNumeric(TxtPasaporte.Text) Then
+        If Not TxtTipoDoc.Text = "" And RegularExpressions.Regex.IsMatch(TxtTipoDoc.Text, "^[a-zA-Z\s]*^$") Then
+            mCliente.TipoDocumento = TxtTipoDoc.Text
+        Else
+            TxtTipoDoc.BackColor = Color.Red
+            mValido = False
+        End If
+
+        If Not TxtNumDoc.Text = "" And IsNumeric(TxtNumDoc.Text) Then
+            mCliente.NumeroDocumento = TxtNumDoc.Text
+        Else
+            TxtNumDoc.BackColor = Color.Red
+            mValido = False
+        End If
+
+        If Not TxtPasaporte.Text = "" And IsNumeric(TxtPasaporte.Text) Then
             mCliente.Pasaporte = TxtPasaporte.Text
         Else
-            MsgBox("Debe ingresar un numero de pasaporte valido")
             TxtPasaporte.BackColor = Color.Red
-
             mValido = False
         End If
 
-        If DateTimeFechaNac.Value.Year <= Date.Now.Year Then
-            mCliente.FechaNac = DateTimeFechaNac.Value
+        If Not TxtPais.Text = "" And RegularExpressions.Regex.IsMatch(TxtPais.Text, "^[a-zA-Z\s]*^$") Then
+            mCliente.Pais = TxtPais.Text
         Else
-            MsgBox("La fecha de nacimiento seleccionada no es valida")
-
+            TxtPais.BackColor = Color.Red
             mValido = False
         End If
 
-        If TxtTel.Text <> "" And IsNumeric(TxtTel.Text) Then
-            mCliente.Telefono = TxtTel.Text
+        If Not TxtDireccion.Text = "" And RegularExpressions.Regex.IsMatch(TxtDireccion.Text, "^[a-zA-Z\s]*^$") Then
+            mCliente.Direccion = TxtDireccion.Text
         Else
-            MsgBox("Debe ingresar un numero de telefono valido")
-            TxtTel.BackColor = Color.Red
-
+            TxtDireccion.BackColor = Color.Red
             mValido = False
         End If
 
-        If RadioMasculino.Checked Then
-            mCliente.Sexo = "Masculino"
+        If Not TxtCodPostal.Text = "" And IsNumeric(TxtCodPostal.Text) Then
+            mCliente.CodigoPostal = TxtCodPostal.Text
         Else
-            mCliente.Sexo = "Femenino"
+            TxtCodPostal.BackColor = Color.Red
+            mValido = False
         End If
 
+        For Each mNumero In LstTelefonos.Items
+            If IsNumeric(mNumero.ToString) Then
+                mCliente.Telefonos(mCliente.Telefonos.Count) = mNumero
+            End If
+        Next
+
+        For Each mMail In LstMails.Items
+            If RegularExpressions.Regex.IsMatch(mMail, "^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$") Then
+                mCliente.Emails(mCliente.Emails.Count) = mMail
+            End If
+        Next
+
+        mCliente.FechaNac = DateTimeFechaNac.Value
 
         If mValido Then
             mCliente.Guardar()
@@ -139,10 +156,34 @@ Public Class AltaCliente
     End Sub
 
 
-    Private Sub AltaCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        mTraductor.RegistrarObservador(Me)
+    Private Sub BtnAgregarTel_Click(sender As Object, e As EventArgs) Handles BtnAgregarTel.Click
+        Dim mNumero As String = InputBox("Ingrese el numero de telefono")
 
-        Actualizar(Me)
+        If IsNumeric(mNumero) Then
+            LstTelefonos.Items.Add(mNumero)
+        Else
+            MsgBox("Debe ingresar un numero telefonico valido")
+        End If
     End Sub
 
+
+    Private Sub BtnQuitarTel_Click(sender As Object, e As EventArgs) Handles BtnQuitarTel.Click
+        LstTelefonos.Items.Remove(LstTelefonos.SelectedItem)
+    End Sub
+
+
+    Private Sub BtnAgregarMail_Click(sender As Object, e As EventArgs) Handles BtnAgregarMail.Click
+        Dim mMail As String = InputBox("Ingrese la direccion de e-mail")
+
+        If Not mMail = "" And RegularExpressions.Regex.IsMatch(mMail, "^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$") Then
+            LstMails.Items.Add(mMail)
+        Else
+            MsgBox("Debe ingresar una direccion de e-mail valida")
+        End If
+    End Sub
+
+
+    Private Sub BtnQuitarMail_Click(sender As Object, e As EventArgs) Handles BtnQuitarMail.Click
+        LstMails.Items.Remove(LstMails.SelectedItem)
+    End Sub
 End Class
