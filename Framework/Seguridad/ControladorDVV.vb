@@ -18,36 +18,38 @@ Public Class ControladorDVV
         Try
             mDataSetDVV = BD.ExecuteDataSet(mCommandObtener)
 
-            If Not IsNothing(mDataSetDVV) And mDataSetDVV.Tables.Count > 0 And mDataSetDVV.Tables(0).Rows.Count > 0 Then
-                For Each mRow As DataRow In mDataSetDVV.Tables(0).Rows
-                    mStringDVs = ""
+            If Not IsNothing(mDataSetDVV) And mDataSetDVV.Tables.Count > 0 Then
+                If mDataSetDVV.Tables(0).Rows.Count > 0 Then
+                    For Each mRow As DataRow In mDataSetDVV.Tables(0).Rows
+                        mStringDVs = ""
 
-                    mTabla = mRow("dvv_tabla")
+                        mTabla = mRow("dvv_tabla")
 
-                    mCommandDV = "select * from " & mTabla
+                        mCommandDV = "select * from " & mTabla
 
-                    mDataSetTabla = BD.ExecuteDataSet(mCommandDV)
+                        mDataSetTabla = BD.ExecuteDataSet(mCommandDV)
 
-                    If Not IsNothing(mDataSetTabla) And mDataSetTabla.Tables.Count > 0 Then
-                        If mDataSetTabla.Tables(0).Rows.Count > 0 Then
-                            For Each mRowTabla As DataRow In mDataSetTabla.Tables(0).Rows
-                                mStringDVs &= mRowTabla(mTabla & "_dv")
-                            Next
+                        If Not IsNothing(mDataSetTabla) And mDataSetTabla.Tables.Count > 0 Then
+                            If mDataSetTabla.Tables(0).Rows.Count > 0 Then
+                                For Each mRowTabla As DataRow In mDataSetTabla.Tables(0).Rows
+                                    mStringDVs &= mRowTabla(mTabla & "_dv")
+                                Next
 
-                            mValido = CalculadorDV.VerificarDV(mStringDVs, mRow("dvv_digito"))
+                                mValido = CalculadorDV.VerificarDV(mStringDVs, mRow("dvv_digito"))
 
-                            ActualizarFecha(mTabla)
+                                ActualizarFecha(mTabla)
 
-                            If Not mValido Then
-                                Exit For
+                                If Not mValido Then
+                                    Exit For
+                                End If
                             End If
+                        Else
+                            MsgBox("Error - ControladorDVV - TablaDV")
+                            mValido = False
+                            Exit For
                         End If
-                    Else
-                        MsgBox("Error - ControladorDVV - TablaDV")
-                        mValido = False
-                        Exit For
-                    End If
-                Next
+                    Next
+                End If
             Else
                 MsgBox("Error - ControladorDVV - TablaDVV")
                 mValido = False
