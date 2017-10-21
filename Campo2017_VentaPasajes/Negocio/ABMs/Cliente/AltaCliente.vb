@@ -148,7 +148,7 @@ Public Class AltaCliente
             mCliente.Guardar()
 
             If Not IsNothing(mForm) Then
-                CType(mForm, FormVentas).ActualizarComboClientes()
+                'CType(mForm, FormVentas).ActualizarComboClientes()
             End If
 
             Me.Close()

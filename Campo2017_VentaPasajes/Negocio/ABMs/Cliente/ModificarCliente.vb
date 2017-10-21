@@ -17,16 +17,16 @@ Public Class ModificarCliente
             Me.mCliente = pCliente
 
             TxtNomAp.Text = pCliente.ToString
-            TxtDNI.Text = pCliente.DNI
+            'TxtDNI.Text = pCliente.DNI
             TxtPasaporte.Text = pCliente.Pasaporte
             DateTimeFechaNac.Value = mCliente.FechaNac
-            TxtTel.Text = pCliente.Telefono
+            'TxtTel.Text = pCliente.Telefono
 
-            If pCliente.Sexo = "Masculino" Then
-                RadioMasculino.Checked = True
-            Else
-                RadioFemenino.Checked = False
-            End If
+            'If pCliente.Sexo = "Masculino" Then
+            '    RadioMasculino.Checked = True
+            'Else
+            '    RadioFemenino.Checked = False
+            'End If
         End If
 
         For Each mControl As Control In Me.Controls
@@ -96,7 +96,7 @@ Public Class ModificarCliente
         End If
 
         If TxtDNI.Text <> "" And IsNumeric(TxtDNI.Text) And TxtDNI.TextLength = 8 Then
-            mCliente.DNI = TxtDNI.Text
+            'mCliente.DNI = TxtDNI.Text
         Else
             MsgBox("Debe ingresar un numero de DNI valido (8 caracteres)")
             TxtNomAp.BackColor = Color.Red
@@ -122,7 +122,7 @@ Public Class ModificarCliente
         End If
 
         If TxtTel.Text <> "" And IsNumeric(TxtTel.Text) Then
-            mCliente.Telefono = TxtTel.Text
+            'mCliente.Telefono = TxtTel.Text
         Else
             MsgBox("Debe ingresar un numero de telefono valido")
             TxtNomAp.BackColor = Color.Red
@@ -130,11 +130,11 @@ Public Class ModificarCliente
             mValido = False
         End If
 
-        If RadioMasculino.Checked Then
-            mCliente.Sexo = "Masculino"
-        Else
-            mCliente.Sexo = "Femenino"
-        End If
+        'If RadioMasculino.Checked Then
+        '    mCliente.Sexo = "Masculino"
+        'Else
+        '    mCliente.Sexo = "Femenino"
+        'End If
 
 
         If mValido Then

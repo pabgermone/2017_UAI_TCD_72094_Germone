@@ -123,11 +123,11 @@ Public Class FormClientes
     Public Sub ActualizarLabels()
         If Not IsNothing(mClienteSelec) Then
             LblNomAp.Text = "Nombre y Apellido: " & mClienteSelec.ToString
-            LblDNI.Text = "DNI: " & mClienteSelec.DNI
+            'LblDNI.Text = "DNI: " & mClienteSelec.DNI
             LblPasaporte.Text = "Pasaporte: " & mClienteSelec.Pasaporte
             LblFechaNac.Text = "Fecha de Nacimiento: " & mClienteSelec.FechaNac
-            LblTel.Text = "Telefono: " & mClienteSelec.Telefono
-            LblSexo.Text = "Sexo: " & mClienteSelec.Sexo
+            'LblTel.Text = "Telefono: " & mClienteSelec.Telefono
+            'LblSexo.Text = "Sexo: " & mClienteSelec.Sexo
         Else
             LblNomAp.Text = "Nombre y Apellido: "
             LblDNI.Text = "DNI: "
