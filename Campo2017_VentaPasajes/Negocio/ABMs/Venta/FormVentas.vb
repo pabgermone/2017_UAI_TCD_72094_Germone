@@ -72,8 +72,16 @@ Public Class FormVentas
 #End Region
 
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
-        'Pasar al segundo tab y ejecutar un metodo en todas las aerolineas que solo devuelva los vuelos que cumplan con
-        'los detalles de la busqueda
+        Dim mListaAerolineas As List(Of AerolineaBLL) = AerolineaBLL.ListarAerolineas
+        Dim mListaVuelos As New List(Of VueloBLL)
+
+        If Not IsNothing(mListaAerolineas) Then
+            For Each mAerolinea As AerolineaBLL In mListaAerolineas
+                For Each mVuelo As VueloBLL In mAerolinea.Vuelos
+                    'Filtrar los resultados de la busqueda en otra lista
+                Next
+            Next
+        End If
     End Sub
 
 #End Region
