@@ -3,6 +3,81 @@ Imports Framework
 
 Public Class FormVentas
 
+    Private Sub FormVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+#Region "Tab Busqueda"
+        ComboEscalas.SelectedIndex = 0
+        ComboEscalas.Enabled = False
+
+        ComboClase.SelectedIndex = 0
+        ComboClase.Enabled = False
+
+        Dim mDestinos As List(Of DestinoBLL) = DestinoBLL.ListarDestinos
+
+        If Not IsNothing(mDestinos) Then
+            ComboOrigen.DataSource = mDestinos
+            ComboDestino.DataSource = mDestinos
+        End If
+#End Region
+    End Sub
+
+
+#Region "Tab Busqueda"
+    Dim mOrigen As DestinoBLL
+    Dim mDestino As DestinoBLL
+
+    Dim mFechaPartida As Date
+    Dim mFechaVuelta As Date
+
+    Dim mCantPasajeros As Integer
+
+    Dim mCantEscalas As Integer
+    Dim mClase As String
+
+#Region "Eventos"
+
+    Private Sub RadioIdaVuelta_CheckedChanged(sender As Object, e As EventArgs) Handles RadioIdaVuelta.CheckedChanged
+        If RadioIdaVuelta.Checked Then
+            DatePickerVuelta.Enabled = True
+            LinkAgregarTramo.Visible = False
+        End If
+    End Sub
+
+
+    Private Sub RadioIda_CheckedChanged(sender As Object, e As EventArgs) Handles RadioIda.CheckedChanged
+        If RadioIda.Checked Then
+            DatePickerVuelta.Enabled = False
+            LinkAgregarTramo.Visible = False
+        End If
+    End Sub
+
+
+    Private Sub RadioMulti_CheckedChanged(sender As Object, e As EventArgs) Handles RadioMulti.CheckedChanged
+        If RadioMulti.Checked Then
+            DatePickerVuelta.Enabled = False
+            LinkAgregarTramo.Visible = True
+        End If
+    End Sub
+
+
+    Private Sub CheckAvanzadas_CheckedChanged(sender As Object, e As EventArgs) Handles CheckAvanzadas.CheckedChanged
+        If Not CheckAvanzadas.Checked Then
+            ComboEscalas.Enabled = False
+            ComboClase.Enabled = False
+        Else
+            ComboEscalas.Enabled = True
+            ComboClase.Enabled = True
+        End If
+    End Sub
+
+#End Region
+
+    Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
+        'Pasar al segundo tab y ejecutar un metodo en todas las aerolineas que solo devuelva los vuelos que cumplan con
+        'los detalles de la busqueda
+    End Sub
+
+#End Region
+
 #Region "Codigo viejo"
     '    'Variables generales
     '    Dim mUsuarioActivo As UsuarioBLL
