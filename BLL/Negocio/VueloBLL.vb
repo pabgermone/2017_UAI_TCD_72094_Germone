@@ -6,9 +6,12 @@ Public Class VueloBLL
 #Region "Propiedades"
     Public Property Numero As Integer
     Public Property Disponible As Boolean
+    Public Property CantEspacios As Integer
     Public Property Fecha As Date
     Public Property Hora As String
+    Public Property Origen As Integer
     Public Property Destino As Integer
+    Public Property Escalas As Integer
     Public Property Aerolinea As Integer
     Public Property Precio As Decimal
     Public Property DV As Integer
@@ -51,9 +54,12 @@ Public Class VueloBLL
             If CalculadorDV.VerificarDV(mBE.Numero & mBE.Disponible & mBE.Fecha.ToString("yyyymmdd") & mBE.Hora & mBE.Destino & mBE.Aerolinea & mBE.Precio, mBE.DV) Then
                 Me.Numero = mBE.Numero
                 Me.Disponible = mBE.Disponible
+                Me.CantEspacios = mBE.CantEspacios
                 Me.Fecha = mBE.Fecha
                 Me.Hora = mBE.Hora
+                Me.Origen = mBE.Origen
                 Me.Destino = mBE.Destino
+                Me.Escalas = mBE.Escalas
                 Me.Aerolinea = mBE.Aerolinea
                 Me.Precio = mBE.Precio
             Else
@@ -72,9 +78,12 @@ Public Class VueloBLL
         If Not IsNothing(pVuelo) Then
             Me.Numero = pVuelo.Numero
             Me.Disponible = pVuelo.Disponible
+            Me.CantEspacios = pVuelo.CantEspacios
             Me.Fecha = pVuelo.Fecha
             Me.Hora = pVuelo.Hora
+            Me.Origen = pVuelo.Origen
             Me.Destino = pVuelo.Destino
+            Me.Escalas = pVuelo.Escalas
             Me.Aerolinea = pVuelo.Aerolinea
             Me.Precio = pVuelo.Precio
         End If
@@ -88,9 +97,12 @@ Public Class VueloBLL
     Private Sub CargarBE(mBE As VueloBE)
         mBE.Numero = Me.Numero
         mBE.Disponible = Me.Disponible
+        mBE.CantEspacios = Me.CantEspacios
         mBE.Fecha = Me.Fecha
         mBE.Hora = Me.Hora
+        mBE.Origen = Me.Origen
         mBE.Destino = Me.Destino
+        mBE.Escalas = Me.Escalas
         mBE.Aerolinea = Me.Aerolinea
         mBE.Precio = Me.Precio
         mBE.DV = Me.DV

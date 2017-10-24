@@ -5,6 +5,7 @@ Public Class AsientoBLL
 #Region "Propiedades"
     Public Property Numero As Integer
     Public Property NumeroVuelo As Integer
+    Public Property Clase As String
     Public Property Ocupado As Boolean
 #End Region
 
@@ -46,6 +47,7 @@ Public Class AsientoBLL
         If Not IsNothing(mBE) Then
             Me.Numero = mBE.Numero
             Me.NumeroVuelo = mBE.NumeroVuelo
+            Me.Clase = mBE.Clase
             Me.Ocupado = mBE.Ocupado
         End If
     End Sub
@@ -59,6 +61,7 @@ Public Class AsientoBLL
         If Not IsNothing(pAsiento) Then
             Me.Numero = pAsiento.Numero
             Me.NumeroVuelo = pAsiento.NumeroVuelo
+            Me.Clase = pAsiento.Clase
             Me.Ocupado = pAsiento.Ocupado
         End If
     End Sub
@@ -71,6 +74,7 @@ Public Class AsientoBLL
     Private Sub CargarBE(pBE As AsientoBE)
         pBE.Numero = Me.Numero
         pBE.NumeroVuelo = Me.NumeroVuelo
+        pBE.Clase = Me.Clase
         pBE.Ocupado = Me.Ocupado
     End Sub
 #End Region

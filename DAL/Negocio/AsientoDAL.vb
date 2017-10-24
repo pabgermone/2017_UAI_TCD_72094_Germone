@@ -12,6 +12,7 @@ Public Class AsientoDAL
     Private Shared Function CargarBE(pAsiento As AsientoBE, pRow As DataRow) As AsientoBE
         pAsiento.Numero = pRow("asiento_id")
         pAsiento.NumeroVuelo = pRow("asiento_vuelo_numero")
+        pAsiento.Clase = pRow("asiento_clase")
         pAsiento.Ocupado = pRow("asiento_ocupado")
 
         Return pAsiento
@@ -26,7 +27,7 @@ Public Class AsientoDAL
     ''' <returns>Objeto BE con los datos recuperados de BD</returns>
     Public Shared Function ObtenerAsiento(pAsiento As Integer, pVuelo As Integer) As AsientoBE
         Dim mAsiento As New AsientoBE
-        Dim mCommand As String = "SELECT asiento_numero, asiento_vuelo_numero, asiento_ocupado FROM Asiento WHERE Asiento_numero = " & pAsiento & " and asiento_vuelo_numero = " & pVuelo
+        Dim mCommand As String = "SELECT asiento_numero, asiento_vuelo_numero, asiento_clase, asiento_ocupado FROM Asiento WHERE Asiento_numero = " & pAsiento & " and asiento_vuelo_numero = " & pVuelo
 
         Try
             Dim mDataSet As DataSet = BD.ExecuteDataSet(mCommand)
@@ -50,7 +51,7 @@ Public Class AsientoDAL
     ''' </summary>
     ''' <param name="pAsiento">Objeto BE con los datos a persistir</param>
     Public Shared Sub GuardarNuevo(pAsiento As AsientoBE)
-        Dim mCommand As String = "INSERT INTO Asiento(asiento_numero, asiento_vuelo_numero, asiento_ocupado) VALUES (" & pAsiento.Numero & ", " & pAsiento.NumeroVuelo & ", " & pAsiento.Ocupado & ")"
+        Dim mCommand As String = "INSERT INTO Asiento(asiento_numero, asiento_vuelo_numero, asiento_clase, asiento_ocupado) VALUES (" & pAsiento.Numero & ", " & pAsiento.NumeroVuelo & ", '" & pAsiento.Clase & "', " & pAsiento.Ocupado & ")"
 
         Try
             BD.ExecuteNonQuery(mCommand)
@@ -67,8 +68,9 @@ Public Class AsientoDAL
     ''' <param name="pAsiento">Objeto BE con los datos modificados a persistir</param>
     Public Shared Sub GuardarModificacion(pAsiento As AsientoBE)
         Dim mCommand As String = "UPDATE Asiento SET " &
-                                 "asiento_ocupado = '" & pAsiento.Ocupado &
-                                 "WHERE Asiento_id = " & pAsiento.Numero &
+                                 "asiento_clase = '" & pAsiento.Clase &
+                                 "', asiento_ocupado = " & pAsiento.Ocupado &
+                                 " WHERE Asiento_id = " & pAsiento.Numero &
                                  " and asiento_vuelo_numero = " & pAsiento.NumeroVuelo
 
         Try
@@ -118,7 +120,7 @@ Public Class AsientoDAL
     ''' <returns>Lista de todos los asientos de todos los vuelos existentes en BD</returns>
     Public Shared Function ListarAsientos() As List(Of AsientoBE)
         Dim mLista As New List(Of AsientoBE)
-        Dim mCommand As String = "SELECT Asiento_numero, Asiento_vuelo_numero, asiento_ocupado FROM Asiento"
+        Dim mCommand As String = "SELECT Asiento_numero, Asiento_vuelo_numero, asiento_clase, asiento_ocupado FROM Asiento"
         Dim mDataSet As DataSet
 
         Try

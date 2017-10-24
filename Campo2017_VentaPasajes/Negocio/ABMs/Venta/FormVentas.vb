@@ -69,6 +69,32 @@ Public Class FormVentas
         End If
     End Sub
 
+
+    Private Sub ComboOrigen_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboOrigen.SelectedValueChanged
+        If TypeOf ComboOrigen.SelectedItem Is DestinoBLL Then
+            mOrigen = ComboOrigen.SelectedItem
+        End If
+    End Sub
+
+
+    Private Sub ComboDestino_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboDestino.SelectedValueChanged
+        If TypeOf ComboDestino.SelectedItem Is DestinoBLL Then
+            mDestino = ComboDestino.SelectedItem
+        End If
+    End Sub
+
+
+    Private Sub ComboEscalas_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboEscalas.SelectedValueChanged
+        mCantEscalas = ComboEscalas.SelectedIndex - 1
+    End Sub
+
+
+    Private Sub ComboClase_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboClase.SelectedValueChanged
+        If Not ComboClase.SelectedIndex = 0 Then
+            mClase = ComboClase.SelectedItem.ToString
+        End If
+    End Sub
+
 #End Region
 
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
@@ -77,12 +103,18 @@ Public Class FormVentas
 
         If Not IsNothing(mListaAerolineas) Then
             For Each mAerolinea As AerolineaBLL In mListaAerolineas
-                For Each mVuelo As VueloBLL In mAerolinea.Vuelos
-                    'Filtrar los resultados de la busqueda en otra lista
-                Next
+                'Metodo filtrar de AerolineaBLL
             Next
         End If
     End Sub
+
+
+
+
+
+
+
+
 
 #End Region
 
