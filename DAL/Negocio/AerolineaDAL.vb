@@ -124,4 +124,31 @@ Public Class AerolineaDAL
             Return Nothing
         End Try
     End Function
+
+
+    <Obsolete("Falta terminar")>
+    Public Shared Function FiltrarVuelos(pAerolinea As Integer, pFecha As Date, pOrigen As Integer, pDestino As Integer, pCantPAsajeros As Integer)
+        Dim mListaVuelos As New List(Of VueloBE)
+        Dim mCommand As String = "select * from Vuelo where
+                                  vuelo_fecha like '" & pFecha.ToString("yyyy-MM-dd") & "' and vuelo_origen = " & pOrigen & " and vuelo_destino = " & pDestino & " and vuelo_cantidadEspacios >= " & pCantPAsajeros & " and vuelo_aerolinea = " & pAerolinea
+
+        Dim mDataSet As DataSet
+
+        Try
+            mDataSet = BD.ExecuteDataSet(mCommand)
+
+            If Not IsNothing(mDataSet) And mDataSet.Tables.Count > 0 And mDataSet.Tables(0).Rows.Count > 0 Then
+                For Each mRow As DataRow In mDataSet.Tables(0).Rows
+                    Dim mVuelo As New VueloBE
+
+                    VueloDAL.CargarBE(mVuelo, mRow)
+
+
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Function
+
 End Class

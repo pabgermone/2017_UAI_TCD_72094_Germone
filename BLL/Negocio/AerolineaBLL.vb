@@ -5,7 +5,7 @@ Public Class AerolineaBLL
 #Region "Propiedades"
     Public Property ID As Integer
     Public Property Nombre As String
-    Public Property Vuelos As New List(Of VueloBLL)
+    Public Shared Property Vuelos As New List(Of VueloBLL)
 #End Region
 
 #Region "Constructores"
@@ -45,7 +45,7 @@ Public Class AerolineaBLL
             Me.ID = mBE.ID
             Me.Nombre = mBE.Nombre
 
-            CargarVuelos()
+            'CargarVuelos()
         End If
     End Sub
 
@@ -59,21 +59,21 @@ Public Class AerolineaBLL
             Me.ID = pAerolinea.ID
             Me.Nombre = pAerolinea.Nombre
 
-            CargarVuelos()
+            'CargarVuelos()
         End If
     End Sub
 
 
-    ''' <summary>
-    ''' Carga la lista de vuelos relacionadas a esta aerolinea
-    ''' </summary>
-    Private Sub CargarVuelos()
-        Dim mVuelos As List(Of VueloBLL) = VueloBLL.ListarPorAerolinea(Me.ID)
+    '''' <summary>
+    '''' Carga la lista de vuelos relacionadas a esta aerolinea
+    '''' </summary>
+    'Private Sub CargarVuelos()
+    '    Dim mVuelos As List(Of VueloBLL) = VueloBLL.ListarPorAerolinea(Me.ID)
 
-        If Not IsNothing(mVuelos) Then
-            Me.Vuelos = mVuelos
-        End If
-    End Sub
+    '    If Not IsNothing(mVuelos) Then
+    '        Me.Vuelos = mVuelos
+    '    End If
+    'End Sub
 
 
     ''' <summary>
@@ -134,4 +134,10 @@ Public Class AerolineaBLL
 
         Return mLista
     End Function
+
+
+    'Public Shared Function BuscarVuelos(pOrigen As DestinoBLL, pDestino As DestinoBLL, pCantPasajeros As Integer, Optional pEspeciales As Boolean, pFecha As Date, Optional pEscalas As Integer = -1, Optional pClase As String = "") As List(Of VueloBLL)
+
+    'End Function
+
 End Class

@@ -7,7 +7,7 @@ Public Class VueloDAL
     ''' <param name="pVuelo">Objeto BE a cargar con datos</param>
     ''' <param name="pRow">Fila de datos recuperada de BD</param>
     ''' <returns>Objeto BE con datos cargados</returns>
-    Private Shared Function CargarBE(pVuelo As VueloBE, pRow As DataRow) As VueloBE
+    Public Shared Function CargarBE(pVuelo As VueloBE, pRow As DataRow) As VueloBE
         pVuelo.Numero = pRow("Vuelo_Numero")
         pVuelo.Disponible = pRow("vuelo_disponible")
         pVuelo.CantEspacios = pRow("vuelo_cantidadEspacios")
