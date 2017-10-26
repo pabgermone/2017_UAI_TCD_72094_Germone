@@ -126,7 +126,15 @@ Public Class AerolineaDAL
     End Function
 
 
-    <Obsolete("Falta terminar")>
+    ''' <summary>
+    ''' Devuelve una lista de vuelos pertenecientes a una aerolinea que cumplen con ciertos requisitos de busqueda
+    ''' </summary>
+    ''' <param name="pAerolinea">ID de la aeroliena de la que se quieren obtener vuelos</param>
+    ''' <param name="pFecha">Fecha de los vuelos que se quieren obtener</param>
+    ''' <param name="pOrigen">ID del lugar de origen de los vuelos a obtener</param>
+    ''' <param name="pDestino">ID del lugar de destino de los velos a obtener</param>
+    ''' <param name="pCantPAsajeros">Cantidad de pasajeros que deberian poder viajar en los vuelos a obtener</param>
+    ''' <returns>List(Of VueloBE) con los vuelos resultantes de la busqueda</returns>
     Public Shared Function FiltrarVuelos(pAerolinea As Integer, pFecha As Date, pOrigen As Integer, pDestino As Integer, pCantPAsajeros As Integer)
         Dim mListaVuelos As New List(Of VueloBE)
         Dim mCommand As String = "select * from Vuelo where
@@ -143,11 +151,15 @@ Public Class AerolineaDAL
 
                     VueloDAL.CargarBE(mVuelo, mRow)
 
-
+                    mListaVuelos.Add(mVuelo)
                 Next
             End If
-        Catch ex As Exception
 
+            Return mListaVuelos
+        Catch ex As Exception
+            MsgBox("Error - FiltrarVuelos - AerolineaDAL")
+            MsgBox(ex.Message)
+            Return Nothing
         End Try
     End Function
 

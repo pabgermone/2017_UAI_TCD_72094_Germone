@@ -15,6 +15,8 @@ Public Class VueloBLL
     Public Property Aerolinea As Integer
     Public Property Precio As Decimal
     Public Property DV As Integer
+
+    Public Property Asientos As New List(Of AsientoBLL)
 #End Region
 
 #Region "Constructores"
@@ -30,6 +32,8 @@ Public Class VueloBLL
     ''' <param name="pVuelo">Nombre de Vuelo del que se quieren recuperar datos</param>
     Sub New(pVuelo As Integer)
         CargarPropiedades(pVuelo)
+
+        CargarAsientos()
     End Sub
 
 
@@ -39,6 +43,8 @@ Public Class VueloBLL
     ''' <param name="pVuelo">Objeto BE con los datos que se quieren copiar</param>
     Sub New(pVuelo As VueloBE)
         CargarPropiedades(pVuelo)
+
+        CargarAsientos()
     End Sub
 #End Region
 
@@ -106,6 +112,11 @@ Public Class VueloBLL
         mBE.Aerolinea = Me.Aerolinea
         mBE.Precio = Me.Precio
         mBE.DV = Me.DV
+    End Sub
+
+
+    Private Sub CargarAsientos()
+        Me.Asientos = AsientoBLL.Listar(Me.Numero)
     End Sub
 #End Region
 

@@ -118,9 +118,9 @@ Public Class AsientoBLL
     ''' Instancia y guarda en un lista objetos BLL con los datos de cada usuario guardado en la BD
     ''' </summary>
     ''' <returns>List(Of UsuarioBLL) con datos de cada usuario</returns>
-    Public Shared Function Listar() As List(Of AsientoBLL)
+    Public Shared Function Listar(pVuelo As Integer) As List(Of AsientoBLL)
         Dim mLista As New List(Of AsientoBLL)
-        Dim mListaBE As List(Of AsientoBE) = AsientoDAL.ListarAsientos
+        Dim mListaBE As List(Of AsientoBE) = AsientoDAL.ListarAsientos(pVuelo)
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As AsientoBE In mListaBE

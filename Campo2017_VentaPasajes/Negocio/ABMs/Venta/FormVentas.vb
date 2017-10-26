@@ -2,6 +2,7 @@
 Imports Framework
 
 Public Class FormVentas
+    Dim mVuelosEncontrados As New List(Of VueloBLL)
 
     Private Sub FormVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 #Region "Tab Busqueda"
@@ -24,11 +25,6 @@ Public Class FormVentas
 #Region "Tab Busqueda"
     Dim mOrigen As DestinoBLL
     Dim mDestino As DestinoBLL
-
-    Dim mFechaPartida As Date
-    Dim mFechaVuelta As Date
-
-    Dim mCantPasajeros As Integer
 
     Dim mCantEscalas As Integer
     Dim mClase As String
@@ -99,22 +95,13 @@ Public Class FormVentas
 
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
         Dim mListaAerolineas As List(Of AerolineaBLL) = AerolineaBLL.ListarAerolineas
-        Dim mListaVuelos As New List(Of VueloBLL)
 
         If Not IsNothing(mListaAerolineas) Then
             For Each mAerolinea As AerolineaBLL In mListaAerolineas
-                'Metodo filtrar de AerolineaBLL
+                mVuelosEncontrados.AddRange(mAerolinea.BuscarVuelos(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing)))
             Next
         End If
     End Sub
-
-
-
-
-
-
-
-
 
 #End Region
 

@@ -118,9 +118,9 @@ Public Class AsientoDAL
     ''' Devuelve una lista de objetos AsientoBE con los datos de cada registro de la tabla Asiento
     ''' </summary>
     ''' <returns>Lista de todos los asientos de todos los vuelos existentes en BD</returns>
-    Public Shared Function ListarAsientos() As List(Of AsientoBE)
+    Public Shared Function ListarAsientos(pVuelo As Integer) As List(Of AsientoBE)
         Dim mLista As New List(Of AsientoBE)
-        Dim mCommand As String = "SELECT Asiento_numero, Asiento_vuelo_numero, asiento_clase, asiento_ocupado FROM Asiento"
+        Dim mCommand As String = "SELECT Asiento_numero, Asiento_vuelo_numero, asiento_clase, asiento_ocupado FROM Asiento where asiento_vuelo_numero = " & pVuelo
         Dim mDataSet As DataSet
 
         Try

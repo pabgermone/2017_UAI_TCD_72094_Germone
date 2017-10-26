@@ -136,8 +136,64 @@ Public Class AerolineaBLL
     End Function
 
 
-    'Public Shared Function BuscarVuelos(pOrigen As DestinoBLL, pDestino As DestinoBLL, pCantPasajeros As Integer, Optional pEspeciales As Boolean, pFecha As Date, Optional pEscalas As Integer = -1, Optional pClase As String = "") As List(Of VueloBLL)
+    ''' <summary>
+    ''' Busca vuelos para una aerolinea que coincidan con la informacion pasada por parametros
+    ''' </summary>
+    ''' <param name="pFecha">Fecha de salida del vuelo</param>
+    ''' <param name="pOrigen">Lugar de origen del vuelo</param>
+    ''' <param name="pDestino">Lugar de destino del vuelo</param>
+    ''' <param name="pCantPasajeros">Cantidad de pasajeros que desean viajar en el vuelo</param>
+    ''' <param name="pEspeciales">(Optional) - Indica si se quieren utilizar opciones especiales en la busqueda</param>
+    ''' <param name="pEscalas">(Optional) - Cantidad maxima de escalas que se quieren para el vuelo</param>
+    ''' <param name="pClase">(Optional) - Clase de preferente de los asientos del vuelo</param>
+    ''' <returns>List(Of VueloBLL) con los vuelos encontrados</returns>
+    Public Function BuscarVuelos(pFecha As Date, pOrigen As DestinoBLL, pDestino As DestinoBLL, pCantPasajeros As Integer, Optional pEspeciales As Boolean = False, Optional pEscalas As Integer = -1, Optional pClase As String = "") As List(Of VueloBLL)
+        Dim mVuelosBE As List(Of VueloBE) = AerolineaDAL.FiltrarVuelos(Me.ID, pFecha, pOrigen.ID, pDestino.ID, pCantPasajeros)
+        Dim mVuelosBLL As New List(Of VueloBLL)
+        Dim mFiltrados As New List(Of VueloBLL)
 
-    'End Function
+        If Not IsNothing(mVuelosBE) And mVuelosBE.Count > 0 Then
+            For Each mVuelo As VueloBE In mVuelosBE
+                Dim mVueloBLL As New VueloBLL(mVuelo)
+
+                mVuelosBLL.Add(mVueloBLL)
+            Next
+        End If
+
+        If pEspeciales And mVuelosBLL.Count > 0 Then
+            For Each mVuelo As VueloBLL In mVuelosBLL
+                Dim mCantAsientos As Integer = 0
+
+                If pEscalas <> -1 And pClase <> "" Then
+                    For Each mAsiento As AsientoBLL In mVuelo.Asientos
+                        If mAsiento.Clase = pClase Then
+                            mCantAsientos += 1
+                        End If
+                    Next
+
+                    If mVuelo.Escalas <= pEscalas And mCantAsientos >= pCantPasajeros Then
+                        mFiltrados.Add(mVuelo)
+                    End If
+
+                ElseIf pEscalas <> -1 Then
+                    If mVuelo.Escalas <= pEscalas Then
+                        mFiltrados.Add(mVuelo)
+                    End If
+                Else
+                    For Each mAsiento As AsientoBLL In mVuelo.Asientos
+                        If mAsiento.Clase = pClase Then
+                            mCantAsientos += 1
+                        End If
+                    Next
+
+                    If mCantAsientos >= pCantPasajeros Then
+                        mFiltrados.Add(mVuelo)
+                    End If
+                End If
+            Next
+        End If
+
+        Return mFiltrados
+    End Function
 
 End Class
