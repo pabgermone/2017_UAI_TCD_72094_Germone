@@ -3,9 +3,12 @@ Imports Framework
 
 Public Class FormVentas
     Dim mVuelosEncontrados As New List(Of VueloBLL)
+    Dim mVueloSelec As VueloBLL
+    Dim mVuelosSelec As New List(Of VueloBLL)
+    Dim mTipoViaje As String
 
     Private Sub FormVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-#Region "Tab Busqueda"
+#Region "Tab 1"
         ComboEscalas.SelectedIndex = 0
         ComboEscalas.Enabled = False
 
@@ -22,7 +25,8 @@ Public Class FormVentas
     End Sub
 
 
-#Region "Tab Busqueda"
+#Region "Tab 1"
+
     Dim mOrigen As DestinoBLL
     Dim mDestino As DestinoBLL
 
@@ -35,6 +39,7 @@ Public Class FormVentas
         If RadioIdaVuelta.Checked Then
             DatePickerVuelta.Enabled = True
             LinkAgregarTramo.Visible = False
+            mTipoViaje = "IdaVuelta"
         End If
     End Sub
 
@@ -43,6 +48,7 @@ Public Class FormVentas
         If RadioIda.Checked Then
             DatePickerVuelta.Enabled = False
             LinkAgregarTramo.Visible = False
+            mTipoViaje = "Ida"
         End If
     End Sub
 
@@ -51,6 +57,7 @@ Public Class FormVentas
         If RadioMulti.Checked Then
             DatePickerVuelta.Enabled = False
             LinkAgregarTramo.Visible = True
+            mTipoViaje = "Multi"
         End If
     End Sub
 
@@ -94,16 +101,90 @@ Public Class FormVentas
 #End Region
 
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
-        Dim mListaAerolineas As List(Of AerolineaBLL) = AerolineaBLL.ListarAerolineas
+        mVuelosEncontrados = Buscar(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
 
-        If Not IsNothing(mListaAerolineas) Then
-            For Each mAerolinea As AerolineaBLL In mListaAerolineas
-                mVuelosEncontrados.AddRange(mAerolinea.BuscarVuelos(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing)))
-            Next
+        TabControlVentas.SelectedTab = Tab2
+    End Sub
+
+#End Region
+
+
+#Region "Tab 2"
+
+#Region "Eventos"
+
+    Private Sub GridVuelos_SelectionChanged(sender As Object, e As EventArgs) Handles GridVuelos.SelectionChanged
+        If GridVuelos.CurrentRow.Index > -1 And GridVuelos.SelectedRows.Count > 0 Then
+            If Not IsNothing(GridVuelos.SelectedRows(0).DataBoundItem) Then
+                If TypeOf (GridVuelos.SelectedRows(0).DataBoundItem) Is VueloBLL Then
+                    mVueloSelec = GridVuelos.SelectedRows(0).DataBoundItem
+                End If
+            End If
         End If
     End Sub
 
 #End Region
+
+#Region "Navegacion"
+
+    Private Sub BtnVolver_Click(sender As Object, e As EventArgs) Handles BtnVolver.Click
+        Select Case mTipoViaje
+            Case "Ida"
+                TabControlVentas.SelectedTab = Tab1
+            Case "IdaVuelta"
+
+        End Select
+    End Sub
+
+
+    Private Sub BtnSiguiente_Click(sender As Object, e As EventArgs) Handles BtnSiguiente.Click
+        Select Case mTipoViaje
+            Case "Ida"
+                TabControlVentas.SelectedTab = Tab3
+            Case "IdaVuelta"
+                If mVuelosSelec.Count = 1 Then
+                    mVuelosEncontrados = Buscar(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
+
+                    ActualizarVuelos()
+                Else
+                    TabControlVentas.SelectedTab = Tab3
+                End If
+        End Select
+    End Sub
+
+#End Region
+
+    Public Sub ActualizarVuelos()
+        GridVuelos.DataSource = Nothing
+        GridVuelos.DataSource = mVuelosEncontrados
+    End Sub
+
+#End Region
+
+
+    ''' <summary>
+    ''' Se encarga de la busqueda de vuelos en cada aerolinea
+    ''' </summary>
+    ''' <param name="pFecha">Fecha del vuelo</param>
+    ''' <param name="pOrigen">Lugar de origen del vuelo</param>
+    ''' <param name="pDestino">Destino del vuelo</param>
+    ''' <param name="pCantPasajeros">Cantidad de pasajeros que queiren viajar</param>
+    ''' <param name="pAvanzadas">Opciones avanzadas</param>
+    ''' <param name="pEscalas">Cantidad de escalas</param>
+    ''' <param name="pClase">Preferencia para la clase de los asientos</param>
+    ''' <returns>Lista con vuelos encontrados</returns>
+    Public Function Buscar(pFecha As Date, pOrigen As DestinoBLL, pDestino As DestinoBLL, pCantPasajeros As Integer, pAvanzadas As Boolean, pEscalas As Integer, pClase As String)
+        Dim mVuelos As New List(Of VueloBLL)
+        Dim mListaAerolineas As List(Of AerolineaBLL) = AerolineaBLL.ListarAerolineas
+
+        If Not IsNothing(mListaAerolineas) Then
+            For Each mAerolinea As AerolineaBLL In mListaAerolineas
+                mVuelos.AddRange(mAerolinea.BuscarVuelos(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing)))
+            Next
+        End If
+
+        Return mVuelos
+    End Function
 
 #Region "Codigo viejo"
     '    'Variables generales
