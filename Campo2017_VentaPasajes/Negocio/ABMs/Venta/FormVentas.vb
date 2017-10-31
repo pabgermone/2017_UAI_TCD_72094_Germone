@@ -4,8 +4,14 @@ Imports Framework
 Public Class FormVentas
     Dim mVuelosEncontrados As New List(Of VueloBLL)
     Dim mVueloSelec As VueloBLL
-    Dim mVuelosSelec As New List(Of VueloBLL)
+    Dim mListaElegidos As New List(Of VueloBLL)
+
     Dim mTipoViaje As String
+    Dim mCantTramos As Integer = 1
+
+    Dim mClienteSelec As ClienteBLL
+    Dim mListaClientes As List(Of ClienteBLL)
+
 
     Private Sub FormVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 #Region "Tab 1"
@@ -21,6 +27,12 @@ Public Class FormVentas
             ComboOrigen.DataSource = mDestinos
             ComboDestino.DataSource = mDestinos
         End If
+#End Region
+
+#Region "Tab 3"
+
+        ActualizarClientes()
+
 #End Region
     End Sub
 
@@ -53,13 +65,24 @@ Public Class FormVentas
     End Sub
 
 
-    Private Sub RadioMulti_CheckedChanged(sender As Object, e As EventArgs) Handles RadioMulti.CheckedChanged
-        If RadioMulti.Checked Then
-            DatePickerVuelta.Enabled = False
-            LinkAgregarTramo.Visible = True
-            mTipoViaje = "Multi"
-        End If
-    End Sub
+    'Private Sub RadioMulti_CheckedChanged(sender As Object, e As EventArgs) Handles RadioMulti.CheckedChanged
+    '    If RadioMulti.Checked Then
+    '        DatePickerVuelta.Enabled = False
+    '        LinkAgregarTramo.Visible = True
+    '        mTipoViaje = "Multi"
+    '    End If
+    'End Sub
+
+
+    'Private Sub LinkAgregarTramo_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkAgregarTramo.LinkClicked
+    '    mCantTramos += 1
+    '    Dim mTab As New TabPage
+
+    '    mTab.Name = "Destino " & mCantTramos
+    '    mTab.Text = "Tramo " & mCantTramos
+
+    '    TabsDestinos.
+    'End Sub
 
 
     Private Sub CheckAvanzadas_CheckedChanged(sender As Object, e As EventArgs) Handles CheckAvanzadas.CheckedChanged
@@ -104,6 +127,17 @@ Public Class FormVentas
         mVuelosEncontrados = Buscar(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
 
         TabControlVentas.SelectedTab = Tab2
+
+#Region "Tab 2"
+        ActualizarVuelos()
+
+        If mTipoViaje = "Ida" Then
+            lblSelecVuelo.Text = "Seleccione un vuelo"
+        Else
+            lblSelecVuelo.Text = "Seleccione el vuelo de ida"
+        End If
+#End Region
+
     End Sub
 
 #End Region
@@ -132,7 +166,19 @@ Public Class FormVentas
             Case "Ida"
                 TabControlVentas.SelectedTab = Tab1
             Case "IdaVuelta"
+                If mListaElegidos.Count = 2 Then '(Volviendo desde la seleccion del vieje de vuelta)
+                    mListaElegidos.RemoveAt(1)
 
+                    mVuelosEncontrados = Buscar(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
+
+                    ActualizarVuelos()
+
+                    lblSelecVuelo.Text = "Seleccione el vieje de ida"
+                Else '(Volviendo desde la seleccion del viaje de ida)
+                    mListaElegidos.Clear()
+
+                    TabControlVentas.SelectedTab = Tab1
+                End If
         End Select
     End Sub
 
@@ -142,11 +188,18 @@ Public Class FormVentas
             Case "Ida"
                 TabControlVentas.SelectedTab = Tab3
             Case "IdaVuelta"
-                If mVuelosSelec.Count = 1 Then
-                    mVuelosEncontrados = Buscar(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
+                If mListaElegidos.Count = 0 Then '(Eligiendo vieje de ida)
+                    mListaElegidos.Add(mVueloSelec)
+
+                    'Busqueda de los vuelos de vuelta
+                    mVuelosEncontrados = Buscar(DatePickerIda.Value, mDestino, mOrigen, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
 
                     ActualizarVuelos()
-                Else
+
+                    lblSelecVuelo.Text = "Seleccione el vuelo de vuelta"
+                Else '(Eligiendo viaje de vuelta)
+                    mListaElegidos.Add(mVueloSelec)
+
                     TabControlVentas.SelectedTab = Tab3
                 End If
         End Select
@@ -157,6 +210,35 @@ Public Class FormVentas
     Public Sub ActualizarVuelos()
         GridVuelos.DataSource = Nothing
         GridVuelos.DataSource = mVuelosEncontrados
+    End Sub
+
+#End Region
+
+
+#Region "Tab 3"
+
+#Region "Eventos"
+
+    Private Sub GridClientes_SelectionChanged(sender As Object, e As EventArgs) Handles GridClientes.SelectionChanged
+        If GridClientes.CurrentRow.Index > -1 And GridClientes.SelectedRows.Count > 0 Then
+            If Not IsNothing(GridClientes.SelectedRows(0).DataBoundItem) Then
+                If TypeOf (GridClientes.SelectedRows(0).DataBoundItem) Is VueloBLL Then
+                    mClienteSelec = GridClientes.SelectedRows(0).DataBoundItem
+                End If
+            End If
+        End If
+    End Sub
+
+
+    Private Sub TxtBusquedaCte_TextChanged(sender As Object, e As EventArgs) Handles TxtBusquedaCte.TextChanged
+
+    End Sub
+
+#End Region
+
+    Public Sub ActualizarClientes()
+        GridClientes.DataSource = Nothing
+        GridClientes.DataSource = ClienteBLL.Listar
     End Sub
 
 #End Region
@@ -185,6 +267,12 @@ Public Class FormVentas
 
         Return mVuelos
     End Function
+
+
+
+
+
+
 
 #Region "Codigo viejo"
     '    'Variables generales

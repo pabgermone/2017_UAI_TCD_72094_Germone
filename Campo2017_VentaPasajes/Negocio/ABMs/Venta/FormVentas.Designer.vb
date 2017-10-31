@@ -53,6 +53,16 @@ Partial Class FormVentas
         Me.BtnSiguiente = New System.Windows.Forms.Button()
         Me.GridVuelos = New System.Windows.Forms.DataGridView()
         Me.Tab3 = New System.Windows.Forms.TabPage()
+        Me.GridClientes = New System.Windows.Forms.DataGridView()
+        Me.TxtBusquedaCte = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.BtnSelec = New System.Windows.Forms.Button()
+        Me.LstCtesSeleccionados = New System.Windows.Forms.ListBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.BtnQuitar = New System.Windows.Forms.Button()
+        Me.BtnClienteNvo = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.TabControlVentas.SuspendLayout()
         Me.Tab1.SuspendLayout()
         Me.GroupOpciones.SuspendLayout()
@@ -60,6 +70,8 @@ Partial Class FormVentas
         Me.TabDestino1.SuspendLayout()
         Me.Tab2.SuspendLayout()
         CType(Me.GridVuelos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Tab3.SuspendLayout()
+        CType(Me.GridClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControlVentas
@@ -68,9 +80,10 @@ Partial Class FormVentas
         Me.TabControlVentas.Controls.Add(Me.Tab2)
         Me.TabControlVentas.Controls.Add(Me.Tab3)
         Me.TabControlVentas.Location = New System.Drawing.Point(0, 0)
+        Me.TabControlVentas.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControlVentas.Name = "TabControlVentas"
         Me.TabControlVentas.SelectedIndex = 0
-        Me.TabControlVentas.Size = New System.Drawing.Size(353, 481)
+        Me.TabControlVentas.Size = New System.Drawing.Size(471, 592)
         Me.TabControlVentas.TabIndex = 0
         '
         'Tab1
@@ -88,10 +101,11 @@ Partial Class FormVentas
         Me.Tab1.Controls.Add(Me.RadioMulti)
         Me.Tab1.Controls.Add(Me.RadioIda)
         Me.Tab1.Controls.Add(Me.RadioIdaVuelta)
-        Me.Tab1.Location = New System.Drawing.Point(4, 22)
+        Me.Tab1.Location = New System.Drawing.Point(4, 25)
+        Me.Tab1.Margin = New System.Windows.Forms.Padding(4)
         Me.Tab1.Name = "Tab1"
-        Me.Tab1.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab1.Size = New System.Drawing.Size(345, 455)
+        Me.Tab1.Padding = New System.Windows.Forms.Padding(4)
+        Me.Tab1.Size = New System.Drawing.Size(463, 563)
         Me.Tab1.TabIndex = 0
         Me.Tab1.Text = "Paso 1"
         Me.Tab1.UseVisualStyleBackColor = True
@@ -99,39 +113,36 @@ Partial Class FormVentas
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 263)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label5.Location = New System.Drawing.Point(8, 324)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(53, 13)
+        Me.Label5.Size = New System.Drawing.Size(71, 17)
         Me.Label5.TabIndex = 16
         Me.Label5.Text = "Pasajeros"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(189, 202)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label4.Location = New System.Drawing.Point(252, 249)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 13)
+        Me.Label4.Size = New System.Drawing.Size(105, 17)
         Me.Label4.TabIndex = 15
         Me.Label4.Text = "Fecha Regreso"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 202)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label3.Location = New System.Drawing.Point(8, 249)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 13)
+        Me.Label3.Size = New System.Drawing.Size(96, 17)
         Me.Label3.TabIndex = 14
         Me.Label3.Text = "Fecha Partida"
         '
         'BtnBuscar
         '
-        Me.BtnBuscar.Location = New System.Drawing.Point(252, 427)
-        Me.BtnBuscar.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnBuscar.Location = New System.Drawing.Point(336, 526)
+        Me.BtnBuscar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.BtnBuscar.Name = "BtnBuscar"
-        Me.BtnBuscar.Size = New System.Drawing.Size(89, 26)
+        Me.BtnBuscar.Size = New System.Drawing.Size(119, 32)
         Me.BtnBuscar.TabIndex = 11
         Me.BtnBuscar.Text = "Buscar"
         Me.BtnBuscar.UseVisualStyleBackColor = True
@@ -139,10 +150,10 @@ Partial Class FormVentas
         'CheckAvanzadas
         '
         Me.CheckAvanzadas.AutoSize = True
-        Me.CheckAvanzadas.Location = New System.Drawing.Point(8, 327)
-        Me.CheckAvanzadas.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckAvanzadas.Location = New System.Drawing.Point(11, 402)
+        Me.CheckAvanzadas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.CheckAvanzadas.Name = "CheckAvanzadas"
-        Me.CheckAvanzadas.Size = New System.Drawing.Size(126, 17)
+        Me.CheckAvanzadas.Size = New System.Drawing.Size(163, 21)
         Me.CheckAvanzadas.TabIndex = 10
         Me.CheckAvanzadas.Text = "Opciones avanzadas"
         Me.CheckAvanzadas.UseVisualStyleBackColor = True
@@ -153,31 +164,29 @@ Partial Class FormVentas
         Me.GroupOpciones.Controls.Add(Me.Label6)
         Me.GroupOpciones.Controls.Add(Me.ComboClase)
         Me.GroupOpciones.Controls.Add(Me.ComboEscalas)
-        Me.GroupOpciones.Location = New System.Drawing.Point(6, 349)
-        Me.GroupOpciones.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupOpciones.Location = New System.Drawing.Point(8, 430)
+        Me.GroupOpciones.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupOpciones.Name = "GroupOpciones"
-        Me.GroupOpciones.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupOpciones.Size = New System.Drawing.Size(330, 66)
+        Me.GroupOpciones.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupOpciones.Size = New System.Drawing.Size(440, 81)
         Me.GroupOpciones.TabIndex = 9
         Me.GroupOpciones.TabStop = False
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(161, 15)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label7.Location = New System.Drawing.Point(215, 18)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(81, 13)
+        Me.Label7.Size = New System.Drawing.Size(107, 17)
         Me.Label7.TabIndex = 18
         Me.Label7.Text = "Clase de Boleto"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(0, 15)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label6.Location = New System.Drawing.Point(0, 18)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(44, 13)
+        Me.Label6.Size = New System.Drawing.Size(57, 17)
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Escalas"
         '
@@ -185,54 +194,54 @@ Partial Class FormVentas
         '
         Me.ComboClase.FormattingEnabled = True
         Me.ComboClase.Items.AddRange(New Object() {"Indistinto", "Turista", "Premium Economy", "Ejecutiva", "Primera Clase"})
-        Me.ComboClase.Location = New System.Drawing.Point(164, 31)
-        Me.ComboClase.Margin = New System.Windows.Forms.Padding(2)
+        Me.ComboClase.Location = New System.Drawing.Point(219, 38)
+        Me.ComboClase.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ComboClase.Name = "ComboClase"
-        Me.ComboClase.Size = New System.Drawing.Size(139, 21)
+        Me.ComboClase.Size = New System.Drawing.Size(184, 24)
         Me.ComboClase.TabIndex = 1
         '
         'ComboEscalas
         '
         Me.ComboEscalas.FormattingEnabled = True
         Me.ComboEscalas.Items.AddRange(New Object() {"Indistinto", "Vuelo Directo", "Hasta 1 Escala", "Hasta 2 Escalas", "Hasta 3 Escalas", "Hasta 4 Escalas", "Hasta 5 Escalas", "Hasta 6 Escalas", "Hasta 7 Escalas", "Hasta 8 Escalas"})
-        Me.ComboEscalas.Location = New System.Drawing.Point(2, 31)
-        Me.ComboEscalas.Margin = New System.Windows.Forms.Padding(2)
+        Me.ComboEscalas.Location = New System.Drawing.Point(3, 38)
+        Me.ComboEscalas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ComboEscalas.Name = "ComboEscalas"
-        Me.ComboEscalas.Size = New System.Drawing.Size(144, 21)
+        Me.ComboEscalas.Size = New System.Drawing.Size(191, 24)
         Me.ComboEscalas.TabIndex = 0
         '
         'TxtPasajeros
         '
-        Me.TxtPasajeros.Location = New System.Drawing.Point(8, 280)
-        Me.TxtPasajeros.Margin = New System.Windows.Forms.Padding(2)
+        Me.TxtPasajeros.Location = New System.Drawing.Point(11, 345)
+        Me.TxtPasajeros.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TxtPasajeros.Name = "TxtPasajeros"
-        Me.TxtPasajeros.Size = New System.Drawing.Size(76, 20)
+        Me.TxtPasajeros.Size = New System.Drawing.Size(100, 22)
         Me.TxtPasajeros.TabIndex = 8
         '
         'DatePickerVuelta
         '
-        Me.DatePickerVuelta.Location = New System.Drawing.Point(191, 219)
-        Me.DatePickerVuelta.Margin = New System.Windows.Forms.Padding(2)
+        Me.DatePickerVuelta.Location = New System.Drawing.Point(255, 270)
+        Me.DatePickerVuelta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DatePickerVuelta.Name = "DatePickerVuelta"
-        Me.DatePickerVuelta.Size = New System.Drawing.Size(147, 20)
+        Me.DatePickerVuelta.Size = New System.Drawing.Size(195, 22)
         Me.DatePickerVuelta.TabIndex = 7
         '
         'DatePickerIda
         '
-        Me.DatePickerIda.Location = New System.Drawing.Point(8, 219)
-        Me.DatePickerIda.Margin = New System.Windows.Forms.Padding(2)
+        Me.DatePickerIda.Location = New System.Drawing.Point(11, 270)
+        Me.DatePickerIda.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DatePickerIda.Name = "DatePickerIda"
-        Me.DatePickerIda.Size = New System.Drawing.Size(147, 20)
+        Me.DatePickerIda.Size = New System.Drawing.Size(195, 22)
         Me.DatePickerIda.TabIndex = 6
         '
         'TabsDestinos
         '
         Me.TabsDestinos.Controls.Add(Me.TabDestino1)
-        Me.TabsDestinos.Location = New System.Drawing.Point(5, 62)
-        Me.TabsDestinos.Margin = New System.Windows.Forms.Padding(2)
+        Me.TabsDestinos.Location = New System.Drawing.Point(7, 76)
+        Me.TabsDestinos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabsDestinos.Name = "TabsDestinos"
         Me.TabsDestinos.SelectedIndex = 0
-        Me.TabsDestinos.Size = New System.Drawing.Size(340, 118)
+        Me.TabsDestinos.Size = New System.Drawing.Size(453, 145)
         Me.TabsDestinos.TabIndex = 5
         '
         'TabDestino1
@@ -242,42 +251,40 @@ Partial Class FormVentas
         Me.TabDestino1.Controls.Add(Me.LinkAgregarTramo)
         Me.TabDestino1.Controls.Add(Me.ComboOrigen)
         Me.TabDestino1.Controls.Add(Me.ComboDestino)
-        Me.TabDestino1.Location = New System.Drawing.Point(4, 22)
-        Me.TabDestino1.Margin = New System.Windows.Forms.Padding(2)
+        Me.TabDestino1.Location = New System.Drawing.Point(4, 25)
+        Me.TabDestino1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabDestino1.Name = "TabDestino1"
-        Me.TabDestino1.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabDestino1.Size = New System.Drawing.Size(332, 92)
+        Me.TabDestino1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabDestino1.Size = New System.Drawing.Size(445, 116)
         Me.TabDestino1.TabIndex = 0
         Me.TabDestino1.UseVisualStyleBackColor = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(181, 18)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label2.Location = New System.Drawing.Point(241, 22)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(43, 13)
+        Me.Label2.Size = New System.Drawing.Size(56, 17)
         Me.Label2.TabIndex = 13
         Me.Label2.Text = "Destino"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(2, 18)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Location = New System.Drawing.Point(3, 22)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(38, 13)
+        Me.Label1.Size = New System.Drawing.Size(51, 17)
         Me.Label1.TabIndex = 12
         Me.Label1.Text = "Origen"
         '
         'LinkAgregarTramo
         '
         Me.LinkAgregarTramo.AutoSize = True
+        Me.LinkAgregarTramo.Enabled = False
         Me.LinkAgregarTramo.LinkColor = System.Drawing.Color.Green
-        Me.LinkAgregarTramo.Location = New System.Drawing.Point(2, 78)
-        Me.LinkAgregarTramo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LinkAgregarTramo.Location = New System.Drawing.Point(3, 96)
         Me.LinkAgregarTramo.Name = "LinkAgregarTramo"
-        Me.LinkAgregarTramo.Size = New System.Drawing.Size(73, 13)
+        Me.LinkAgregarTramo.Size = New System.Drawing.Size(99, 17)
         Me.LinkAgregarTramo.TabIndex = 5
         Me.LinkAgregarTramo.TabStop = True
         Me.LinkAgregarTramo.Text = "Agregar tramo"
@@ -286,28 +293,29 @@ Partial Class FormVentas
         'ComboOrigen
         '
         Me.ComboOrigen.FormattingEnabled = True
-        Me.ComboOrigen.Location = New System.Drawing.Point(4, 34)
-        Me.ComboOrigen.Margin = New System.Windows.Forms.Padding(2)
+        Me.ComboOrigen.Location = New System.Drawing.Point(5, 42)
+        Me.ComboOrigen.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ComboOrigen.Name = "ComboOrigen"
-        Me.ComboOrigen.Size = New System.Drawing.Size(143, 21)
+        Me.ComboOrigen.Size = New System.Drawing.Size(189, 24)
         Me.ComboOrigen.TabIndex = 3
         '
         'ComboDestino
         '
         Me.ComboDestino.FormattingEnabled = True
-        Me.ComboDestino.Location = New System.Drawing.Point(183, 34)
-        Me.ComboDestino.Margin = New System.Windows.Forms.Padding(2)
+        Me.ComboDestino.Location = New System.Drawing.Point(244, 42)
+        Me.ComboDestino.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ComboDestino.Name = "ComboDestino"
-        Me.ComboDestino.Size = New System.Drawing.Size(147, 21)
+        Me.ComboDestino.Size = New System.Drawing.Size(195, 24)
         Me.ComboDestino.TabIndex = 4
         '
         'RadioMulti
         '
         Me.RadioMulti.AutoSize = True
-        Me.RadioMulti.Location = New System.Drawing.Point(254, 24)
-        Me.RadioMulti.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioMulti.Enabled = False
+        Me.RadioMulti.Location = New System.Drawing.Point(339, 30)
+        Me.RadioMulti.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RadioMulti.Name = "RadioMulti"
-        Me.RadioMulti.Size = New System.Drawing.Size(86, 17)
+        Me.RadioMulti.Size = New System.Drawing.Size(111, 21)
         Me.RadioMulti.TabIndex = 2
         Me.RadioMulti.Text = "Multi-Destino"
         Me.RadioMulti.UseVisualStyleBackColor = True
@@ -315,10 +323,10 @@ Partial Class FormVentas
         'RadioIda
         '
         Me.RadioIda.AutoSize = True
-        Me.RadioIda.Location = New System.Drawing.Point(131, 24)
-        Me.RadioIda.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioIda.Location = New System.Drawing.Point(175, 30)
+        Me.RadioIda.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RadioIda.Name = "RadioIda"
-        Me.RadioIda.Size = New System.Drawing.Size(64, 17)
+        Me.RadioIda.Size = New System.Drawing.Size(80, 21)
         Me.RadioIda.TabIndex = 1
         Me.RadioIda.Text = "Solo Ida"
         Me.RadioIda.UseVisualStyleBackColor = True
@@ -327,10 +335,10 @@ Partial Class FormVentas
         '
         Me.RadioIdaVuelta.AutoSize = True
         Me.RadioIdaVuelta.Checked = True
-        Me.RadioIdaVuelta.Location = New System.Drawing.Point(8, 24)
-        Me.RadioIdaVuelta.Margin = New System.Windows.Forms.Padding(2)
+        Me.RadioIdaVuelta.Location = New System.Drawing.Point(11, 30)
+        Me.RadioIdaVuelta.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RadioIdaVuelta.Name = "RadioIdaVuelta"
-        Me.RadioIdaVuelta.Size = New System.Drawing.Size(81, 17)
+        Me.RadioIdaVuelta.Size = New System.Drawing.Size(103, 21)
         Me.RadioIdaVuelta.TabIndex = 0
         Me.RadioIdaVuelta.TabStop = True
         Me.RadioIdaVuelta.Text = "Ida y Vuelta"
@@ -342,10 +350,11 @@ Partial Class FormVentas
         Me.Tab2.Controls.Add(Me.BtnVolver)
         Me.Tab2.Controls.Add(Me.BtnSiguiente)
         Me.Tab2.Controls.Add(Me.GridVuelos)
-        Me.Tab2.Location = New System.Drawing.Point(4, 22)
+        Me.Tab2.Location = New System.Drawing.Point(4, 25)
+        Me.Tab2.Margin = New System.Windows.Forms.Padding(4)
         Me.Tab2.Name = "Tab2"
-        Me.Tab2.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab2.Size = New System.Drawing.Size(345, 455)
+        Me.Tab2.Padding = New System.Windows.Forms.Padding(4)
+        Me.Tab2.Size = New System.Drawing.Size(463, 563)
         Me.Tab2.TabIndex = 1
         Me.Tab2.Text = "Paso 2"
         Me.Tab2.UseVisualStyleBackColor = True
@@ -353,26 +362,29 @@ Partial Class FormVentas
         'lblSelecVuelo
         '
         Me.lblSelecVuelo.AutoSize = True
-        Me.lblSelecVuelo.Location = New System.Drawing.Point(5, 12)
+        Me.lblSelecVuelo.Location = New System.Drawing.Point(7, 15)
+        Me.lblSelecVuelo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblSelecVuelo.Name = "lblSelecVuelo"
-        Me.lblSelecVuelo.Size = New System.Drawing.Size(104, 13)
+        Me.lblSelecVuelo.Size = New System.Drawing.Size(135, 17)
         Me.lblSelecVuelo.TabIndex = 3
         Me.lblSelecVuelo.Text = "Seleccione un vuelo"
         '
         'BtnVolver
         '
-        Me.BtnVolver.Location = New System.Drawing.Point(8, 426)
+        Me.BtnVolver.Location = New System.Drawing.Point(11, 524)
+        Me.BtnVolver.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnVolver.Name = "BtnVolver"
-        Me.BtnVolver.Size = New System.Drawing.Size(75, 23)
+        Me.BtnVolver.Size = New System.Drawing.Size(100, 28)
         Me.BtnVolver.TabIndex = 2
         Me.BtnVolver.Text = "<< Volver"
         Me.BtnVolver.UseVisualStyleBackColor = True
         '
         'BtnSiguiente
         '
-        Me.BtnSiguiente.Location = New System.Drawing.Point(263, 426)
+        Me.BtnSiguiente.Location = New System.Drawing.Point(351, 524)
+        Me.BtnSiguiente.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnSiguiente.Name = "BtnSiguiente"
-        Me.BtnSiguiente.Size = New System.Drawing.Size(75, 23)
+        Me.BtnSiguiente.Size = New System.Drawing.Size(100, 28)
         Me.BtnSiguiente.TabIndex = 1
         Me.BtnSiguiente.Text = "Siguiente >>"
         Me.BtnSiguiente.UseVisualStyleBackColor = True
@@ -380,29 +392,134 @@ Partial Class FormVentas
         'GridVuelos
         '
         Me.GridVuelos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GridVuelos.Location = New System.Drawing.Point(8, 28)
+        Me.GridVuelos.Location = New System.Drawing.Point(11, 34)
+        Me.GridVuelos.Margin = New System.Windows.Forms.Padding(4)
         Me.GridVuelos.Name = "GridVuelos"
         Me.GridVuelos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GridVuelos.Size = New System.Drawing.Size(330, 386)
+        Me.GridVuelos.Size = New System.Drawing.Size(440, 475)
         Me.GridVuelos.TabIndex = 1
         '
         'Tab3
         '
-        Me.Tab3.Location = New System.Drawing.Point(4, 22)
+        Me.Tab3.Controls.Add(Me.Button4)
+        Me.Tab3.Controls.Add(Me.BtnClienteNvo)
+        Me.Tab3.Controls.Add(Me.BtnQuitar)
+        Me.Tab3.Controls.Add(Me.Label10)
+        Me.Tab3.Controls.Add(Me.LstCtesSeleccionados)
+        Me.Tab3.Controls.Add(Me.BtnSelec)
+        Me.Tab3.Controls.Add(Me.Label9)
+        Me.Tab3.Controls.Add(Me.Label8)
+        Me.Tab3.Controls.Add(Me.TxtBusquedaCte)
+        Me.Tab3.Controls.Add(Me.GridClientes)
+        Me.Tab3.Location = New System.Drawing.Point(4, 25)
+        Me.Tab3.Margin = New System.Windows.Forms.Padding(4)
         Me.Tab3.Name = "Tab3"
-        Me.Tab3.Padding = New System.Windows.Forms.Padding(3)
-        Me.Tab3.Size = New System.Drawing.Size(345, 455)
+        Me.Tab3.Padding = New System.Windows.Forms.Padding(4)
+        Me.Tab3.Size = New System.Drawing.Size(463, 563)
         Me.Tab3.TabIndex = 2
-        Me.Tab3.Text = "TabPage1"
+        Me.Tab3.Text = "Paso 3"
         Me.Tab3.UseVisualStyleBackColor = True
+        '
+        'GridClientes
+        '
+        Me.GridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GridClientes.Location = New System.Drawing.Point(8, 93)
+        Me.GridClientes.Name = "GridClientes"
+        Me.GridClientes.RowTemplate.Height = 24
+        Me.GridClientes.Size = New System.Drawing.Size(448, 189)
+        Me.GridClientes.TabIndex = 1
+        '
+        'TxtBusquedaCte
+        '
+        Me.TxtBusquedaCte.Location = New System.Drawing.Point(7, 65)
+        Me.TxtBusquedaCte.Name = "TxtBusquedaCte"
+        Me.TxtBusquedaCte.Size = New System.Drawing.Size(236, 22)
+        Me.TxtBusquedaCte.TabIndex = 2
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(3, 4)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(148, 17)
+        Me.Label8.TabIndex = 3
+        Me.Label8.Text = "Seleccionar pasajeros"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(3, 45)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(52, 17)
+        Me.Label9.TabIndex = 4
+        Me.Label9.Text = "Buscar"
+        '
+        'BtnSelec
+        '
+        Me.BtnSelec.Location = New System.Drawing.Point(7, 289)
+        Me.BtnSelec.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnSelec.Name = "BtnSelec"
+        Me.BtnSelec.Size = New System.Drawing.Size(100, 28)
+        Me.BtnSelec.TabIndex = 5
+        Me.BtnSelec.Text = "Seleccionar"
+        Me.BtnSelec.UseVisualStyleBackColor = True
+        '
+        'LstCtesSeleccionados
+        '
+        Me.LstCtesSeleccionados.Enabled = False
+        Me.LstCtesSeleccionados.FormattingEnabled = True
+        Me.LstCtesSeleccionados.ItemHeight = 16
+        Me.LstCtesSeleccionados.Location = New System.Drawing.Point(8, 361)
+        Me.LstCtesSeleccionados.Name = "LstCtesSeleccionados"
+        Me.LstCtesSeleccionados.Size = New System.Drawing.Size(235, 196)
+        Me.LstCtesSeleccionados.TabIndex = 6
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(8, 341)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(165, 17)
+        Me.Label10.TabIndex = 7
+        Me.Label10.Text = "Pasajeros seleccionados"
+        '
+        'BtnQuitar
+        '
+        Me.BtnQuitar.Location = New System.Drawing.Point(250, 361)
+        Me.BtnQuitar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnQuitar.Name = "BtnQuitar"
+        Me.BtnQuitar.Size = New System.Drawing.Size(125, 28)
+        Me.BtnQuitar.TabIndex = 8
+        Me.BtnQuitar.Text = "Quitar pasajero"
+        Me.BtnQuitar.UseVisualStyleBackColor = True
+        '
+        'BtnClienteNvo
+        '
+        Me.BtnClienteNvo.Location = New System.Drawing.Point(124, 289)
+        Me.BtnClienteNvo.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnClienteNvo.Name = "BtnClienteNvo"
+        Me.BtnClienteNvo.Size = New System.Drawing.Size(119, 28)
+        Me.BtnClienteNvo.TabIndex = 9
+        Me.BtnClienteNvo.Text = "Nuevo cliente"
+        Me.BtnClienteNvo.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(359, 529)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(100, 28)
+        Me.Button4.TabIndex = 10
+        Me.Button4.Text = "Siguiente >>"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'FormVentas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(354, 480)
+        Me.ClientSize = New System.Drawing.Size(472, 591)
         Me.Controls.Add(Me.TabControlVentas)
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "FormVentas"
         Me.Text = "Ventas"
         Me.TabControlVentas.ResumeLayout(False)
@@ -416,6 +533,9 @@ Partial Class FormVentas
         Me.Tab2.ResumeLayout(False)
         Me.Tab2.PerformLayout()
         CType(Me.GridVuelos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Tab3.ResumeLayout(False)
+        Me.Tab3.PerformLayout()
+        CType(Me.GridClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -451,4 +571,14 @@ Partial Class FormVentas
     Friend WithEvents BtnSiguiente As Button
     Friend WithEvents GridVuelos As DataGridView
     Friend WithEvents Tab3 As TabPage
+    Friend WithEvents Label10 As Label
+    Friend WithEvents LstCtesSeleccionados As ListBox
+    Friend WithEvents BtnSelec As Button
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TxtBusquedaCte As TextBox
+    Friend WithEvents GridClientes As DataGridView
+    Friend WithEvents Button4 As Button
+    Friend WithEvents BtnClienteNvo As Button
+    Friend WithEvents BtnQuitar As Button
 End Class
