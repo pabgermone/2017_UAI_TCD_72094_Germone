@@ -8,7 +8,7 @@ Public Class ClienteDAL
     ''' <param name="pCliente">Objeto BE a cargar con datos</param>
     ''' <param name="pRow">Fila de datos recuperada de BD</param>
     ''' <returns></returns>
-    Private Shared Function CargarBE(pCliente As ClienteBE, pRow As DataRow) As ClienteBE
+    Public Shared Function CargarBE(pCliente As ClienteBE, pRow As DataRow) As ClienteBE
         pCliente.ID = pRow("Cliente_id")
         pCliente.Nombre = pRow("Cliente_nombre")
         pCliente.Apellido = pRow("cliente_apellido")

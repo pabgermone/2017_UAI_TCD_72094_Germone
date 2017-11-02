@@ -8,9 +8,10 @@ Public Class VentaBLL
     Public Property Usuario As Integer
     Public Property Fecha As Date
     Public Property Paquete As Integer
-    Public Property Cliente As Integer
-    Public Property Vuelo As String
     Public Property DV As Integer
+
+    Public Property Clientes As New List(Of ClienteBLL)
+    Public Property Vuelos As New List(Of VueloBLL)
 #End Region
 
 #Region "Constructores"
@@ -47,13 +48,23 @@ Public Class VentaBLL
         Dim mBE As VentaBE = VentaDAL.ObtenerVenta(pVenta)
 
         If Not IsNothing(mBE) Then
-            If CalculadorDV.VerificarDV(mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
+            If CalculadorDV.VerificarDV(mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete, mBE.DV) Then
                 Me.ID = mBE.ID
                 Me.Usuario = mBE.Usuario
                 Me.Fecha = mBE.Fecha
                 Me.Paquete = mBE.Paquete
-                Me.Cliente = mBE.Cliente
-                Me.Vuelo = mBE.Vuelo
+
+                For Each mCliente As ClienteBE In mBE.Clientes
+                    Dim mClienteBLL As New ClienteBLL(mCliente)
+
+                    Me.Clientes.Add(mClienteBLL)
+                Next
+
+                For Each mVuelo As VueloBE In mBE.Vuelos
+                    Dim mVueloBLL As New VueloBLL(mVuelo)
+
+                    Me.Vuelos.Add(mVueloBLL)
+                Next
             Else
                 MsgBox("Error - DV - Venta - CargarPropiedades(Integer)")
             End If
@@ -71,8 +82,18 @@ Public Class VentaBLL
             Me.Usuario = pVenta.Usuario
             Me.Fecha = pVenta.Fecha
             Me.Paquete = pVenta.Paquete
-            Me.Cliente = pVenta.Cliente
-            Me.Vuelo = pVenta.Vuelo
+
+            For Each mCliente As ClienteBE In pVenta.Clientes
+                Dim mClienteBLL As New ClienteBLL(mCliente)
+
+                Me.Clientes.Add(mClienteBLL)
+            Next
+
+            For Each mVuelo As VueloBE In pVenta.Vuelos
+                Dim mVueloBLL As New VueloBLL(mVuelo)
+
+                Me.Vuelos.Add(mVueloBLL)
+            Next
         End If
     End Sub
 
@@ -86,9 +107,23 @@ Public Class VentaBLL
         mBE.Usuario = Me.Usuario
         mBE.Fecha = Me.Fecha
         mBE.Paquete = Me.Paquete
-        mBE.Cliente = Me.Cliente
-        mBE.Vuelo = Me.Vuelo
         mBE.DV = Me.DV
+
+        For Each mCliente As ClienteBLL In Me.Clientes
+            Dim mClienteBE As New ClienteBE
+
+            mCliente.CargarBE(mClienteBE)
+
+            mBE.Clientes.Add(mClienteBE)
+        Next
+
+        For Each mVuelo As VueloBLL In Me.Vuelos
+            Dim mVueloBE As New VueloBE
+
+            mVuelo.CargarBE(mVueloBE)
+
+            mBE.Vuelos.Add(mVueloBE)
+        Next
     End Sub
 #End Region
 
@@ -99,7 +134,7 @@ Public Class VentaBLL
     Public Sub Guardar()
         Dim mBE As New VentaBE
 
-        Me.DV = CalculadorDV.CalcularDV(Me.Usuario & Me.Fecha.ToString("yyyymmdd") & Me.Paquete & Me.Cliente & Me.Vuelo)
+        Me.DV = CalculadorDV.CalcularDV(Me.Usuario & Me.Fecha.ToString("yyyymmdd") & Me.Paquete)
 
         If Me.ID = 0 Then
             CargarBE(mBE)
@@ -137,7 +172,7 @@ Public Class VentaBLL
 
         If Not IsNothing(mListaBE) Then
             For Each mBE As VentaBE In mListaBE
-                If CalculadorDV.VerificarDV(mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete & mBE.Cliente & mBE.Vuelo, mBE.DV) Then
+                If CalculadorDV.VerificarDV(mBE.Usuario & mBE.Fecha.ToString("yyyymmdd") & mBE.Paquete, mBE.DV) Then
                     Dim mVenta As New VentaBLL(mBE)
 
                     mLista.Add(mVenta)

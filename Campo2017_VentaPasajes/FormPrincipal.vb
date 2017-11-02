@@ -6,7 +6,7 @@ Public Class FormPrincipal
     Implements IObservador
 
     Dim mTraductor As Traductor = Traductor.GetInstance
-    Public Property UsuarioActivo As UsuarioBLL
+    Public Shared Property UsuarioActivo As UsuarioBLL
 
     Public Sub New(Optional pUsuario As UsuarioBLL = Nothing)
 
@@ -14,7 +14,7 @@ Public Class FormPrincipal
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        Me.UsuarioActivo = pUsuario
+        UsuarioActivo = pUsuario
 
         For Each mControl As Control In Me.Controls
             Try
@@ -41,7 +41,7 @@ Public Class FormPrincipal
 
     Private Sub FormPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim mPermisoComp As New PermisoCompuestoBLL
-        mPermisoComp.MostrarEnMenuStrip(MenuStrip1, Me.UsuarioActivo, Me)
+        mPermisoComp.MostrarEnMenuStrip(MenuStrip1, UsuarioActivo, Me)
 
         For Each mItem As ToolStripMenuItem In MenuStrip1.Items
             CargarTagsMenu(mItem)

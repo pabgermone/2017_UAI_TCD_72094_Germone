@@ -1,16 +1,20 @@
 ﻿Imports BLL
 Imports Framework
+Imports System.Text
 
 Public Class FormVentas
     Dim mVuelosEncontrados As New List(Of VueloBLL)
     Dim mVueloSelec As VueloBLL
-    Dim mListaElegidos As New List(Of VueloBLL)
+    Dim mListaVuelosSelec As New List(Of VueloBLL)
 
     Dim mTipoViaje As String
     Dim mCantTramos As Integer = 1
 
     Dim mClienteSelec As ClienteBLL
     Dim mListaClientes As List(Of ClienteBLL)
+    Dim mClientesFiltrados As New List(Of ClienteBLL)
+    Dim mPasajeros As New List(Of ClienteBLL)
+    Dim mTipoBusqueda As String
 
 
     Private Sub FormVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -31,7 +35,11 @@ Public Class FormVentas
 
 #Region "Tab 3"
 
-        ActualizarClientes()
+        mListaClientes = ClienteBLL.Listar
+
+        If Not IsNothing(mListaClientes) Then
+            ActualizarClientes(mListaClientes)
+        End If
 
 #End Region
     End Sub
@@ -166,8 +174,8 @@ Public Class FormVentas
             Case "Ida"
                 TabControlVentas.SelectedTab = Tab1
             Case "IdaVuelta"
-                If mListaElegidos.Count = 2 Then '(Volviendo desde la seleccion del vieje de vuelta)
-                    mListaElegidos.RemoveAt(1)
+                If mListaVuelosSelec.Count = 2 Then '(Volviendo desde la seleccion del vieje de vuelta)
+                    mListaVuelosSelec.RemoveAt(1)
 
                     mVuelosEncontrados = Buscar(DatePickerIda.Value, mOrigen, mDestino, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
 
@@ -175,7 +183,7 @@ Public Class FormVentas
 
                     lblSelecVuelo.Text = "Seleccione el vieje de ida"
                 Else '(Volviendo desde la seleccion del viaje de ida)
-                    mListaElegidos.Clear()
+                    mListaVuelosSelec.Clear()
 
                     TabControlVentas.SelectedTab = Tab1
                 End If
@@ -188,8 +196,8 @@ Public Class FormVentas
             Case "Ida"
                 TabControlVentas.SelectedTab = Tab3
             Case "IdaVuelta"
-                If mListaElegidos.Count = 0 Then '(Eligiendo vieje de ida)
-                    mListaElegidos.Add(mVueloSelec)
+                If mListaVuelosSelec.Count = 0 Then '(Eligiendo vieje de ida)
+                    mListaVuelosSelec.Add(mVueloSelec)
 
                     'Busqueda de los vuelos de vuelta
                     mVuelosEncontrados = Buscar(DatePickerIda.Value, mDestino, mOrigen, TxtPasajeros.Text, IIf(CheckAvanzadas.Checked, True, Nothing), IIf(CheckAvanzadas.Checked, mCantEscalas, Nothing), IIf(CheckAvanzadas.Checked, mClase, Nothing))
@@ -198,7 +206,7 @@ Public Class FormVentas
 
                     lblSelecVuelo.Text = "Seleccione el vuelo de vuelta"
                 Else '(Eligiendo viaje de vuelta)
-                    mListaElegidos.Add(mVueloSelec)
+                    mListaVuelosSelec.Add(mVueloSelec)
 
                     TabControlVentas.SelectedTab = Tab3
                 End If
@@ -230,15 +238,156 @@ Public Class FormVentas
     End Sub
 
 
+    Private Sub RadioApellido_CheckedChanged(sender As Object, e As EventArgs) Handles RadioApellido.CheckedChanged
+        If RadioApellido.Checked Then
+            mTipoBusqueda = "Apellido"
+        Else
+            mTipoBusqueda = "Documento"
+        End If
+    End Sub
+
+
     Private Sub TxtBusquedaCte_TextChanged(sender As Object, e As EventArgs) Handles TxtBusquedaCte.TextChanged
+        If Not TxtBusquedaCte.Text = "" Then
+            If Not IsNothing(mListaClientes) Then
+                mClientesFiltrados.Clear()
+
+                For Each mCliente As ClienteBLL In mListaClientes
+                    If mTipoBusqueda = "Apellido" Then
+                        If RegularExpressions.Regex.IsMatch(mCliente.Apellido, "^" & TxtBusquedaCte.Text) Then
+                            mClientesFiltrados.Add(mCliente)
+                        End If
+                    Else
+                        If RegularExpressions.Regex.IsMatch(mCliente.NumeroDocumento.ToString, "^" & TxtBusquedaCte.Text) Then
+                            mClientesFiltrados.Add(mCliente)
+                        End If
+                    End If
+                Next
+
+                ActualizarClientes(mClientesFiltrados)
+            End If
+        Else
+            ActualizarClientes(mListaClientes)
+        End If
 
     End Sub
 
 #End Region
 
-    Public Sub ActualizarClientes()
+#Region "Navegacion"
+
+    Private Sub BtnVolver2_Click(sender As Object, e As EventArgs) Handles BtnVolver2.Click
+        mPasajeros.Clear()
+        TxtBusquedaCte.Text = ""
+
+        ActualizarLstClientes()
+
+        TabControlVentas.SelectedTab = Tab2
+    End Sub
+
+
+    Private Sub BtnSiguiente2_Click(sender As Object, e As EventArgs) Handles BtnSiguiente2.Click
+        TabControlVentas.SelectedTab = Tab4
+
+#Region "Tab 4"
+
+        TxtVerificacion.Text = "Pasajeros:" & vbCrLf
+
+        For Each mCliente As ClienteBLL In mPasajeros
+            TxtVerificacion.Text &= mCliente.ToString & " " & mCliente.TipoDocumento & ": " & mCliente.NumeroDocumento & vbCrLf
+        Next
+
+        If mTipoViaje = "Ida" Then
+            TxtVerificacion.Text &= "Aerolinea: " & New AerolineaBLL(mVueloSelec.Aerolinea).Nombre & vbCrLf &
+                                    "Vuelo: " & mVueloSelec.Numero & " Origen: " & New DestinoBLL(mVueloSelec.Origen).Nombre & " Destino: " & New DestinoBLL(mVueloSelec.Destino).Nombre & vbCrLf
+        Else
+            TxtVerificacion.Text &= "Viaje de ida" & vbCrLf &
+                                    "Aerolinea: " & New AerolineaBLL(mListaVuelosSelec(0).Aerolinea).Nombre & vbCrLf &
+                                    "Vuelo: " & mListaVuelosSelec(0).Numero & " Origen: " & New DestinoBLL(mListaVuelosSelec(0).Origen).Nombre & " Destino: " & New DestinoBLL(mListaVuelosSelec(0).Destino).Nombre & vbCrLf & vbCrLf &
+                                    "Viaje de vuelta" & vbCrLf &
+                                    "Aerolinea: " & New AerolineaBLL(mListaVuelosSelec(1).Aerolinea).Nombre & vbCrLf &
+                                    "Vuelo: " & mListaVuelosSelec(1).Numero & " Origen: " & New DestinoBLL(mListaVuelosSelec(1).Origen).Nombre & " Destino: " & New DestinoBLL(mListaVuelosSelec(1).Destino).Nombre
+        End If
+
+#End Region
+
+    End Sub
+
+#End Region
+
+    Public Sub ActualizarClientes(pClientes As List(Of ClienteBLL))
         GridClientes.DataSource = Nothing
-        GridClientes.DataSource = ClienteBLL.Listar
+        GridClientes.DataSource = pClientes
+    End Sub
+
+
+    Public Sub ActualizarLstClientes()
+        LstCtesSeleccionados.DataSource = Nothing
+        LstCtesSeleccionados.DataSource = mPasajeros
+    End Sub
+
+
+    Private Sub BtnSelec_Click(sender As Object, e As EventArgs) Handles BtnSelec.Click
+        If mPasajeros.Count <= TxtPasajeros.Text Then
+            If Not IsNothing(mClienteSelec) Then
+                mPasajeros.Add(mClienteSelec)
+                ActualizarLstClientes()
+            End If
+        Else
+            MsgBox("Ya se alcanzo la cantidad de pasajeros")
+        End If
+    End Sub
+
+
+    Private Sub BtnClienteNvo_Click(sender As Object, e As EventArgs) Handles BtnClienteNvo.Click
+        Dim mForm As New AltaCliente
+        mForm.ShowDialog()
+
+        mListaClientes = ClienteBLL.Listar
+
+        ActualizarClientes(mListaClientes)
+    End Sub
+
+
+    Private Sub BtnQuitar_Click(sender As Object, e As EventArgs) Handles BtnQuitar.Click
+        If Not IsNothing(LstCtesSeleccionados.SelectedItem) Then
+            If TypeOf (LstCtesSeleccionados.SelectedItem) Is ClienteBLL Then
+                mPasajeros.Remove(LstCtesSeleccionados.SelectedItem)
+
+                ActualizarLstClientes()
+            End If
+        End If
+    End Sub
+
+#End Region
+
+
+#Region "Tab 4"
+
+    Private Sub BtnVolver3_Click(sender As Object, e As EventArgs) Handles BtnVolver3.Click
+        TxtVerificacion.Clear()
+
+        TabControlVentas.SelectedTab = Tab3
+    End Sub
+
+
+    Private Sub BtnFinalizar_Click(sender As Object, e As EventArgs) Handles BtnFinalizar.Click
+        Dim mVenta As New VentaBLL
+
+        mVenta.Usuario = FormPrincipal.UsuarioActivo.ID
+        mVenta.Fecha = Date.Now.Date
+
+        If mTipoViaje = "Ida" Then
+            mVenta.Vuelos.Add(mVueloSelec)
+        Else
+            mVenta.Vuelos.AddRange(mListaVuelosSelec)
+        End If
+
+        mVenta.Clientes.AddRange(mPasajeros)
+
+        mVenta.Guardar()
+
+        'Falta impresion
     End Sub
 
 #End Region
@@ -267,6 +416,23 @@ Public Class FormVentas
 
         Return mVuelos
     End Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

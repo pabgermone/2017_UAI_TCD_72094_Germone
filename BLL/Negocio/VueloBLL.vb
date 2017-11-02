@@ -100,7 +100,7 @@ Public Class VueloBLL
     ''' Carga un objeto BE con los datos de las propiedades de esta instancia
     ''' </summary>
     ''' <param name="mBE">Objeto BE que se quiere cargar con datos</param>
-    Private Sub CargarBE(mBE As VueloBE)
+    Public Sub CargarBE(mBE As VueloBE)
         mBE.Numero = Me.Numero
         mBE.Disponible = Me.Disponible
         mBE.CantEspacios = Me.CantEspacios
