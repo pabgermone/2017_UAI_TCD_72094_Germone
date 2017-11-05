@@ -254,4 +254,40 @@ Public Class ClienteDAL
         End Try
     End Function
 
+
+    ''' <summary>
+    ''' Obtiene los vuelos comprados por un cliente
+    ''' </summary>
+    ''' <param name="pCliente">Cliente del que se quieren obtener vuelos</param>
+    ''' <returns>Lista con los vuelos relacionados con el cliente pasado por parametro</returns>
+    Public Shared Function ObtenerReservas(pCliente As ClienteBE) As List(Of VueloBE)
+        Dim mListaVuelos As New List(Of VueloBE)
+        Dim mCommand As String = "select vuelo_numero, vuelo_disponible, vuelo_cantidadEspacios, vuelo_fecha, vuelo_hora, vuelo_origen, vuelo_destino, vuelo_escalas, vuelo_aerolinea, vuelo_precio, vuelo_dv
+                                  from Vuelo inner join VentaVuelo on vuelo_numero = ventaVuelo_vuelo inner join Venta on ventaVuelo_venta = venta_id inner join VentaCliente on venta_id = ventaCliente_venta
+                                  where ventaCliente_cliente = " & pCliente.ID & "
+                                  group by vuelo_fecha
+                                  order by vuelo_fecha"
+        Dim mDataSet As DataSet
+
+        Try
+            mDataSet = BD.ExecuteDataSet(mCommand)
+
+            If Not IsNothing(mDataSet) And mDataSet.Tables.Count > 0 And mDataSet.Tables(0).Rows.Count > 0 Then
+                For Each mRow As DataRow In mDataSet.Tables(0).Rows
+                    Dim mVuelo As New VueloBE
+
+                    VueloDAL.CargarBE(mVuelo, mRow)
+
+                    mListaVuelos.Add(mVuelo)
+                Next
+            End If
+
+            Return mListaVuelos
+        Catch ex As Exception
+            MsgBox("Error - Obtener reservas - ClienteDAL")
+            MsgBox(ex.Message)
+            Return Nothing
+        End Try
+    End Function
+
 End Class

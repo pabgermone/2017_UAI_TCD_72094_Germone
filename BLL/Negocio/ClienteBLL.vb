@@ -196,6 +196,29 @@ Public Class ClienteBLL
     End Function
 
 
+    ''' <summary>
+    ''' Obtiene los vuelos comprados por el cliente
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function ObtenerReservas() As List(Of VueloBLL)
+        Dim mBE As New ClienteBE
+        CargarBE(mBE)
+
+        Dim mListaBE As List(Of VueloBE) = ClienteDAL.ObtenerReservas(mBE)
+        Dim mListaVuelos As New List(Of VueloBLL)
+
+        If Not IsNothing(mListaBE) Then
+            For Each mVuelo As VueloBE In mListaBE
+                Dim mBLL As New VueloBLL(mVuelo)
+
+                mListaVuelos.Add(mBLL)
+            Next
+        End If
+
+        Return mListaVuelos
+    End Function
+
+
     Public Overrides Function ToString() As String
         Return Me.Nombre & " " & Me.Apellido
     End Function
