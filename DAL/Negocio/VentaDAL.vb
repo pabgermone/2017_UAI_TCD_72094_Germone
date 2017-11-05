@@ -206,4 +206,65 @@ Public Class VentaDAL
             Return Nothing
         End Try
     End Function
+
+
+    ''' <summary>
+    ''' Obtiene toos los años en los que se registraron ventas
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared Function ObtenerAnios() As List(Of Integer)
+        Dim mLista As New List(Of Integer)
+        Dim mCommand As String = "select distinct year(venta_fecha) from venta"
+        Dim mDataSet As DataSet
+
+        Try
+            mDataSet = BD.ExecuteDataSet(mCommand)
+
+            If Not IsNothing(mDataSet) And mDataSet.Tables.Count > 0 And mDataSet.Tables(0).Rows.Count > 0 Then
+                For Each mRow As DataRow In mDataSet.Tables(0).Rows
+                    mLista.Add(mRow(0))
+                Next
+            End If
+
+            Return mLista
+        Catch ex As Exception
+            MsgBox("Error - Obtener años - VentaDAL")
+            MsgBox(ex.Message)
+            Return Nothing
+        End Try
+    End Function
+
+
+    ''' <summary>
+    ''' Obtiene los destinos a los cuales se realiaron ventas durante un determiado año
+    ''' </summary>
+    ''' <param name="pAnio"></param>
+    ''' <returns></returns>
+    Public Shared Function ObtenerDestinosPorAnio(pAnio As Integer) As List(Of DestinoBE)
+        Dim mListaDestinos As New List(Of DestinoBE)
+        Dim mCommand As String = "select destino_id, destino_nombre
+                                  from destino inner join vuelo on destino_id = vuelo_destino inner join VentaVuelo on vuelo_numero = ventaVuelo_vuelo inner join Venta on ventaVuelo_venta = venta_id
+                                  where year(venta_fecha) = " & pAnio
+        Dim mDataSet As DataSet
+
+        Try
+            mDataSet = BD.ExecuteDataSet(mCommand)
+
+            If Not IsNothing(mDataSet) And mDataSet.Tables.Count > 0 Then
+                For Each mRow As DataRow In mDataSet.Tables(0).Rows
+                    Dim mDestino As New DestinoBE
+                    DestinoDAL.CargarBE(mDestino, mRow)
+
+                    mListaDestinos.Add(mDestino)
+                Next
+            End If
+
+            Return mListaDestinos
+        Catch ex As Exception
+            MsgBox("Error - Obtener destinos - VentaDAL")
+            MsgBox(ex.Message)
+            Return Nothing
+        End Try
+    End Function
+
 End Class

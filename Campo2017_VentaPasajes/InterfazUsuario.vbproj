@@ -141,6 +141,12 @@
     <Compile Include="Multi-Idioma\FormIdiomas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Negocio\FormEstadisticas.Designer.vb">
+      <DependentUpon>FormEstadisticas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\FormEstadisticas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Negocio\Venta\FormVentas.Designer.vb">
       <DependentUpon>FormVentas.vb</DependentUpon>
     </Compile>
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Multi-Idioma\FormIdiomas.resx">
       <DependentUpon>FormIdiomas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\FormEstadisticas.resx">
+      <DependentUpon>FormEstadisticas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\Venta\FormVentas.resx">
       <DependentUpon>FormVentas.vb</DependentUpon>

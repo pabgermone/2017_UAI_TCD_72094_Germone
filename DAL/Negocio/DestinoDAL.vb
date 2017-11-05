@@ -9,7 +9,7 @@ Public Class DestinoDAL
     ''' <param name="pDestino">Objeto BE a cargar</param>
     ''' <param name="pRow">Fila con los datos a cargar en el objeto BE</param>
     ''' <returns></returns>
-    Private Shared Function CargarBE(pDestino As DestinoBE, pRow As DataRow) As DestinoBE
+    Public Shared Function CargarBE(pDestino As DestinoBE, pRow As DataRow) As DestinoBE
         pDestino.ID = pRow("Destino_id")
         pDestino.Nombre = pRow("Destino_nombre")
 

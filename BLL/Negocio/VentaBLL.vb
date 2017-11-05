@@ -186,4 +186,25 @@ Public Class VentaBLL
         Return mLista
     End Function
 
+
+    Public Shared Function ObtenerAnios() As List(Of Integer)
+        Return VentaDAL.ObtenerAnios
+    End Function
+
+
+    Public Shared Function ObtenerDestinosPorAnio(pAnio As Integer) As List(Of DestinoBLL)
+        Dim mListaBE As List(Of DestinoBE) = VentaDAL.ObtenerDestinosPorAnio(pAnio)
+        Dim mListaDestinos As New List(Of DestinoBLL)
+
+        If Not IsNothing(mListaBE) Then
+            For Each mBE As DestinoBE In mListaBE
+                Dim mBLL As New DestinoBLL(mBE)
+
+                mListaDestinos.Add(mBLL)
+            Next
+        End If
+
+        Return mListaDestinos
+    End Function
+
 End Class
